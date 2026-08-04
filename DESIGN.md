@@ -90,6 +90,46 @@ D\in\operatorname{cone}\{a(n)^Ta(n)\}.
 
 Therefore D2 near \(30^\circ\) is explicitly an **approximate matrix synthesis** problem, not an exact H5 claim.
 
+## Torque-null tolerance policy — from P10
+
+Do not tolerance every core dimension as if all errors rotate the modal basis.
+
+For \(P=P_T\), report the manufactured error in three blocks:
+
+\[
+\alpha_T=\|PLP\|_2,
+\qquad
+\beta_T=\|P_\perp LP\|_2,
+\qquad
+\delta_B=\|P_\perp(L-L_*)P_\perp\|_2.
+\]
+
+- \(\alpha_T\) sets parasitic torque inductance, fundamental flux and core loss;
+- \(\beta_T\) rotates the torque subspace;
+- \(\delta_B\) consumes blocked-mode gap.
+
+If the winding incidence \(N\) is preserved, any reciprocal positive-definite change of the intended reluctance network preserves \(\ker N\) exactly. Gap and material tolerance therefore receive an eigenvalue budget; unintended leakage/linkage paths receive the nullspace budget.
+
+Required contract:
+
+\[
+\alpha_T\le L_{T,max},
+\qquad
+\beta_T\le \sin\theta_{max}(\gamma-\alpha_T-\delta_B),
+\qquad
+\alpha_T+\delta_B<\gamma.
+\]
+
+Near \(30^\circ\), split every budget into nominal synthesis and manufacturing parts:
+
+\[
+\alpha_T=\alpha_{syn}+\alpha_{mfg},
+\qquad
+\beta_T=\beta_{syn}+\beta_{mfg}.
+\]
+
+The routing optimizer must leave nonzero manufacturing margin.
+
 ## Spatial-offset policy
 
 Do not sacrifice the shifted current-mat merely to make the collar exact-null.
@@ -141,13 +181,14 @@ with:
 
 1. Six phase conductors remain continuous and mutually insulated.
 2. Differential rows form one C3 orbit and have zero sum within each winding set.
-3. \(z+\) and \(z-\) paths are never intentionally switched.
-4. One actuator must change all differential branches; modal matrix change must have rank at least two.
-5. A single stuck branch must not create phase short or uncontrolled asymmetric saturation.
-6. De-energized mechanism state is fault/high-reluctance.
-7. Opening must not increase \(B_{max}\).
-8. Closing is forbidden above \(I_{\Delta,close}\).
-9. Released magnetic energy must have a rated electrical sink.
+3. Preserve winding-incidence classes; dimensional tolerance may change reluctance but must not create unintended modal linkage.
+4. \(z+\) and \(z-\) paths are never intentionally switched.
+5. One actuator must change all differential branches; modal matrix change must have rank at least two.
+6. A single stuck branch must not create phase short or uncontrolled asymmetric saturation.
+7. De-energized mechanism state is fault/high-reluctance.
+8. Opening must not increase \(B_{max}\).
+9. Closing is forbidden above \(I_{\Delta,close}\).
+10. Released magnetic energy must have a rated electrical sink.
 
 ## Transition
 
@@ -174,6 +215,10 @@ E_{release}=\frac12\mathbf i^T(\mathbf L_N-\mathbf L_F)\mathbf i.
 | \(\delta_e\) | Spatial current-mat offset | near 30° candidate | OPTIMIZE |
 | \(\varepsilon_\Sigma\) | Torque leakage / differential coupling | TBD | ROUTING TARGET |
 | \(\varepsilon_M\) | Modal matrix synthesis error | TBD | ROUTING/FEA TARGET |
+| \(\alpha_T\) | Torque-block parasitic inductance | TBD | TOLERANCE TARGET |
+| \(\beta_T\) | Torque-to-blocked cross coupling | TBD | TOLERANCE TARGET |
+| \(\delta_B\) | Blocked-space eigenvalue error | TBD | TOLERANCE TARGET |
+| \(\theta_{max}\) | Allowed torque-nullspace rotation | TBD | SYSTEM INPUT |
 | \(\gamma\) | Normal differential inductance floor | TBD | SYSTEM INPUT |
 | \(\Lambda_{max}\) | Fault torque-plane inductance ceiling | TBD | SYSTEM INPUT |
 | \(L_{z+},L_{z-}\) | Retained zero/common-mode levels | TBD | SYSTEM INPUT |

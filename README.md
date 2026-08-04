@@ -19,7 +19,7 @@ bản gốc       cái đúng       cái đang làm    cách giết nó
 ## Current truth
 
 - **Gốc:** BFM-5 SOMA — dual three-phase, six-port modal collar, shifted current-mat, double-sided Halbach membrane.
-- **Đã chứng minh:** exact one-turn realizability là một finite-cone LP; H5 tạo mọi phổ dương ở frame lattice-compatible, còn literal 30° exact-null có dual certificate vô nghiệm.
+- **Đã chứng minh:** exact synthesis là finite-cone LP; H5 là universal ở frame lattice-compatible; exact torque null được bảo vệ bởi winding incidence; linkage ký sinh và sai số synthesis cùng tiêu thụ một tolerance budget định lượng từ P10.
 - **Thiết kế đang sống:** H5 — ba differential branches chuyển cùng nhau + hai path z+/z− cố định; shifted current-mat giữ lại, torque null tại gần 30° là bài toán tối ưu xấp xỉ.
 - **Chưa chứng minh:** gate rank-2 chế tạo được, loss, tolerance, transition energy, lợi ích rotor và PWM ở cấp hệ thống.
 - **Next kill test:** tối ưu routing xấp xỉ theo góc lệch, rồi đo ma trận complex six-port H5 ở normal/fault trên Rig A.

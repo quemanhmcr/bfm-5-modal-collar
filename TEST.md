@@ -60,6 +60,36 @@ For approximate synthesis solve
 
 and pass only if the residual maps to acceptable torque flux, ripple, loss and saturation. A small matrix norm alone is not an engineering pass.
 
+### T0D — Torque-null tolerance certificate
+
+For every routing/CAD candidate:
+
+1. perturb intended gap, permeability and reciprocal path coupling while holding \(N\) fixed; verify \(\ker(N^TGN)=\ker N\) numerically;
+2. enumerate or sample unintended leakage/linkage paths \(M\);
+3. report
+
+\[
+\alpha_T=\|PLP\|_2,
+\quad
+\beta_T=\|P_\perp LP\|_2,
+\quad
+\delta_B=\|P_\perp(L-L_*)P_\perp\|_2;
+\]
+
+4. verify
+
+\[
+\sin\Theta\le
+\min\left\{
+\frac{\|L-L_*\|_2}{\gamma-\|L-L_*\|_2},
+\frac{\beta_T}{\gamma-\alpha_T-\delta_B}
+\right\};
+\]
+
+5. map \(\alpha_T\) to fundamental flux, magnetic energy and the selected material loss law.
+
+Kill the candidate if the tolerance distribution can change winding-incidence class, if \(\alpha_T+\delta_B\ge\gamma\), or if any inductance/angle/flux/loss budget fails.
+
 ## T1 — Rig A: six-port collar
 
 Đo:
@@ -94,7 +124,7 @@ Giết D2 nếu một trong các điều sau xảy ra:
 
 - raw complex \(6\times6\) matrices;
 - modal matrices;
-- eigenvalues và principal angles;
+- eigenvalues, principal angles and measured \(\alpha_T,\beta_T,\delta_B\);
 - \(B(I,q)\), loss \((f,I,T,q)\);
 - N→F voltage/energy transient;
 - một dòng PASS/FAIL cho từng criterion.
