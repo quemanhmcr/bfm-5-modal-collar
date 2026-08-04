@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+  <defs>
+    <style>
+      .line{stroke:#111;stroke-width:3;fill:none}.thin{stroke:#111;stroke-width:1.5;fill:none}
+      .center{stroke:#111;stroke-width:1.5;fill:none;stroke-dasharray:12 7 2 7}
+      .core{stroke:#111;stroke-width:3;fill:#ddd}.void{stroke:#111;stroke-width:2;fill:#fff}
+      .keeper{stroke:#111;stroke-width:4;fill:#aaa}.cond{stroke:#111;stroke-width:3;fill:#fff}
+      .title{font:700 31px Arial}.h{font:700 21px Arial}.t{font:17px Arial}.s{font:14px Arial}
+      .dim{stroke:#111;stroke-width:1.5;fill:none;marker-start:url(#a);marker-end:url(#a)}
+    </style>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M8,0 L0,4 L8,8" fill="none" stroke="#111"/></marker>
+    <marker id="lead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#111"/></marker>
+  </defs>
+  <rect x="20" y="20" width="1460" height="960" class="void"/>
+  <text x="55" y="70" class="title">BFM5-002 — CORE CROSS-SECTION AND DATUM SCHEME</text>
+  <text x="55" y="105" class="t">Functional baseline G0 · Dimensions are symbolic until ledger release</text>
+
+  <line x1="750" y1="135" x2="750" y2="850" class="center"/>
+  <text x="770" y="160" class="h">DATUM B — SHAFT AXIS</text>
+
+  <!-- Outer toroid -->
+  <path d="M235 220 H1265 V650 H235 Z M350 320 H1150 V550 H350 Z" fill-rule="evenodd" class="core"/>
+  <text x="500" y="265" class="h">PERMANENT OUTER Z/CM TOROID</text>
+
+  <!-- Conductors -->
+  <g>
+    <circle cx="455" cy="390" r="34" class="cond"/><text x="442" y="398" class="t">U1</text>
+    <circle cx="570" cy="390" r="34" class="cond"/><text x="557" y="398" class="t">V1</text>
+    <circle cx="685" cy="390" r="34" class="cond"/><text x="670" y="398" class="t">W1</text>
+    <circle cx="815" cy="390" r="34" class="cond"/><text x="802" y="398" class="t">U2</text>
+    <circle cx="930" cy="390" r="34" class="cond"/><text x="917" y="398" class="t">V2</text>
+    <circle cx="1045" cy="390" r="34" class="cond"/><text x="1030" y="398" class="t">W2</text>
+  </g>
+
+  <!-- Inner core -->
+  <rect x="430" y="470" width="640" height="65" class="core"/>
+  <rect x="455" y="535" width="150" height="200" class="core"/>
+  <rect x="895" y="535" width="150" height="200" class="core"/>
+  <rect x="650" y="535" width="200" height="75" class="core"/>
+  <rect x="480" y="610" width="100" height="80" class="void"/>
+  <rect x="920" y="610" width="100" height="80" class="void"/>
+  <text x="490" y="655" class="h">αΔ</text>
+  <text x="930" y="655" class="h">βΔ</text>
+
+  <!-- Energy gaps -->
+  <rect x="455" y="710" width="150" height="25" class="void"/>
+  <rect x="895" y="710" width="150" height="25" class="void"/>
+  <text x="365" y="730" class="t">gα</text><line x1="400" y1="723" x2="452" y2="723" class="thin" marker-end="url(#lead)"/>
+  <text x="1075" y="730" class="t">gβ</text><line x1="1065" y1="723" x2="1048" y2="723" class="thin" marker-end="url(#lead)"/>
+
+  <!-- Keeper -->
+  <rect x="430" y="770" width="640" height="70" rx="8" class="keeper"/>
+  <text x="565" y="814" class="h">SHARED RETURN KEEPER — DATUM D</text>
+  <line x1="430" y1="855" x2="1070" y2="855" class="dim"/>
+  <text x="710" y="885" class="t">keeper span WK</text>
+
+  <!-- Mount datum -->
+  <line x1="160" y1="900" x2="1340" y2="900" class="line"/>
+  <polygon points="180,900 220,875 220,925" fill="#111"/>
+  <text x="235" y="907" class="h">DATUM A — HUB MOUNTING PLANE</text>
+
+  <!-- Callouts -->
+  <rect x="70" y="150" width="300" height="180" class="void"/>
+  <text x="90" y="185" class="h">SECTION NOTES</text>
+  <text x="90" y="220" class="t">1. Phase continuity fixed.</text>
+  <text x="90" y="250" class="t">2. Keeper is insulated.</text>
+  <text x="90" y="280" class="t">3. Spring-open = fault.</text>
+  <text x="90" y="310" class="t">4. Gaps dimensioned from D.</text>
+
+  <rect x="1130" y="690" width="300" height="175" class="void"/>
+  <text x="1150" y="725" class="h">STATE EFFECT</text>
+  <text x="1150" y="760" class="t">N: keeper seated</text>
+  <text x="1150" y="790" class="t">F: keeper withdrawn by sK</text>
+  <text x="1150" y="820" class="t">RF/RN ≥ 1/εL</text>
+  <text x="1150" y="850" class="t">Both Δ axes must change.</text>
+
+  <text x="55" y="955" class="s">Not a manufacturing release · Verify electromagnetic topology with 3D FEA and Rig A before dimension freeze</text>
+</svg>

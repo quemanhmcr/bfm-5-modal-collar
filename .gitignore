@@ -1,0 +1,13 @@
+# Generated artifacts
+*.pdf
+*.docx
+*.pptx
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Simulation outputs
+results/
+build/
+cache/
