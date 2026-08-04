@@ -31,6 +31,35 @@ Constraints:
 
 Kill D2 if no point near the rotor-optimal \(\delta_e\) satisfies both differential coupling and residual torque-flux budgets.
 
+### T0C — Exact cone solver and certificate
+
+For every candidate \(Q\) and target spectrum:
+
+1. enumerate all sign-canonical \(n\in\{-1,0,1\}^6\) satisfying \(nU_\Sigma=0\);
+2. build \(B(n)=a(n)^Ta(n)\);
+3. solve \(Aw=b,w\ge0\);
+4. minimize support if exact feasibility exists;
+5. otherwise output a dual \(Y\) with
+
+\[
+a(n)Ya(n)^T\ge0,\qquad \langle Y,D\rangle<0.
+\]
+
+Required regression results:
+
+- literal \(30^\circ\): return \(Y=\operatorname{diag}(-1,-1,0,0)\);
+- aligned H5: return the five rows in `DESIGN.md` for arbitrary positive spectrum;
+- aligned four-path search: return feasible only for \(L_{z-}/L_h\in\{1/4,1,4\}\).
+
+For approximate synthesis solve
+
+\[
+\min_{w\ge0,S:\mathsf{Route}(S)=1}
+\left\|\sum_{k\in S}w_kB_k-D\right\|_W
+\]
+
+and pass only if the residual maps to acceptable torque flux, ripple, loss and saturation. A small matrix norm alone is not an engineering pass.
+
 ## T1 — Rig A: six-port collar
 
 Đo:

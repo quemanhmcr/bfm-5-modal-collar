@@ -76,6 +76,20 @@ With independent positive permeances:
 
 and all three spectral levels are independently tunable.
 
+## Exact realizability contract — from P9
+
+For a fixed modal frame \(Q\), do not guess core geometry. Enumerate admissible one-turn rows and solve
+
+\[
+D\in\operatorname{cone}\{a(n)^Ta(n)\}.
+\]
+
+- lattice-compatible frame: H5 is an exact universal synthesizer for any \(L_h,L_{z+},L_{z-}>0\);
+- four paths are permitted only at the special aligned ratios \(L_{z-}/L_h\in\{1/4,1,4\}\);
+- literal \(30^\circ\): exact one-turn target with \(L_h>0\) is impossible, independent of path count.
+
+Therefore D2 near \(30^\circ\) is explicitly an **approximate matrix synthesis** problem, not an exact H5 claim.
+
 ## Spatial-offset policy
 
 Do not sacrifice the shifted current-mat merely to make the collar exact-null.
@@ -159,6 +173,7 @@ E_{release}=\frac12\mathbf i^T(\mathbf L_N-\mathbf L_F)\mathbf i.
 | \(\rho\) | Fault torque fraction | O6 | TEAM TARGET |
 | \(\delta_e\) | Spatial current-mat offset | near 30° candidate | OPTIMIZE |
 | \(\varepsilon_\Sigma\) | Torque leakage / differential coupling | TBD | ROUTING TARGET |
+| \(\varepsilon_M\) | Modal matrix synthesis error | TBD | ROUTING/FEA TARGET |
 | \(\gamma\) | Normal differential inductance floor | TBD | SYSTEM INPUT |
 | \(\Lambda_{max}\) | Fault torque-plane inductance ceiling | TBD | SYSTEM INPUT |
 | \(L_{z+},L_{z-}\) | Retained zero/common-mode levels | TBD | SYSTEM INPUT |
