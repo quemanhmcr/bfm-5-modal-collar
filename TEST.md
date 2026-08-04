@@ -3,23 +3,33 @@
 Không tối ưu toàn hệ thống trước khi primitive sống qua test trước đó.
 
 
-## T0 — Routing feasibility certificate
+## T0 — Routing and offset certificate
 
-Trước CAD, chạy exhaustive solver trên row set \(\{-1,0,1\}^6\).
+### T0A — Exact feasibility
 
-PASS chỉ khi:
+Reproduce P8 before CAD:
 
-1. valid rows span dimension 4;
-2. một \(N\) đạt \(\ker N=T_\Sigma\);
-3. C3 orbit và routing constraints được giữ;
-4. spectrum target có một \(R\succ0\) hợp lệ.
+- literal \(30^\circ\), one-pass ternary, exact null: valid-row span = 2 → FAIL;
+- lattice-compatible angle: \(N_4\) and \(N_5\) rank 4 → PASS.
 
-Kết quả analytic cần tái tạo:
+### T0B — D2 approximate-null optimizer
 
-- \(\delta=30^\circ\): valid-row span = 2 → exact-null FAIL;
-- \(\delta\in60^\circ\mathbb Z\): construction \(N_4\) rank 4 → PASS.
+Sweep \(\delta_e\) and admissible differential row orbits. Minimize:
 
-Không làm FEA cho một routing đã fail T0.
+\[
+J=w_\Sigma\varepsilon_\Sigma^2+w_{Cu}l_{Cu}+w_BB_{\Sigma,pk}^2+w_LL_{split}^2.
+\]
+
+Constraints:
+
+1. three differential rows form a C3 orbit;
+2. row sum is zero within each winding set;
+3. differential rank is two;
+4. \(z+\) and \(z-\) rows remain independent;
+5. routing is physically embeddable;
+6. residual flux and loss stay below budget.
+
+Kill D2 if no point near the rotor-optimal \(\delta_e\) satisfies both differential coupling and residual torque-flux budgets.
 
 ## T1 — Rig A: six-port collar
 
@@ -38,16 +48,18 @@ Biến đổi:
 
 ### Kill criteria
 
-Giết D1 nếu một trong các điều sau xảy ra:
+Giết D2 nếu một trong các điều sau xảy ra:
 
 1. normal torque subspace không gần null;
 2. hai differential eigenvalues không cùng tăng;
 3. \(\operatorname{rank}(\mathbf L_N-\mathbf L_F)<2\) trên noise floor;
 4. fault residual vượt \(\Lambda_{max}\);
-5. outer path tải balanced single-set torque quá budget;
-6. intermediate keeper position có \(B_{max}\) lớn hơn endpoints;
-7. transition energy vượt sink;
-8. một lỗi đơn tạo phase short hoặc mất conductor continuity.
+5. torque residual tại \(\delta_e^*\) vượt flux/loss budget;
+6. \(z+\) hoặc \(z-\) bị mất trong fault state;
+7. một differential branch stuck tạo modal asymmetry hoặc saturation không chấp nhận được;
+8. intermediate state có \(B_{max}\) lớn hơn endpoints;
+9. transition energy vượt sink;
+10. một lỗi đơn tạo phase short hoặc mất conductor continuity.
 
 ### Output tối thiểu
 
