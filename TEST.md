@@ -2,6 +2,25 @@
 
 Không tối ưu toàn hệ thống trước khi primitive sống qua test trước đó.
 
+
+## T0 — Routing feasibility certificate
+
+Trước CAD, chạy exhaustive solver trên row set \(\{-1,0,1\}^6\).
+
+PASS chỉ khi:
+
+1. valid rows span dimension 4;
+2. một \(N\) đạt \(\ker N=T_\Sigma\);
+3. C3 orbit và routing constraints được giữ;
+4. spectrum target có một \(R\succ0\) hợp lệ.
+
+Kết quả analytic cần tái tạo:
+
+- \(\delta=30^\circ\): valid-row span = 2 → exact-null FAIL;
+- \(\delta\in60^\circ\mathbb Z\): construction \(N_4\) rank 4 → PASS.
+
+Không làm FEA cho một routing đã fail T0.
+
 ## T1 — Rig A: six-port collar
 
 Đo:

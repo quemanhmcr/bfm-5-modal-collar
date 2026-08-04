@@ -19,7 +19,7 @@ bản gốc       cái đúng       cái đang làm    cách giết nó
 ## Current truth
 
 - **Gốc:** BFM-5 SOMA — dual three-phase, six-port modal collar, shifted current-mat, double-sided Halbach membrane.
-- **Đã chứng minh:** fixed passive collar không thể vừa có selectivity vi sai mạnh vừa vô hình cho cả hai single-set limp-home.
+- **Đã chứng minh:** fixed-collar limp-home impossibility; healthy minimum là 4 path khi offset lattice-compatible, nhưng exact-null one-pass tại 30° là vô nghiệm.
 - **Thiết kế đang sống:** outer Z/CM path cố định + inner two-axis differential path có một shared rank-2 gate.
 - **Chưa chứng minh:** gate rank-2 chế tạo được, loss, tolerance, transition energy, lợi ích rotor và PWM ở cấp hệ thống.
 - **Next kill test:** đo hai ma trận complex six-port ở trạng thái normal/fault trên Rig A.

@@ -61,6 +61,25 @@ Mục tiêu:
 \|\mathbf L_{\Delta,F}\|_2\ll\|\mathbf L_\Delta\|_2.
 \]
 
+
+## Healthy synthesis H4 — từ P8
+
+Không thay bản gốc O3. Đây là construction tối thiểu cho healthy operator khi collar coordinates lattice-compatible:
+
+```text
+P1: U1,V1  ↔  U2,V2 opposite
+P2: V1,W1  ↔  V2,W2 opposite
+P3: W1,U1  ↔  W2,U2 opposite
+P4: all six conductors same direction
+```
+
+- P1–P3: ba branch đối xứng, shared yoke; path-space sum-zero tạo \(xy\), common-sum tạo \(z-\).
+- P4: outer common path tạo \(z+\).
+- Coupled reluctance cho \(m=4\); independent scalar branches cần \(m=5\) nếu ba spectral knobs phải độc lập.
+- Offset literal \(30^\circ\) không thể exact-null với one-pass ternary routing. Không freeze geometry trước khi chọn: approximate null, lattice-compatible offset, hoặc richer turn ratios.
+
+**Trạng thái:** algebraic construction proven; physical routing/FEA chưa proven. H4 phải được hòa giải với D1 reconfiguration trước khi freeze core geometry.
+
 ## Transition
 
 ```text
@@ -99,8 +118,8 @@ E_{release}=\frac12\mathbf i^T(\mathbf L_N-\mathbf L_F)\mathbf i.
 
 ## Open decisions, theo thứ tự
 
-1. Shared keeper có thật sự tạo rank-2 change dưới tolerance không?
-2. Có cần path riêng cho \(z-\) không?
-3. Magnetic keeper hay electrical bypass có mass/loss/reliability thấp hơn?
-4. \(\delta_e^*\) cho rotor và current-mat cụ thể là bao nhiêu?
+1. Chọn nhánh 30° approximate-null hay lattice-compatible exact-null?
+2. H4 bốn path có tích hợp được shared rank-2 gate mà giữ z modes không?
+3. Shared keeper có thật sự tạo rank-2 change dưới tolerance không?
+4. Magnetic keeper hay electrical bypass có mass/loss/reliability thấp hơn?
 5. Các target 60 kW của team có sống qua voltage, loss và thermal budget không?
