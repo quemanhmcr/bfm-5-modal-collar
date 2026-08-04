@@ -12,7 +12,7 @@ bản gốc       cái đúng       cái đang làm    cách giết nó
 | Tệp | Chức năng | Quy tắc |
 |---|---|---|
 | [`ORIGIN.md`](ORIGIN.md) | Bản vẽ và ý tưởng gốc của team | Bất biến; chỉ sửa lỗi chép |
-| [`PROOFS.md`](PROOFS.md) | Các định lý đã chứng minh | Không chứa geometry suy đoán |
+| [`PROOFS.md`](PROOFS.md) | Chỉ mục kết quả đã chứng minh | Toán chi tiết nằm trong `proofs/` |
 | [`DESIGN.md`](DESIGN.md) | Cấu trúc hiện hành sau toán học | Chỉ một phương án đang sống |
 | [`TEST.md`](TEST.md) | Thí nghiệm và kill criteria | Không có tiêu chí thì không chế tạo |
 
