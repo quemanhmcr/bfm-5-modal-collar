@@ -103,3 +103,24 @@ D=\operatorname{diag}(\Delta\rho_c,\Delta\theta_c),
 
 for declared characteristic steps. Raw and normalized metrics answer different
 questions and their condition numbers must not be conflated.
+
+## Root-sheet curvature
+
+A completed 3x3 patch embeds the regular root sheet in actuator space,
+
+\[
+q^\star:(\rho,\theta)\mapsto\mathbb R^3.
+\]
+
+The tangent map induces `g=A^T A`. Central second derivatives give the second
+fundamental form `h`, principal curvatures, and
+
+\[
+K=\frac{\det h}{\det g}.
+\]
+
+Nonzero Gaussian curvature is intrinsic: no reparameterization can flatten the
+root sheet into a globally constant connection. This is stronger evidence for
+geodesic path planning than a large interpolation residual alone. A zero or
+small `K` does not eliminate ordinary coordinate curvature, so affine and
+quadratic prediction errors are still reported separately.

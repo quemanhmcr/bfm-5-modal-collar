@@ -31,3 +31,32 @@ def test_incomplete_patch_is_rejected() -> None:
         assert 'Incomplete' in str(error)
     else:
         raise AssertionError('Expected incomplete patch rejection')
+
+
+def test_embedded_paraboloid_geometry_recovers_principal_curvatures() -> None:
+    from bfm5.tcz1f_curvature import embedded_root_sheet_geometry
+
+    # q(r,t)=(r,t,0.5*k1*r^2+0.5*k2*t^2) at the origin.
+    k1, k2 = 0.4, -0.25
+    deg = np.pi / 180.0
+    report = embedded_root_sheet_geometry(
+        np.array([1.0, 0.0, 0.0]),
+        np.array([0.0, deg, 0.0]),
+        np.array([0.0, 0.0, k1]),
+        np.zeros(3),
+        np.array([0.0, 0.0, k2 * deg**2]),
+    )
+    assert np.allclose(report["principal_curvatures_per_mm"], [k2, k1])
+    assert np.isclose(report["gaussian_curvature_per_mm2"], k1 * k2)
+    assert np.isclose(report["mean_curvature_per_mm"], 0.5 * (k1 + k2))
+
+
+def test_embedded_plane_has_zero_curvature() -> None:
+    from bfm5.tcz1f_curvature import embedded_root_sheet_geometry
+
+    report = embedded_root_sheet_geometry(
+        np.array([1.0, 0.0, 0.0]), np.array([0.0, 1.0, 0.0]),
+        np.zeros(3), np.zeros(3), np.zeros(3),
+    )
+    assert abs(report["gaussian_curvature_per_mm2"]) < 1e-15
+    assert abs(report["mean_curvature_per_mm"]) < 1e-15
