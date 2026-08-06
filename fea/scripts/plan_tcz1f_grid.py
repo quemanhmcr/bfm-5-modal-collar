@@ -24,16 +24,25 @@ def main() -> None:
     args = parser.parse_args()
 
     config = yaml.safe_load(args.config.read_text(encoding="utf-8"))
+    request_explicit = []
     if args.profile == "adaptive_custom":
         request_path = ROOT / "config" / "tcz1f_request.yml"
         request = yaml.safe_load(request_path.read_text(encoding="utf-8"))
         explicit = request.get("explicit_points") or []
+        request_explicit = explicit
         if not explicit:
             raise ValueError("adaptive_custom request requires explicit_points")
         config["profiles"]["adaptive_custom"] = {"explicit_points": explicit}
     points = plan_points(config, args.profile)
+    explicit_by_key = {
+        (round(float(item["magnitude_scale"]), 8), round(float(item["angle_offset_deg"]), 8)): item
+        for item in request_explicit
+    }
     include = []
     for point in points:
+        explicit_item = explicit_by_key.get((round(point.magnitude_scale, 8), round(point.angle_offset_deg, 8)), {})
+        seed_gaps = tuple(map(float, explicit_item.get("seed_gaps_mm", point.seed.gaps_mm)))
+        seed_dark = tuple(map(float, explicit_item.get("seed_dark_direction", point.seed.dark_direction)))
         include.append(
             {
                 "point_id": point.point_id,
@@ -41,12 +50,13 @@ def main() -> None:
                 "angle_offset_deg": point.angle_offset_deg,
                 "current_0": point.current[0],
                 "current_1": point.current[1],
-                "seed_q0": point.seed.gaps_mm[0],
-                "seed_q1": point.seed.gaps_mm[1],
-                "seed_q2": point.seed.gaps_mm[2],
-                "seed_d0": point.seed.dark_direction[0],
-                "seed_d1": point.seed.dark_direction[1],
-                "seed_d2": point.seed.dark_direction[2],
+                "seed_q0": seed_gaps[0],
+                "seed_q1": seed_gaps[1],
+                "seed_q2": seed_gaps[2],
+                "seed_d0": seed_dark[0],
+                "seed_d1": seed_dark[1],
+                "seed_d2": seed_dark[2],
+                "seed_source": explicit_item.get("seed_source", "static-config"),
             }
         )
     matrix = {"include": include}

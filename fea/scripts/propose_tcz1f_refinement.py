@@ -29,6 +29,26 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(proposal, indent=2), encoding="utf-8")
     if args.request_output:
+        successful = [point for point in atlas.get("points", []) if point.get("status") == "passed"]
+        explicit_with_seeds = []
+        for item in proposal["explicit_points"]:
+            scale = float(item["magnitude_scale"])
+            angle = float(item["angle_offset_deg"])
+            if not successful:
+                seeded = dict(item)
+            else:
+                nearest = min(
+                    successful,
+                    key=lambda point: ((float(point["input"]["magnitude_scale"]) - scale) / 0.10) ** 2
+                    + ((float(point["input"]["angle_offset_deg"]) - angle) / 4.0) ** 2,
+                )
+                seeded = {
+                    **item,
+                    "seed_gaps_mm": nearest["root"]["gaps_mm"],
+                    "seed_dark_direction": nearest["root"]["dark_direction"],
+                    "seed_source": nearest["point_id"],
+                }
+            explicit_with_seeds.append(seeded)
         request = {
             "version": 1,
             "profile": "adaptive_custom",
@@ -37,7 +57,7 @@ def main() -> None:
             "purpose": proposal["stage"],
             "request_id": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + secrets.token_hex(4),
             "requested_at_utc": datetime.now(timezone.utc).isoformat(),
-            "explicit_points": proposal["explicit_points"],
+            "explicit_points": explicit_with_seeds,
         }
         args.request_output.write_text(yaml.safe_dump(request, sort_keys=False), encoding="utf-8")
     print(json.dumps(proposal, indent=2))
