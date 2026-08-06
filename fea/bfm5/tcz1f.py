@@ -59,8 +59,17 @@ def plan_points(config: dict, profile: str) -> list[GridPoint]:
     if profile not in profiles:
         raise KeyError(f"Unknown TCZ-1F profile: {profile}")
     raw_profile = profiles[profile]
-    scales = [float(value) for value in raw_profile["magnitude_scales"]]
-    angles = [float(value) for value in raw_profile["angle_offsets_deg"]]
+    if "explicit_points" in raw_profile:
+        pairs = [
+            (float(item["magnitude_scale"]), float(item["angle_offset_deg"]))
+            for item in raw_profile["explicit_points"]
+        ]
+        scales = sorted({pair[0] for pair in pairs})
+        angles = sorted({pair[1] for pair in pairs})
+    else:
+        scales = [float(value) for value in raw_profile["magnitude_scales"]]
+        angles = [float(value) for value in raw_profile["angle_offsets_deg"]]
+        pairs = [(scale, angle) for scale in scales for angle in angles]
     seeds = [
         RootSeed(
             float(item["magnitude_scale"]),
@@ -70,7 +79,6 @@ def plan_points(config: dict, profile: str) -> list[GridPoint]:
         )
         for item in config["seed_roots"]
     ]
-    pairs = [(scale, angle) for scale in scales for angle in angles]
     if raw_profile.get("diagonal_only"):
         count = min(len(scales), len(angles))
         pairs = list(zip(scales[:count], angles[:count], strict=True))

@@ -59,3 +59,13 @@ def test_induced_connection_metric_and_slew_bound() -> None:
     assert np.allclose(metric, metric.T)
     assert np.min(np.linalg.eigvalsh(metric)) >= -1e-12
     assert np.isclose(report["exact_angle_rate_bound_deg_s"], 15.0)
+
+
+def test_connection_cross_has_central_difference_stencil() -> None:
+    config = yaml.safe_load(open("config/tcz1f_grid.yml", encoding="utf-8"))
+    points = plan_points(config, "connection_cross")
+    keys = {(point.magnitude_scale, point.angle_offset_deg) for point in points}
+    assert keys == {
+        (0.95, 0.0), (1.05, 0.0),
+        (1.0, -2.0), (1.0, 0.0), (1.0, 2.0),
+    }

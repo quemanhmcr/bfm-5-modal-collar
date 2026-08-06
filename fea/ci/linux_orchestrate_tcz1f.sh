@@ -9,7 +9,7 @@ ARTIFACT_ROOT=${TCZ1F_ARTIFACT_ROOT:-/root/bfm5-artifacts}
 PURPOSE=${TCZ1F_PURPOSE:-remote-root-atlas}
 
 case "$PROFILE" in
-  smoke|pilot|coarse|dense_local) ;;
+  smoke|pilot|connection_cross|coarse|dense_local) ;;
   *) echo "Unsupported profile: $PROFILE" >&2; exit 2 ;;
 esac
 
