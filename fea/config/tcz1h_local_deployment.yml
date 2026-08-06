@@ -1,0 +1,84 @@
+name: post-TCZ-1H-local-fallback-first-deployment
+version: 1.0
+status: predeclared_local_windows_qualification
+source_config: config/tcz1g_dynamic.yml
+online_config: config/tcz1h_online.yml
+measured_campaign_model: data/post_tcz1h_measured_campaign/preholdout_model.json
+measured_campaign_lock: data/post_tcz1h_measured_campaign/campaign_lock.json
+scope:
+  claim_if_accepted: >-
+    on the declared local Windows process, a snapshot-bound three-level safety
+    lattice can return HOLD or a certified straight fallback independently of
+    full-bank optimization, and can select the exact declared-bank winner from
+    a fresh complete certificate while failing closed on declared integrity,
+    freshness and timing faults
+  not_claimed:
+    - hardware timing
+    - HIL validation
+    - measured plant validity
+    - operating-system hard real-time guarantee
+    - TCZ-1I acceptance
+    - production readiness
+scientific_contract:
+  safety_lattice: [HOLD, certified_straight_fallback, exact_bank_winner]
+  snapshot_binds_request_calibration_model_oracle_gates_and_source: true
+  stale_snapshot_returns_hold_not_motion: true
+  incomplete_but_valid_certificate_returns_fallback_only: true
+  full_bank_winner_must_be_exact_argmin_over_passing_rows: true
+  optimization_not_in_request_time_safety_path: true
+operating_envelope:
+  temperature_grid_points: 101
+  load_grid_points: 101
+  measured_temperature_c: 45.0
+  measured_load_fraction: 0.50
+  temperature_reserve_c: 0.25
+  load_reserve_fraction: 0.01
+  reversal_assumed: true
+request:
+  start_state: [0.95, -2.0]
+  end_state: [1.05, 2.0]
+  motion_time_s: 0.46
+  weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+  ramp_each_s: 0.03
+  path_samples: 33
+  optimizer_maxiter: 80
+runtime_qualification:
+  certificate_lease_s: 5.0
+  handoff_budget_s: 0.010
+  baseline_trials: 5000
+  loaded_trials: 2000
+  stress_workers: 4
+  stress_matrix_size: 192
+fault_injections:
+  - bundle_hash_corruption
+  - snapshot_mismatch
+  - missing_candidate
+  - duplicate_candidate
+  - wrong_winner
+  - failed_fallback
+  - expired_lease
+  - late_handoff
+acceptance_gates:
+  envelope_relation_violations_max: 0
+  envelope_monotonicity_violations_max: 0
+  fallback_dynamic_certificate_required: true
+  full_bank_certificate_required: true
+  exact_winner_match_required: true
+  fault_injections_detected_min: 8
+  baseline_decision_p99_s_max: 0.005
+  loaded_decision_p99_s_max: 0.020
+  hold_decision_p99_s_max: 0.005
+  fallback_ready_s_max: 1.0
+  fallback_ready_before_full_bank_required: true
+  all_late_handoffs_return_fallback: true
+  all_stale_snapshots_return_hold: true
+evidence_contract:
+  source_commit_before_qualification_required: true
+  snapshot_json_required: true
+  fallback_bundle_json_required: true
+  full_bank_bundle_json_required: true
+  latency_jsonl_required: true
+  fault_report_required: true
+  summary_json_required: true
+  artifact_manifest_sha256_required: true
+  full_regression_required: true
