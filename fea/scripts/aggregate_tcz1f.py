@@ -19,12 +19,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
+    parser.add_argument("--slew-limit-mm-s", type=float, default=0.45)
     args = parser.parse_args()
     args.output_root.mkdir(parents=True, exist_ok=True)
-
-    import yaml
-    grid_config = yaml.safe_load((ROOT / "config" / "tcz1f_grid.yml").read_text(encoding="utf-8"))
-    slew_limit = float(grid_config["actuator_slew_limit_mm_s"])
+    slew_limit = float(args.slew_limit_mm_s)
 
     summaries = []
     integrity_errors = []
