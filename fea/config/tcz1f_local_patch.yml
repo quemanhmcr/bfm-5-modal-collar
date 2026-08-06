@@ -1,0 +1,66 @@
+name: TCZ-1F-local-root-patch
+version: 1.0
+status: quadratic_patch_independently_validated
+current_state_domain:
+  magnitude_scale: [0.95, 1.05]
+  angle_offset_deg: [-2.0, 2.0]
+training_grid:
+  point_count: 9
+  magnitude_scale: [0.95, 1.0, 1.05]
+  angle_offset_deg: [-2.0, 0.0, 2.0]
+validation_grid:
+  point_count: 4
+  magnitude_scale: [0.975, 1.025]
+  angle_offset_deg: [-1.0, 1.0]
+remote_runs:
+  smoke: 31068508939
+  pilot: 31068731942
+  connection_cross: 31069285531
+  mixed_corners: 31069957819
+  validation_centers: 31070756555
+quality:
+  training:
+    max_strong_dark_discriminant: 0.0005455069302930279
+    max_flux_drift_normalized: 0.0001304251616794755
+    max_Bmax_T: 1.0642142374561405
+    min_port_singular_value_normalized_per_mm: 0.1364811776456137
+    min_fold_margin_per_mm: 0.1340977333662178
+    max_root_condition_proxy: 2.9308806455699172
+  independent_validation:
+    max_strong_dark_discriminant: 0.00048709109861153993
+    max_flux_drift_normalized: 0.0002756798965722444
+    min_fold_margin_per_mm: 0.1484108427899605
+connection_at_nominal:
+  dq_d_magnitude_scale_mm: [0.2504666373520581, 0.8438410543311936, 0.10549531046441407]
+  dq_d_angle_mm_per_deg: [-0.029754627435106484, 0.0001636750852294644, 0.019021704852848043]
+  workload_characteristic_steps:
+    magnitude_scale: 0.1
+    angle_deg: 2.0
+  workload_normalized_axis_cost_mm: [0.08865272257134632, 0.0706311517347517]
+  workload_normalized_cross_correlation: -0.16953136105813535
+  workload_normalized_metric_condition: 1.7696675439243328
+  exact_angle_slew_bound_deg_s: 15.123698019120889
+  exact_magnitude_scale_rate_bound_per_s: 0.533275784213484
+root_sheet_geometry:
+  curvature_to_linear_ratio: 0.0757253522298585
+  principal_curvatures_per_mm: [-1.52867007033884, 1.3627585798075406]
+  gaussian_curvature_per_mm2: -2.083208254049252
+  mean_curvature_per_mm: -0.08295574526564964
+  interpretation: intrinsic_near_minimal_saddle
+surrogate_validation:
+  max_affine_error_um: 3.197502720494254
+  max_bilinear_error_um: 1.8867241285936354
+  max_quadratic_error_um: 1.639509450985281
+  max_bilinear_dark_axis_error_deg: 0.48811212582886243
+  decision: accept_quadratic_local_patch
+geodesic_ordering:
+  preferred: rotate_at_low_magnitude_then_increase_magnitude
+  preferred_effort_length_mm: 0.2250876164773415
+  magnitude_first_effort_length_mm: 0.23400350019151667
+  effort_reduction_fraction: 0.039610725164317
+  preferred_serial_slew_lower_bound_s: 0.4364834124560859
+  magnitude_first_serial_slew_lower_bound_s: 0.4603912534455897
+  slew_time_reduction_fraction: 0.0519287312415105
+remote_policy:
+  local_femm_allowed: false
+  further_fea_status: stopped_after_quadratic_validation

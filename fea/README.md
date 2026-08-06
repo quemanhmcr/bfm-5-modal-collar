@@ -76,3 +76,11 @@ From TCZ-1F onward, workstation FEMM execution is disabled by project policy.
 Use the private GitHub Actions workflow `TCZ-1F Remote Root Atlas`. Linux MCP
 acts as the orchestration and artifact-analysis plane; FEMM runs only on
 SHA-pinned GitHub-hosted Windows shards. See `docs/TCZ1F_REMOTE_ROOT_ATLAS.md`.
+
+## TCZ-1F status
+
+The local current-state root sheet on magnitude scale `[0.95, 1.05]` and angle
+`[-2 deg, 2 deg]` is independently validated. It is an intrinsic saddle and is
+represented by an accepted quadratic root patch. See
+`docs/TCZ1F_DECISION_MEMO.md` and `config/tcz1f_local_patch.yml`. No further
+FEA is authorized inside this patch before the TCZ-1G dynamic geodesic test.

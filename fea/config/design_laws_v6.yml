@@ -1,0 +1,78 @@
+version: 6.0
+stage: TCZ-1F-validated-local-root-geometry
+execution_policy:
+  femm_location: github_actions_windows_only
+  orchestration: linux_mcp
+  local_femm: prohibited_by_code
+  workflow_actions: pinned_by_full_commit_sha
+root_patch_acceptance:
+  domain:
+    magnitude_scale: [0.95, 1.05]
+    angle_offset_deg: [-2.0, 2.0]
+  training_roots: 9
+  independent_validation_roots: 4
+  accepted_surrogate: quadratic_taylor_patch
+  gates:
+    max_quadratic_gap_error_um: 3.0
+    max_interpolated_dark_axis_error_deg: 1.0
+    max_strong_dark_discriminant: 0.003
+    max_flux_drift_normalized: 0.002
+  achieved:
+    max_quadratic_gap_error_um: 1.639509450985281
+    max_interpolated_dark_axis_error_deg: 0.48811212582886243
+    max_strong_dark_discriminant: 0.00048709109861153993
+    max_flux_drift_normalized: 0.0002756798965722444
+    min_fold_margin_per_mm: 0.1484108427899605
+  decision: >-
+    Stop FEA refinement inside the validated local patch. Use the quadratic
+    root surrogate for prediction and bilinear dark-axis interpolation, with
+    online flux correction and full-witness audits at declared anchors.
+root_sheet_law:
+  gaussian_curvature_per_mm2: -2.083208254049252
+  principal_curvatures_per_mm: [-1.52867007033884, 1.3627585798075406]
+  rule: >-
+    The strong-dark root sheet is an intrinsic saddle. No current-state
+    reparameterization can make its connection globally constant. Controller
+    synthesis must therefore use a curved root atlas or a validated local
+    quadratic patch rather than a globally affine schedule.
+trajectory_law:
+  preferred_order: angle_first_at_lower_magnitude
+  reason: >-
+    On the validated patch, rotating at lower current magnitude and increasing
+    magnitude afterward reduces actuator path length by 3.96 percent and the
+    serial componentwise-slew lower bound by 5.19 percent relative to the
+    reverse ordering.
+connection_law:
+  coordinate_warning: >-
+    Raw metric condition depends on units. Always report a workload-normalized
+    metric for declared characteristic changes in magnitude and angle.
+  characteristic_steps:
+    magnitude_scale: 0.1
+    angle_deg: 2.0
+  normalized_metric_condition: 1.7696675439243328
+  normalized_axis_cost_mm: [0.08865272257134632, 0.0706311517347517]
+  cross_correlation: -0.16953136105813535
+slew_law:
+  feasible_set: polytope_not_ellipse
+  nominal_active_routes: [1, 2]
+  nominal_inactive_route: 3
+  pure_magnitude_rate_bound_per_s: 0.533275784213484
+  pure_angle_rate_bound_deg_s: 15.123698019120889
+cost_reduction_law:
+  full_witness: acceptance_anchor
+  directional_witness: two_coenergy_solves_for_b_dot_d
+  transported_port_jacobian: broyden_secant_between_anchors
+  mandatory_refresh_on:
+    - transport_age
+    - large_relative_jacobian_update
+    - high_port_condition
+    - large_flux_secant_residual
+    - fold_margin_warning
+next_stage:
+  name: TCZ-1G-geodesic-dynamic-control
+  no_new_fea_prerequisite: true
+  tasks:
+    - embed the accepted quadratic root patch in the TCZ-1E dynamic governor
+    - compare geodesic and straight current-state trajectories under identical endpoints
+    - use the slew polytope for time-optimal path parameterization
+    - validate directional transport against existing full-witness artifacts
