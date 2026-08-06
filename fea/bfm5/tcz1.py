@@ -7,12 +7,23 @@ from pathlib import Path
 from typing import Iterable
 import json
 import math
+import os
 
 import numpy as np
 import yaml
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def assert_remote_femm_execution() -> None:
+    """Enforce the TCZ-1F policy that FEMM runs only on GitHub Actions."""
+    if os.environ.get("GITHUB_ACTIONS", "").lower() != "true":
+        raise RuntimeError(
+            "Local FEMM execution is disabled by project policy. "
+            "Submit a TCZ-1F GitHub Actions request through Linux MCP."
+        )
+
 DEFAULT_CONFIG_PATH = ROOT / "config" / "geometry_tcz1.yml"
 
 
@@ -281,6 +292,7 @@ class FEMMTCZ1:
         mesh_factor: float | None = None,
         reuse: bool = False,
     ) -> dict:
+        assert_remote_femm_execution()
         import femm
 
         gaps = np.asarray(gaps_mm, dtype=float).reshape(3)

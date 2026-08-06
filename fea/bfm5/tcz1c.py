@@ -24,7 +24,7 @@ import math
 import numpy as np
 from numpy.typing import ArrayLike
 
-from bfm5.tcz1 import FEMMTCZ1, TCZ1Config
+from bfm5.tcz1 import FEMMTCZ1, TCZ1Config, assert_remote_femm_execution
 from bfm5.topology import mercedes_frame, normalized_power_leakage
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -181,6 +181,7 @@ class FEMMRouteCell:
         hidden: bool = True,
         reuse: bool = False,
     ) -> dict:
+        assert_remote_femm_execution()
         import femm
 
         geometry.validate()
