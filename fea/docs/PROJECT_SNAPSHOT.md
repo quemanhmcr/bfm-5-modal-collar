@@ -221,3 +221,41 @@ candidate bank. It is measured-plant/HIL identification of route/sign slew,
 lag and hysteresis, plus deployment-hardware latency in a predeclared active
 deadline regime. See
 [`POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md`](POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md).
+
+## 9. Accepted pre-HIL identification gate
+
+The slew-only adaptive audit was followed by a frozen route/sign/reversal
+identification protocol that includes plateau slew, first-order lag, deadtime,
+temperature and load. The safety-side dynamic state is
+
+\[
+(s_-,	au_+,d_+),
+\]
+
+and route travel time is obtained by inverting
+
+\[
+|\Delta q|=s\left[u-	au(1-e^{-u/	au})
+ight],\qquad T=d+u.
+\]
+
+On the declared nonlinear shadow rig, all predeclared gates passed:
+
+- 816 total traces, including 288 untouched holdout traces;
+- zero lower-slew, upper-lag or upper-deadtime holdout violations;
+- median conservatism: 1.415% slew, 7.505% lag, 3.408 ms deadtime;
+- correct reversal-effect sign in all 6 route/sign groups for all three
+  quantities;
+- frozen nominal model: 140 false-safe deadline-grid cases;
+- calibrated bound: zero false-safe cases and 93.28% feasible recall;
+- maximum active false-safe window: 214.04 ms;
+- bound query p95: 0.379 ms;
+- numerical regression: 105 passed.
+
+This is accepted only as a measurement and analysis protocol. It does not alter
+TCZ-1H, `design_laws_v8`, or the accepted tag. The next evidence step is to run
+the frozen acquisition matrix on hardware/HIL, verify the same holdout gates,
+replay the unchanged candidate bank on the measured plant, and measure
+end-to-end deployment latency. See
+[`POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md`](POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md)
+and [`TCZ1H_HIL_MEASUREMENT_PROTOCOL.md`](TCZ1H_HIL_MEASUREMENT_PROTOCOL.md).

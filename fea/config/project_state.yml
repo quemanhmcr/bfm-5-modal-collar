@@ -89,10 +89,12 @@ evidence:
 next_authorized_stage:
   name: hardware_calibrated_hil_navigation
   actions:
-    - measure route_specific_slew_lag_and_hysteresis
-    - update calibration confidence online
-    - replay declared bank on measured plant
-    - expand FEA atlas only on fold_quality_interpolation_or_domain trigger
+    - execute_frozen_route_sign_reversal_HIL_protocol
+    - establish_sensor_and_timebase_reserves_independently
+    - verify_lower_slew_and_upper_lag_deadtime_bounds_on_holdout
+    - replay_declared_bank_on_measured_plant
+    - measure_deployment_latency_and_fallback_behavior
+    - expand_FEA_atlas_only_on_fold_quality_interpolation_or_domain_trigger
 post_snapshot_audits:
   adaptive_deadline_calibration:
     status: rejected_as_next_accepted_stage
@@ -116,3 +118,31 @@ post_snapshot_audits:
       - do_not_promote_synthetic_directional_calibration
       - do_not_expand_candidate_bank_for_this_reason
       - retain_hardware_calibrated_hil_navigation_as_next_authorized_stage
+
+  pre_hil_identification_gate:
+    status: accepted_as_measurement_protocol_only
+    decision_memo: docs/POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md
+    measurement_protocol: docs/TCZ1H_HIL_MEASUREMENT_PROTOCOL.md
+    source_sha: 929deff17cd5988648974ef2c913756793c57dc6
+    artifact_directory: data/post_tcz1h_hil_identification
+    artifact_manifest_sha256: b9357bab8a6340164634156934de9cd6a79d03e8b84688829adabc5ec2dbc84b
+    summary_sha256: 695f4e3d29779bd146880a2d7582871e040f77b1b49002f04a1cdc18974d1795
+    result:
+      protocol_traces: 816
+      holdout_traces: 288
+      plateau_lower_violations: 0
+      tau_upper_violations: 0
+      deadtime_upper_violations: 0
+      median_plateau_conservatism: 0.014149746294992344
+      median_tau_conservatism: 0.07505280236224421
+      median_deadtime_conservatism_s: 0.0034083255002904655
+      frozen_false_safe_deadline_cases: 140
+      calibrated_false_safe_deadline_cases: 0
+      calibrated_feasible_recall: 0.9327731092436975
+      maximum_active_false_safe_window_s: 0.21403844169556507
+      bound_query_p95_s: 0.0003792645499288482
+    consequence:
+      - accept_protocol_not_hardware_claim
+      - next_run_must_replace_shadow_traces_with_measured_HIL_data
+      - keep_TCZ1H_candidate_bank_and_design_laws_v8_unchanged
+      - require_measured_holdout_bank_replay_and_deployment_latency_before_TCZ1I

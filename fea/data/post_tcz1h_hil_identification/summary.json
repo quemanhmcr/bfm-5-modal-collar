@@ -1,0 +1,237 @@
+{
+  "status": "accepted_protocol",
+  "claim_scope": {
+    "claim_if_accepted": "the frozen excitation, estimation, conservative-bound, and active-deadline protocol is identifiable on the declared nonlinear shadow rig and is ready to ingest measured HIL traces without changing its gates",
+    "not_claimed": [
+      "hardware validity",
+      "HIL validation",
+      "production actuator model",
+      "global continuous path optimum",
+      "validity outside the TCZ-1F patch",
+      "deployment-class timing"
+    ]
+  },
+  "scientific_contract": {
+    "train_calibration_holdout_split": true,
+    "route_and_direction_separated": true,
+    "reversal_context_separated": true,
+    "temperature_and_load_excited": true,
+    "bound_calibration_never_uses_holdout": true,
+    "active_deadline_grid_frozen_before_results": true,
+    "accepted_TCZ1H_candidate_bank_unchanged": true,
+    "no_FEMM": true
+  },
+  "acceptance_gates": {
+    "holdout_plateau_lower_violations_max": 0,
+    "holdout_tau_upper_violations_max": 0,
+    "holdout_deadtime_upper_violations_max": 0,
+    "median_plateau_conservatism_max": 0.1,
+    "median_tau_conservatism_max": 0.2,
+    "median_deadtime_conservatism_s_max": 0.008,
+    "median_tau_estimation_relative_error_max": 0.1,
+    "median_deadtime_estimation_absolute_error_s_max": 0.004,
+    "reversal_plateau_sign_correct_min": 6,
+    "reversal_tau_sign_correct_min": 6,
+    "reversal_deadtime_sign_correct_min": 6,
+    "active_false_safe_window_s_min": 0.03,
+    "frozen_false_safe_deadline_cases_min": 3,
+    "calibrated_false_safe_deadline_cases_max": 0,
+    "calibrated_feasible_recall_min": 0.8,
+    "bound_query_p95_s_max": 0.005
+  },
+  "metrics": {
+    "protocol_trace_count": 816,
+    "holdout_trace_count": 288,
+    "holdout_plateau_lower_violations": 0,
+    "holdout_tau_upper_violations": 0,
+    "holdout_deadtime_upper_violations": 0,
+    "median_plateau_conservatism": 0.014149746294992344,
+    "median_tau_conservatism": 0.07505280236224421,
+    "median_deadtime_conservatism_s": 0.0034083255002904655,
+    "median_tau_estimation_relative_error": 0.004279123926120227,
+    "median_deadtime_estimation_absolute_error_s": 0.00019538492682472184,
+    "reversal_plateau_effects_mm_s": [
+      [
+        -0.01952722740272811,
+        -0.02391692801137285,
+        -0.0220590594095319
+      ],
+      [
+        -0.02045389692252475,
+        -0.023722984982624373,
+        -0.02215414738928162
+      ]
+    ],
+    "reversal_tau_effects_s": [
+      [
+        0.008242904735243486,
+        0.01148296098139659,
+        0.009686549573644829
+      ],
+      [
+        0.008046775589819102,
+        0.011359393515201668,
+        0.009512440379362525
+      ]
+    ],
+    "reversal_deadtime_effects_s": [
+      [
+        0.01389521793435489,
+        0.01839148974325462,
+        0.016082505270108773
+      ],
+      [
+        0.014013279797978225,
+        0.01846395039551689,
+        0.016280059970629784
+      ]
+    ],
+    "reversal_plateau_sign_correct": 6,
+    "reversal_tau_sign_correct": 6,
+    "reversal_deadtime_sign_correct": 6,
+    "maximum_active_false_safe_window_s": 0.21403844169556507,
+    "median_active_false_safe_window_s": 0.1182438459658432,
+    "frozen_false_safe_deadline_cases": 140,
+    "calibrated_false_safe_deadline_cases": 0,
+    "true_feasible_deadline_cases": 238,
+    "calibrated_true_feasible_deadline_cases": 222,
+    "calibrated_feasible_recall": 0.9327731092436975,
+    "bound_query_p95_s": 0.0003792645499288482,
+    "plateau_measurement_reserve_mm_s": 0.004500000000000004,
+    "deadline_scenarios": [
+      {
+        "direction": "forward",
+        "temperature_c": 20.0,
+        "load_fraction": 0.0,
+        "true_required_s": 0.31961292181980105,
+        "frozen_required_s": 0.29202050625904596,
+        "calibrated_required_s": 0.33041178898957135,
+        "false_safe_window_s": 0.02759241556075509
+      },
+      {
+        "direction": "forward",
+        "temperature_c": 35.0,
+        "load_fraction": 0.6,
+        "true_required_s": 0.3798577827631753,
+        "frozen_required_s": 0.29202050625904596,
+        "calibrated_required_s": 0.3916719433497653,
+        "false_safe_window_s": 0.08783727650412931
+      },
+      {
+        "direction": "forward",
+        "temperature_c": 45.0,
+        "load_fraction": 0.5,
+        "true_required_s": 0.3834982757102666,
+        "frozen_required_s": 0.29202050625904596,
+        "calibrated_required_s": 0.39533416339580585,
+        "false_safe_window_s": 0.09147776945122066
+      },
+      {
+        "direction": "forward",
+        "temperature_c": 55.0,
+        "load_fraction": 0.8,
+        "true_required_s": 0.4311856698405312,
+        "frozen_required_s": 0.29202050625904596,
+        "calibrated_required_s": 0.44432601305087704,
+        "false_safe_window_s": 0.13916516358148523
+      },
+      {
+        "direction": "forward",
+        "temperature_c": 65.0,
+        "load_fraction": 0.7,
+        "true_required_s": 0.4355323965007014,
+        "frozen_required_s": 0.29202050625904596,
+        "calibrated_required_s": 0.4488252014989752,
+        "false_safe_window_s": 0.14351189024165545
+      },
+      {
+        "direction": "forward",
+        "temperature_c": 70.0,
+        "load_fraction": 1.0,
+        "true_required_s": 0.49377610663469995,
+        "frozen_required_s": 0.29202050625904596,
+        "calibrated_required_s": 0.5093868107304524,
+        "false_safe_window_s": 0.201755600375654
+      },
+      {
+        "direction": "reverse",
+        "temperature_c": 20.0,
+        "load_fraction": 0.0,
+        "true_required_s": 0.31354296917402547,
+        "frozen_required_s": 0.28290363325849144,
+        "calibrated_required_s": 0.32480466670021624,
+        "false_safe_window_s": 0.030639335915534027
+      },
+      {
+        "direction": "reverse",
+        "temperature_c": 35.0,
+        "load_fraction": 0.6,
+        "true_required_s": 0.377638770360581,
+        "frozen_required_s": 0.28290363325849144,
+        "calibrated_required_s": 0.3901459672521349,
+        "false_safe_window_s": 0.09473513710208958
+      },
+      {
+        "direction": "reverse",
+        "temperature_c": 45.0,
+        "load_fraction": 0.5,
+        "true_required_s": 0.3802261616086926,
+        "frozen_required_s": 0.28290363325849144,
+        "calibrated_required_s": 0.39276873082293307,
+        "false_safe_window_s": 0.09732252835020117
+      },
+      {
+        "direction": "reverse",
+        "temperature_c": 55.0,
+        "load_fraction": 0.8,
+        "true_required_s": 0.43164942218352964,
+        "frozen_required_s": 0.28290363325849144,
+        "calibrated_required_s": 0.4456516533953844,
+        "false_safe_window_s": 0.1487457889250382
+      },
+      {
+        "direction": "reverse",
+        "temperature_c": 65.0,
+        "load_fraction": 0.7,
+        "true_required_s": 0.43457642771458127,
+        "frozen_required_s": 0.28290363325849144,
+        "calibrated_required_s": 0.44859831989945254,
+        "false_safe_window_s": 0.15167279445608983
+      },
+      {
+        "direction": "reverse",
+        "temperature_c": 70.0,
+        "load_fraction": 1.0,
+        "true_required_s": 0.4969420749540565,
+        "frozen_required_s": 0.28290363325849144,
+        "calibrated_required_s": 0.5133946776532609,
+        "false_safe_window_s": 0.21403844169556507
+      }
+    ]
+  },
+  "checks": {
+    "holdout_plateau_lower_violations": true,
+    "holdout_tau_upper_violations": true,
+    "holdout_deadtime_upper_violations": true,
+    "median_plateau_conservatism": true,
+    "median_tau_conservatism": true,
+    "median_deadtime_conservatism": true,
+    "median_tau_estimation_error": true,
+    "median_deadtime_estimation_error": true,
+    "reversal_plateau_sign": true,
+    "reversal_tau_sign": true,
+    "reversal_deadtime_sign": true,
+    "active_false_safe_window": true,
+    "frozen_failure_mode_reproduced": true,
+    "calibrated_false_safe_deadlines": true,
+    "calibrated_feasible_recall": true,
+    "bound_query_p95": true
+  },
+  "passed": true,
+  "source_git_sha": "929deff17cd5988648974ef2c913756793c57dc6",
+  "runtime": {
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "numpy": "2.4.6"
+  }
+}

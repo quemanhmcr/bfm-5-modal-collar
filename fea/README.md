@@ -7,6 +7,8 @@
 3. [`config/design_laws_v8.yml`](config/design_laws_v8.yml) — luật và evidence TCZ-1H đầy đủ.
 4. [`docs/TOPOLOGY_CHARTER.md`](docs/TOPOLOGY_CHARTER.md) — định nghĩa topology bất biến.
 5. [`docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md`](docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md) — negative audit sau TCZ-1H.
+6. [`docs/POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md`](docs/POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md) — accepted pre-HIL identification gate.
+7. [`docs/TCZ1H_HIL_MEASUREMENT_PROTOCOL.md`](docs/TCZ1H_HIL_MEASUREMENT_PROTOCOL.md) — frozen measured-plant acquisition protocol.
 
 ## Current accepted state
 
@@ -46,3 +48,25 @@ python scripts/run_tcz1h_benchmark.py \
 
 Chi tiết lịch sử và failure analyses vẫn nằm trong `docs/TCZ1*.md` và
 `config/design_laws_v*.yml`; không cần đọc chúng để nắm trạng thái hiện hành.
+
+## Pre-HIL identification gate
+
+A frozen 816-trace route/sign/reversal protocol has passed on a nonlinear
+shadow rig. The accepted safety-side actuator state is now the triplet
+`(lower slew, upper lag, upper deadtime)`, conditioned on temperature, load,
+and reversal history. On 288 holdout traces it produced zero bound violations,
+zero calibrated false-safe deadline cases, and 93.28% feasible recall; the
+frozen nominal model produced 140 false-safe grid cases.
+
+This accepts the **measurement protocol only**. It is not hardware or HIL
+evidence and does not create TCZ-1I or `design_laws_v9`. The next run must use
+real measured traces, replay the unchanged TCZ-1H candidate bank, and measure
+target-controller latency.
+
+Run the shadow qualification:
+
+```bash
+cd fea
+python scripts/run_tcz1h_hil_identification.py \
+  --output-root data/post_tcz1h_hil_identification
+```
