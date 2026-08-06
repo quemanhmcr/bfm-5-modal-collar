@@ -1,0 +1,59 @@
+name: TCZ-1G-geodesic-dynamic-control
+version: 1.0
+identified_data: data/tcz1e_identified
+root_patch:
+  nominal_current_Aturn: [1600.0, 600.0]
+  domain:
+    magnitude_scale: [0.95, 1.05]
+    angle_offset_deg: [-2.0, 2.0]
+  q0_mm: [2.00266748068236, 1.1607155214186, 1.55336510283308]
+  first_derivatives:
+    dq_drho_mm: [0.2504666373520581, 0.8438410543311936, 0.10549531046441407]
+    dq_dtheta_mm_per_deg: [-0.029754627435106484, 0.0001636750852294644, 0.019021704852848043]
+  second_derivatives:
+    d2q_drho2_mm: [2.3744290993424673, 1.4792191249450857, -0.9772647645736929]
+    d2q_drho_dtheta_mm_per_deg: [-0.04065046431697472, 0.013754143203782432, -0.024648116931917374]
+    d2q_dtheta2_mm_per_deg2: [0.0003444500848498455, 0.0004524688553100842, 0.00030356230351324953]
+benchmark:
+  start_state: [0.95, -2.0]
+  end_state: [1.05, 2.0]
+  hold_start_s: 0.15
+  declared_motion_s: 1.0
+  hold_end_s: 0.35
+  search_motion_s: [0.25, 1.20]
+  search_iterations: 12
+  optimizer_nodes: 13
+  dense_path_samples: 121
+plant_and_controller:
+  dt_s: 0.0005
+  actuator_time_constant_s: 0.025
+  measurement_delay_s: 0.010
+  observer_time_constant_s: 0.012
+  slew_mm_s: [0.45, 0.45, 0.45]
+  q_min_mm: [0.95, 0.95, 0.95]
+  q_max_mm: [2.25, 2.25, 2.25]
+  flux_feedback_rate_s: 80.0
+  current_kp: 0.002
+  current_ki: 0.05
+  voltage_limit_V: 10.0
+  angle_noise_std_deg: 0.0
+  lead_time_s: 0.03
+  schedule_position_rate_s: 45.0
+  compensate_actuator_voltage: false
+  terminal_capture_power_weight: 300.0
+  terminal_capture_position_rate_s: 80.0
+  governor_weights:
+    feedforward: 0.05
+    flux: 20.0
+    power: 500.0
+  terminal_capture_governor_weights:
+    feedforward: 40.0
+    flux: 20.0
+    power: 0.0
+quality_gates:
+  terminal_gap_error_mm: 0.005
+  terminal_current_error_Aturn: 0.05
+  max_strong_dark_discriminant: 0.01
+  rms_flux_error_Wb_turn: 5.0e-6
+  normalized_energy_balance_residual: 1.0e-4
+  max_correction_atlas_clamp_deg: 0.35

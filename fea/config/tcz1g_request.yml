@@ -1,0 +1,7 @@
+version: 1
+profile: dynamic_geometry_benchmark
+artifact_retention_days: 14
+requested_by: linux-mcp
+purpose: independent-github-crosscheck-of-tcz1g
+request_id: 20260806T071700Z-initial
+requested_at_utc: '2026-08-06T07:17:00Z'

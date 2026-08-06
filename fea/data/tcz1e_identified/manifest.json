@@ -5,20 +5,36 @@
   "solver_policy": "no_solver_execution_during_import",
   "files": {
     "surface.json": {
-      "bytes": 11518,
-      "sha256": "e0945acf7f63559fc2e80e2f2bd7fd6af9af19f33026f8d56e95aba5a37b2610"
+      "source_bytes": 11518,
+      "source_sha256": "e0945acf7f63559fc2e80e2f2bd7fd6af9af19f33026f8d56e95aba5a37b2610",
+      "repository_bytes": 11053,
+      "repository_sha256": "5bdeb8b4a9b46c896aedfe66b86d70e2e1c66c481cb6c36aac3787dec3fcf7c1",
+      "bytes": 11053,
+      "sha256": "5bdeb8b4a9b46c896aedfe66b86d70e2e1c66c481cb6c36aac3787dec3fcf7c1"
     },
     "surface_summary.json": {
-      "bytes": 1073,
-      "sha256": "5de989cfb457264c3ba580580b8870ec86da037ffdfe8449ed3b2782f1b95633"
+      "source_bytes": 1073,
+      "source_sha256": "5de989cfb457264c3ba580580b8870ec86da037ffdfe8449ed3b2782f1b95633",
+      "repository_bytes": 1020,
+      "repository_sha256": "8d72bb4fcba9bbd0782503878354c19f41fb10f9478ba5d638d2b8a7be379a2b",
+      "bytes": 1020,
+      "sha256": "8d72bb4fcba9bbd0782503878354c19f41fb10f9478ba5d638d2b8a7be379a2b"
     },
     "correction_atlas.json": {
-      "bytes": 4049,
-      "sha256": "32ef6cc3d534b6619c9810c3888931c0f2be183aa723aebdc44162fc3e41d587"
+      "source_bytes": 4049,
+      "source_sha256": "32ef6cc3d534b6619c9810c3888931c0f2be183aa723aebdc44162fc3e41d587",
+      "repository_bytes": 3871,
+      "repository_sha256": "405c55c5f9b5a0f2780ec937df555cb5a525dc0567b7ab79924b841e71b2f9b7",
+      "bytes": 3871,
+      "sha256": "405c55c5f9b5a0f2780ec937df555cb5a525dc0567b7ab79924b841e71b2f9b7"
     },
     "tcz1e_baseline_summary.json": {
-      "bytes": 5946,
-      "sha256": "d51b5d057c32a4663be6a1d7c0d74a99395f32a1d2fe5bcaa223117b5c16d00b"
+      "source_bytes": 5946,
+      "source_sha256": "d51b5d057c32a4663be6a1d7c0d74a99395f32a1d2fe5bcaa223117b5c16d00b",
+      "repository_bytes": 5805,
+      "repository_sha256": "11539494c42ab6d328aeb08708a650e5c0782ae97ec7ca30e2ca86cce03ecf5e",
+      "bytes": 5805,
+      "sha256": "11539494c42ab6d328aeb08708a650e5c0782ae97ec7ca30e2ca86cce03ecf5e"
     }
   }
 }

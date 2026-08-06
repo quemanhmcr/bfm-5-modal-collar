@@ -84,3 +84,10 @@ The local current-state root sheet on magnitude scale `[0.95, 1.05]` and angle
 represented by an accepted quadratic root patch. See
 `docs/TCZ1F_DECISION_MEMO.md` and `config/tcz1f_local_patch.yml`. No further
 FEA is authorized inside this patch before the TCZ-1G dynamic geodesic test.
+## TCZ-1G dynamic geometry benchmark
+
+TCZ-1G is solver-free and uses the immutable identified TCZ-1E data under
+`data/tcz1e_identified/`.  It compares straight, Riemannian-geodesic and
+polytope-time-optimal paths under identical dynamic constraints.  Run it on
+Linux with `scripts/run_tcz1g_benchmark.py` or through the pinned GitHub Actions
+workflow `TCZ-1G Dynamic Geometry Benchmark`.

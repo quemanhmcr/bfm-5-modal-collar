@@ -1,0 +1,57 @@
+name: TCZ-1G Dynamic Geometry Benchmark
+
+on:
+  push:
+    branches:
+      - research/tcz1f-action-grid
+    paths:
+      - '.github/workflows/tcz1g-dynamic.yml'
+      - 'fea/config/tcz1g_request.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  PYTHONPATH: '.'
+
+concurrency:
+  group: tcz1g-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: fea/requirements-tcz1g.txt
+      - name: Install pinned numerical toolchain
+        run: python -m pip install --disable-pip-version-check -r requirements-tcz1g.txt
+      - name: Validate TCZ-1G mathematics
+        run: python -m pytest -q tests/test_tcz1g.py tests/test_remote_femm_policy.py
+      - name: Assert no FEMM dependency
+        shell: bash
+        run: |
+          if grep -R "import femm\|from femm" -n bfm5/tcz1g.py scripts/run_tcz1g_benchmark.py; then
+            echo 'TCZ-1G must remain solver-free' >&2
+            exit 2
+          fi
+      - name: Run fair dynamic benchmark
+        run: python scripts/run_tcz1g_benchmark.py --output-root results_ci/tcz1g
+      - name: Upload benchmark evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1g-dynamic-${{ github.run_id }}
+          path: fea/results_ci/tcz1g/
+          if-no-files-found: error
+          retention-days: 14
