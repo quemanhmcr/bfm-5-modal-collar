@@ -96,7 +96,7 @@
     "true_feasible_deadline_cases": 238,
     "calibrated_true_feasible_deadline_cases": 222,
     "calibrated_feasible_recall": 0.9327731092436975,
-    "bound_query_p95_s": 0.0003792645499288482,
+    "bound_query_p95_s": 0.0003524755498347076,
     "plateau_measurement_reserve_mm_s": 0.004500000000000004,
     "deadline_scenarios": [
       {
@@ -228,7 +228,7 @@
     "bound_query_p95": true
   },
   "passed": true,
-  "source_git_sha": "929deff17cd5988648974ef2c913756793c57dc6",
+  "source_git_sha": "b300eba953e11fea63ebe01c12178ce565a5d98e",
   "runtime": {
     "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
     "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",

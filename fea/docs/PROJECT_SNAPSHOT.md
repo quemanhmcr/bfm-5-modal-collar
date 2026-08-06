@@ -249,7 +249,7 @@ On the declared nonlinear shadow rig, all predeclared gates passed:
 - frozen nominal model: 140 false-safe deadline-grid cases;
 - calibrated bound: zero false-safe cases and 93.28% feasible recall;
 - maximum active false-safe window: 214.04 ms;
-- bound query p95: 0.379 ms;
+- bound query p95: 0.352 ms;
 - numerical regression: 105 passed.
 
 This is accepted only as a measurement and analysis protocol. It does not alter

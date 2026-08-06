@@ -35,9 +35,10 @@ Before the audit was run, commit
 - a 0.20–0.60 s deadline grid;
 - all acceptance and kill gates.
 
-A later implementation-only commit
-`929deff17cd5988648974ef2c913756793c57dc6` fixed JSON serialization of NumPy
-booleans. It did not change the ensemble, model, seed, deadline grid, or gates.
+Two later implementation-only commits fixed evidence packaging:
+`929deff17cd5988648974ef2c913756793c57dc6` serialized NumPy booleans, and
+`b300eba953e11fea63ebe01c12178ce565a5d98e` made CSV newlines checkout-stable.
+Neither changed the ensemble, model, seed, deadline grid, or gates.
 
 ## Result
 
@@ -57,7 +58,7 @@ booleans. It did not change the ensemble, model, seed, deadline grid, or gates.
 | Frozen false-safe deadline cases | 140 | ≥3 | pass |
 | Calibrated false-safe deadline cases | 0 | 0 | pass |
 | Calibrated feasible recall | 93.277% | ≥80% | pass |
-| Bound-query p95 | 0.379 ms | ≤5 ms | pass |
+| Bound-query p95 | 0.352 ms | ≤5 ms | pass |
 
 All 16 predeclared checks passed. Numerical regression passed 105 tests.
 
@@ -153,14 +154,14 @@ Only a passing measured-plant campaign may justify a TCZ-1I proposal or
 
 ## Evidence contract
 
-- Audit source SHA: `929deff17cd5988648974ef2c913756793c57dc6`
+- Audit source SHA: `b300eba953e11fea63ebe01c12178ce565a5d98e`
 - Artifact directory: `data/post_tcz1h_hil_identification/`
 - `artifact_manifest.json` SHA-256:
-  `b9357bab8a6340164634156934de9cd6a79d03e8b84688829adabc5ec2dbc84b`
+  `d08ea73514d7b248332eb651f04574c425976515e1524775104af238def19f08`
 - `summary.json` SHA-256:
-  `695f4e3d29779bd146880a2d7582871e040f77b1b49002f04a1cdc18974d1795`
+  `5fec55318a083f319b1519cf31e497137abc2fc41a401449cf51f6cf177b6fed`
 - `protocol.csv` SHA-256:
-  `1995893c345efa6bddfa0d431a2dd1072191e2398f1cfc20effbbda40a5eba51`
+  `56669b34631723d827bfdb4d9a643a24762770cebd970c23e7796b56a2da222c`
 - `estimates.jsonl` SHA-256:
   `7a47cf40bb06823f6f3a135c68b85e83752d8cacd5256e7b3e4cb52a1e2a4ed6`
 - `models.json` SHA-256:

@@ -123,10 +123,10 @@ post_snapshot_audits:
     status: accepted_as_measurement_protocol_only
     decision_memo: docs/POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md
     measurement_protocol: docs/TCZ1H_HIL_MEASUREMENT_PROTOCOL.md
-    source_sha: 929deff17cd5988648974ef2c913756793c57dc6
+    source_sha: b300eba953e11fea63ebe01c12178ce565a5d98e
     artifact_directory: data/post_tcz1h_hil_identification
-    artifact_manifest_sha256: b9357bab8a6340164634156934de9cd6a79d03e8b84688829adabc5ec2dbc84b
-    summary_sha256: 695f4e3d29779bd146880a2d7582871e040f77b1b49002f04a1cdc18974d1795
+    artifact_manifest_sha256: d08ea73514d7b248332eb651f04574c425976515e1524775104af238def19f08
+    summary_sha256: 5fec55318a083f319b1519cf31e497137abc2fc41a401449cf51f6cf177b6fed
     result:
       protocol_traces: 816
       holdout_traces: 288
@@ -140,7 +140,7 @@ post_snapshot_audits:
       calibrated_false_safe_deadline_cases: 0
       calibrated_feasible_recall: 0.9327731092436975
       maximum_active_false_safe_window_s: 0.21403844169556507
-      bound_query_p95_s: 0.0003792645499288482
+      bound_query_p95_s: 0.0003524755498347076
     consequence:
       - accept_protocol_not_hardware_claim
       - next_run_must_replace_shadow_traces_with_measured_HIL_data
