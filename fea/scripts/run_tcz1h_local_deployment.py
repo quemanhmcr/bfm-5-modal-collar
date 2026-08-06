@@ -10,6 +10,7 @@ import os
 import platform
 import subprocess
 import sys
+import tempfile
 import time
 
 import numpy as np
@@ -66,6 +67,35 @@ def source_git_sha() -> str:
     return subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT.parent, text=True
     ).strip()
+
+
+def git_blob_bytes(relative_to_repo: str | Path) -> bytes:
+    relative = Path(relative_to_repo).as_posix()
+    return subprocess.check_output(
+        ["git", "show", f"HEAD:{relative}"], cwd=ROOT.parent
+    )
+
+
+def git_blob_sha256(relative_to_repo: str | Path) -> str:
+    return hashlib.sha256(git_blob_bytes(relative_to_repo)).hexdigest()
+
+
+def materialize_git_directory(relative_to_repo: str | Path, destination: Path) -> Path:
+    relative = Path(relative_to_repo).as_posix().rstrip("/")
+    names = subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", "HEAD", "--", relative],
+        cwd=ROOT.parent,
+        text=True,
+    ).splitlines()
+    if not names:
+        raise ValueError(f"No tracked files under {relative}")
+    destination.mkdir(parents=True, exist_ok=True)
+    for name in names:
+        suffix = Path(name).relative_to(relative)
+        target = destination / suffix
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(git_blob_bytes(name))
+    return destination
 
 
 def build_runtime(raw: dict):
@@ -279,10 +309,10 @@ def main() -> None:
     source = yaml.safe_load((ROOT / local["source_config"]).read_text(encoding="utf-8"))
     source_sha = source_git_sha()
 
-    measured_model_path = ROOT / local["measured_campaign_model"]
-    campaign_lock_path = ROOT / local["measured_campaign_lock"]
-    measured_model = json.loads(measured_model_path.read_text(encoding="utf-8"))
-    campaign_lock = json.loads(campaign_lock_path.read_text(encoding="utf-8"))
+    measured_model_relative = Path("fea") / local["measured_campaign_model"]
+    campaign_lock_relative = Path("fea") / local["measured_campaign_lock"]
+    measured_model = json.loads(git_blob_bytes(measured_model_relative).decode("utf-8"))
+    campaign_lock = json.loads(git_blob_bytes(campaign_lock_relative).decode("utf-8"))
     models = measured_model["models"]
     plateau = grouped_bound_from_dict(models["plateau_lower"])
     tau = grouped_bound_from_dict(models["tau_upper"])
@@ -339,9 +369,14 @@ def main() -> None:
 
     runtime_started = time.perf_counter()
     patch = QuadraticRootPatch.from_dict(source["root_patch"])
-    model, resistance, identified_manifest = load_identified_dynamic_model(ROOT / online["identified_data"])
+    immutable = tempfile.TemporaryDirectory(prefix="bfm5-local-deployment-")
+    immutable_root = Path(immutable.name)
+    identified_relative = Path("fea") / online["identified_data"]
+    oracle_relative = Path("fea") / online["oracle_data"]
+    identified_root = materialize_git_directory(identified_relative, immutable_root / "identified")
+    oracle_root = materialize_git_directory(oracle_relative, immutable_root / "oracle")
+    model, resistance, identified_manifest = load_identified_dynamic_model(identified_root)
     atlas = LocalMetricAtlas.build(model, patch, rho_points=13, theta_points=17)
-    oracle_root = ROOT / online["oracle_data"]
     oracle_manifest = validate_json_bundle(oracle_root)
     path_oracle = KernelPathOracle.from_dict(json.loads((oracle_root / "path_oracle.json").read_text(encoding="utf-8")))
     value_oracle = KernelValueOracle.from_dict(json.loads((oracle_root / "tube_value_oracle.json").read_text(encoding="utf-8")))
@@ -363,9 +398,9 @@ def main() -> None:
         request=request_payload,
         calibration=calibration_payload,
         quality_gates=source["quality_gates"],
-        model_artifact_sha256=sha256(ROOT / online["identified_data"] / "manifest.json"),
-        oracle_artifact_sha256=sha256(oracle_root / "manifest.json"),
-        campaign_lock_sha256=sha256(campaign_lock_path),
+        model_artifact_sha256=git_blob_sha256(Path("fea") / online["identified_data"] / "manifest.json"),
+        oracle_artifact_sha256=git_blob_sha256(Path("fea") / online["oracle_data"] / "manifest.json"),
+        campaign_lock_sha256=git_blob_sha256(campaign_lock_relative),
     )
     snapshot_hash = str(snapshot["snapshot_sha256"])
     write_json(output / "snapshot.json", snapshot)
@@ -622,11 +657,11 @@ def main() -> None:
         "source_git_sha": source_sha,
         "files": manifest_files,
         "source_files": {
-            "bfm5/tcz1h_local_deployment.py": sha256(ROOT / "bfm5" / "tcz1h_local_deployment.py"),
-            "scripts/run_tcz1h_local_deployment.py": sha256(ROOT / "scripts" / "run_tcz1h_local_deployment.py"),
-            "config/tcz1h_local_deployment.yml": sha256(ROOT / "config" / "tcz1h_local_deployment.yml"),
-            "bfm5/tcz1h.py": sha256(ROOT / "bfm5" / "tcz1h.py"),
-            "bfm5/tcz1h_measured_campaign.py": sha256(ROOT / "bfm5" / "tcz1h_measured_campaign.py"),
+            "bfm5/tcz1h_local_deployment.py": git_blob_sha256("fea/bfm5/tcz1h_local_deployment.py"),
+            "scripts/run_tcz1h_local_deployment.py": git_blob_sha256("fea/scripts/run_tcz1h_local_deployment.py"),
+            "config/tcz1h_local_deployment.yml": git_blob_sha256("fea/config/tcz1h_local_deployment.yml"),
+            "bfm5/tcz1h.py": git_blob_sha256("fea/bfm5/tcz1h.py"),
+            "bfm5/tcz1h_measured_campaign.py": git_blob_sha256("fea/bfm5/tcz1h_measured_campaign.py"),
         },
     }
     write_json(output / "artifact_manifest.json", manifest)
