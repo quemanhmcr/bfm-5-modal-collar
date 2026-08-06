@@ -1,0 +1,53 @@
+version: 5.0
+stage: TCZ-1F-current-state-root-atlas
+remote_execution:
+  local_femm_allowed: false
+  orchestration_plane: Linux MCP and GitHub API
+  data_plane: GitHub-hosted Windows matrix runners
+  installer_integrity:
+    version: FEMM 4.2 stable 21Apr2019 x64
+    sha256: 17384e8990b6305ec8ffef1f75b6ef091a266b6e49b30c151cd1daca2e952043
+root_existence:
+  equations:
+    - psi(i,q) - psi_reference(i) = 0
+    - b(i,q)^T d(i,q) = 0 with Kq d = 0
+  discriminant_set:
+    - sigma_2(Kq) = 0
+    - dark_transversality tau = d/ds[b^T d] on the iso-flux continuation = 0
+  rule: >-
+    A TCZ-1F root is locally continuable only when the port Jacobian retains
+    rank two and the signed dark-power residual crosses zero transversely.
+    Full finite differencing of the third Jacobian row is not required for
+    fold detection because visible components can be removed by row operations.
+connection_geometry:
+  connection: A(i) = -F_q^{-1} F_i = partial q_star / partial i
+  induced_metric: G_I = A^T G_q A
+  uses:
+    - compute actuator effort of an electrical-state trajectory
+    - find geodesic current paths that avoid high actuator burden
+    - derive exact-manifold slew limits
+    - expose anisotropy between current magnitude and direction
+  distinction: >-
+    The quadratic metric predicts effort; componentwise slew is an infinity-
+    norm constraint and must be reported separately.
+root_sheet_topology:
+  rule: >-
+    Away from the discriminant, each connected root sheet is locally a graph.
+    Closed loops have no branch change on a single-valued sheet. Branch
+    switching or monodromy is evidence of multiple sheets or a loop enclosing
+    the discriminant and must be tested by continuation, not assumed.
+artifact_contract:
+  required:
+    - summary.json
+    - artifact_manifest.json with SHA-256
+    - git SHA and FEMM installer SHA
+  forbidden_by_default:
+    - ans files
+    - bulk fem files
+  reason: preserve reproducibility without exhausting artifact storage
+next_decision:
+  accept_atlas_when:
+    - all shard manifests verify
+    - no unexplained root holes
+    - fold margins converge under grid refinement
+    - continuation around closed cells returns to the same root sheet or reports branch permutation explicitly

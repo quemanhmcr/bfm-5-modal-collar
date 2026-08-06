@@ -153,3 +153,39 @@ def sha256_file(path) -> str:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def induced_connection_metrics(
+    dq_dscale_mm: ArrayLike,
+    dq_dangle_mm_per_deg: ArrayLike,
+    actuator_metric: ArrayLike | None = None,
+    slew_limit_mm_s: float | None = None,
+) -> dict:
+    """Compute the actuator-effort metric induced on current-state coordinates.
+
+    Angle is converted to radians before forming the metric. The exact pure-
+    angle rate bound uses componentwise actuator slew and is therefore an
+    infinity-norm/Finsler constraint, reported separately from the quadratic
+    effort metric.
+    """
+    scale_column = np.asarray(dq_dscale_mm, dtype=float).reshape(3)
+    angle_per_deg = np.asarray(dq_dangle_mm_per_deg, dtype=float).reshape(3)
+    angle_per_rad = angle_per_deg * (180.0 / math.pi)
+    connection = np.column_stack([scale_column, angle_per_rad])
+    metric = np.eye(3) if actuator_metric is None else np.asarray(actuator_metric, dtype=float).reshape(3, 3)
+    induced = connection.T @ metric @ connection
+    eigenvalues = np.linalg.eigvalsh(0.5 * (induced + induced.T))
+    result = {
+        "connection_mm_per_coordinate": connection.tolist(),
+        "induced_effort_metric": induced.tolist(),
+        "induced_effort_metric_eigenvalues": eigenvalues.tolist(),
+        "induced_effort_metric_condition": float(eigenvalues[-1] / (eigenvalues[0] + 1e-30)),
+    }
+    if slew_limit_mm_s is not None:
+        nonzero = np.abs(angle_per_deg) > 1e-12
+        result["exact_angle_rate_bound_deg_s"] = (
+            float(np.min(float(slew_limit_mm_s) / np.abs(angle_per_deg[nonzero])))
+            if np.any(nonzero)
+            else float("inf")
+        )
+    return result

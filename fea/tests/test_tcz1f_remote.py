@@ -45,3 +45,17 @@ def test_root_transversality_proxy_detects_fold() -> None:
     folded = root_transversality_proxy(k, [1.0, 0.5], d, [0, 0, 0], 0.0, d * 0.2, 0.0)
     assert healthy["root_fold_margin_per_mm"] > 0.0
     assert folded["root_fold_margin_per_mm"] < 1e-12
+
+
+def test_induced_connection_metric_and_slew_bound() -> None:
+    from bfm5.tcz1f import induced_connection_metrics
+
+    report = induced_connection_metrics(
+        [0.1, -0.2, 0.3],
+        [0.03, -0.01, 0.02],
+        slew_limit_mm_s=0.45,
+    )
+    metric = np.asarray(report["induced_effort_metric"])
+    assert np.allclose(metric, metric.T)
+    assert np.min(np.linalg.eigvalsh(metric)) >= -1e-12
+    assert np.isclose(report["exact_angle_rate_bound_deg_s"], 15.0)

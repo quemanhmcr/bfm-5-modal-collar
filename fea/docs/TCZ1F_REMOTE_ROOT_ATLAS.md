@@ -53,3 +53,37 @@ blocks at every root.
    connection and reports gaps, failed roots and fold proximity.
 
 No local FEMM invocation is part of this protocol.
+
+## Induced geometry and root sheets
+
+For a regular root sheet, the implicit connection is
+
+\[
+A(i)=-F_q^{-1}F_i=\frac{\partial q^\star}{\partial i}.
+\]
+
+An actuator effort metric `Gq` induces
+
+\[
+G_I=A^TG_qA
+\]
+
+on current-state space. This turns electrical path design into a geodesic
+problem: two paths with identical endpoints can have very different actuator
+cost even when both remain strong-dark.
+
+The discriminant set is where either port rank is lost or dark
+transversality vanishes. On a single regular graph sheet, closed continuation
+must return to the same root. A branch permutation after a closed loop is not
+ordinary curvature; it is evidence of multiple sheets or monodromy around the
+discriminant. TCZ-1F aggregation therefore retains root identity and will later
+run closed-cell continuation audits.
+
+## Linux MCP submission
+
+`ci/linux_orchestrate_tcz1f.sh PROFILE` is the durable control-plane entry
+point. It updates a nonce-bearing request file, pushes the research branch,
+locates the exact run by commit SHA, watches it, downloads all artifacts and
+rejects aggregate output with checksum errors or failed shards. Expensive FEMM
+runs are triggered only by changes to the workflow or request file; ordinary
+code/documentation pushes are inert.

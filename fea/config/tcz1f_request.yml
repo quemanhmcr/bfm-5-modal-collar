@@ -1,5 +1,7 @@
 version: 1
-profile: smoke
+profile: pilot
 artifact_retention_days: 14
 requested_by: linux-mcp
-purpose: verify-pinned-femm-com-shard-and-aggregate
+purpose: identify-off-nominal-transversality-and-connection
+request_id: 20260806T033238Z-36ede48f
+requested_at_utc: '2026-08-06T03:32:38.853563+00:00'

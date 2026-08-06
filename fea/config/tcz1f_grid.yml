@@ -5,6 +5,7 @@ matched_depth_mm: 22.838127702404996
 symmetric_gap_mm: 1.748046875
 gap_step_mm: 0.06
 gap_bounds_mm: [0.75, 2.35]
+actuator_slew_limit_mm_s: 0.45
 root_gates:
   max_abs_signed_normalized_coupling: 0.003
   max_flux_drift_normalized: 0.002

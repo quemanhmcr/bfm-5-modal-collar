@@ -6,7 +6,7 @@ on:
       - research/tcz1f-action-grid
     paths:
       - '.github/workflows/tcz1f-grid.yml'
-      - 'fea/**'
+      - 'fea/config/tcz1f_request.yml'
   workflow_dispatch:
     inputs:
       profile:

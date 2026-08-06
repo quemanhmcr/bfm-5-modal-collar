@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from bfm5.tcz1f import sha256_file  # noqa: E402
+from bfm5.tcz1f import induced_connection_metrics, sha256_file  # noqa: E402
 
 
 def main() -> None:
@@ -21,6 +21,10 @@ def main() -> None:
     parser.add_argument("--output-root", type=Path, required=True)
     args = parser.parse_args()
     args.output_root.mkdir(parents=True, exist_ok=True)
+
+    import yaml
+    grid_config = yaml.safe_load((ROOT / "config" / "tcz1f_grid.yml").read_text(encoding="utf-8"))
+    slew_limit = float(grid_config["actuator_slew_limit_mm_s"])
 
     summaries = []
     integrity_errors = []
@@ -90,7 +94,12 @@ def main() -> None:
                 right = by_key.get((scale, angles[angle_index + 1]))
                 if left and right:
                     dq_dangle = ((np.asarray(right["root"]["gaps_mm"]) - np.asarray(left["root"]["gaps_mm"])) / (angles[angle_index + 1] - angles[angle_index - 1])).tolist()
-            connection.append({"point_id": center["point_id"], "dq_dscale_mm": dq_dscale, "dq_dangle_mm_per_deg": dq_dangle})
+            record = {"point_id": center["point_id"], "dq_dscale_mm": dq_dscale, "dq_dangle_mm_per_deg": dq_dangle}
+            if dq_dscale is not None and dq_dangle is not None:
+                record["geometry"] = induced_connection_metrics(
+                    dq_dscale, dq_dangle, slew_limit_mm_s=slew_limit,
+                )
+            connection.append(record)
 
     aggregate = {
         "schema_version": 1,
