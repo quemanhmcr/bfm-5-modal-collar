@@ -15,3 +15,6 @@ results/*
 
 # Remote CI outputs
 results_ci/
+
+# Local qualification scratch outputs
+results_local/

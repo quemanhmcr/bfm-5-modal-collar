@@ -1,0 +1,12 @@
+{
+  "corrupted_atlas_detected": true,
+  "out_of_domain": {
+    "action": "HOLD",
+    "lookup": {
+      "found": false,
+      "query_load_fraction": 1.0,
+      "query_temperature_c": 71.0,
+      "reason": "out_of_domain"
+    }
+  }
+}

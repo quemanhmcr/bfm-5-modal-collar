@@ -1,0 +1,210 @@
+{
+  "bundle_sha256": "4bf3a8c1ce3bf40725546c94073a72e782071350b2178c2ad2c149b3bec3c016",
+  "expected_candidate_ids": [
+    "anchor_0",
+    "anchor_1",
+    "anchor_2",
+    "anchor_3",
+    "anchor_4",
+    "anchor_5",
+    "anchor_6",
+    "fastest",
+    "straight_fallback"
+  ],
+  "fallback_candidate_id": "straight_fallback",
+  "level": "full_bank",
+  "rows": [
+    {
+      "candidate_id": "anchor_0",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "e136652b0350e585349137858956912296698747e67731c499c270cea6b3153e",
+      "objective_ratio": 1.1084804446320642,
+      "passed": true,
+      "plan_sha256": "1bf53535dcbdb5e8c8f40bdb9d0d5546dea3d16ba567d8a82eed0eca2012d762",
+      "row_sha256": "8f74854f2b5c5eae8b1768d604e99f06b1d20c0bf9f0843b7011d68d06a11d11",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "anchor_1",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "9b83f821169470dc274ef853655ccc47baa58016715812a090a11a191432815d",
+      "objective_ratio": 1.0929381550022508,
+      "passed": true,
+      "plan_sha256": "7f89c164a911029f2c2921d6de9793f12d92bd219e2be087d0995c13f9187bab",
+      "row_sha256": "670a807a1b3b33ad6ee5742e8fa141a16b9c62236645ee52b7072dc62c1a7de4",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "anchor_2",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "3f41e230d2b90588d0150d0028f7d33a24b2b1b64ac19e28e9b1b1329dcb4cc4",
+      "objective_ratio": 1.0756283829038573,
+      "passed": true,
+      "plan_sha256": "8160ab338a12c801750cf50404d67fe3bd1bbd9020c4396bc610e580cc21c973",
+      "row_sha256": "f7e3364b36df4a2ac3ee880c0f7758b8977f94c1914c30d43a9dadeb85f0f67d",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "anchor_3",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "a01ca0f1e80c4825b1fd71d2cdef29d8052a70a8a3a8577dfc42861c050ce731",
+      "objective_ratio": 1.0705097318140286,
+      "passed": true,
+      "plan_sha256": "30f3987e7514a7d856a411df8bcc4fea575245269a5da8ee8cac7a81c1885e1e",
+      "row_sha256": "9f2258203cdd1390959365526143cad5e249e66657a5c0ff6cb68cc80ae354e3",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "anchor_4",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "930b1d22fe771148ef17d0050666a6dcad4cdd2925a6aa9bcc0db6c433ff6f5f",
+      "objective_ratio": 1.0338867976667676,
+      "passed": true,
+      "plan_sha256": "d081bdbb1f3ba072141b546fb200f873cde4a70dc0c2202b8333784ead4091b0",
+      "row_sha256": "958fa421290ad81030a5535dbbf5b28e8163197c26afe5d81f2de557ad83bcb4",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "anchor_5",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "9c2826407d196cc0e197a4874fd27b6e445064ee27d43e68ae0c2ac6bf42d977",
+      "objective_ratio": 0.9842532056368687,
+      "passed": true,
+      "plan_sha256": "8f5a9a7470186cf4137f6ea962d394759511036c994c6f1112a5cfd41257156f",
+      "row_sha256": "58d7e6210b966292dfae9e32d93a9a374c4d58670c5d4660094ec4e32cc2d934",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "anchor_6",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "88228106a877817940c6013c157cdf5e002f452d5bacd2ce64326d04e2b716a1",
+      "objective_ratio": 1.0255524468123052,
+      "passed": true,
+      "plan_sha256": "0c3308d1180b3899d615bd819af585125188b9880352b085126e1db5f97e2d81",
+      "row_sha256": "0003d6b9185b053224c4b82db63c0465335cb0b521c9146cde095cd2f309ee9c",
+      "source": "tube_exact_corrected"
+    },
+    {
+      "candidate_id": "straight_fallback",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "df35f18f2f4a480e7dcbdcf6c0440821d441dd71d70e18720d527a35df3a7703",
+      "objective_ratio": 1.0,
+      "passed": true,
+      "plan_sha256": "f63d4056704fcdfaed385bb330bd0cca513d5b7aef07641d5891b519c5d42a8e",
+      "row_sha256": "1ca451b0bac10e0c97a5aded1f9e906b54320ab7fda1f976d6301799cd20af8f",
+      "source": "straight_fallback"
+    },
+    {
+      "candidate_id": "fastest",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "9a05c245f5a4f45ddd2b19da3c311a63dab37f66ce9e7d41e4d966c5b7cfeef4",
+      "objective_ratio": 1.1837748174319807,
+      "passed": true,
+      "plan_sha256": "e9a111feeb8c01de8df1fdadb4417d0284674c046ae54372125bcc0de163ff14",
+      "row_sha256": "aca72a70bddbd5d582c0cfc6fb6f69571e7f95bf557e19ddd3d12b79ea1bee30",
+      "source": "fastest_exact"
+    }
+  ],
+  "schema": "bfm5_tcz1h_deployment_bundle_v1",
+  "snapshot_sha256": "ac0eb0a6842c23f057eb29eb61364521b48e286d611c32255e1060088d3b795a",
+  "winner_candidate_id": "anchor_5"
+}

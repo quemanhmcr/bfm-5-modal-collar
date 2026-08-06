@@ -1,0 +1,305 @@
+{
+  "acceptance_gates": {
+    "all_late_handoffs_return_fallback": true,
+    "all_stale_snapshots_return_hold": true,
+    "baseline_decision_p99_s_max": 0.005,
+    "envelope_monotonicity_violations_max": 0,
+    "envelope_relation_violations_max": 0,
+    "exact_winner_match_required": true,
+    "fallback_dynamic_certificate_required": true,
+    "fallback_ready_before_full_bank_required": true,
+    "fallback_ready_s_max": 1.0,
+    "fault_injections_detected_min": 8,
+    "full_bank_certificate_required": true,
+    "hold_decision_p99_s_max": 0.005,
+    "loaded_decision_p99_s_max": 0.02
+  },
+  "campaign_lock": {
+    "config_sha256": "7cb802536d1512d2d4aea8dc604c435dc3245f3fddca84eecd2764195d4a20a4",
+    "forbidden_raw_tokens": [
+      "truth",
+      "oracle",
+      "shadow"
+    ],
+    "holdout_firewall": {
+      "evaluate_requires_preholdout_artifact": true,
+      "fit_allowed_splits": [
+        "train",
+        "calibration"
+      ],
+      "refit_after_holdout_open": false
+    },
+    "protocol_sha256": "56669b34631723d827bfdb4d9a643a24762770cebd970c23e7796b56a2da222c",
+    "protocol_trace_count": 816,
+    "required_arrays": [
+      "run_id",
+      "split",
+      "route",
+      "direction",
+      "reversal",
+      "target_temperature_c",
+      "target_load_fraction",
+      "measured_temperature_c",
+      "measured_load_fraction",
+      "time_s",
+      "command",
+      "position_mm",
+      "velocity_mm_s",
+      "interlock_state"
+    ],
+    "schema": "bfm5_tcz1h_measured_campaign_lock_v1",
+    "source_git_sha": "1269f40932c4439ea755067a13016471a2e86221",
+    "split_counts": {
+      "calibration": 288,
+      "holdout": 288,
+      "train": 240
+    }
+  },
+  "checks": {
+    "baseline_decision_latency": true,
+    "envelope_monotonicity": true,
+    "envelope_relation": true,
+    "exact_winner_match": true,
+    "fallback_dynamic_certificate": true,
+    "fallback_ready_before_full_bank": true,
+    "fallback_ready_latency": false,
+    "fault_injections": true,
+    "full_bank_certificate": true,
+    "hold_decision_latency": true,
+    "late_handoffs_fallback": true,
+    "loaded_decision_latency": true,
+    "stale_snapshots_hold": true
+  },
+  "claim_scope": {
+    "claim_if_accepted": "on the declared local Windows process, a snapshot-bound three-level safety lattice can return HOLD or a certified straight fallback independently of full-bank optimization, and can select the exact declared-bank winner from a fresh complete certificate while failing closed on declared integrity, freshness and timing faults",
+    "not_claimed": [
+      "hardware timing",
+      "HIL validation",
+      "measured plant validity",
+      "operating-system hard real-time guarantee",
+      "TCZ-1I acceptance",
+      "production readiness"
+    ]
+  },
+  "identified_manifest": {
+    "classification": "immutable_reduced_order_identification_artifacts",
+    "files": {
+      "correction_atlas.json": {
+        "bytes": 3871,
+        "repository_bytes": 3871,
+        "repository_sha256": "405c55c5f9b5a0f2780ec937df555cb5a525dc0567b7ab79924b841e71b2f9b7",
+        "sha256": "405c55c5f9b5a0f2780ec937df555cb5a525dc0567b7ab79924b841e71b2f9b7",
+        "source_bytes": 4049,
+        "source_sha256": "32ef6cc3d534b6619c9810c3888931c0f2be183aa723aebdc44162fc3e41d587"
+      },
+      "surface.json": {
+        "bytes": 11053,
+        "repository_bytes": 11053,
+        "repository_sha256": "5bdeb8b4a9b46c896aedfe66b86d70e2e1c66c481cb6c36aac3787dec3fcf7c1",
+        "sha256": "5bdeb8b4a9b46c896aedfe66b86d70e2e1c66c481cb6c36aac3787dec3fcf7c1",
+        "source_bytes": 11518,
+        "source_sha256": "e0945acf7f63559fc2e80e2f2bd7fd6af9af19f33026f8d56e95aba5a37b2610"
+      },
+      "surface_summary.json": {
+        "bytes": 1020,
+        "repository_bytes": 1020,
+        "repository_sha256": "8d72bb4fcba9bbd0782503878354c19f41fb10f9478ba5d638d2b8a7be379a2b",
+        "sha256": "8d72bb4fcba9bbd0782503878354c19f41fb10f9478ba5d638d2b8a7be379a2b",
+        "source_bytes": 1073,
+        "source_sha256": "5de989cfb457264c3ba580580b8870ec86da037ffdfe8449ed3b2782f1b95633"
+      },
+      "tcz1e_baseline_summary.json": {
+        "bytes": 5805,
+        "repository_bytes": 5805,
+        "repository_sha256": "11539494c42ab6d328aeb08708a650e5c0782ae97ec7ca30e2ca86cce03ecf5e",
+        "sha256": "11539494c42ab6d328aeb08708a650e5c0782ae97ec7ca30e2ca86cce03ecf5e",
+        "source_bytes": 5946,
+        "source_sha256": "d51b5d057c32a4663be6a1d7c0d74a99395f32a1d2fe5bcaa223117b5c16d00b"
+      }
+    },
+    "schema_version": 1,
+    "solver_policy": "no_solver_execution_during_import",
+    "source_stage": "TCZ-1E"
+  },
+  "metrics": {
+    "baseline_decision_p99_s": 3e-07,
+    "baseline_latency": {
+      "fallback": {
+        "count": 5000,
+        "maximum_s": 6.8e-06,
+        "median_s": 2e-07,
+        "p95_s": 3e-07,
+        "p99_s": 3e-07
+      },
+      "hold": {
+        "count": 5000,
+        "maximum_s": 2.5e-06,
+        "median_s": 1e-07,
+        "p95_s": 2e-07,
+        "p99_s": 2e-07
+      },
+      "winner": {
+        "count": 5000,
+        "maximum_s": 2.5e-06,
+        "median_s": 2e-07,
+        "p95_s": 3e-07,
+        "p99_s": 3e-07
+      }
+    },
+    "calibration_payload": {
+      "actuator_tau_upper_s": 0.08316318828273302,
+      "directional_deadtime_upper_s": [
+        [
+          0.0256308430101642,
+          0.031659562303318664,
+          0.028599352195673496
+        ],
+        [
+          0.025631025730841157,
+          0.03165525041630497,
+          0.028601016939925665
+        ]
+      ],
+      "directional_slew_lower_mm_s": [
+        [
+          0.3480411757976358,
+          0.35388521739927176,
+          0.33648527660781474
+        ],
+        [
+          0.3638858490531344,
+          0.3483688767888009,
+          0.3396018988398311
+        ]
+      ],
+      "directional_tau_upper_s": [
+        [
+          0.0704827724055842,
+          0.08314238683068745,
+          0.07719876123758536
+        ],
+        [
+          0.07046861244358471,
+          0.08316318828273302,
+          0.07723356131145451
+        ]
+      ],
+      "load_reserve_fraction": 0.01,
+      "measured_load_fraction": 0.5,
+      "measured_temperature_c": 45.0,
+      "measurement_deadtime_upper_s": 0.031659562303318664,
+      "observer_time_constant_s": 0.012,
+      "queried_load_fraction": 0.51,
+      "queried_temperature_c": 45.5,
+      "reversal_assumed": true,
+      "robust_slew_mm_s": [
+        0.3480411757976358,
+        0.3483688767888009,
+        0.33648527660781474
+      ],
+      "temperature_reserve_c": 0.25
+    },
+    "candidate_count": 9,
+    "envelope_audit": {
+      "deadtime_monotonicity_violations": 0,
+      "deadtime_raw_relation_violations": 0,
+      "slew_monotonicity_violations": 0,
+      "slew_raw_relation_violations": 0,
+      "tau_monotonicity_violations": 0,
+      "tau_raw_relation_violations": 0
+    },
+    "envelope_build_s": 0.14197339999918768,
+    "envelope_monotonicity_violations": 0,
+    "envelope_relation_violations": 0,
+    "exact_winner": "anchor_5",
+    "exact_winner_match": true,
+    "exact_winner_objective_ratio": 0.9842532056368687,
+    "fallback_dynamic_passed": true,
+    "fallback_plan_hash_match": true,
+    "fallback_ready_s": 2.3497831000004226,
+    "fault_injections_detected": 8,
+    "fault_injections_total": 8,
+    "feasible_candidate_count": 9,
+    "full_bank_prepare_s": 28.076196100000743,
+    "hold_decision_p99_s": 2e-07,
+    "late_handoff_fallback_count": 1000,
+    "loaded_decision_p99_s": 3e-07,
+    "loaded_latency": {
+      "fallback": {
+        "count": 2000,
+        "maximum_s": 2.6e-06,
+        "median_s": 2e-07,
+        "p95_s": 3e-07,
+        "p99_s": 3e-07
+      },
+      "hold": {
+        "count": 2000,
+        "maximum_s": 1.6e-06,
+        "median_s": 1e-07,
+        "p95_s": 2e-07,
+        "p99_s": 2e-07
+      },
+      "winner": {
+        "count": 2000,
+        "maximum_s": 5.4e-06,
+        "median_s": 2e-07,
+        "p95_s": 3e-07,
+        "p99_s": 3e-07
+      }
+    },
+    "qualification_wall_s": 31.619587499999398,
+    "runtime_build_s": 0.3991937999999209,
+    "stale_snapshot_hold_count": 1000
+  },
+  "oracle_manifest": {
+    "files": {
+      "dataset.json": {
+        "bytes": 563701,
+        "sha256": "c7056a5b7ee7fee2e6270d5b42f062cb14b7135c3a3ab2b08ddcff2b1d970487"
+      },
+      "dataset_summary.json": {
+        "bytes": 399,
+        "sha256": "beaa724935dea7f9c3a98cfde445bc73f9b5f1559e164d3d7c0cadd97b64e02e"
+      },
+      "path_oracle.json": {
+        "bytes": 31097,
+        "sha256": "21dab151fa4738dab2017bd40d805043fe8f8b6d7a757c699a40edd8c52da0c1"
+      },
+      "summary.json": {
+        "bytes": 1744,
+        "sha256": "17dc1ea6ada3c7c5ff2c3070c5e80c41eca83a14d5414bcc1ccfc339f11d0645"
+      },
+      "tube_value_oracle.json": {
+        "bytes": 41985,
+        "sha256": "089356421a19060907ffd588dd42e5429f6a2eb095265680a8d5681e5593114c"
+      },
+      "validation_rows.json": {
+        "bytes": 5729,
+        "sha256": "55ccfb0ba9080cfb43e0603bb72fe5b1f490eaf847c2472559fb7c35dca515cf"
+      }
+    },
+    "version": 1
+  },
+  "passed": false,
+  "runtime": {
+    "cpu_count": 12,
+    "numpy": "2.3.3",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]",
+    "scipy": "1.16.3"
+  },
+  "scientific_contract": {
+    "full_bank_winner_must_be_exact_argmin_over_passing_rows": true,
+    "incomplete_but_valid_certificate_returns_fallback_only": true,
+    "optimization_not_in_request_time_safety_path": true,
+    "safety_lattice": [
+      "HOLD",
+      "certified_straight_fallback",
+      "exact_bank_winner"
+    ],
+    "snapshot_binds_request_calibration_model_oracle_gates_and_source": true,
+    "stale_snapshot_returns_hold_not_motion": true
+  },
+  "source_git_sha": "9e82654f7e076fba98cdd2b26743e3bec94a370a",
+  "status": "rejected"
+}

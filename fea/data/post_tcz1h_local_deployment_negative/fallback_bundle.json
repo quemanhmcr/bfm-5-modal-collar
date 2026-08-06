@@ -1,0 +1,34 @@
+{
+  "bundle_sha256": "aaf99d34b717114ff131e425eef68ab7c469b01401abd0ff133f5a8013d5d4b4",
+  "expected_candidate_ids": [
+    "straight_fallback"
+  ],
+  "fallback_candidate_id": "straight_fallback",
+  "level": "fallback_only",
+  "rows": [
+    {
+      "candidate_id": "straight_fallback",
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": true,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "metrics_sha256": "df35f18f2f4a480e7dcbdcf6c0440821d441dd71d70e18720d527a35df3a7703",
+      "objective_ratio": 1.0,
+      "passed": true,
+      "plan_sha256": "f63d4056704fcdfaed385bb330bd0cca513d5b7aef07641d5891b519c5d42a8e",
+      "row_sha256": "8c7835bac3c1918d1dd07b08523a23bcafc4090daabb9cb853111dcbb02347b7",
+      "source": "independent_straight_fallback"
+    }
+  ],
+  "schema": "bfm5_tcz1h_deployment_bundle_v1",
+  "snapshot_sha256": "ac0eb0a6842c23f057eb29eb61364521b48e286d611c32255e1060088d3b795a",
+  "winner_candidate_id": null
+}

@@ -1,0 +1,175 @@
+{
+  "acceptance_gates": {
+    "active_node_certified_required": true,
+    "atlas_integrity_required": true,
+    "baseline_lookup_arm_decision_p99_s_max": 0.005,
+    "certified_node_fraction_min": 0.5,
+    "corrupted_atlas_detected_required": true,
+    "every_published_node_dynamic_passed_required": true,
+    "exact_grid_coverage_required": true,
+    "loaded_lookup_arm_decision_p99_s_max": 0.02,
+    "offline_atlas_build_s_max": 120.0,
+    "out_of_domain_hold_required": true
+  },
+  "campaign_lock": {
+    "config_sha256": "7cb802536d1512d2d4aea8dc604c435dc3245f3fddca84eecd2764195d4a20a4",
+    "forbidden_raw_tokens": [
+      "truth",
+      "oracle",
+      "shadow"
+    ],
+    "holdout_firewall": {
+      "evaluate_requires_preholdout_artifact": true,
+      "fit_allowed_splits": [
+        "train",
+        "calibration"
+      ],
+      "refit_after_holdout_open": false
+    },
+    "protocol_sha256": "56669b34631723d827bfdb4d9a643a24762770cebd970c23e7796b56a2da222c",
+    "protocol_trace_count": 816,
+    "required_arrays": [
+      "run_id",
+      "split",
+      "route",
+      "direction",
+      "reversal",
+      "target_temperature_c",
+      "target_load_fraction",
+      "measured_temperature_c",
+      "measured_load_fraction",
+      "time_s",
+      "command",
+      "position_mm",
+      "velocity_mm_s",
+      "interlock_state"
+    ],
+    "schema": "bfm5_tcz1h_measured_campaign_lock_v1",
+    "source_git_sha": "1269f40932c4439ea755067a13016471a2e86221",
+    "split_counts": {
+      "calibration": 288,
+      "holdout": 288,
+      "train": 240
+    }
+  },
+  "checks": {
+    "active_node_certified": true,
+    "atlas_integrity": true,
+    "baseline_lookup_latency": true,
+    "certified_node_fraction": true,
+    "corrupted_atlas_detected": true,
+    "exact_grid_coverage": true,
+    "loaded_lookup_latency": true,
+    "offline_atlas_build": true,
+    "out_of_domain_hold": true,
+    "published_nodes_passed": true
+  },
+  "claim_scope": {
+    "claim_if_accepted": "on the declared local Windows process, exact nonlinear straight-fallback certificates can be prepared offline on a frozen temperature-load grid and armed at request time by conservative ceiling lookup, while uncertified, stale, corrupted or out-of-domain states return HOLD",
+    "not_claimed": [
+      "hardware or HIL validity",
+      "continuous operating-domain certification between atlas nodes",
+      "operating-system hard real-time guarantee",
+      "TCZ-1I acceptance",
+      "production readiness"
+    ]
+  },
+  "identified_manifest": {
+    "classification": "immutable_reduced_order_identification_artifacts",
+    "files": {
+      "correction_atlas.json": {
+        "bytes": 3871,
+        "repository_bytes": 3871,
+        "repository_sha256": "405c55c5f9b5a0f2780ec937df555cb5a525dc0567b7ab79924b841e71b2f9b7",
+        "sha256": "405c55c5f9b5a0f2780ec937df555cb5a525dc0567b7ab79924b841e71b2f9b7",
+        "source_bytes": 4049,
+        "source_sha256": "32ef6cc3d534b6619c9810c3888931c0f2be183aa723aebdc44162fc3e41d587"
+      },
+      "surface.json": {
+        "bytes": 11053,
+        "repository_bytes": 11053,
+        "repository_sha256": "5bdeb8b4a9b46c896aedfe66b86d70e2e1c66c481cb6c36aac3787dec3fcf7c1",
+        "sha256": "5bdeb8b4a9b46c896aedfe66b86d70e2e1c66c481cb6c36aac3787dec3fcf7c1",
+        "source_bytes": 11518,
+        "source_sha256": "e0945acf7f63559fc2e80e2f2bd7fd6af9af19f33026f8d56e95aba5a37b2610"
+      },
+      "surface_summary.json": {
+        "bytes": 1020,
+        "repository_bytes": 1020,
+        "repository_sha256": "8d72bb4fcba9bbd0782503878354c19f41fb10f9478ba5d638d2b8a7be379a2b",
+        "sha256": "8d72bb4fcba9bbd0782503878354c19f41fb10f9478ba5d638d2b8a7be379a2b",
+        "source_bytes": 1073,
+        "source_sha256": "5de989cfb457264c3ba580580b8870ec86da037ffdfe8449ed3b2782f1b95633"
+      },
+      "tcz1e_baseline_summary.json": {
+        "bytes": 5805,
+        "repository_bytes": 5805,
+        "repository_sha256": "11539494c42ab6d328aeb08708a650e5c0782ae97ec7ca30e2ca86cce03ecf5e",
+        "sha256": "11539494c42ab6d328aeb08708a650e5c0782ae97ec7ca30e2ca86cce03ecf5e",
+        "source_bytes": 5946,
+        "source_sha256": "d51b5d057c32a4663be6a1d7c0d74a99395f32a1d2fe5bcaa223117b5c16d00b"
+      }
+    },
+    "schema_version": 1,
+    "solver_policy": "no_solver_execution_during_import",
+    "source_stage": "TCZ-1E"
+  },
+  "metrics": {
+    "active_action": "FALLBACK",
+    "active_lookup_found": true,
+    "active_lookup_key": "T0045.5000_L00.5100",
+    "baseline_lookup_arm_decision": {
+      "count": 3000,
+      "maximum_s": 0.0001265,
+      "median_s": 2.75e-05,
+      "p95_s": 2.93e-05,
+      "p99_s": 3.5900999999999974e-05
+    },
+    "certified_node_fraction": 0.6,
+    "certified_nodes": 15,
+    "envelope_audit": {
+      "deadtime_monotonicity_violations": 0,
+      "deadtime_raw_relation_violations": 0,
+      "slew_monotonicity_violations": 0,
+      "slew_raw_relation_violations": 0,
+      "tau_monotonicity_violations": 0,
+      "tau_raw_relation_violations": 0
+    },
+    "loaded_lookup_arm_decision": {
+      "count": 1500,
+      "maximum_s": 0.000568,
+      "median_s": 2.89e-05,
+      "p95_s": 4.9804999999999995e-05,
+      "p99_s": 7.7301e-05
+    },
+    "node_preparation_median_s": 2.4332875999989483,
+    "node_preparation_p95_s": 2.9245025800006252,
+    "offline_atlas_build_s": 62.772239800000534,
+    "qualification_wall_s": 65.6192415000005,
+    "rejected_nodes": 10,
+    "total_nodes": 25
+  },
+  "passed": true,
+  "runtime": {
+    "cpu_count": 12,
+    "numpy": "2.3.3",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.11.8 (tags/v3.11.8:db85d51, Feb  6 2024, 22:03:32) [MSC v.1937 64 bit (AMD64)]",
+    "scipy": "1.16.3"
+  },
+  "scientific_contract": {
+    "atlas_and_each_bundle_are_hash_bound": true,
+    "each_certified_node_uses_exact_nonlinear_replay": true,
+    "fast_state": "motion_request",
+    "missing_or_rejected_node_returns_hold": true,
+    "no_full_bank_optimization_in_fallback_arm_path": true,
+    "runtime_lookup_uses_upper_ceiling_node_after_sensor_reserve": true,
+    "slow_state": [
+      "temperature",
+      "load",
+      "reversal_policy"
+    ]
+  },
+  "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330",
+  "status": "accepted_local_fallback_atlas"
+}

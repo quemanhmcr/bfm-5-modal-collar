@@ -299,3 +299,59 @@ to acquire real HIL/actuator traces with the same lock and gates, then replay th
 unchanged candidate bank and measure target-controller latency. See
 [`POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md`](POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md)
 and [`TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md`](TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md).
+
+## 11. Local deployment gate: correct causality, rejected preparation time
+
+A local Windows-only deployment audit qualified the monotone safety lattice
+
+```text
+HOLD -> certified straight fallback -> exact finite-bank winner
+```
+
+Snapshot mismatch and expiry returned HOLD; incomplete but valid evidence used
+the straight fallback; a complete bank selected the exact finite-bank winner.
+All integrity and request-time latency gates passed, with decision p99 about
+0.3 microseconds even under CPU stress. The audit was nevertheless rejected:
+preparing the exact straight-fallback certificate took **2.3498 s**, above its
+frozen 1.0 s gate. Profiling placed **2.3794 s** in exact nonlinear replay and
+only **6.5 ms** in straight-path construction.
+
+The failure established the correct time-scale split: exact replay belongs to
+the slow temperature/load calibration plane, not the fast request path. See
+[`POST_TCZ1H_LOCAL_DEPLOYMENT_GATE_DECISION_MEMO.md`](POST_TCZ1H_LOCAL_DEPLOYMENT_GATE_DECISION_MEMO.md).
+
+## 12. Accepted local exact fallback certificate atlas
+
+The follow-up retained exact nonlinear replay but moved it offline onto a
+frozen 5x5 temperature-load grid. Runtime adds sensor reserves, selects an upper
+ceiling node, verifies its snapshot and bundle, and returns FALLBACK or HOLD.
+No optimizer or nonlinear simulator lies on this fast path.
+
+All 10 predeclared gates passed:
+
+- 25 exact nodes, 15 certified and 10 explicitly rejected;
+- active reserved node `45.5 C / 0.51 load` certified;
+- offline build: **62.772 s**;
+- lookup+arm+decision p99: **35.901 us** baseline and **77.301 us** under CPU stress;
+- out-of-domain state returned HOLD;
+- corrupted atlas was detected;
+- all published nodes passed exact dynamic replay;
+- local numerical regression: **117 passed**.
+
+Every rejected node failed only the strong-dark discriminant. The finite-node
+frontier was load 1.00 at 20 C, 0.75 at 35 C, 0.51 at 45.5 C, 0.25 at 55 C and
+0 at 70 C. This suggests, but does not establish, the exploratory severity
+coordinate
+
+\[
+\zeta=(T-20)/50+L.
+\]
+
+All sampled nodes with `zeta <= 1.05` passed and all with `zeta >= 1.21` failed;
+the fitted gate crossing was about 1.165. This is a pre-registered HIL
+hypothesis, not a design law or continuous physical certificate.
+
+The atlas is accepted only as local deployment evidence infrastructure. TCZ-1H,
+`design_laws_v8`, and the accepted tag remain unchanged. See
+[`POST_TCZ1H_LOCAL_FALLBACK_ATLAS_DECISION_MEMO.md`](POST_TCZ1H_LOCAL_FALLBACK_ATLAS_DECISION_MEMO.md)
+and [`TCZ1H_LOCAL_FALLBACK_CERTIFICATE_ATLAS.md`](TCZ1H_LOCAL_FALLBACK_CERTIFICATE_ATLAS.md).

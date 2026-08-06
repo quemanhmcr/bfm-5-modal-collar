@@ -1,0 +1,50 @@
+{
+  "detected": 8,
+  "rows": [
+    {
+      "detected": true,
+      "fault": "bundle_hash_corruption"
+    },
+    {
+      "detected": true,
+      "fault": "snapshot_mismatch"
+    },
+    {
+      "detected": true,
+      "fault": "missing_candidate"
+    },
+    {
+      "detected": true,
+      "fault": "duplicate_candidate"
+    },
+    {
+      "detected": true,
+      "fault": "wrong_winner"
+    },
+    {
+      "detected": true,
+      "fault": "failed_fallback"
+    },
+    {
+      "decision": {
+        "action": "HOLD",
+        "candidate_id": null,
+        "decision_latency_s": 8e-07,
+        "reason": "lease_expired"
+      },
+      "detected": true,
+      "fault": "expired_lease"
+    },
+    {
+      "decision": {
+        "action": "FALLBACK",
+        "candidate_id": "straight_fallback",
+        "decision_latency_s": 6e-07,
+        "reason": "handoff_cutoff"
+      },
+      "detected": true,
+      "fault": "late_handoff"
+    }
+  ],
+  "total": 8
+}

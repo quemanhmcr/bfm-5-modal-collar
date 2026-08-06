@@ -1,0 +1,31 @@
+{
+  "files": {
+    "fallback_atlas.json": {
+      "bytes": 67390,
+      "sha256": "065c16d947fa3d78263b4b233c31081086414485e7aee41d69ad6175c16f1750"
+    },
+    "fault_report.json": {
+      "bytes": 232,
+      "sha256": "4a3c8eade4c03cfe527848b2817d0ea0039afe903e1bfe84f60841d6fc146a81"
+    },
+    "latency.jsonl": {
+      "bytes": 774268,
+      "sha256": "faa8e9e9b4f9aac3366f90abbc1be62c97824cadcf5fac74ec556d108cd54d78"
+    },
+    "node_results.jsonl": {
+      "bytes": 48933,
+      "sha256": "8f2f351d4cd32f51486c5f9f469b304fad5e7af6c355e6454e5d3d548800e335"
+    },
+    "summary.json": {
+      "bytes": 6248,
+      "sha256": "00f9afd61eb62f6c8298c0ddd84fa8ccacab83290998da75ac3473b9a600de03"
+    }
+  },
+  "schema": "bfm5_tcz1h_local_fallback_atlas_manifest_v1",
+  "source_files": {
+    "bfm5/tcz1h_local_deployment.py": "bdec5c96d97a7ebd4294fd12c7342b76ed46fc675400bef9c02573951733103a",
+    "config/tcz1h_local_fallback_atlas.yml": "2ff2f6aba4e9ceaa8df41765432383a3b45ff05dea4215442ac0fb4eea7de519",
+    "scripts/run_tcz1h_local_fallback_atlas.py": "516ec48936a765697a9910f020ae017f70105d8016fd0043b2be479a195940fc"
+  },
+  "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+}

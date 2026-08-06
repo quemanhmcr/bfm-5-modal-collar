@@ -94,6 +94,9 @@ next_authorized_stage:
     - verify_lower_slew_and_upper_lag_deadtime_bounds_on_holdout
     - replay_declared_bank_on_measured_plant
     - measure_deployment_latency_and_fallback_behavior
+    - rebuild_exact_fallback_atlas_from_measured_HIL_bounds
+    - validate_or_reject_thermal_load_strong_dark_severity_frontier
+    - retain_HOLD_outside_measured_certified_cells
     - expand_FEA_atlas_only_on_fold_quality_interpolation_or_domain_trigger
 post_snapshot_audits:
   adaptive_deadline_calibration:
@@ -180,3 +183,72 @@ post_snapshot_audits:
       - require_sealed_preholdout_model_before_opening_measured_holdout
       - acquire_real_HIL_or_actuator_traces_without_changing_frozen_gates
       - keep_TCZ1H_candidate_bank_and_design_laws_v8_unchanged
+
+  local_deployment_safety_gate:
+    status: rejected_due_to_fallback_preparation_latency
+    decision_memo: docs/POST_TCZ1H_LOCAL_DEPLOYMENT_GATE_DECISION_MEMO.md
+    source_sha: 9e82654f7e076fba98cdd2b26743e3bec94a370a
+    artifact_directory: data/post_tcz1h_local_deployment_negative
+    artifact_manifest_sha256: 247799da7425606b435a3b88d6b210580a8d394ab393036c92aa46d54eb0a203
+    summary_sha256: d581f38453fb9803eee506b546a184c19b429bf0af7162c21e215e134bdc50e1
+    result:
+      envelope_relation_violations: 0
+      envelope_monotonicity_violations: 0
+      fallback_dynamic_certificate_passed: true
+      candidate_count: 9
+      feasible_candidate_count: 9
+      exact_winner: anchor_5
+      exact_winner_objective_ratio: 0.9842532056368687
+      fault_injections_detected: 8
+      stale_snapshot_hold_count: 1000
+      late_handoff_fallback_count: 1000
+      baseline_decision_p99_s: 3.0e-7
+      loaded_decision_p99_s: 3.0e-7
+      fallback_ready_s: 2.3497831000004226
+      full_bank_prepare_s: 28.076196100000743
+    failed_gates:
+      - fallback_ready_above_1p0_s
+    consequence:
+      - retain_snapshot_bound_hold_fallback_winner_lattice
+      - remove_exact_nonlinear_replay_from_fast_request_path
+      - prepare_exact_fallback_certificates_on_slow_operating_plane
+      - do_not_promote_TCZ1I
+
+  local_exact_fallback_certificate_atlas:
+    status: accepted_as_local_deployment_infrastructure_only
+    decision_memo: docs/POST_TCZ1H_LOCAL_FALLBACK_ATLAS_DECISION_MEMO.md
+    atlas_specification: docs/TCZ1H_LOCAL_FALLBACK_CERTIFICATE_ATLAS.md
+    source_sha: ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330
+    artifact_directory: data/post_tcz1h_local_fallback_atlas
+    artifact_manifest_sha256: b674c010b379dc6d612611fdeb9ef427ad76753cdb16b9537a95dd08683a6bc7
+    summary_sha256: 00f9afd61eb62f6c8298c0ddd84fa8ccacab83290998da75ac3473b9a600de03
+    fallback_atlas_sha256: 065c16d947fa3d78263b4b233c31081086414485e7aee41d69ad6175c16f1750
+    result:
+      total_nodes: 25
+      certified_nodes: 15
+      rejected_nodes: 10
+      certified_node_fraction: 0.60
+      active_node: T0045.5000_L00.5100
+      active_action: FALLBACK
+      offline_atlas_build_s: 62.772239800000534
+      baseline_lookup_arm_decision_p99_s: 3.5900999999999974e-5
+      loaded_lookup_arm_decision_p99_s: 7.7301e-5
+      loaded_lookup_arm_decision_max_s: 0.000568
+      envelope_relation_violations: 0
+      envelope_monotonicity_violations: 0
+      rejected_node_active_gate: strong_dark
+      regression_tests_passed: 117
+    exploratory_frontier:
+      severity_definition: zeta=(temperature_C-20)/50+load_fraction
+      maximum_passing_node_severity: 1.05
+      minimum_failing_node_severity: 1.21
+      fitted_gate_crossing: 1.165436732102239
+      quadratic_fit_r2: 0.9539466684192867
+      status: pre_registered_HIL_hypothesis_not_design_law
+    consequence:
+      - accept_exact_fallback_atlas_as_local_execution_infrastructure
+      - publish_only_exact_dynamic_passing_nodes
+      - return_HOLD_for_rejected_missing_corrupted_stale_or_out_of_domain_nodes
+      - validate_or_reject_thermal_load_severity_collapse_on_measured_HIL
+      - keep_TCZ1H_candidate_bank_and_design_laws_v8_unchanged
+      - do_not_promote_TCZ1I_without_measured_plant_evidence

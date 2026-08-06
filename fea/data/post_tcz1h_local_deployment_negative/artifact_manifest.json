@@ -1,0 +1,41 @@
+{
+  "files": {
+    "fallback_bundle.json": {
+      "bytes": 1136,
+      "sha256": "477a2a33ad3f72f8918842a01c66b5c75678964154ff1ffc5128a2dad174b711"
+    },
+    "fault_report.json": {
+      "bytes": 949,
+      "sha256": "eac92a8c6703c7b06f592e8e523611622372143e3de0226aae8bc7ec81da6975"
+    },
+    "full_bank_bundle.json": {
+      "bytes": 7045,
+      "sha256": "f029535c87fb69b8abd24d86a4e1b763fad0549334f9e1967bacd75635ca463f"
+    },
+    "latency.jsonl": {
+      "bytes": 3393360,
+      "sha256": "bce28342125ff6fdb1eb3d93586a93cb2aba690a8e81c4f9f09877b55d674d9e"
+    },
+    "offline_certificate.json": {
+      "bytes": 27491,
+      "sha256": "b23912389971263b9716709e3cdce3f1d4467f0b9ac2937b02b547d977f7e6ce"
+    },
+    "snapshot.json": {
+      "bytes": 2171,
+      "sha256": "b5e078997ef7f6b59b3a4979f97936dda5b55670bfce8869562bb4887ad441aa"
+    },
+    "summary.json": {
+      "bytes": 9839,
+      "sha256": "d581f38453fb9803eee506b546a184c19b429bf0af7162c21e215e134bdc50e1"
+    }
+  },
+  "schema": "bfm5_tcz1h_local_deployment_artifact_manifest_v1",
+  "source_files": {
+    "bfm5/tcz1h.py": "aa731536bcccccd70cb226383de3f748fd64d67a78c143b2d975a3fbf6589b1e",
+    "bfm5/tcz1h_local_deployment.py": "d56feaef90065513779d527f611788550b3738de71fb033621551718f044f11a",
+    "bfm5/tcz1h_measured_campaign.py": "e728cefc9a6026fe026f726bc0ba34e87bb2048da05a690e4068065714a0f687",
+    "config/tcz1h_local_deployment.yml": "5030e3bf045d0f99316960002f78d49401c61baba069c92fbdc309abbdc3c649",
+    "scripts/run_tcz1h_local_deployment.py": "529f75c7ffab00138610737eebe3bb2d09c357c03159043ae4d361c2c626b8df"
+  },
+  "source_git_sha": "9e82654f7e076fba98cdd2b26743e3bec94a370a"
+}

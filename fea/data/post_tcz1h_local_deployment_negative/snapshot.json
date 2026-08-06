@@ -1,0 +1,81 @@
+{
+  "calibration": {
+    "actuator_tau_upper_s": 0.08316318828273302,
+    "directional_deadtime_upper_s": [
+      [
+        0.0256308430101642,
+        0.031659562303318664,
+        0.028599352195673496
+      ],
+      [
+        0.025631025730841157,
+        0.03165525041630497,
+        0.028601016939925665
+      ]
+    ],
+    "directional_slew_lower_mm_s": [
+      [
+        0.3480411757976358,
+        0.35388521739927176,
+        0.33648527660781474
+      ],
+      [
+        0.3638858490531344,
+        0.3483688767888009,
+        0.3396018988398311
+      ]
+    ],
+    "directional_tau_upper_s": [
+      [
+        0.0704827724055842,
+        0.08314238683068745,
+        0.07719876123758536
+      ],
+      [
+        0.07046861244358471,
+        0.08316318828273302,
+        0.07723356131145451
+      ]
+    ],
+    "load_reserve_fraction": 0.01,
+    "measured_load_fraction": 0.5,
+    "measured_temperature_c": 45.0,
+    "measurement_deadtime_upper_s": 0.031659562303318664,
+    "observer_time_constant_s": 0.012,
+    "queried_load_fraction": 0.51,
+    "queried_temperature_c": 45.5,
+    "reversal_assumed": true,
+    "robust_slew_mm_s": [
+      0.3480411757976358,
+      0.3483688767888009,
+      0.33648527660781474
+    ],
+    "temperature_reserve_c": 0.25
+  },
+  "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+  "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+  "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+  "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+  "request": {
+    "end_state": [
+      1.05,
+      2.0
+    ],
+    "motion_time_s": 0.46,
+    "optimizer_maxiter": 80,
+    "path_samples": 33,
+    "ramp_each_s": 0.03,
+    "start_state": [
+      0.95,
+      -2.0
+    ],
+    "weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ]
+  },
+  "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+  "snapshot_sha256": "ac0eb0a6842c23f057eb29eb61364521b48e286d611c32255e1060088d3b795a",
+  "source_git_sha": "9e82654f7e076fba98cdd2b26743e3bec94a370a"
+}

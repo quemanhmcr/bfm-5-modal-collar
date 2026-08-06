@@ -1,0 +1,2027 @@
+{
+  "atlas_sha256": "0b0003e9b40254f1c8c8cea73469971e0219fa6dc9093e9f8856a4b041311fe5",
+  "entries": [
+    {
+      "bundle": {
+        "bundle_sha256": "65cf2d42ef827ce0543ce50f785948575ea6dc36fae772cb84c63742f762b6a9",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "ef7184578f8d23e7158d76d904f25d268c25bfc4a93f3d54dbeabde73d1d5a04",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "10e309467bbb5341b7ba47ccd9455b1ad393516c37c95d76de790f8916e83a1b",
+            "row_sha256": "42c634f0bc4f474b3026b95a33cd07733773846f4897163f00843c84cf7aa8cd",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "a62602f1c8df02fce3fda608570cfdc4da42855427979a155f968dad4527b67d",
+        "winner_candidate_id": null
+      },
+      "key": "T0020.0000_L00.0000",
+      "load_fraction": 0.0,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.06749876191461962,
+          "directional_deadtime_upper_s": [
+            [
+              0.021053781932891553,
+              0.02603603230664905,
+              0.023557225066860876
+            ],
+            [
+              0.02106836696369299,
+              0.026044390871593246,
+              0.023541708509360527
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.42488352786017486,
+              0.4299825089069727,
+              0.41594080875651274
+            ],
+            [
+              0.44418461649198054,
+              0.423296059933058,
+              0.4197841208563987
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.05713521253474682,
+              0.06748732343534189,
+              0.06161763765917881
+            ],
+            [
+              0.057126976474879826,
+              0.06749876191461962,
+              0.061677919912026855
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.0,
+          "measured_temperature_c": 20.0,
+          "measurement_deadtime_upper_s": 0.026044390871593246,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.0,
+          "queried_temperature_c": 20.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.42488352786017486,
+            0.423296059933058,
+            0.41594080875651274
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "a62602f1c8df02fce3fda608570cfdc4da42855427979a155f968dad4527b67d",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 20.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "f1f196f5906945b752268f9ce6dbacdb52890cd482176efdf7819e4a5b749ce1",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "150f54f4035e9d846a574a46ca06dbf72753768112c99c637ac2c525cbd09734",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "cd5b5c595ea76313bec5d442c26ecb386d119744e971a515306af9cac1413442",
+            "row_sha256": "c0a867810ab39793f34f000a4be140c2f947af405b63779b2fa0970246000536",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "a77c17c815b7edb816bd96939708acda5d7ec73ba21670f5edcbeedafdf2add0",
+        "winner_candidate_id": null
+      },
+      "key": "T0020.0000_L00.2500",
+      "load_fraction": 0.25,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.0701026172238691,
+          "directional_deadtime_upper_s": [
+            [
+              0.02280243586685296,
+              0.0281597358378674,
+              0.025480908813753738
+            ],
+            [
+              0.022804721310383358,
+              0.028166923300621576,
+              0.02546172148783512
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.4028585530147257,
+              0.4112181336479293,
+              0.39184928629349997
+            ],
+            [
+              0.4211690556458153,
+              0.4048185422046333,
+              0.39547566935170536
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.05984261462041579,
+              0.07009465262800817,
+              0.06486177670124883
+            ],
+            [
+              0.05983702212134173,
+              0.0701026172238691,
+              0.06492524693269287
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.25,
+          "measured_temperature_c": 20.0,
+          "measurement_deadtime_upper_s": 0.028166923300621576,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.25,
+          "queried_temperature_c": 20.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.4028585530147257,
+            0.4048185422046333,
+            0.39184928629349997
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "a77c17c815b7edb816bd96939708acda5d7ec73ba21670f5edcbeedafdf2add0",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 20.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "470566da0bfecd0333b2da71d81c8ef739f8e04ff49cfd38a37b6e5be19e29fd",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "c92b1a887c9fa03725f1dd4bd08bcfac08a0d46079ca956342b8f71a7ff85782",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "541abdb05d8f82ff04b4bf929e288cfedde2621de1c4dd7cea37ff63c847b4d5",
+            "row_sha256": "425ec4e1489aee45ec1c0dc610caa7d00db37afa947bc5b5f0a6d8d6da169997",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "ce2ad8b80b367f20c22e6ca586735dc8fd414290c1607e27cc91c6f5ca76bc25",
+        "winner_candidate_id": null
+      },
+      "key": "T0020.0000_L00.5100",
+      "load_fraction": 0.51,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.07280825487199787,
+          "directional_deadtime_upper_s": [
+            [
+              0.02462343501475733,
+              0.030376710394897134,
+              0.027480593774912545
+            ],
+            [
+              0.024617785642995903,
+              0.030377944232353963,
+              0.027462327050469425
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3799508749987667,
+              0.3917004503533269,
+              0.36679523326085345
+            ],
+            [
+              0.39723190673459613,
+              0.38560161136080434,
+              0.37019317976380833
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06265284671505157,
+              0.07279585854952605,
+              0.06823534448356285
+            ],
+            [
+              0.06265049927021563,
+              0.07280825487199787,
+              0.06829540990715739
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.51,
+          "measured_temperature_c": 20.0,
+          "measurement_deadtime_upper_s": 0.030377944232353963,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.51,
+          "queried_temperature_c": 20.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3799508749987667,
+            0.38560161136080434,
+            0.36679523326085345
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "ce2ad8b80b367f20c22e6ca586735dc8fd414290c1607e27cc91c6f5ca76bc25",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 20.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "9b3014710268f0126432979732a391a1e74209a4fe9945788e6e6549abd2869d",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "9d19676a893f70c09e5f0304bf2eb0b5291b208722ed74d97bd4f79f7ceb3761",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "a1ab2b8a7a40f49dc37a0a72d91df6f942d98348a2bc6a0b3f3a678db9f04bce",
+            "row_sha256": "773272751428e0ed66d1396c783f88fc203732a11f1804a459c64f42e6fff2c8",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "5557bcd7f61071db04013282a2b5be3cb3e8e8b66a3c247af4425e0e5aca7591",
+        "winner_candidate_id": null
+      },
+      "key": "T0020.0000_L00.7500",
+      "load_fraction": 0.75,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.07530362005534685,
+          "directional_deadtime_upper_s": [
+            [
+              0.026306528397062275,
+              0.032430680469768616,
+              0.029325600584661157
+            ],
+            [
+              0.026297949834235137,
+              0.03242213297073402,
+              0.029312471610566913
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3588037838196082,
+              0.37368165398618497,
+              0.3436694379989413
+            ],
+            [
+              0.37513520309599796,
+              0.3678626232458966,
+              0.34685395858492063
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06524196043638061,
+              0.07527985275866014,
+              0.07134910223607097
+            ],
+            [
+              0.06524305706967705,
+              0.07530362005534685,
+              0.07139994303559692
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.75,
+          "measured_temperature_c": 20.0,
+          "measurement_deadtime_upper_s": 0.032430680469768616,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.75,
+          "queried_temperature_c": 20.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3588037838196082,
+            0.3678626232458966,
+            0.3436694379989413
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "5557bcd7f61071db04013282a2b5be3cb3e8e8b66a3c247af4425e0e5aca7591",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 20.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "57607ab8f94276103669744c38a31120b4e67a913ba779c410d46095a8d58490",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "02215666584040c9bd80d430464818f3017998a35b3b6326fa6fac3ca1a01f57",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "c6a35d74335060ee605cdb2d2ad59f6f5d91735366b867784ddb04d10c49d016",
+            "row_sha256": "9d29c2b8cc63fea03549ec3702020e831df1eb5b3de20f7de164731ee4ff809e",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "da141799363e4f6836ac65b64dde5fd486ae7ac9c304001b819f31c3b73257c8",
+        "winner_candidate_id": null
+      },
+      "key": "T0020.0000_L01.0000",
+      "load_fraction": 1.0,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.07790076757757512,
+          "directional_deadtime_upper_s": [
+            [
+              0.02806196699331018,
+              0.0345779215704515,
+              0.031246608608675706
+            ],
+            [
+              0.028054824011396546,
+              0.03455481021181814,
+              0.031243208754824125
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.33677398946993997,
+              0.3549095495834841,
+              0.31958111216739526
+            ],
+            [
+              0.35211691139234574,
+              0.34938422201558444,
+              0.3225406993228293
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06793390416667647,
+              0.07785772369664584,
+              0.07459228872882308
+            ],
+            [
+              0.06793904637155045,
+              0.07790076757757512,
+              0.07462731211783492
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 1.0,
+          "measured_temperature_c": 20.0,
+          "measurement_deadtime_upper_s": 0.0345779215704515,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 1.0,
+          "queried_temperature_c": 20.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.33677398946993997,
+            0.34938422201558444,
+            0.31958111216739526
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "da141799363e4f6836ac65b64dde5fd486ae7ac9c304001b819f31c3b73257c8",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 20.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "b72bb8512e5545cd61edbb4897c36e7fbba4de2fa7a5869ab20483a1544fdc43",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "5207c7be36c5ba2ef5ab85ce48015cd8550977cd5d29fced8859ef6af91c2e28",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "9b3669aa50b810ebf8b806ee720d7ac74c11815ef842f867e4c261c5539726e5",
+            "row_sha256": "93c5ccb2d813823c356073a4a03c80f664de53724d7c960b79fee3f48e7da9a2",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "694ee04e54e0cdb4b547fb8f52543281e30267a7ab90faf23331a9f8cb6edbea",
+        "winner_candidate_id": null
+      },
+      "key": "T0035.0000_L00.0000",
+      "load_fraction": 0.0,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.07311484671812511,
+          "directional_deadtime_upper_s": [
+            [
+              0.021646452241568626,
+              0.026797326499042953,
+              0.02421537900064147
+            ],
+            [
+              0.0216621219528153,
+              0.026794582469864544,
+              0.024219136280157812
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.41019872791137296,
+              0.4108707606847421,
+              0.4028021890720678
+            ],
+            [
+              0.4288377715375443,
+              0.40448048374569984,
+              0.4065218192254987
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06119235840606162,
+              0.07309093429941528,
+              0.06623031477278872
+            ],
+            [
+              0.0611771072741325,
+              0.07311484671812511,
+              0.06626664303331797
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.0,
+          "measured_temperature_c": 35.0,
+          "measurement_deadtime_upper_s": 0.026797326499042953,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.0,
+          "queried_temperature_c": 35.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.41019872791137296,
+            0.40448048374569984,
+            0.4028021890720678
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "694ee04e54e0cdb4b547fb8f52543281e30267a7ab90faf23331a9f8cb6edbea",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 35.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "6da3f4f19711478d38e89d78798d38da20a9c57395233d1fd70d5c12354fac23",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "196490ff57b923a2d47c916a5c44cee720284e20e84871bb606fe4528404b3f6",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "21b78c2deaca8bf974805c8927e8b50ceb604f05f1b5c9730b908e7c5eac11d8",
+            "row_sha256": "0fb29c48487981929ed7f169d93fe5ab12769be6474ae3ea60e66fc1b270d69f",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "5edfb1161ef06aae95c6bc89a853c9e7071160e7db5b2b6214cb0505ead9b50f",
+        "winner_candidate_id": null
+      },
+      "key": "T0035.0000_L00.2500",
+      "load_fraction": 0.25,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.07595143776513251,
+          "directional_deadtime_upper_s": [
+            [
+              0.023393649405286474,
+              0.028918890106773024,
+              0.026138905694872167
+            ],
+            [
+              0.023400301641909548,
+              0.02891783814668976,
+              0.02613674036163834
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.38617095593877354,
+              0.39057050116840997,
+              0.37641149868849194
+            ],
+            [
+              0.4037294734170263,
+              0.3844901640347288,
+              0.37989327733668365
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06416957451706132,
+              0.07593344663847426,
+              0.06979815276010698
+            ],
+            [
+              0.06415553397467741,
+              0.07595143776513251,
+              0.06984008322754609
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.25,
+          "measured_temperature_c": 35.0,
+          "measurement_deadtime_upper_s": 0.028918890106773024,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.25,
+          "queried_temperature_c": 35.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.38617095593877354,
+            0.3844901640347288,
+            0.37641149868849194
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "5edfb1161ef06aae95c6bc89a853c9e7071160e7db5b2b6214cb0505ead9b50f",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 35.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "a43c3fa187c75d91e337e5a2707b8e692f5d98b482a06fa1a658d53e3e70b300",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "051f4c84ea80b9d45bcaa0065ccfc7b2812e8897a0e7965432cd19693b91212b",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "e3ddb49b853a8c948c809e00ddf2d0beed857e9a9e25fbd1f4401e62244007b9",
+            "row_sha256": "291dbc384eb17730db8013e6d4b456c99f67a3e434bb745fbb52ac575e83df42",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "8a14be7e2f09c8fde41ee3bfdbdc098c52a076c1812a8ca5565c10720e6889f6",
+        "winner_candidate_id": null
+      },
+      "key": "T0035.0000_L00.5100",
+      "load_fraction": 0.51,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.0788991205805295,
+          "directional_deadtime_upper_s": [
+            [
+              0.025213133512137532,
+              0.031133639143374952,
+              0.028138427321262326
+            ],
+            [
+              0.025215264330622125,
+              0.031129611256130906,
+              0.02813484067139882
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3611803689105782,
+              0.3694554982462273,
+              0.3489663110184598
+            ],
+            [
+              0.3776158777404802,
+              0.36369991912905164,
+              0.3521978937493001
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.0672604131980411,
+              0.07887924303224053,
+              0.07350836744547916
+            ],
+            [
+              0.06724812741979759,
+              0.0788991205805295,
+              0.07354940390251519
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.51,
+          "measured_temperature_c": 35.0,
+          "measurement_deadtime_upper_s": 0.031133639143374952,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.51,
+          "queried_temperature_c": 35.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3611803689105782,
+            0.36369991912905164,
+            0.3489663110184598
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "8a14be7e2f09c8fde41ee3bfdbdc098c52a076c1812a8ca5565c10720e6889f6",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 35.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "a3502390ee18f33e415d1f90306fc479b546b7f65672664a909462bc987d8bd2",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "f9c3f4cb1f1ad71ab2a55be23c7e7ef618f7050ffc028dd61bd408246a9db6f4",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "4664c6d5d060b93adab1eadffccb63a652d04f64771b1a7fd81d41877c1f821d",
+            "row_sha256": "0e52a945a3f23ed935755ae1fd623b1a32f7fb49e541be85b62e18fd5048a4f3",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "53104cc1e9927d9df036e5f89516ab8def86a796871711b4d61b45462b5125c8",
+        "winner_candidate_id": null
+      },
+      "key": "T0035.0000_L00.7500",
+      "load_fraction": 0.75,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.08161791207212608,
+          "directional_deadtime_upper_s": [
+            [
+              0.026894828395008657,
+              0.033185554891697694,
+              0.02998328336045526
+            ],
+            [
+              0.02689718085056908,
+              0.033174494312395976,
+              0.029982672690382007
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3381105924893555,
+              0.3499622529920882,
+              0.32363331455280714
+            ],
+            [
+              0.3535101463185034,
+              0.34450864111089946,
+              0.3266313858016556
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.07010854838368764,
+              0.08158901306191159,
+              0.0769328761854256
+            ],
+            [
+              0.07009833103117868,
+              0.08161791207212608,
+              0.07696700567757435
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.75,
+          "measured_temperature_c": 35.0,
+          "measurement_deadtime_upper_s": 0.033185554891697694,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.75,
+          "queried_temperature_c": 35.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3381105924893555,
+            0.34450864111089946,
+            0.32363331455280714
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "53104cc1e9927d9df036e5f89516ab8def86a796871711b4d61b45462b5125c8",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 35.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "e24a0a0df9cfe26edc15e2c8cdf96857a8a1cb52114369095612504fd4eeabc9",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "96dbb4e66cd7012a77cb001787d52e954286b63d06d68a229dc2e21ab6132fae",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "334b4c21ca4fbb80bf6e492d8fefa4d1f4ad99330f2a6adcb8f894a91b0d17f3",
+            "row_sha256": "22887e7f241900307a05d734ff755e8733c9aa5f8dfdc749aa38afa98f234147",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "d2f938c958bf3d1c19fa0d7b22c21024782694b8bbbe98f57fa4400bede41f93",
+        "winner_candidate_id": null
+      },
+      "key": "T0045.5000_L00.0000",
+      "load_fraction": 0.0,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.07704656778681032,
+          "directional_deadtime_upper_s": [
+            [
+              0.022066242007503106,
+              0.02732630546972792,
+              0.024676528146254203
+            ],
+            [
+              0.022075276764081598,
+              0.027319188832184652,
+              0.024688752453592182
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3999195290960012,
+              0.39749372255719484,
+              0.39360436645198676
+            ],
+            [
+              0.41809617167797425,
+              0.3913097226365252,
+              0.39723891338455547
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06402942318543242,
+              0.07701823656481342,
+              0.06945846647108044
+            ],
+            [
+              0.06401434415268914,
+              0.07704656778681032,
+              0.06948511083041062
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.0,
+          "measured_temperature_c": 45.5,
+          "measurement_deadtime_upper_s": 0.02732630546972792,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.0,
+          "queried_temperature_c": 45.5,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3999195290960012,
+            0.3913097226365252,
+            0.39360436645198676
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "d2f938c958bf3d1c19fa0d7b22c21024782694b8bbbe98f57fa4400bede41f93",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 45.5
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "ca5012c2c9933057b2adf938cd13148ff9de78ad1a3c0343b8de1884bb958a4a",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "a85835d8d58bef1510ede2bc5b9ffe0dd5d6f96807730f76bf1b264fe25a470a",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "a0e7830e20dd4c23612935b9aecffe1f3ebd9d13dc070a32340efa59b1b05e3b",
+            "row_sha256": "81badbf9d12b29d53ad061fd995f03c2a0dd3f90a09c4403470348724fd1782a",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "686dc41846d48c6a0d405deaa59f95d17322222e8e346e70011911e5a801a365",
+        "winner_candidate_id": null
+      },
+      "key": "T0045.5000_L00.2500",
+      "load_fraction": 0.25,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.08004607385024827,
+          "directional_deadtime_upper_s": [
+            [
+              0.023812419432050452,
+              0.029446371131016193,
+              0.02659994490362139
+            ],
+            [
+              0.02381473419285856,
+              0.029442950782467687,
+              0.026604670307176864
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3744897991343965,
+              0.37611834406076056,
+              0.3656042585240168
+            ],
+            [
+              0.3915229574654093,
+              0.37026044153777177,
+              0.36898630822685524
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06719550911416365,
+              0.08002537710634729,
+              0.07325289372007246
+            ],
+            [
+              0.06718063759109212,
+              0.08004607385024827,
+              0.07328683024613221
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.25,
+          "measured_temperature_c": 45.5,
+          "measurement_deadtime_upper_s": 0.029446371131016193,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.25,
+          "queried_temperature_c": 45.5,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3744897991343965,
+            0.37026044153777177,
+            0.3656042585240168
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "686dc41846d48c6a0d405deaa59f95d17322222e8e346e70011911e5a801a365",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 45.5
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "89df5cd045917681568494abe975f1bd72e0ab3320b6621fed404544ad5f920c",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "df35f18f2f4a480e7dcbdcf6c0440821d441dd71d70e18720d527a35df3a7703",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "f63d4056704fcdfaed385bb330bd0cca513d5b7aef07641d5891b519c5d42a8e",
+            "row_sha256": "5822477b4613e8a486f4f0c65828b638e26b5829948c66eed31acc07094d06d9",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "421b42f88deb7a08b30dd9b2a4fd183ef47c8f1bd45b974779b7d824b6ad1f37",
+        "winner_candidate_id": null
+      },
+      "key": "T0045.5000_L00.5100",
+      "load_fraction": 0.51,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.08316318828273302,
+          "directional_deadtime_upper_s": [
+            [
+              0.0256308430101642,
+              0.031659562303318664,
+              0.028599352195673496
+            ],
+            [
+              0.025631025730841157,
+              0.03165525041630497,
+              0.028601016939925665
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3480411757976358,
+              0.35388521739927176,
+              0.33648527660781474
+            ],
+            [
+              0.3638858490531344,
+              0.3483688767888009,
+              0.3396018988398311
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.0704827724055842,
+              0.08314238683068745,
+              0.07719876123758536
+            ],
+            [
+              0.07046861244358471,
+              0.08316318828273302,
+              0.07723356131145451
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.51,
+          "measured_temperature_c": 45.5,
+          "measurement_deadtime_upper_s": 0.031659562303318664,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.51,
+          "queried_temperature_c": 45.5,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3480411757976358,
+            0.3483688767888009,
+            0.33648527660781474
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "421b42f88deb7a08b30dd9b2a4fd183ef47c8f1bd45b974779b7d824b6ad1f37",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 45.5
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "8e80c1369a5be535f2d75467840a76ba3a959797e5eef50dd28129f9b39dd57e",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "8a94993b34f1f300930ec4862b57274f15858302beb45c2639a986beb2ec018c",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "f1e855dc1e911255ee1e6a0d254f512cb7715109b707a5ab4a44704a28855bd8",
+            "row_sha256": "bb82ef1c8b242dd78cb9dd11d44b3c71b856703a988ecf464e6b0a069308f043",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "c00549daeea3949d97803f8028789a703ed707c4bd6f08ec5a6c25d212334950",
+        "winner_candidate_id": null
+      },
+      "key": "T0055.0000_L00.0000",
+      "load_fraction": 0.0,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.08060416686458045,
+          "directional_deadtime_upper_s": [
+            [
+              0.02244954350244662,
+              0.027802118849709942,
+              0.025094071544940606
+            ],
+            [
+              0.022447328131463818,
+              0.02779345817874968,
+              0.02511039091279281
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3906194159503286,
+              0.38539152940285065,
+              0.3852819671634757
+            ],
+            [
+              0.4083784269147282,
+              0.37939342065138204,
+              0.3888405943076628
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06659420693892694,
+              0.08057489822418445,
+              0.07237866260731378
+            ],
+            [
+              0.06658289035046876,
+              0.08060416686458045,
+              0.07240157219422602
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.0,
+          "measured_temperature_c": 55.0,
+          "measurement_deadtime_upper_s": 0.027802118849709942,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.0,
+          "queried_temperature_c": 55.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3906194159503286,
+            0.37939342065138204,
+            0.3852819671634757
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "c00549daeea3949d97803f8028789a703ed707c4bd6f08ec5a6c25d212334950",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 55.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "ed87e74edfa80da634f9fcfbd4c3c30084a24e15d49ee10b0086da3e0ea02b96",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "cecd1838a7b97c84f1f23c9ee1cc74e7decc8cd0832b5df5c4410022cdacd5e2",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "5cc122def01d0877b5bf072264b134d2fa08db368c63c94ddace01677ec86a7c",
+            "row_sha256": "7c51577a03e05fcaf015fb5b72c9ab0f6328b3f246759ab9cd97c3b349174e33",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "085dfb2a0b28b58e466fd38566227c2b9e3bcc0b72699e0ae5189a093f3ca6a3",
+        "winner_candidate_id": null
+      },
+      "key": "T0055.0000_L00.2500",
+      "load_fraction": 0.25,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.0837510722285984,
+          "directional_deadtime_upper_s": [
+            [
+              0.024194798305839715,
+              0.02992082922612231,
+              0.027017388835621752
+            ],
+            [
+              0.024187941610429902,
+              0.02991767818597074,
+              0.027024783131614587
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3639212478081954,
+              0.3630434242101336,
+              0.35582571955248243
+            ],
+            [
+              0.3804798124284065,
+              0.3573860316303493,
+              0.35911859857335227
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.06993117508370099,
+              0.083730988091767,
+              0.07637809918829636
+            ],
+            [
+              0.06991915845645763,
+              0.0837510722285984,
+              0.07640982995320361
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.25,
+          "measured_temperature_c": 55.0,
+          "measurement_deadtime_upper_s": 0.02992082922612231,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.25,
+          "queried_temperature_c": 55.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3639212478081954,
+            0.3573860316303493,
+            0.35582571955248243
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "085dfb2a0b28b58e466fd38566227c2b9e3bcc0b72699e0ae5189a093f3ca6a3",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 55.0
+    },
+    {
+      "bundle": {
+        "bundle_sha256": "8f42ba5cc32a1a79970b8e7d7881ef518b107c685bfe87054ddc8c761d32384f",
+        "expected_candidate_ids": [
+          "straight_fallback"
+        ],
+        "fallback_candidate_id": "straight_fallback",
+        "level": "fallback_only",
+        "rows": [
+          {
+            "candidate_id": "straight_fallback",
+            "checks": {
+              "atlas_clamp": true,
+              "branch_floor": true,
+              "energy": true,
+              "flux": true,
+              "reference_slew": true,
+              "slew": true,
+              "strong_dark": true,
+              "terminal_current": true,
+              "terminal_gap": true,
+              "voltage": true
+            },
+            "metrics_sha256": "78878bc6ebd3e5fd86501370ff331e39d4480a49e2b5bfa9d5ae657425c83728",
+            "objective_ratio": 1.0,
+            "passed": true,
+            "plan_sha256": "b8746b9f394cb892eb2e094dce23f27bdf3eb3c31bc94f8012c91f1cba2b5109",
+            "row_sha256": "785b79741101144ee905bfa650e34ffb737c593f0e39acd6dbfa1a487c218422",
+            "source": "exact_node_straight_fallback"
+          }
+        ],
+        "schema": "bfm5_tcz1h_deployment_bundle_v1",
+        "snapshot_sha256": "3454bec95b2eed2444d157a7c54332805a3e305179fe173e1f4695a4c47fc9ff",
+        "winner_candidate_id": null
+      },
+      "key": "T0070.0000_L00.0000",
+      "load_fraction": 0.0,
+      "snapshot": {
+        "calibration": {
+          "actuator_tau_upper_s": 0.08622206228075797,
+          "directional_deadtime_upper_s": [
+            [
+              0.023061510085086535,
+              0.02854801318331653,
+              0.02575395642760871
+            ],
+            [
+              0.02303138241031429,
+              0.028541580143806086,
+              0.025769845090948023
+            ]
+          ],
+          "directional_slew_lower_mm_s": [
+            [
+              0.3759352479575638,
+              0.36628443070224415,
+              0.3721402539850325
+            ],
+            [
+              0.39303625493494027,
+              0.36057840219726356,
+              0.3755810585618092
+            ]
+          ],
+          "directional_tau_upper_s": [
+            [
+              0.07063983386691013,
+              0.0861972332472648,
+              0.07698850724549149
+            ],
+            [
+              0.07064143416572044,
+              0.08622206228075797,
+              0.07701524281429697
+            ]
+          ],
+          "load_reserve_fraction": 0.0,
+          "measured_load_fraction": 0.0,
+          "measured_temperature_c": 70.0,
+          "measurement_deadtime_upper_s": 0.02854801318331653,
+          "observer_time_constant_s": 0.012,
+          "queried_load_fraction": 0.0,
+          "queried_temperature_c": 70.0,
+          "reversal_assumed": true,
+          "robust_slew_mm_s": [
+            0.3759352479575638,
+            0.36057840219726356,
+            0.3721402539850325
+          ],
+          "temperature_reserve_c": 0.0
+        },
+        "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+        "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+        "oracle_artifact_sha256": "5ebb187cff9abb2eb937331f86b700fd96d78bb2e207d6c44bb2a97874b27d1b",
+        "quality_gates_sha256": "f010fd6759aff144ba54329f32a3f22fe11998c8aa47d5748f052ad4c28d9f2e",
+        "request": {
+          "end_state": [
+            1.05,
+            2.0
+          ],
+          "motion_time_s": 0.46,
+          "optimizer_maxiter": 80,
+          "path_samples": 33,
+          "ramp_each_s": 0.03,
+          "start_state": [
+            0.95,
+            -2.0
+          ],
+          "weights": [
+            0.3333333333333333,
+            0.3333333333333333,
+            0.3333333333333333
+          ]
+        },
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "snapshot_sha256": "3454bec95b2eed2444d157a7c54332805a3e305179fe173e1f4695a4c47fc9ff",
+        "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+      },
+      "temperature_c": 70.0
+    }
+  ],
+  "load_nodes": [
+    0.0,
+    0.25,
+    0.51,
+    0.75,
+    1.0
+  ],
+  "metadata": {
+    "campaign_lock_sha256": "f12cb8f628c9bc1b71233aa5d882f380d3f90c299b3660f40e7b19c4db1fe8d1",
+    "model_artifact_sha256": "93476411d3ab636bcd1f0e3329808cd0d666893e95e6f29e0bdd8fe2d84b4ef6",
+    "request": {
+      "end_state": [
+        1.05,
+        2.0
+      ],
+      "motion_time_s": 0.46,
+      "optimizer_maxiter": 80,
+      "path_samples": 33,
+      "ramp_each_s": 0.03,
+      "start_state": [
+        0.95,
+        -2.0
+      ],
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    "reversal_assumed": true,
+    "source_git_sha": "ba02eb957d4a3774d2f3c02d1d4a3bd9f7352330"
+  },
+  "rejected_nodes": [
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0035.0000_L01.0000",
+      "load_fraction": 1.0,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 35.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0045.5000_L00.7500",
+      "load_fraction": 0.75,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 45.5
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0045.5000_L01.0000",
+      "load_fraction": 1.0,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 45.5
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0055.0000_L00.5100",
+      "load_fraction": 0.51,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 55.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0055.0000_L00.7500",
+      "load_fraction": 0.75,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 55.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0055.0000_L01.0000",
+      "load_fraction": 1.0,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 55.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0070.0000_L00.2500",
+      "load_fraction": 0.25,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 70.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0070.0000_L00.5100",
+      "load_fraction": 0.51,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 70.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0070.0000_L00.7500",
+      "load_fraction": 0.75,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 70.0
+    },
+    {
+      "checks": {
+        "atlas_clamp": true,
+        "branch_floor": true,
+        "energy": true,
+        "flux": true,
+        "reference_slew": true,
+        "slew": true,
+        "strong_dark": false,
+        "terminal_current": true,
+        "terminal_gap": true,
+        "voltage": true
+      },
+      "key": "T0070.0000_L01.0000",
+      "load_fraction": 1.0,
+      "reason": "dynamic_gate_failure",
+      "temperature_c": 70.0
+    }
+  ],
+  "schema": "bfm5_tcz1h_fallback_certificate_atlas_v1",
+  "temperature_nodes_c": [
+    20.0,
+    35.0,
+    45.5,
+    55.0,
+    70.0
+  ]
+}
