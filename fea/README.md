@@ -6,6 +6,7 @@
 2. [`config/project_state.yml`](config/project_state.yml) — trạng thái máy đọc.
 3. [`config/design_laws_v8.yml`](config/design_laws_v8.yml) — luật và evidence TCZ-1H đầy đủ.
 4. [`docs/TOPOLOGY_CHARTER.md`](docs/TOPOLOGY_CHARTER.md) — định nghĩa topology bất biến.
+5. [`docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md`](docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md) — negative audit sau TCZ-1H.
 
 ## Current accepted state
 

@@ -93,3 +93,26 @@ next_authorized_stage:
     - update calibration confidence online
     - replay declared bank on measured plant
     - expand FEA atlas only on fold_quality_interpolation_or_domain trigger
+post_snapshot_audits:
+  adaptive_deadline_calibration:
+    status: rejected_as_next_accepted_stage
+    decision_memo: docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md
+    source_sha: e2b111cb1d51d5c4cfcfcd3817a10341f2d4e2cd
+    artifact_directory: data/post_tcz1h_adaptive_deadline
+    artifact_manifest_sha256: 3e95aecffd1a2444fe1b35cf215f3b2e5096cbb43e29e51e5184267244a4297b
+    summary_sha256: fa651f0120a63b1b20b348e2e6da5da4dbc573a9039f697af2086474423ceafb
+    result:
+      directional_lower_bound_violations: 0
+      directional_false_safe_deadlines: 0
+      feasible_deadline_recall: 1.0
+      median_kinematic_conservatism: 0.022022484515625163
+      local_warm_replan_p95_s: 0.38193304600245026
+      representative_dynamic_certificates_passed: 3
+      frozen_or_ewma_false_safe_deadlines: 0
+    failed_gates:
+      - local_warm_replan_p95_above_0p25_s
+      - baseline_failure_mode_not_reproduced
+    consequence:
+      - do_not_promote_synthetic_directional_calibration
+      - do_not_expand_candidate_bank_for_this_reason
+      - retain_hardware_calibrated_hil_navigation_as_next_authorized_stage

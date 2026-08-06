@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "source_git_sha": "e2b111cb1d51d5c4cfcfcd3817a10341f2d4e2cd",
+  "files": {
+    "dynamic_replays.json": {
+      "bytes": 20336,
+      "sha256": "ddb49631b331cc0eea187c8348949068d24602cbcc31e25f03be531ae7873086"
+    },
+    "episodes.jsonl": {
+      "bytes": 250736,
+      "sha256": "021d0abeea368599abdea7104c03a3e6d2f5b06b9a67db0395758ef1e0618267"
+    },
+    "summary.json": {
+      "bytes": 4229,
+      "sha256": "fa651f0120a63b1b20b348e2e6da5da4dbc573a9039f697af2086474423ceafb"
+    }
+  },
+  "source_files": {
+    "config/tcz1h_adaptive_deadline.yml": "d6dfdcd388a206f2b2e61b5533fa7a6a1e7abc9e1f4bfebe2069b0100a4a6733",
+    "bfm5/tcz1h_adaptive.py": "988fac46a45b7d0dc010e3b56516eaea41168b1bdbbedb8a3c4a1dfc8b66f62d",
+    "bfm5/tcz1h.py": "aa731536bcccccd70cb226383de3f748fd64d67a78c143b2d975a3fbf6589b1e"
+  }
+}

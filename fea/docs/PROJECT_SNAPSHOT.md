@@ -201,3 +201,23 @@ Chưa được tuyên bố:
 4. chỉ mở rộng FEA atlas khi fold, quality, interpolation hoặc domain gate yêu cầu.
 
 Tài liệu chi tiết vẫn được giữ trong `docs/TCZ1*.md`; file này là entry point duy nhất để đọc nhanh trạng thái dự án.
+
+## 8. Post-snapshot negative audit: adaptive deadline calibration
+
+A frozen 32-episode controller-in-loop audit tested a direction-aware,
+one-sided bounded-drift slew envelope as a possible next stage. The mathematical
+bound was sound in the declared ensemble: zero lower-bound violations, 100%
+feasibility recall, 2.20% median conservatism, and 3/3 representative dynamic
+certificates passed.
+
+The direction was nevertheless **rejected**. Frozen TCZ-1H and its existing
+EWMA baseline also produced zero false-safe deadlines because the true worst
+minimum-plus-reserve was only about 0.260 s against the 0.46 s task. The new
+warm replanner also missed its 0.25 s p95 gate at 0.382 s. Thresholds and drift
+were not changed after seeing the result.
+
+Therefore the next bottleneck is not another synthetic calibrator or a larger
+candidate bank. It is measured-plant/HIL identification of route/sign slew,
+lag and hysteresis, plus deployment-hardware latency in a predeclared active
+deadline regime. See
+[`POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md`](POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md).
