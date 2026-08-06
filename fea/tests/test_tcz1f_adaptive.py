@@ -50,3 +50,17 @@ def test_adaptive_batch_respects_hard_budget() -> None:
     }}
     proposal = propose_adaptive_batch(atlas, config)
     assert proposal["proposed_count"] <= 3
+
+
+def test_adaptive_custom_planner_uses_request_points(tmp_path, monkeypatch) -> None:
+    import yaml
+    from bfm5.tcz1f import plan_points
+
+    config = yaml.safe_load(open("config/tcz1f_grid.yml", encoding="utf-8"))
+    explicit = [
+        {"magnitude_scale": 0.95, "angle_offset_deg": -2.0},
+        {"magnitude_scale": 1.05, "angle_offset_deg": 2.0},
+    ]
+    config["profiles"]["adaptive_custom"] = {"explicit_points": explicit}
+    points = plan_points(config, "adaptive_custom")
+    assert {(p.magnitude_scale, p.angle_offset_deg) for p in points} == {(0.95, -2.0), (1.05, 2.0)}

@@ -24,6 +24,13 @@ def main() -> None:
     args = parser.parse_args()
 
     config = yaml.safe_load(args.config.read_text(encoding="utf-8"))
+    if args.profile == "adaptive_custom":
+        request_path = ROOT / "config" / "tcz1f_request.yml"
+        request = yaml.safe_load(request_path.read_text(encoding="utf-8"))
+        explicit = request.get("explicit_points") or []
+        if not explicit:
+            raise ValueError("adaptive_custom request requires explicit_points")
+        config["profiles"]["adaptive_custom"] = {"explicit_points": explicit}
     points = plan_points(config, args.profile)
     include = []
     for point in points:
