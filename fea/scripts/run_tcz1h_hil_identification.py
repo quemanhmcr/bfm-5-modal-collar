@@ -70,6 +70,7 @@ def main() -> None:
     with protocol_path.open("w", newline="", encoding="utf-8") as stream:
         writer = csv.DictWriter(
             stream,
+            lineterminator="\n",
             fieldnames=[
                 "run_id",
                 "split",
