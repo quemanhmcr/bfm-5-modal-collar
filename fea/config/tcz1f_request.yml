@@ -1,0 +1,5 @@
+version: 1
+profile: smoke
+artifact_retention_days: 14
+requested_by: linux-mcp
+purpose: verify-pinned-femm-com-shard-and-aggregate

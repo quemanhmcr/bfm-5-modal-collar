@@ -1,6 +1,12 @@
 name: TCZ-1F Remote Root Atlas
 
 on:
+  push:
+    branches:
+      - research/tcz1f-action-grid
+    paths:
+      - '.github/workflows/tcz1f-grid.yml'
+      - 'fea/**'
   workflow_dispatch:
     inputs:
       profile:
@@ -30,6 +36,8 @@ jobs:
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
       point_count: ${{ steps.plan.outputs.point_count }}
+      profile: ${{ steps.plan.outputs.profile }}
+      retention_days: ${{ steps.plan.outputs.retention_days }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,12 +45,23 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install --disable-pip-version-check numpy==2.4.6 PyYAML==6.0.3
       - id: plan
-        run: python fea/scripts/plan_tcz1f_grid.py --profile '${{ inputs.profile }}' --github-output
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            PROFILE='${{ inputs.profile }}'
+            RETENTION='${{ inputs.artifact_retention_days }}'
+          else
+            PROFILE=$(python -c "import yaml; print(yaml.safe_load(open('fea/config/tcz1f_request.yml'))['profile'])")
+            RETENTION=$(python -c "import yaml; print(yaml.safe_load(open('fea/config/tcz1f_request.yml'))['artifact_retention_days'])")
+          fi
+          python fea/scripts/plan_tcz1f_grid.py --profile "$PROFILE" --github-output
+          echo "profile=$PROFILE" >> "$GITHUB_OUTPUT"
+          echo "retention_days=$RETENTION" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with:
           name: tcz1f-plan-${{ github.run_id }}
           path: fea/results_ci/plan/
-          retention-days: ${{ fromJSON(inputs.artifact_retention_days) }}
+          retention-days: 14
 
   femm-environment:
     runs-on: windows-latest
@@ -115,7 +134,7 @@ jobs:
           path: |
             fea/results_ci/shards/${{ matrix.point_id }}/**/*.json
           if-no-files-found: error
-          retention-days: ${{ fromJSON(inputs.artifact_retention_days) }}
+          retention-days: ${{ fromJSON(needs.plan.outputs.retention_days) }}
       - name: Enforce shard gate after upload
         if: steps.shard.outcome == 'failure'
         shell: pwsh
@@ -139,6 +158,6 @@ jobs:
         run: python fea/scripts/aggregate_tcz1f.py --input-root downloaded-shards --output-root fea/results_ci/aggregate
       - uses: actions/upload-artifact@v4
         with:
-          name: tcz1f-atlas-${{ inputs.profile }}-${{ github.run_id }}
+          name: tcz1f-atlas-${{ needs.plan.outputs.profile }}-${{ github.run_id }}
           path: fea/results_ci/aggregate/
-          retention-days: ${{ fromJSON(inputs.artifact_retention_days) }}
+          retention-days: ${{ fromJSON(needs.plan.outputs.retention_days) }}
