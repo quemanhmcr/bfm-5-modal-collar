@@ -319,9 +319,9 @@ def main() -> None:
                         "true_required_s": true_required,
                         "frozen_required_s": frozen_required,
                         "calibrated_required_s": calibrated_required,
-                        "actual_feasible": actual_feasible,
-                        "frozen_feasible": frozen_feasible,
-                        "calibrated_feasible": calibrated_feasible,
+                        "actual_feasible": bool(actual_feasible),
+                        "frozen_feasible": bool(frozen_feasible),
+                        "calibrated_feasible": bool(calibrated_feasible),
                         "frozen_false_safe": bool(frozen_feasible and not actual_feasible),
                         "calibrated_false_safe": bool(calibrated_feasible and not actual_feasible),
                     }
