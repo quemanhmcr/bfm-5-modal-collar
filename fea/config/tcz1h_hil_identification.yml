@@ -1,0 +1,105 @@
+name: post-TCZ-1H-HIL-identification-gate
+version: 1.0
+status: predeclared_shadow_rig_protocol
+source_config: config/tcz1g_dynamic.yml
+scope:
+  claim_if_accepted: >-
+    the frozen excitation, estimation, conservative-bound, and active-deadline
+    protocol is identifiable on the declared nonlinear shadow rig and is ready
+    to ingest measured HIL traces without changing its gates
+  not_claimed:
+    - hardware validity
+    - HIL validation
+    - production actuator model
+    - global continuous path optimum
+    - validity outside the TCZ-1F patch
+    - deployment-class timing
+scientific_contract:
+  train_calibration_holdout_split: true
+  route_and_direction_separated: true
+  reversal_context_separated: true
+  temperature_and_load_excited: true
+  bound_calibration_never_uses_holdout: true
+  active_deadline_grid_frozen_before_results: true
+  accepted_TCZ1H_candidate_bank_unchanged: true
+  no_FEMM: true
+protocol:
+  seed: 202608061
+  dt_s: 0.002
+  duration_s: 0.80
+  temperature_C: [20.0, 70.0]
+  load_fraction: [0.0, 1.0]
+  runs_per_route_direction_reversal:
+    train: 20
+    calibration: 24
+    holdout: 24
+  tail_fraction: 0.25
+  conformal_alpha: 0.05
+  ridge: 1.0e-10
+shadow_rig:
+  base_slew_mm_s:
+    negative: [0.445, 0.455, 0.438]
+    positive: [0.465, 0.448, 0.442]
+  slew_temperature_fraction_at_max: [0.11, 0.14, 0.10]
+  slew_load_fraction_at_max: [0.18, 0.15, 0.20]
+  slew_temperature_load_cross_fraction: [0.060, 0.045, 0.070]
+  slew_reversal_drop_fraction: [0.035, 0.045, 0.040]
+  slew_reversal_load_cross_fraction: [0.018, 0.015, 0.020]
+  base_tau_s: [0.045, 0.052, 0.048]
+  tau_temperature_fraction_at_max: [0.30, 0.36, 0.32]
+  tau_load_fraction_at_max: [0.24, 0.20, 0.27]
+  tau_temperature_load_cross_fraction: [0.08, 0.06, 0.09]
+  tau_reversal_fraction: [0.18, 0.22, 0.20]
+  base_deadtime_s: [0.0060, 0.0070, 0.0065]
+  deadtime_temperature_add_s: [0.0020, 0.0025, 0.0022]
+  deadtime_load_add_s: [0.0030, 0.0035, 0.0032]
+  deadtime_reversal_add_s: [0.0120, 0.0160, 0.0140]
+  deadtime_reversal_load_cross_s: [0.0040, 0.0050, 0.0045]
+  velocity_noise_bound_mm_s: 0.0030
+  velocity_quantization_mm_s: 0.0005
+bound_reserves:
+  plateau_measurement_extra_mm_s: 0.0005
+  tau_estimation_extra_s: 0.0040
+  deadtime_estimation_extra_s: 0.0030
+deadline_audit:
+  start_state: [0.95, -2.0]
+  end_state: [1.05, 2.0]
+  reversal_context: true
+  ramp_reserve_s: 0.03
+  scenarios:
+    - [20.0, 0.0]
+    - [35.0, 0.6]
+    - [45.0, 0.5]
+    - [55.0, 0.8]
+    - [65.0, 0.7]
+    - [70.0, 1.0]
+  directions: [forward, reverse]
+  deadline_grid_s:
+    start: 0.20
+    stop: 0.60
+    step: 0.01
+acceptance_gates:
+  holdout_plateau_lower_violations_max: 0
+  holdout_tau_upper_violations_max: 0
+  holdout_deadtime_upper_violations_max: 0
+  median_plateau_conservatism_max: 0.10
+  median_tau_conservatism_max: 0.20
+  median_deadtime_conservatism_s_max: 0.008
+  median_tau_estimation_relative_error_max: 0.10
+  median_deadtime_estimation_absolute_error_s_max: 0.004
+  reversal_plateau_sign_correct_min: 6
+  reversal_tau_sign_correct_min: 6
+  reversal_deadtime_sign_correct_min: 6
+  active_false_safe_window_s_min: 0.03
+  frozen_false_safe_deadline_cases_min: 3
+  calibrated_false_safe_deadline_cases_max: 0
+  calibrated_feasible_recall_min: 0.80
+  bound_query_p95_s_max: 0.005
+evidence_contract:
+  protocol_csv_required: true
+  estimates_jsonl_required: true
+  deadline_cases_jsonl_required: true
+  summary_json_required: true
+  artifact_manifest_sha256_required: true
+  source_git_sha_required: true
+  full_regression_required: true
