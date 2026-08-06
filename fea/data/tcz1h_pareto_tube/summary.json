@@ -1,0 +1,62 @@
+{
+  "rows": 120,
+  "training_rows": 96,
+  "validation_rows": 24,
+  "path_validation": {
+    "mse": 0.07535787934526987,
+    "pca_dimension": 6,
+    "median_raw_control_error": 0.18668081734236158,
+    "q90_raw_control_error": 0.8522633243481332,
+    "max_raw_control_error": 1.6655166484059432,
+    "training_rows": 96,
+    "validation_rows": 24,
+    "median_max_gap_path_error_um": 2.214466127262666,
+    "q90_max_gap_path_error_um": 11.895156139313269,
+    "max_gap_path_error_um": 21.34946289904324,
+    "max_endpoint_error_um": 0.0,
+    "heldout_in_distribution_fraction": 1.0
+  },
+  "value_validation": {
+    "log_mse": 0.026176451898682927,
+    "pca_dimension": 8,
+    "explained_variance_fraction": 0.9615976765015329,
+    "median_relative_error": [
+      0.017867243629232754,
+      0.006786144072447042,
+      0.0030110072137998767,
+      0.021417267558079156,
+      0.016942660933835396,
+      0.01504457124059072
+    ],
+    "q90_relative_error": [
+      0.3511679652422761,
+      0.08644311001851536,
+      0.03362986644594305,
+      0.47787697380129374,
+      0.30843788386498644,
+      0.10270713221521756
+    ],
+    "max_relative_error": [
+      0.9087367337771071,
+      0.1309815833323853,
+      0.059050719274800434,
+      1.9788109967410383,
+      0.5750349963034047,
+      0.18519595863798832
+    ],
+    "validation_rows": 24,
+    "training_rows": 96
+  },
+  "gates": {
+    "path_q90_gap_error_um": true,
+    "path_max_gap_error_um": true,
+    "path_heldout_distribution": true,
+    "value_total_power_median": true,
+    "value_total_power_q90": true,
+    "value_total_voltage_median": true,
+    "value_total_voltage_q90": true,
+    "value_total_effort_median": true,
+    "value_total_effort_q90": true
+  },
+  "passed": true
+}

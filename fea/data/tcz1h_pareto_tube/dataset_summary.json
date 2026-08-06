@@ -1,0 +1,16 @@
+{
+  "rows": 120,
+  "environments": 15,
+  "reference_environments": [
+    "nominal",
+    "near_deadline",
+    "slow_delayed"
+  ],
+  "target_median_first_three": [
+    2.4775002811803303e-05,
+    1.170267142313247e-10,
+    0.03541491217014115
+  ],
+  "source": "solver-free reduced nonlinear TCZ-1E teacher rollouts",
+  "oracle_role": "proposal_and_priority_only; exact reduced replay selects winner"
+}

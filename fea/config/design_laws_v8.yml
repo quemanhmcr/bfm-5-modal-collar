@@ -1,0 +1,128 @@
+name: TCZ-1H-certified-online-Pareto-navigation
+version: 8
+status: provisional_local_pass_pending_remote_crosscheck
+scope:
+  magnitude_scale:
+  - 0.95
+  - 1.05
+  angle_offset_deg:
+  - -2.0
+  - 2.0
+  certificate: exact optimum within declared finite candidate bank
+  not_claimed:
+  - global continuous optimum
+  - hard-real-time oracle-only control
+  - validity outside TCZ-1F patch
+architecture:
+  oracle_role: proposal and queue priority only
+  path_oracle_role: warm start only; exact inner planner corrects every tube path
+  winner_selection: parallel exact reduced-nonlinear replay
+  fallback: straight current-state path
+  robustness: nominal + slow/delayed + fast-observer corner replay
+candidate_bank:
+  tube_anchors: 7
+  task_shaping: true
+  continuous_oracle_proposal_when_in_distribution: true
+  straight_fallback: true
+  fastest_candidate: true
+oracle_bundle:
+  rows: 120
+  environments: 15
+  path_median_max_gap_error_um: 2.214466127262666
+  path_q90_max_gap_error_um: 11.895156139313269
+  value_median_relative_error:
+    metric_power: 0.017867243629232754
+    actuator_voltage: 0.006786144072447042
+    actuator_effort: 0.0030110072137998767
+  value_q90_relative_error:
+    metric_power: 0.3511679652422761
+    actuator_voltage: 0.08644311001851536
+    actuator_effort: 0.03362986644594305
+  manifest_verified: true
+local_benchmark:
+  summary_sha256: 7d84d3503f79b987a0e06bb816a9f46303e90d044b71ed82e9c79939ea6e2262
+  passed: true
+  gates:
+    oracle_artifacts_passed: true
+    all_bank_certificates: true
+    all_winner_robustness: true
+    parallel_replay_latency: true
+  tasks:
+    metric_power:
+      winner: anchor_6
+      source: tube_exact_corrected
+      objective_ratio_vs_straight: 0.9580070889148177
+      regret_margin: 0.02063264847049273
+      metric_ratios_vs_straight:
+        metric_power: 0.9856869742771008
+        actuator_voltage: 0.9024148001206412
+        actuator_effort: 0.7921602948107286
+      candidate_bank_build_s: 2.779699591003009
+      parallel_replay_wall_s: 9.544328539996059
+      workers: 4
+      oracle_proposal_in_distribution: true
+      robust_scenarios_passed: true
+    actuator_voltage:
+      winner: straight_fallback
+      source: straight_fallback
+      objective_ratio_vs_straight: 1.0
+      regret_margin: 0.042026812352985665
+      metric_ratios_vs_straight:
+        metric_power: 1.0
+        actuator_voltage: 1.0
+        actuator_effort: 1.0
+      candidate_bank_build_s: 2.2218085460044676
+      parallel_replay_wall_s: 10.300499944001785
+      workers: 4
+      oracle_proposal_in_distribution: true
+      robust_scenarios_passed: true
+    actuator_effort:
+      winner: straight_fallback
+      source: straight_fallback
+      objective_ratio_vs_straight: 1.0
+      regret_margin: 0.023685767663450763
+      metric_ratios_vs_straight:
+        metric_power: 1.0
+        actuator_voltage: 1.0
+        actuator_effort: 1.0
+      candidate_bank_build_s: 2.7329553730014595
+      parallel_replay_wall_s: 10.217912039006478
+      workers: 4
+      oracle_proposal_in_distribution: true
+      robust_scenarios_passed: true
+    balanced:
+      winner: straight_fallback
+      source: straight_fallback
+      objective_ratio_vs_straight: 1.0
+      regret_margin: 0.047193353121610215
+      metric_ratios_vs_straight:
+        metric_power: 1.0
+        actuator_voltage: 1.0
+        actuator_effort: 1.0
+      candidate_bank_build_s: 2.8040260460038553
+      parallel_replay_wall_s: 11.336048999000923
+      workers: 4
+      oracle_proposal_in_distribution: true
+      robust_scenarios_passed: true
+    deadline_balanced:
+      winner: oracle_continuous
+      source: tube_exact_corrected
+      objective_ratio_vs_straight: 0.8736116418478939
+      regret_margin: 0.11956510302755596
+      metric_ratios_vs_straight:
+        metric_power: 0.7696959689047139
+        actuator_voltage: 0.941760274722962
+        actuator_effort: 0.9093786819160057
+      candidate_bank_build_s: 3.0718094579933677
+      parallel_replay_wall_s: 7.247922628004744
+      workers: 4
+      oracle_proposal_in_distribution: true
+      robust_scenarios_passed: true
+remote_evidence:
+  status: pending
+acceptance_rules:
+  oracle_never_selects_final_winner_without_exact_replay: true
+  all_winners_must_pass_three_dynamic_scenarios: true
+  positive_regret_margin_required: true
+  oracle_and_result_manifests_required: true
+  parallel_supervisory_wall_time_s_max: 20.0

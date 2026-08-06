@@ -1,0 +1,8 @@
+request_id: tcz1h-acceptance-2026-08-06-01
+profile: full_candidate_bank
+motion_tasks:
+  - metric_power
+  - actuator_voltage
+  - actuator_effort
+  - balanced
+  - deadline_balanced

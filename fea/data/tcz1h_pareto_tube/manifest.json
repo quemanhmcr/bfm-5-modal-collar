@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "files": {
+    "dataset.json": {
+      "bytes": 563701,
+      "sha256": "c7056a5b7ee7fee2e6270d5b42f062cb14b7135c3a3ab2b08ddcff2b1d970487"
+    },
+    "dataset_summary.json": {
+      "bytes": 399,
+      "sha256": "beaa724935dea7f9c3a98cfde445bc73f9b5f1559e164d3d7c0cadd97b64e02e"
+    },
+    "path_oracle.json": {
+      "bytes": 31097,
+      "sha256": "21dab151fa4738dab2017bd40d805043fe8f8b6d7a757c699a40edd8c52da0c1"
+    },
+    "summary.json": {
+      "bytes": 1744,
+      "sha256": "17dc1ea6ada3c7c5ff2c3070c5e80c41eca83a14d5414bcc1ccfc339f11d0645"
+    },
+    "tube_value_oracle.json": {
+      "bytes": 41985,
+      "sha256": "089356421a19060907ffd588dd42e5429f6a2eb095265680a8d5681e5593114c"
+    },
+    "validation_rows.json": {
+      "bytes": 5729,
+      "sha256": "55ccfb0ba9080cfb43e0603bb72fe5b1f490eaf847c2472559fb7c35dca515cf"
+    }
+  }
+}

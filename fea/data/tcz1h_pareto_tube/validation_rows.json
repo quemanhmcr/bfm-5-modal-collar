@@ -1,0 +1,218 @@
+[
+  {
+    "row_id": 2,
+    "environment_id": 0,
+    "weight_id": 2,
+    "max_gap_path_error_um": 1.1964841928617467,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019221,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 7,
+    "environment_id": 0,
+    "weight_id": 7,
+    "max_gap_path_error_um": 1.8120874197130412,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5557801873012643,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 10,
+    "environment_id": 1,
+    "weight_id": 2,
+    "max_gap_path_error_um": 0.3825004643317076,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 15,
+    "environment_id": 1,
+    "weight_id": 7,
+    "max_gap_path_error_um": 1.1928116643208428,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.7564961811701518,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 18,
+    "environment_id": 2,
+    "weight_id": 2,
+    "max_gap_path_error_um": 5.551396247867584,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019221,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 23,
+    "environment_id": 2,
+    "weight_id": 7,
+    "max_gap_path_error_um": 5.805526869147025,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.7077660322105568,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 26,
+    "environment_id": 3,
+    "weight_id": 2,
+    "max_gap_path_error_um": 10.11761611050483,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 31,
+    "environment_id": 3,
+    "weight_id": 7,
+    "max_gap_path_error_um": 0.583631702736751,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.17956826042407953,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 34,
+    "environment_id": 4,
+    "weight_id": 2,
+    "max_gap_path_error_um": 1.7039027256868993,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 39,
+    "environment_id": 4,
+    "weight_id": 7,
+    "max_gap_path_error_um": 9.117437776853194,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.23130483173123406,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 42,
+    "environment_id": 5,
+    "weight_id": 2,
+    "max_gap_path_error_um": 5.164919790582912,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019221,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 47,
+    "environment_id": 5,
+    "weight_id": 7,
+    "max_gap_path_error_um": 2.1332983777132406,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.2852997010066916,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 50,
+    "environment_id": 6,
+    "weight_id": 2,
+    "max_gap_path_error_um": 2.295633876812092,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 55,
+    "environment_id": 6,
+    "weight_id": 7,
+    "max_gap_path_error_um": 0.556739108168619,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.10546002997981019,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 58,
+    "environment_id": 7,
+    "weight_id": 2,
+    "max_gap_path_error_um": 0.413874729744069,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 63,
+    "environment_id": 7,
+    "weight_id": 7,
+    "max_gap_path_error_um": 12.4658415342731,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.905233523645184,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 66,
+    "environment_id": 8,
+    "weight_id": 2,
+    "max_gap_path_error_um": 2.8762465409270694,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 71,
+    "environment_id": 8,
+    "weight_id": 7,
+    "max_gap_path_error_um": 21.34946289904324,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.4055477457043264,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 74,
+    "environment_id": 9,
+    "weight_id": 2,
+    "max_gap_path_error_um": 4.432124276922028,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019221,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 79,
+    "environment_id": 9,
+    "weight_id": 7,
+    "max_gap_path_error_um": 12.942958591318602,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.4316871851688052,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 82,
+    "environment_id": 10,
+    "weight_id": 2,
+    "max_gap_path_error_um": 0.5723515797040134,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 87,
+    "environment_id": 10,
+    "weight_id": 7,
+    "max_gap_path_error_um": 0.6997149592414094,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.24381860426645363,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 90,
+    "environment_id": 11,
+    "weight_id": 2,
+    "max_gap_path_error_um": 1.300947390325759,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.5591924963019222,
+    "path_oracle_in_distribution": true
+  },
+  {
+    "row_id": 95,
+    "environment_id": 11,
+    "weight_id": 7,
+    "max_gap_path_error_um": 10.563556884407001,
+    "endpoint_error_um": 0.0,
+    "path_oracle_distance": 0.8526005271218832,
+    "path_oracle_in_distribution": true
+  }
+]

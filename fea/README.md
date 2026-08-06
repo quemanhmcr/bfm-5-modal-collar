@@ -95,3 +95,12 @@ workflow `TCZ-1G Dynamic Geometry Benchmark`.
 TCZ-1G is accepted as a multi-mode controller: geodesic economy mode,
 online slew-reweighted deadline mode, and straight-path fallback.  See
 `docs/TCZ1G_DECISION_MEMO.md` and `config/design_laws_v7.yml`.
+
+## TCZ-1H certified online Pareto navigation
+
+TCZ-1H is a solver-free supervisory navigator. Learned path/value models only
+propose or prioritize candidates; the nonlinear reduced plant replays every
+candidate and selects the exact winner within the declared finite bank. See
+`docs/TCZ1H_ONLINE_PARETO_NAVIGATOR.md`, `docs/TCZ1H_DECISION_MEMO.md`, and
+`config/design_laws_v8.yml`. The pinned workflow is `TCZ-1H Certified Online
+Navigator`.

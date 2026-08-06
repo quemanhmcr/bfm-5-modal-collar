@@ -1,0 +1,54 @@
+name: TCZ-1H-certified-online-Pareto-navigation
+version: 1.0
+identified_data: data/tcz1e_identified
+oracle_data: data/tcz1h_pareto_tube
+source_config: config/tcz1g_dynamic.yml
+execution:
+  solver_free: true
+  candidate_replay: parallel_process_pool
+  max_workers: 8
+  exact_certificate_scope: declared_candidate_bank
+candidate_bank:
+  tube_anchor_weights:
+    - [0.90, 0.05, 0.05]
+    - [0.65, 0.25, 0.10]
+    - [0.40, 0.40, 0.20]
+    - [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    - [0.20, 0.20, 0.60]
+    - [0.05, 0.05, 0.90]
+    - [0.10, 0.80, 0.10]
+  include_task_shaping: true
+  include_continuous_oracle_proposal_if_in_distribution: true
+  include_straight_fallback: true
+  include_fastest_candidate: true
+online_calibration:
+  nominal_slew_mm_s: [0.45, 0.45, 0.45]
+  relative_uncertainty: [0.02, 0.02, 0.02]
+  systematic_safety_factor: 0.995
+  confidence_z: 2.0
+benchmark_tasks:
+  - name: metric_power
+    weights: [0.80, 0.10, 0.10]
+    motion_time_s: 1.0
+  - name: actuator_voltage
+    weights: [0.10, 0.80, 0.10]
+    motion_time_s: 1.0
+  - name: actuator_effort
+    weights: [0.10, 0.10, 0.80]
+    motion_time_s: 1.0
+  - name: balanced
+    weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    motion_time_s: 1.0
+  - name: deadline_balanced
+    weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    motion_time_s: 0.46
+certification:
+  dynamic_scenarios: [nominal, slow_corner, fast_observer_corner]
+  require_all_candidate_nominal_gates: false
+  require_winner_all_dynamic_scenarios: true
+  require_positive_regret_margin: true
+  oracle_is_proposal_only: true
+  path_oracle_is_warm_start_only: true
+latency_gates:
+  warm_inner_plan_s: 0.25
+  full_bank_supervisory_s: 20.0
