@@ -1,0 +1,86 @@
+name: post-TCZ-1H-measured-waveform-campaign
+version: 1.0
+status: predeclared_waveform_ingestion_qualification
+source_identification_config: config/tcz1h_hil_identification.yml
+scope:
+  claim_if_accepted: >-
+    the frozen campaign capsule can ingest raw command-position-time waveforms,
+    enforce a cryptographic train/calibration/holdout firewall, fit conservative
+    route/sign/reversal bounds without truth labels, and fail closed on declared
+    integrity and sensor-coherence faults in the shadow qualification
+  not_claimed:
+    - hardware validity
+    - HIL validation
+    - measured plant performance
+    - production readiness
+    - TCZ-1I acceptance
+scientific_contract:
+  position_is_primary_identification_channel: true
+  velocity_is_independent_coherence_channel: true
+  no_truth_oracle_or_shadow_fields_in_raw_bundle: true
+  exact_protocol_run_set_required: true
+  preholdout_artifact_hashed_before_holdout: true
+  holdout_refit_forbidden: true
+  fault_injection_suite_frozen: true
+identification:
+  temperature_c: [20.0, 70.0]
+  tail_fraction: 0.25
+  conformal_alpha: 0.05
+  ridge: 1.0e-10
+raw_validation:
+  expected_dt_s: 0.002
+  expected_duration_s: 0.80
+  dt_tolerance_s: 1.0e-10
+  duration_tolerance_s: 1.0e-10
+  temperature_tolerance_c: 0.25
+  load_tolerance_fraction: 0.01
+  command_threshold_fraction: 0.50
+  position_fit_rms_mm_max: 0.00020
+  velocity_position_rms_mm_s_max: 0.0060
+  minimum_final_displacement_mm: 0.14
+shadow_waveform_adapter:
+  command_onset_s: 0.040
+  position_noise_bound_mm: 0.000015
+  position_quantization_mm: 0.000005
+  measured_temperature_noise_bound_c: 0.08
+  measured_load_noise_bound: 0.003
+bound_reserves:
+  plateau_measurement_extra_mm_s: 0.0005
+  tau_estimation_extra_s: 0.0040
+  deadtime_estimation_extra_s: 0.0030
+fault_injections:
+  - missing_run
+  - duplicate_run_id
+  - split_metadata_mismatch
+  - nonmonotone_timestamp
+  - active_interlock
+  - forbidden_truth_field
+  - position_velocity_incoherence
+acceptance_gates:
+  clean_raw_validation_errors_max: 0
+  fault_injections_detected_min: 7
+  preholdout_holdout_run_id_occurrences_max: 0
+  holdout_plateau_lower_violations_max: 0
+  holdout_tau_upper_violations_max: 0
+  holdout_deadtime_upper_violations_max: 0
+  median_plateau_conservatism_max: 0.10
+  median_tau_conservatism_max: 0.20
+  median_deadtime_conservatism_s_max: 0.008
+  shadow_median_plateau_relative_error_max: 0.025
+  shadow_median_tau_relative_error_max: 0.08
+  shadow_median_deadtime_absolute_error_s_max: 0.003
+  shadow_plateau_lower_violations_max: 0
+  shadow_tau_upper_violations_max: 0
+  shadow_deadtime_upper_violations_max: 0
+  deterministic_raw_bundle_hash_match_required: true
+  analyzer_forbidden_import_occurrences_max: 0
+evidence_contract:
+  campaign_lock_required: true
+  deterministic_raw_bundle_required: true
+  preholdout_model_required: true
+  holdout_evaluation_required: true
+  fault_injection_report_required: true
+  summary_json_required: true
+  artifact_manifest_sha256_required: true
+  source_git_sha_required: true
+  full_regression_required: true
