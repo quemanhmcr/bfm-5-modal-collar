@@ -1,0 +1,215 @@
+name: TCZ-1G-geodesic-dynamic-control
+version: 7
+status: accepted_multi_mode_dynamic_geometry
+scope:
+  magnitude_scale:
+  - 0.95
+  - 1.05
+  angle_offset_deg:
+  - -2.0
+  - 2.0
+  declared_start_state:
+  - 0.95
+  - -2.0
+  declared_end_state:
+  - 1.05
+  - 2.0
+evidence:
+  github_run_id: 31081143783
+  head_sha: cbf6e53aadafc2c8c5192a349ab267d09e8a1373
+  summary_sha256: 61d7cd3d0c5e794a8f076daba13da265ecd79d24e200a9b79f38652ca1409660
+  robustness_sha256: 3536f6efbe80197ce33e20ee14d660f711673bc4a9399cfc97e04b575c6b9aca
+  solver_free: true
+  femm_called: false
+  identified_model_checksum_verified: true
+  artifact_download_integrity_verified: true
+fairness_contract:
+  same_current_state_endpoints: true
+  same_current_endpoints: true
+  same_gap_endpoints: true
+  same_dynamic_plant: true
+  same_actuator_lag_delay_and_slew: true
+  same_voltage_and_branch_constraints: true
+  same_tracking_and_terminal_capture_governor: true
+  same_common_motion_time_for_metric_comparison: true
+  reference_slew_is_a_hard_gate: true
+nominal_benchmark:
+  shortest_common_feasible_motion_s: 0.42766113281249996
+  quality_constrained_minimum_motion_s:
+    straight_current: 0.42441406249999997
+    geodesic: 0.42766113281249996
+    polytope_time_optimal: 0.42023925781249993
+  quality_constrained_time_ratio_vs_straight:
+    geodesic: 1.0076507132995858
+    polytope_time_optimal: 0.9901633686148181
+  common_time_ratios_vs_straight:
+    geodesic:
+      actuator_effort: 1.0107816892143235
+      metric_power_squared: 0.9317768753094747
+      actuator_voltage_squared: 0.9632932738631091
+    polytope_time_optimal:
+      actuator_effort: 1.0106678347513214
+      metric_power_squared: 1.0440031648112402
+      actuator_voltage_squared: 0.9721601692974048
+kinematic_slew_mismatch:
+  plus_minus_2_percent:
+    polytope_win_probability_vs_straight: 1.0
+    polytope_tie_probability_vs_straight: 0.0
+    polytope_median_time_ratio: 0.9899921291258282
+    polytope_q95_time_ratio: 0.9949987847858386
+    polytope_worst_time_ratio: 0.9985002031536515
+  plus_minus_5_percent:
+    polytope_win_probability_vs_straight: 0.8293
+    polytope_tie_probability_vs_straight: 0.0161
+    polytope_median_time_ratio: 0.9950143849935259
+    polytope_q95_time_ratio: 1.0045235871584322
+    polytope_worst_time_ratio: 1.0092370626568712
+  plus_minus_10_percent:
+    polytope_win_probability_vs_straight: 0.5803
+    polytope_tie_probability_vs_straight: 0.10495
+    polytope_median_time_ratio: 0.9991779644392124
+    polytope_q95_time_ratio: 1.012428255416641
+    polytope_worst_time_ratio: 1.0208545629528354
+  plus_minus_15_percent:
+    polytope_win_probability_vs_straight: 0.46095
+    polytope_tie_probability_vs_straight: 0.16795
+    polytope_median_time_ratio: 1.0
+    polytope_q95_time_ratio: 1.0155261715627537
+    polytope_worst_time_ratio: 1.0231812752727438
+dynamic_factorial:
+  case_count_per_regime: 18
+  actuator_time_constant_s:
+  - 0.018
+  - 0.025
+  - 0.035
+  measurement_delay_s:
+  - 0.0
+  - 0.01
+  - 0.02
+  observer_time_constant_s:
+  - 0.008
+  - 0.02
+  near_deadline:
+    straight_current:
+      pass_fraction: 0.8888888888888888
+      failure_counts:
+        strong_dark: 2
+      metric_power_win_fraction_vs_straight: 0.0
+      actuator_effort_win_fraction_vs_straight: 0.0
+      actuator_voltage_win_fraction_vs_straight: 0.0
+      metric_power_ratio_range:
+      - 1.0
+      - 1.0
+      actuator_effort_ratio_range:
+      - 1.0
+      - 1.0
+      actuator_voltage_ratio_range:
+      - 1.0
+      - 1.0
+    geodesic:
+      pass_fraction: 0.5
+      failure_counts:
+        strong_dark: 3
+        reference_slew: 9
+      metric_power_win_fraction_vs_straight: 1.0
+      actuator_effort_win_fraction_vs_straight: 0.0
+      actuator_voltage_win_fraction_vs_straight: 1.0
+      metric_power_ratio_range:
+      - 0.9228776722642874
+      - 0.9506770352969098
+      actuator_effort_ratio_range:
+      - 1.001502423328611
+      - 1.0158140512338485
+      actuator_voltage_ratio_range:
+      - 0.958468363744633
+      - 0.9754033463330168
+    polytope_time_optimal:
+      pass_fraction: 0.8333333333333334
+      failure_counts:
+        strong_dark: 3
+        reference_slew: 3
+      metric_power_win_fraction_vs_straight: 0.0
+      actuator_effort_win_fraction_vs_straight: 0.1111111111111111
+      actuator_voltage_win_fraction_vs_straight: 1.0
+      metric_power_ratio_range:
+      - 1.0416974767420157
+      - 1.0483998643816095
+      actuator_effort_ratio_range:
+      - 0.9938112519236542
+      - 1.0155258084634027
+      actuator_voltage_ratio_range:
+      - 0.9669521651113913
+      - 0.976701314282758
+  declared_motion:
+    straight_current:
+      pass_fraction: 1.0
+      failure_counts: {}
+      metric_power_win_fraction_vs_straight: 0.0
+      actuator_effort_win_fraction_vs_straight: 0.0
+      actuator_voltage_win_fraction_vs_straight: 0.0
+      metric_power_ratio_range:
+      - 1.0
+      - 1.0
+      actuator_effort_ratio_range:
+      - 1.0
+      - 1.0
+      actuator_voltage_ratio_range:
+      - 1.0
+      - 1.0
+    geodesic:
+      pass_fraction: 1.0
+      failure_counts: {}
+      metric_power_win_fraction_vs_straight: 1.0
+      actuator_effort_win_fraction_vs_straight: 0.0
+      actuator_voltage_win_fraction_vs_straight: 1.0
+      metric_power_ratio_range:
+      - 0.8826555800293503
+      - 0.8909403690133662
+      actuator_effort_ratio_range:
+      - 1.0608982635177937
+      - 1.1023525889761265
+      actuator_voltage_ratio_range:
+      - 0.9488836345255546
+      - 0.9566523717645495
+    polytope_time_optimal:
+      pass_fraction: 1.0
+      failure_counts: {}
+      metric_power_win_fraction_vs_straight: 0.0
+      actuator_effort_win_fraction_vs_straight: 0.0
+      actuator_voltage_win_fraction_vs_straight: 1.0
+      metric_power_ratio_range:
+      - 1.0537433940925884
+      - 1.059352294867444
+      actuator_effort_ratio_range:
+      - 1.0074914333661862
+      - 1.0442971888751094
+      actuator_voltage_ratio_range:
+      - 0.9824414089209808
+      - 0.9853883870418955
+accepted_modes:
+  economy:
+    path: geodesic
+    accepted: true
+    activation: deadline margin available; use declared or robustly feasible motion
+      time
+    benefit: robust reduction of metric-power and actuator-voltage
+    cost: higher actual actuator effort and slightly longer minimum time
+  deadline:
+    path_family: online_slew_reweighted_polytope
+    fixed_nominal_path_accepted: false
+    activation: tight transition deadline
+    requirement: re-estimate route slew and replan before or during transition
+    reason: nominal time advantage is about one percent and loses robust dominance
+      under route-specific mismatch
+  fallback:
+    path: straight_current
+    activation: uncertain calibration, planner failure, or objective-neutral operation
+    benefit: neutral baseline and lowest nominal dynamic actuator effort
+rejected_claims:
+- geodesic universally minimizes actuator effort in closed-loop dynamics
+- polytope path is robustly fastest when actuator slew calibration is uncertain
+- one fixed path dominates all electrical, mechanical, and timing objectives
+next_stage:
+  name: TCZ-1H-online-Pareto-root-navigation
+  core: online calibration, objective-weighted path optimization, and mode switching
+    on the strong-dark manifold

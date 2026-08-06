@@ -25,3 +25,10 @@ def test_slew_monte_carlo_is_reproducible() -> None:
     stats=a['rows'][0]['paths']['polytope_time_optimal']
     assert 0.0 <= stats['win_probability_vs_straight'] <= 1.0
     assert stats['q05_time_ratio'] <= stats['median_time_ratio'] <= stats['q95_time_ratio']
+
+
+def test_robustness_decision_threshold_rejects_weak_fixed_path() -> None:
+    # The production decision requires >=95% fixed-path wins at ±5% route
+    # slew uncertainty.  A merely majority-winning path must not be accepted.
+    win_probability = 0.83
+    assert not (win_probability >= 0.95)

@@ -42,3 +42,12 @@ voltage, energy-balance, correction-atlas clamp and branch-floor gates.
 
 The reduced-order identification artifacts are checksum-verified before use.
 Both source bytes and Git-normalized repository bytes are recorded.
+
+## Accepted operating modes
+
+The completed benchmark does not produce a universal winner.  Use the
+geodesic for robust electrical-disturbance reduction when deadline margin is
+available, an online slew-reweighted polytope path for tight deadlines, and
+the straight path as the calibration-robust fallback.  Full evidence and
+rejected claims are recorded in `TCZ1G_DECISION_MEMO.md` and
+`config/design_laws_v7.yml`.

@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
+import os
+import platform
 import sys
 from pathlib import Path
 
@@ -118,6 +121,16 @@ def main() -> None:
 
     result = {
         "stage": "TCZ-1G-robustness",
+        "metadata": {
+            "git_sha": os.environ.get("GITHUB_SHA", "local-uncommitted"),
+            "github_run_id": os.environ.get("GITHUB_RUN_ID"),
+            "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+            "runner_os": os.environ.get("RUNNER_OS", platform.system()),
+            "platform": platform.platform(),
+            "python": platform.python_version(),
+            "numpy": importlib.metadata.version("numpy"),
+            "scipy": importlib.metadata.version("scipy"),
+        },
         "identified_model_manifest": identified_manifest,
         "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
         "benchmark_summary_sha256": hashlib.sha256(summary_path.read_bytes()).hexdigest(),
@@ -130,6 +143,21 @@ def main() -> None:
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2), encoding="utf-8")
+
+    # Robustness is the final producer in the workflow.  Rebuild the manifest
+    # now so every uploaded JSON, including robustness.json, is covered.
+    manifest_path = output.parent / "artifact_manifest.json"
+    manifest = {"schema_version": 2, "finalized_after_robustness": True, "files": {}}
+    for path in sorted(output.parent.glob("*.json")):
+        if path.name == manifest_path.name:
+            continue
+        payload = path.read_bytes()
+        manifest["files"][path.name] = {
+            "bytes": len(payload),
+            "sha256": hashlib.sha256(payload).hexdigest(),
+        }
+    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
     concise = {
         "passed": result["passed"],
         "decision": decision,

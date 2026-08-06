@@ -3,8 +3,11 @@ from __future__ import annotations
 import argparse
 from dataclasses import asdict
 import hashlib
+import importlib.metadata
 import json
+import os
 from pathlib import Path
+import platform
 import sys
 
 import numpy as np
@@ -202,6 +205,16 @@ def main() -> None:
 
     summary = {
         "stage": "TCZ-1G-geodesic-dynamic-control",
+        "metadata": {
+            "git_sha": os.environ.get("GITHUB_SHA", "local-uncommitted"),
+            "github_run_id": os.environ.get("GITHUB_RUN_ID"),
+            "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT"),
+            "runner_os": os.environ.get("RUNNER_OS", platform.system()),
+            "platform": platform.platform(),
+            "python": platform.python_version(),
+            "numpy": importlib.metadata.version("numpy"),
+            "scipy": importlib.metadata.version("scipy"),
+        },
         "identified_model_manifest": identified_manifest,
         "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
         "declared_endpoints": {

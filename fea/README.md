@@ -91,3 +91,7 @@ TCZ-1G is solver-free and uses the immutable identified TCZ-1E data under
 polytope-time-optimal paths under identical dynamic constraints.  Run it on
 Linux with `scripts/run_tcz1g_benchmark.py` or through the pinned GitHub Actions
 workflow `TCZ-1G Dynamic Geometry Benchmark`.
+
+TCZ-1G is accepted as a multi-mode controller: geodesic economy mode,
+online slew-reweighted deadline mode, and straight-path fallback.  See
+`docs/TCZ1G_DECISION_MEMO.md` and `config/design_laws_v7.yml`.
