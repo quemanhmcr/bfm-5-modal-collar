@@ -37,7 +37,7 @@ jobs:
       - name: Install pinned numerical toolchain
         run: python -m pip install --disable-pip-version-check -r requirements-tcz1g.txt
       - name: Validate TCZ-1G mathematics
-        run: python -m pytest -q tests/test_tcz1g.py tests/test_remote_femm_policy.py
+        run: python -m pytest -q tests/test_tcz1g.py tests/test_tcz1g_robustness.py tests/test_remote_femm_policy.py
       - name: Assert no FEMM dependency
         shell: bash
         run: |
@@ -47,6 +47,11 @@ jobs:
           fi
       - name: Run fair dynamic benchmark
         run: python scripts/run_tcz1g_benchmark.py --output-root results_ci/tcz1g
+      - name: Run robustness audits
+        run: >-
+          python scripts/run_tcz1g_robustness.py
+          --benchmark-summary results_ci/tcz1g/summary.json
+          --output results_ci/tcz1g/robustness.json
       - name: Upload benchmark evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
