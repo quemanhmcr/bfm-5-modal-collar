@@ -1,0 +1,54 @@
+{
+  "surface_file": "C:\\project\\liqi_match\\bfm5_fea\\results\\tcz1e\\surface\\surface.json",
+  "q_grid_mm": [
+    1.0,
+    1.15,
+    1.3,
+    1.45,
+    1.6,
+    1.75,
+    1.9,
+    2.05,
+    2.2
+  ],
+  "eta_grid_Aturn": [
+    0.0,
+    50.0,
+    100.0,
+    250.0,
+    500.0,
+    800.0,
+    1100.0,
+    1400.0,
+    1800.0,
+    2200.0
+  ],
+  "reference_depth_mm": 20.0,
+  "matched_depth_mm": 22.838127702404996,
+  "depth_scale": 1.1419063851202498,
+  "canonical_resistance_ohm": [
+    [
+      2.461005140345365e-05,
+      0.0
+    ],
+    [
+      0.0,
+      2.4610051403453637e-05
+    ]
+  ],
+  "resistance_eigenvalues_ohm": [
+    2.4610051403453637e-05,
+    2.461005140345365e-05
+  ],
+  "validation": {
+    "surface_nominal_psi": [
+      0.0009152977642205138,
+      0.0003505327914797616
+    ],
+    "surface_nominal_chi": 0.0022816511128605776,
+    "full_FEA_nominal_chi": 0.0001602080895744462,
+    "surface_nominal_Bmax_T": 1.0218620270507173,
+    "full_FEA_nominal_Bmax_T": 1.0237764285743105
+  },
+  "point_count": 81
+}
