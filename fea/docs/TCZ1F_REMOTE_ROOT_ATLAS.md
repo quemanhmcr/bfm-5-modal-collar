@@ -87,3 +87,19 @@ locates the exact run by commit SHA, watches it, downloads all artifacts and
 rejects aggregate output with checksum errors or failed shards. Expensive FEMM
 runs are triggered only by changes to the workflow or request file; ordinary
 code/documentation pushes are inert.
+
+### Coordinate normalization
+
+The raw condition number of `G_I` depends on the current-state coordinates:
+current magnitude scale is dimensionless while angle is represented in
+radians. Every atlas must therefore report both the raw tensor and a
+workload-normalized tensor
+
+\[
+\bar G_I=D^TG_ID,
+\qquad
+D=\operatorname{diag}(\Delta\rho_c,\Delta\theta_c),
+\]
+
+for declared characteristic steps. Raw and normalized metrics answer different
+questions and their condition numbers must not be conflated.

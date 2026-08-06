@@ -168,6 +168,8 @@ def induced_connection_metrics(
     dq_dangle_mm_per_deg: ArrayLike,
     actuator_metric: ArrayLike | None = None,
     slew_limit_mm_s: float | None = None,
+    characteristic_scale_step: float = 0.10,
+    characteristic_angle_step_deg: float = 2.0,
 ) -> dict:
     """Compute the actuator-effort metric induced on current-state coordinates.
 
@@ -183,11 +185,33 @@ def induced_connection_metrics(
     metric = np.eye(3) if actuator_metric is None else np.asarray(actuator_metric, dtype=float).reshape(3, 3)
     induced = connection.T @ metric @ connection
     eigenvalues = np.linalg.eigvalsh(0.5 * (induced + induced.T))
+    characteristic = np.diag([
+        float(characteristic_scale_step),
+        math.radians(float(characteristic_angle_step_deg)),
+    ])
+    normalized_metric = characteristic.T @ induced @ characteristic
+    normalized_eigenvalues = np.linalg.eigvalsh(0.5 * (normalized_metric + normalized_metric.T))
+    correlation = float(
+        normalized_metric[0, 1]
+        / np.sqrt((normalized_metric[0, 0] + 1e-30) * (normalized_metric[1, 1] + 1e-30))
+    )
     result = {
         "connection_mm_per_coordinate": connection.tolist(),
         "induced_effort_metric": induced.tolist(),
         "induced_effort_metric_eigenvalues": eigenvalues.tolist(),
         "induced_effort_metric_condition": float(eigenvalues[-1] / (eigenvalues[0] + 1e-30)),
+        "characteristic_coordinate_steps": {
+            "magnitude_scale": float(characteristic_scale_step),
+            "angle_deg": float(characteristic_angle_step_deg),
+        },
+        "workload_normalized_effort_metric": normalized_metric.tolist(),
+        "workload_normalized_effort_metric_eigenvalues": normalized_eigenvalues.tolist(),
+        "workload_normalized_effort_metric_condition": float(normalized_eigenvalues[-1] / (normalized_eigenvalues[0] + 1e-30)),
+        "workload_normalized_axis_cost_mm": [
+            float(np.sqrt(max(0.0, normalized_metric[0, 0]))),
+            float(np.sqrt(max(0.0, normalized_metric[1, 1]))),
+        ],
+        "workload_normalized_cross_correlation": correlation,
     }
     if slew_limit_mm_s is not None:
         nonzero = np.abs(angle_per_deg) > 1e-12

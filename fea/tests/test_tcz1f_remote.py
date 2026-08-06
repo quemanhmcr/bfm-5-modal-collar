@@ -69,3 +69,18 @@ def test_connection_cross_has_central_difference_stencil() -> None:
         (0.95, 0.0), (1.05, 0.0),
         (1.0, -2.0), (1.0, 0.0), (1.0, 2.0),
     }
+
+
+def test_workload_normalization_makes_coordinate_units_explicit() -> None:
+    from bfm5.tcz1f import induced_connection_metrics
+
+    report = induced_connection_metrics(
+        [0.2504666374, 0.8438410543, 0.1054953105],
+        [-0.0297546274, 0.0001636751, 0.0190217049],
+        characteristic_scale_step=0.1,
+        characteristic_angle_step_deg=2.0,
+    )
+    costs = report["workload_normalized_axis_cost_mm"]
+    assert 0.08 < costs[0] < 0.10
+    assert 0.06 < costs[1] < 0.08
+    assert abs(report["workload_normalized_cross_correlation"]) < 0.25
