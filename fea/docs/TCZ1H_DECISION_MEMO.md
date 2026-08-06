@@ -54,3 +54,11 @@ The final acceptance requires the pinned Ubuntu GitHub workflow to reproduce:
 2. all five candidate-bank certificates;
 3. all three-corner winner certificates;
 4. result artifact checksums.
+
+## Shared-runner latency diagnosis
+
+The first GitHub cross-check reproduced every winner and objective but failed
+only because its shared runner required 33.7--56.8 s for parallel bank replay,
+exceeding the 20 s local-host gate. No mathematical or dynamic certificate
+failed. The policy was corrected by declaring machine-class latency profiles;
+the correctness contract was not changed.

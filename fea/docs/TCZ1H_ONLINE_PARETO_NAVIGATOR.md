@@ -103,3 +103,14 @@ TCZ-1H is a supervisory navigator, not a microsecond inner-loop controller.
 It is accepted only on the TCZ-1F local patch and only as optimal within the
 published finite bank. It does not claim global continuous optimality, oracle-
 only safety, or validity outside the identified reduced plant domain.
+
+## Machine-class latency policy
+
+Wall-clock replay is not a platform-independent mathematical property. The
+project therefore separates two explicit profiles:
+
+- `local_reference`: 20 s maximum full-bank replay on the Linux control host;
+- `shared_ci`: 90 s maximum on a shared GitHub-hosted runner.
+
+The shared-CI limit is a reproducibility/operability check, not a claim of
+online deployment latency. Correctness gates remain identical in both profiles.

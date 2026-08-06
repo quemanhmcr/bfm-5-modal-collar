@@ -100,6 +100,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=0)
+    parser.add_argument(
+        "--latency-profile", choices=("auto", "local_reference", "shared_ci"),
+        default="auto", help="Select a machine-class wall-time gate",
+    )
     args = parser.parse_args()
     args.output_root.mkdir(parents=True, exist_ok=True)
 
@@ -192,7 +196,12 @@ def main() -> None:
             flush=True,
         )
 
-    latency_gate = float(online["latency_gates"]["full_bank_supervisory_s"])
+    latency_profile = args.latency_profile
+    if latency_profile == "auto":
+        latency_profile = "shared_ci" if os.environ.get("GITHUB_ACTIONS", "").lower() == "true" else "local_reference"
+    latency_key = f"{latency_profile}_full_bank_s"
+    latency_gate = float(online["latency_gates"][latency_key])
+    maximum_replay_wall = max(item["parallel_replay_wall_s"] for item in task_results.values())
     gates = {
         "oracle_artifacts_passed": bool(oracle_summary["passed"]),
         "all_bank_certificates": bool(all(item["certificate"]["passed"] for item in task_results.values())),
@@ -200,7 +209,7 @@ def main() -> None:
             item["winner_robustness"].get("passed", False)
             for item in task_results.values()
         )),
-        "parallel_replay_latency": bool(max(item["parallel_replay_wall_s"] for item in task_results.values()) <= latency_gate),
+        "machine_class_replay_latency": bool(maximum_replay_wall <= latency_gate),
     }
     summary = {
         "metadata": {
@@ -211,6 +220,9 @@ def main() -> None:
             "numpy": np.__version__,
             "scipy": scipy.__version__,
             "workers": workers,
+            "latency_profile": latency_profile,
+            "latency_limit_s": latency_gate,
+            "maximum_parallel_replay_wall_s": maximum_replay_wall,
         },
         "identified_manifest": identified_manifest,
         "oracle_manifest": oracle_manifest,

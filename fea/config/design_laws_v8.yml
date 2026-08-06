@@ -119,10 +119,20 @@ local_benchmark:
       oracle_proposal_in_distribution: true
       robust_scenarios_passed: true
 remote_evidence:
-  status: pending
+  status: first_run_math_pass_latency_profile_failed
+  run_id: 31088881038
+  head_sha: c693d9f69ac94af1654cff773b663437f5d7e28a
+  math_and_dynamic_certificates_passed: true
+  failure_gate: machine-independent 20 s latency gate on shared runner
+  shared_runner_replay_range_s:
+  - 33.695
+  - 56.818
 acceptance_rules:
   oracle_never_selects_final_winner_without_exact_replay: true
   all_winners_must_pass_three_dynamic_scenarios: true
   positive_regret_margin_required: true
   oracle_and_result_manifests_required: true
-  parallel_supervisory_wall_time_s_max: 20.0
+  latency_profiles_s:
+    local_reference: 20.0
+    shared_ci: 90.0
+  shared_ci_latency_is_not_deployment_latency: true
