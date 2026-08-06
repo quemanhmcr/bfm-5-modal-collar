@@ -2,39 +2,51 @@ version: 1
 profile: adaptive_custom
 artifact_retention_days: 14
 requested_by: linux-mcp
-purpose: mixed-derivative-corners
-request_id: 20260806T035853Z-8272b0e8
-requested_at_utc: '2026-08-06T03:58:53.741662+00:00'
+purpose: adaptive-cell-centers
+request_id: 20260806T041534Z-2a71d3bc
+requested_at_utc: '2026-08-06T04:15:34.481714+00:00'
 explicit_points:
-- magnitude_scale: 0.95
-  angle_offset_deg: -2.0
-  seed_gaps_mm: &id001
+- magnitude_scale: 1.025
+  angle_offset_deg: -1.0
+  seed_gaps_mm:
+  - 2.0628656357222726
+  - 1.1612931089587613
+  - 1.5159288177344103
+  seed_dark_direction:
+  - -0.5619060321447755
+  - 0.7176309002352621
+  - 0.41142131941215915
+  seed_source: sp1_am2
+- magnitude_scale: 1.025
+  angle_offset_deg: 1.0
+  seed_gaps_mm:
+  - 2.00266748068236
+  - 1.1607155214186
+  - 1.55336510283308
+  seed_dark_direction:
+  - -0.49018957487094234
+  - 0.7824811914759894
+  - 0.3839757357882929
+  seed_source: sp1_ap0
+- magnitude_scale: 0.975
+  angle_offset_deg: -1.0
+  seed_gaps_mm:
+  - 2.04850868340491
+  - 1.1230069026928704
+  - 1.506960365273829
+  seed_dark_direction:
+  - -0.5510453113491212
+  - 0.7301291200693787
+  - 0.4040551111752763
+  seed_source: sp0p95_am2
+- magnitude_scale: 0.975
+  angle_offset_deg: 1.0
+  seed_gaps_mm:
   - 1.993112185188935
   - 1.1203724926082217
   - 1.5468687563541421
-  seed_dark_direction: &id002
+  seed_dark_direction:
   - -0.48393230176952434
   - 0.7897376518685176
   - 0.37699332689750664
   seed_source: sp0p95_ap0
-- magnitude_scale: 0.95
-  angle_offset_deg: 2.0
-  seed_gaps_mm: *id001
-  seed_dark_direction: *id002
-  seed_source: sp0p95_ap0
-- magnitude_scale: 1.05
-  angle_offset_deg: -2.0
-  seed_gaps_mm: &id003
-  - 2.018158848924141
-  - 1.204756598041341
-  - 1.5574182874005835
-  seed_dark_direction: &id004
-  - -0.5064418331205673
-  - 0.765634327358688
-  - 0.3966367941019704
-  seed_source: sp1p05_ap0
-- magnitude_scale: 1.05
-  angle_offset_deg: 2.0
-  seed_gaps_mm: *id003
-  seed_dark_direction: *id004
-  seed_source: sp1p05_ap0
