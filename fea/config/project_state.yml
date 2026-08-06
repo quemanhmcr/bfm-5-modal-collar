@@ -1,0 +1,95 @@
+schema: bfm5_project_state_v1
+snapshot_date: 2026-08-06
+snapshot_tag: tcz1h-accepted-2026-08-06
+status: accepted_local_strong_dark_navigation
+scope:
+  current_magnitude_scale: [0.95, 1.05]
+  current_angle_offset_deg: [-2.0, 2.0]
+  claim: exact optimum within declared finite candidate bank
+  excluded_claims:
+    - global continuous optimum
+    - validity outside validated TCZ-1F patch
+    - hard-real-time oracle-only control
+    - production readiness
+canonical_authorities:
+  topology: docs/TOPOLOGY_CHARTER.md
+  topology_contract: config/topology_v1.yml
+  concise_snapshot: docs/PROJECT_SNAPSHOT.md
+  current_design_laws: config/design_laws_v8.yml
+  current_navigator: bfm5/tcz1h.py
+  current_workflow: ../.github/workflows/tcz1h-online.yml
+accepted_chain:
+  tcz1b:
+    role: symmetric saturation firewall
+    core_thickness_mm: 17.0
+    controlled_gap_mm: 1.75
+    planar_depth_mm: 22.83813
+    strong_dark_boundary_scale: 3.75234
+    improvement_vs_tcz1: 0.703
+  tcz1c:
+    role: static workload precompensation
+    sector_boundary_gain: 0.1139
+    isotropic_worst_direction_penalty: 0.1837
+    decision: sector_only_not_universal
+  tcz1d:
+    role: dark self-conditioning
+    full_system_root_gap_mm: [2.002667, 1.160716, 1.553365]
+    strong_dark_residual_reduction: 0.9980
+  tcz1e:
+    role: dynamic root tracking
+    rms_strong_dark_reduction_vs_chord: 0.8215
+    metric_power_squared_reduction_vs_chord: 0.2236
+    actuator_effort_increase_vs_chord: 0.1466
+    voltage_law: manifold_consistent_no_direct_Kq_qdot_addition
+  tcz1f:
+    role: validated quadratic root sheet
+    gaussian_curvature_per_mm2: -2.0832
+    principal_curvatures_per_mm: [-1.5287, 1.3628]
+    independent_max_gap_error_um: 1.640
+  tcz1g:
+    role: multi_mode_path_geometry
+    modes: [geodesic_economy, online_reweighted_polytope_deadline, straight_fallback]
+  tcz1h:
+    role: certified_supervisory_pareto_navigation
+    oracle_role: proposal_priority_and_warm_start_only
+    winner_selection: exact_reduced_nonlinear_candidate_bank_replay
+    robustness_scenarios: [nominal, slow_delayed, fast_observer]
+    tasks:
+      metric_power:
+        winner: anchor_6
+        objective_ratio_vs_straight: 0.9580070889148177
+      actuator_voltage:
+        winner: straight_fallback
+        objective_ratio_vs_straight: 1.0
+      actuator_effort:
+        winner: straight_fallback
+        objective_ratio_vs_straight: 1.0
+      balanced:
+        winner: straight_fallback
+        objective_ratio_vs_straight: 1.0
+      deadline_balanced_0p46s:
+        winner: oracle_continuous
+        objective_ratio_vs_straight: 0.8736116418478939
+        metric_power_ratio: 0.7696959689047139
+        actuator_voltage_ratio: 0.941760274722962
+        actuator_effort_ratio: 0.9093786819160057
+execution_policy:
+  local_femm_allowed: false
+  linux_mcp_role: orchestration_analysis_and_artifact_verification
+  femm_role: github_windows_shards_only
+  post_tcz1f_control_studies_solver_free: true
+  artifact_sha256_required: true
+evidence:
+  github_run_id: 31089597294
+  evidence_head_sha: adae6f09a20314a847a860e8d3e934ef7b199109
+  summary_sha256: a9a9da5937b703e55bf00a14079cec208ad45543223875c361419859983d4db1
+  artifact_manifest_sha256: 2364ea2c5914bc90e61c943d50070b95753d00dfb68783c53c67d58cb88357e5
+  local_remote_maximum_relative_drift: 0.0
+  final_regression_tests_passed: 97
+next_authorized_stage:
+  name: hardware_calibrated_hil_navigation
+  actions:
+    - measure route_specific_slew_lag_and_hysteresis
+    - update calibration confidence online
+    - replay declared bank on measured plant
+    - expand FEA atlas only on fold_quality_interpolation_or_domain trigger

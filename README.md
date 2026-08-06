@@ -16,6 +16,10 @@ bản gốc       cái đúng       cái đang làm    cách giết nó
 | [`DESIGN.md`](DESIGN.md) | Cấu trúc hiện hành sau toán học | Chỉ một phương án đang sống |
 | [`TEST.md`](TEST.md) | Thí nghiệm và kill criteria | Không có tiêu chí thì không chế tạo |
 
+## FEA / strong-dark snapshot
+
+- Trạng thái FEA và điều khiển mới nhất: [`fea/docs/PROJECT_SNAPSHOT.md`](fea/docs/PROJECT_SNAPSHOT.md).
+
 ## Current truth
 
 - **Gốc:** BFM-5 SOMA — dual three-phase, six-port modal collar, shifted current-mat, double-sided Halbach membrane.
