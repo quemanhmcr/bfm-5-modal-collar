@@ -1,0 +1,63 @@
+name: TCZ-1D-dark-self-conditioning
+version: 1.0
+status: local_root_manifold_confirmed
+reference_geometry: TCZ-1B-knee
+canonical_current_magnitude: 1708.8007490635061
+nominal_current:
+- 1600.0
+- 600.0
+reference_policy: preserve_flux_of_unconditioned_symmetric_device
+full_system_nominal_root:
+  angle_offset_deg: 0.0
+  gaps_mm: &id001
+  - 2.002667480682364
+  - 1.1607155214186031
+  - 1.5533651028330846
+  strong_dark_discriminant: 0.0001602080895744462
+  signed_dark_power_coupling: 3.704745028922096e-05
+  flux_drift_normalized: 1.3376878471797464e-05
+  dark_direction: &id002
+  - -0.4901897510693808
+  - 0.7825063279062157
+  - 0.3839242825522613
+  Bmax_T: 1.0237764285743105
+local_schedule:
+- angle_offset_deg: -2.0
+  gaps_mm:
+  - 2.065383207326931
+  - 1.1577261093255138
+  - 1.5139324486564067
+  strong_dark_discriminant: 0.0011004113434171913
+  Xi_normalized: 0.000459442749353423
+  flux_drift_normalized: 9.41413999816176e-05
+  dark_direction:
+  - -0.560405229325423
+  - 0.7171570379216291
+  - 0.4142846387499724
+- angle_offset_deg: 0.0
+  gaps_mm: *id001
+  strong_dark_discriminant: 0.0001602080895744462
+  Xi_normalized: 0.0016487639475963973
+  flux_drift_normalized: 1.3376878471797464e-05
+  dark_direction: *id002
+- angle_offset_deg: 2.0
+  gaps_mm:
+  - 1.9458392416285735
+  - 1.15788624544492
+  - 1.5904109021820765
+  strong_dark_discriminant: 0.0006662465282059251
+  Xi_normalized: 0.0002525144744284373
+  flux_drift_normalized: 8.775966326147596e-05
+  dark_direction:
+  - -0.4150240930680636
+  - 0.8461591364077393
+  - 0.33431978410907753
+schedule_metrics:
+  max_strong_dark_discriminant: 0.0011004113434171913
+  max_flux_drift_normalized: 9.41413999816176e-05
+  max_gap_span_mm: 0.11954396569835746
+  dark_axis_shift_minus_to_plus_deg: 12.064150241588056
+limitations:
+- local schedule identified only over plus_or_minus_2_degrees
+- dynamic actuator energy and delay not yet included
+- schedule interpolation requires online residual correction

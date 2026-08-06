@@ -1,0 +1,42 @@
+version: 2.0
+inherits: config/design_laws_v1.yml
+accepted_candidate: TCZ-1B-knee
+magnetic_gauge_reduction:
+  optimize_planar_depth: false
+  depth_role: exact_scalar_match_to_target_canonical_inductance
+  optimize_uniform_turn_scale: false
+  turn_scale_role: physical_current_voltage_gauge_under_inverse_calibration
+true_design_variables:
+  - controlled_gap_partition
+  - core_cross_section
+  - route_specific_constitutive_partition
+strong_dark_invariants:
+  exact:
+    - normalized_port_leakage
+    - strong_dark_discriminant
+    - Xi
+  stable_diagnostics:
+    - normalized_euler_defect_norm
+    - route_locality_residual
+  interpretation_only:
+    - homogeneity_ratio_spread
+accepted_gates:
+  strong_dark_discriminant_max: 0.05
+  derivative_relative_spread_max: 0.05
+  mesh_relative_spread_max: 0.05
+  tolerance_replay_port_leakage_max: 0.02
+  tolerance_replay_power_leakage_max: 0.05
+  dark_axis_shift_deg_max: 10.0
+tradeoff_reporting_required:
+  - boundary_gain
+  - actuator_authority_ratio
+  - active_volume_ratio
+  - matched_depth
+  - inductance_shape_residual
+next_architecture:
+  name: TCZ-1C
+  principle: iso-permeance_constitutive_precompensation
+  requirement: >-
+    Each route must retain the same low-current permeance contribution while
+    using a route-specific core-area/gap split to equalize nonlinear Euler
+    defects across the declared current envelope.

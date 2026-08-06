@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "BFM-5: Run TCZ-1 nonlinear witness",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["scripts/run_tcz1_nonlinear_witness.py"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "BFM-5: Run TCZ-1 linear witness",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["scripts/run_tcz1_linear_witness.py"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "BFM-5: Run all smoke tests",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["scripts\\verify_environment.py"],
+      "dependsOrder": "sequence",
+      "dependsOn": ["BFM-5: Gmsh smoke", "BFM-5: FEMM smoke", "BFM-5: pytest"],
+      "problemMatcher": []
+    },
+    {
+      "label": "BFM-5: Gmsh smoke",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["scripts\\gmsh_smoke_test.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "BFM-5: FEMM smoke",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["scripts\\femm_smoke_test.py"],
+      "problemMatcher": []
+    },
+    {
+      "label": "BFM-5: pytest",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "pytest", "-q"],
+      "problemMatcher": []
+    }
+  ]
+}

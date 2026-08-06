@@ -1,0 +1,45 @@
+version: 3.0
+static_precompensation:
+  classification: workload_aware_not_universal
+  full_FEA_sector_boundary_gain: 1.1139121008317963
+  full_FEA_isotropic_boundary_ratio: 0.8162703747615029
+  rule: >-
+    A static asymmetric material allocation may be accepted only for a declared
+    anisotropic workload. It must report the isotropic penalty separately.
+dark_self_conditioning:
+  root_equations:
+    - psi(i,q) - psi_reference(i) = 0
+    - signed_dark_power_coupling(i,q) = b(i,q)^T d(i,q) = 0
+  local_existence_condition: >-
+    The 3x3 Jacobian of the two flux constraints and signed dark-power
+    coupling with respect to q must be nonsingular. Under this condition the
+    implicit-function theorem defines a local scheduled root manifold q*(i).
+  nominal_full_system_result:
+    strong_dark_discriminant: 0.0001602080895744462
+    reduction_ratio_vs_unconditioned: 0.0019929274241236865
+    flux_drift_normalized: 1.3376878471797464e-05
+  convergence_gates:
+    max_strong_dark_discriminant: 0.003
+    max_flux_drift_normalized: 0.002
+    max_route_locality_residual: 0.02
+scheduled_root:
+  identified_angle_range_deg: [-2.0, 2.0]
+  max_gap_span_mm: 0.11954396569835746
+  max_strong_dark_discriminant: 0.0011004113434171913
+  required_online_actions:
+    - interpolate q*(i) from the identified schedule
+    - recompute or estimate Kq and dark axis
+    - apply a bounded visible Newton correction to restore flux
+    - monitor signed b^T d rather than Xi alone
+next_stage:
+  name: TCZ-1E-dynamic-root-tracking
+  required_models:
+    - actuator dynamics and slew limits
+    - actuator mechanical energy and losses
+    - voltage-controlled electrical dynamics
+    - measurement and observer noise
+    - schedule interpolation error
+  decisive_test: >-
+    Track q*(i(t)) during a rotating current trajectory while preserving the
+    reference port flux and maintaining lower integrated electrical
+    disturbance than an unconditioned terminal-matched baseline.

@@ -1,0 +1,92 @@
+schema_version: 1.0
+name: BFM-5 Mercedes zero-sequence topology
+spaces:
+  electrical_port_dimension: 2
+  magnetic_branch_dimension: 3
+  actuator_dimension: 3
+normalized_route_frame:
+  matrix_N:
+    - [1.0, 0.0]
+    - [-0.5, 0.8660254037844386]
+    - [-0.5, -0.8660254037844386]
+  identities:
+    branch_sum_null: true
+    tight_frame_constant: 1.5
+    hidden_branch_mode: [1.0, 1.0, 1.0]
+physical_contract:
+  winding_ports: [port_1, port_2]
+  route_cells: [route_1, route_2, route_3]
+  actuator_coordinates: [q_1, q_2, q_3]
+  actuator_positive_orientation: increasing_route_admittance
+  required_route_groups:
+    - controlled_gate
+    - flux_cut
+    - high_field_probe
+    - fringing_probe
+    - energy_region
+    - mesh_refinement_region
+state_maps:
+  branch_mmf: eta = N @ i
+  coenergy: Wprime = sum_r w_r(eta_r, q_r) + W_cross
+  port_flux: psi = N.T @ phi + psi_cross
+  port_sensitivity: Kq = dpsi_dq_at_fixed_i
+  differential_inductance: Ld = dpsi_di_at_fixed_q
+dark_definitions:
+  port_dark: Kq @ dq == 0
+  power_dark: grad_q_Wprime @ dq == 0
+  strong_dark: port_dark and power_dark
+  robust_dark: strong advantage over declared uncertainty ensemble
+  ideal_regular_direction: dq proportional to diag(a)^(-1) @ ones(3)
+  compatibility_invariant: Xi = sum_r b_r / a_r
+metrics:
+  frame:
+    - zero_sequence_rejection
+    - tight_frame_defect
+    - route_norm_spread
+    - coherence_spread
+    - dropout_condition_spread
+  tangent:
+    - actuator_sym2_rank
+    - actuator_sym2_condition
+    - lorentz_signature
+    - route_rank_defect
+    - route_locality_residual
+  dark:
+    - normalized_port_leakage
+    - normalized_power_leakage
+    - compatibility_Xi
+    - dark_axis_uncertainty_angle
+    - feasible_dark_speed
+  safety:
+    - actuator_floor_margin
+    - differential_inductance_min_eigenvalue
+    - differential_inductance_condition
+    - route_saturation_margin
+    - distance_to_tangent_rank_loss
+acceptance_gates_v1:
+  reciprocity_residual_max: 1.0e-3
+  energy_derivative_residual_max: 1.0e-3
+  actuator_sym2_rank_required: 3
+  actuator_sym2_condition_nominal_max: 10.0
+  actuator_sym2_condition_region_max: 30.0
+  route_rank_defect_nominal_max: 0.05
+  whitened_tight_frame_defect_max: 0.10
+  route_locality_residual_nominal_max: 0.10
+  mixed_actuator_residual_max: 0.15
+  nominal_port_dark_leakage_max: 1.0e-3
+  strong_dark_power_ratio_max: 0.10
+  robust_win_probability_min: 0.95
+fea_progression:
+  - linear_material_topology_validation
+  - nonlinear_route_cell_validation
+  - full_2d_topology
+  - uncertainty_and_terminal_matched_sweeps
+  - 3d_end_effect_validation
+
+nonlinear_acceptance:
+  strong_dark_discriminant_max: 0.05
+  xi_normalized_warning: 0.10
+  route_locality_max: 0.10
+  derivative_convergence:
+    two_finest_steps_relative_spread_max: 0.05
+    minimum_mesh_levels: 2

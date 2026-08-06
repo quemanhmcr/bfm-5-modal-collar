@@ -1,0 +1,35 @@
+name: TCZ-1B-knee
+version: 1.0
+status: converged_and_tolerance_replay_passed
+reference_candidate: TCZ-1
+geometry:
+  core_thickness_mm: 17.0
+  controlled_gap_mm: [1.75, 1.75, 1.75]
+  inner_width_mm: 26.0
+  inner_height_mm: 36.0
+  matched_planar_depth_mm: 22.838127702404996
+  cell_clearance_mm: 13.0
+winding:
+  physical_incidence:
+    - [8, 0]
+    - [-4, 7]
+    - [-4, -7]
+  turn_scale: 1
+  canonical_to_physical_drive:
+    - [0.125, 0.0]
+    - [0.0, 0.12371791482634838]
+performance:
+  reference_tcz1_boundary_scale: 2.2031508695602073
+  strong_dark_5pct_boundary_scale: 3.752343477971939
+  boundary_gain: 1.703171366889178
+  boundary_Bmax_T: 1.0251282281638605
+  boundary_gap_coenergy_fraction: 0.6549396375099451
+  authority_ratio_vs_tcz1: 0.5738734655798304
+  active_volume_ratio_vs_tcz1: 1.7998102953582689
+  inductance_matrix_shape_residual: 0.00048000411017710016
+validation:
+  derivative_step_chi_relative_spread: 0.03344714553429904
+  mesh_chi_relative_spread: 0.0028085724364348107
+  max_tolerance_replay_port_leakage: 0.007105817579654755
+  max_tolerance_replay_power_leakage: 0.024093047117854857
+  max_dark_axis_shift_deg: 0.7793384779948344

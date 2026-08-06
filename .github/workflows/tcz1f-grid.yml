@@ -1,0 +1,144 @@
+name: TCZ-1F Remote Root Atlas
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: Grid profile
+        type: choice
+        required: true
+        default: smoke
+        options:
+          - smoke
+          - pilot
+          - coarse
+          - dense_local
+      artifact_retention_days:
+        description: Artifact retention
+        required: true
+        default: '14'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      point_count: ${{ steps.plan.outputs.point_count }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check numpy==2.4.6 PyYAML==6.0.3
+      - id: plan
+        run: python fea/scripts/plan_tcz1f_grid.py --profile '${{ inputs.profile }}' --github-output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tcz1f-plan-${{ github.run_id }}
+          path: fea/results_ci/plan/
+          retention-days: ${{ fromJSON(inputs.artifact_retention_days) }}
+
+  femm-environment:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: fea/requirements-ci.txt
+      - name: Cache FEMM installer
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}\femm42bin_x64_21Apr2019.exe
+          key: femm-21Apr2019-17384e8990b6305e
+      - name: Install pinned FEMM
+        shell: pwsh
+        run: ./fea/ci/install_femm.ps1
+      - run: python -m pip install --disable-pip-version-check -r fea/requirements-ci.txt
+      - name: FEMM nonlinear smoke solve
+        working-directory: fea
+        run: python scripts/femm_smoke_test.py
+      - name: Unit tests without research shards
+        working-directory: fea
+        run: python -m pytest -q tests/test_tcz1f_remote.py tests/test_topology_charter.py
+
+  solve:
+    needs: [plan, femm-environment]
+    runs-on: windows-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: fea/requirements-ci.txt
+      - name: Cache FEMM installer
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}\femm42bin_x64_21Apr2019.exe
+          key: femm-21Apr2019-17384e8990b6305e
+      - name: Install pinned FEMM
+        shell: pwsh
+        run: ./fea/ci/install_femm.ps1
+      - run: python -m pip install --disable-pip-version-check -r fea/requirements-ci.txt
+      - name: Solve full-system root shard
+        id: shard
+        working-directory: fea
+        shell: pwsh
+        continue-on-error: true
+        run: >-
+          python scripts/run_tcz1f_shard.py
+          --point-id '${{ matrix.point_id }}'
+          --magnitude-scale '${{ matrix.magnitude_scale }}'
+          --angle-offset-deg '${{ matrix.angle_offset_deg }}'
+          --current '${{ matrix.current_0 }}' '${{ matrix.current_1 }}'
+          --seed-gaps '${{ matrix.seed_q0 }}' '${{ matrix.seed_q1 }}' '${{ matrix.seed_q2 }}'
+          --seed-dark '${{ matrix.seed_d0 }}' '${{ matrix.seed_d1 }}' '${{ matrix.seed_d2 }}'
+      - name: Upload shard summaries
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcz1f-shard-${{ matrix.point_id }}
+          path: |
+            fea/results_ci/shards/${{ matrix.point_id }}/**/*.json
+          if-no-files-found: error
+          retention-days: ${{ fromJSON(inputs.artifact_retention_days) }}
+      - name: Enforce shard gate after upload
+        if: steps.shard.outcome == 'failure'
+        shell: pwsh
+        run: exit 2
+
+  aggregate:
+    needs: [plan, solve]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --disable-pip-version-check numpy==2.4.6
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: tcz1f-shard-*
+          path: downloaded-shards
+      - name: Aggregate and verify artifacts
+        run: python fea/scripts/aggregate_tcz1f.py --input-root downloaded-shards --output-root fea/results_ci/aggregate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tcz1f-atlas-${{ inputs.profile }}-${{ github.run_id }}
+          path: fea/results_ci/aggregate/
+          retention-days: ${{ fromJSON(inputs.artifact_retention_days) }}

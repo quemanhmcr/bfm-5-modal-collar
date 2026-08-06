@@ -1,0 +1,34 @@
+version: 1.0
+coordinate_laws:
+  physical_winding_rank: 2
+  zero_sequence_rejection_required: true
+  exact_calibration_to_canonical_frame_required: true
+linear_topology_gates:
+  sym2_rank: 3
+  tangent_condition_max: 3.0
+  route_rank_one_defect_max: 0.02
+  route_alignment_min: 0.99
+  lorentz_signature: [1, 2, 0]
+nonlinear_topology_gates:
+  strong_dark_discriminant_max: 0.05
+  route_locality_residual_max: 0.05
+  derivative_relative_spread_max: 0.05
+  mesh_relative_spread_max: 0.05
+energy_architecture:
+  metric: controlled_gap_coenergy_fraction
+  provisional_warning_below: 0.68
+  interpretation: >-
+    This threshold is a TCZ-1 empirical design marker, not a universal
+    constant. Every new material and geometry must re-identify its own phase
+    boundary under converged FEA.
+optimization_requirements:
+  equal_nominal_inductance: true
+  equal_current_domain: true
+  equal_material_model: true
+  equal_actuator_constraints: true
+  preserve_terminal_fairness: true
+next_candidates:
+  - name: TCZ-1B
+    purpose: gap-dominant factorized reference optimization
+  - name: TRI-2
+    purpose: integrated shared-return challenge against TCZ-1B

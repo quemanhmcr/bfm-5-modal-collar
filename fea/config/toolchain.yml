@@ -1,0 +1,11 @@
+femm:
+  executable: 'C:\femm42\bin\femm.exe'
+  version: '4.2 21Apr2019 stable'
+getdp:
+  executable: 'C:\project\fea-tools\getdp-3.5.0\getdp-3.5.0-Windows64\getdp.exe'
+  version: '3.5.0'
+gmsh:
+  executable: 'C:\ProgramData\chocolatey\bin\gmsh.exe'
+  version: '4.15.2'
+python:
+  executable: '.venv\Scripts\python.exe'

@@ -1,0 +1,47 @@
+name: TCZ-1B
+version: 1.0
+reference:
+  candidate: TCZ-1
+  linear_summary: results/tcz1/linear_witness/summary.json
+  nonlinear_boundary: results/tcz1/strong_dark_boundary/summary.json
+search:
+  core_thickness_mm: [12.0, 15.0, 18.0, 21.0]
+  gap_mm: [1.0, 1.5, 2.0, 2.5]
+  turn_scale: 1
+  reference_depth_mm: 20.0
+  cell_clearance_mm: 13.0
+  stress_scale: 2.5
+  base_canonical_current: [400.0, 150.0]
+  basis_ampere_turn: 200.0
+  tangent_step_fraction_of_gap: 0.06
+  tangent_step_min_mm: 0.03
+constraints:
+  matched_depth_mm: [5.0, 45.0]
+  inductance_matrix_residual_max: 0.02
+  authority_ratio_min: 0.45
+  tangent_condition_max: 3.0
+  route_locality_residual_max: 0.05
+  strong_dark_discriminant_max: 0.05
+  active_volume_ratio_max: 2.0
+objectives:
+  maximize:
+    - predicted_boundary_scale
+    - authority_ratio
+    - stress_gap_coenergy_fraction
+  minimize:
+    - active_volume_ratio
+    - matched_depth_mm
+refinement:
+  max_pareto_candidates: 4
+  boundary_scales: [2.0, 2.5, 3.0, 3.5, 4.0, 5.0]
+  derivative_gap_step_fraction: 0.04
+  derivative_gap_step_min_mm: 0.03
+  power_leakage_gate: 0.05
+  mesh_factor_for_final: 0.75
+physics:
+  baseline_power_boundary_Bmax_T: 1.0403018290249006
+  interpretation: >-
+    Cross-section and gap are the magnetic variables. Planar depth is solved
+    analytically after the 2-D search to restore the reference canonical L.
+    Uniform integer turn scaling is not a magnetic objective: with inverse
+    current calibration it preserves branch MMF and canonical flux linkage.

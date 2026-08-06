@@ -1,0 +1,44 @@
+name: TCZ-1
+version: 1.0
+units: millimeters
+problem:
+  type: planar
+  frequency_hz: 0.0
+  depth_mm: 20.0
+  precision: 1.0e-9
+  min_angle_deg: 30.0
+geometry:
+  cell_centers_x_mm: [-70.0, 0.0, 70.0]
+  outer_width_mm: 50.0
+  outer_height_mm: 60.0
+  inner_width_mm: 26.0
+  inner_height_mm: 36.0
+  nominal_gap_mm: [1.0, 1.0, 1.0]
+  coil_side_width_mm: 4.0
+  coil_offset_mm: 3.0
+  port_a_y_mm: [-14.0, -2.0]
+  port_b_y_mm: [2.0, 14.0]
+  abc_layers: 7
+materials:
+  core_relative_permeability_linear: 2000.0
+  copper_conductivity_mspm: 58.0
+winding:
+  physical_incidence:
+    - [8, 0]
+    - [-4, 7]
+    - [-4, -7]
+  canonical_frame:
+    - [1.0, 0.0]
+    - [-0.5, 0.8660254037844386]
+    - [-0.5, -0.8660254037844386]
+  canonical_to_physical_drive:
+    - [0.125, 0.0]
+    - [0.0, 0.12371791482634838]
+witness:
+  canonical_basis_ampere_turn: 200.0
+  nominal_operating_current: [400.0, 150.0]
+  gap_step_mm: 0.08
+  route_rank_one_max: 0.08
+  route_alignment_min: 0.97
+  tangent_condition_max: 15.0
+  dark_leakage_max: 0.002

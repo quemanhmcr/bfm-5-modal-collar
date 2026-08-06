@@ -1,0 +1,11 @@
+pyfemm==0.1.3
+pywin32
+numpy
+scipy
+matplotlib
+pandas
+jupyterlab
+meshio
+pyyaml
+pytest
+gmsh

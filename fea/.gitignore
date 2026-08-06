@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+results/*
+!results/.gitkeep
+*.ans
+*.res
+*.pre
+*.msh
+*.vtk
+*.vtu
+*.pos
+
+# Remote CI outputs
+results_ci/

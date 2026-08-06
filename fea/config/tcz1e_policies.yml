@@ -1,0 +1,39 @@
+version: 1.0
+policies:
+  balanced_readiness:
+    governor_weights:
+      feedforward: 1.0
+      flux: 20.0
+      power: 200.0
+    schedule_position_rate_per_s: 28.0
+    lead_time_s: 0.03
+    hold_start_s: 0.25
+    hold_end_s: 0.25
+    interpretation: Pareto knee minimizing joint log-distance to readiness and three
+      dynamic costs.
+  low_metric_power:
+    governor_weights:
+      feedforward: 0.05
+      flux: 20.0
+      power: 500.0
+    schedule_position_rate_per_s: 45.0
+    lead_time_s: 0.05
+    hold_start_s: 0.15
+    hold_end_s: 0.35
+    interpretation: Reduces integrated metric-power squared below the terminal-matched
+      chord while retaining strong-dark readiness.
+    terminal_capture_power_weight: 300.0
+    terminal_capture_position_rate_per_s: 80.0
+  high_rate:
+    governor_weights:
+      feedforward: 0.05
+      flux: 20.0
+      power: 500.0
+    schedule_position_rate_per_s: 45.0
+    lead_time_s: 0.05
+    hold_start_s: 0.15
+    hold_end_s: 0.35
+    terminal_capture_power_weight: 275.0
+    terminal_capture_position_rate_per_s: 80.0
+    interpretation: Maximizes quality-constrained angular rate while preserving the
+      1 percent strong-dark and 5 micrometre terminal gates.

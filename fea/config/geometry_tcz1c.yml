@@ -1,0 +1,29 @@
+name: TCZ-1C
+version: 1.0
+reference: TCZ-1B-knee
+principle: iso-permeance constitutive precompensation
+calibration:
+  reference_core_thickness_mm: 17.0
+  reference_gap_mm: 1.75
+  reference_depth_mm: 20.0
+  low_current_probe_Aturn: 50.0
+  candidate_thickness_mm: [14.0, 15.5, 17.0, 18.5, 20.0]
+  gap_bracket_mm: [0.5, 3.5]
+  bisection_iterations: 8
+atlas:
+  eta_grid_Aturn: [0.0, 100.0, 250.0, 500.0, 800.0, 1100.0, 1400.0, 1800.0, 2200.0]
+  gap_step_mm: 0.05
+envelopes:
+  base_current: [400.0, 150.0]
+  boundary_scales: [1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.25, 4.5, 4.75, 5.0]
+  isotropic_direction_count: 12
+  sector_half_width_deg: 20.0
+  sector_direction_count: 7
+constraints:
+  max_active_volume_ratio_vs_tcz1: 1.80
+  min_authority_ratio_vs_tcz1b_knee: 0.83
+  max_iso_permeance_spread: 0.01
+  strong_dark_gate: 0.05
+full_device_validation:
+  top_candidate_count: 3
+  gap_derivative_step_mm: 0.06
