@@ -146,3 +146,37 @@ post_snapshot_audits:
       - next_run_must_replace_shadow_traces_with_measured_HIL_data
       - keep_TCZ1H_candidate_bank_and_design_laws_v8_unchanged
       - require_measured_holdout_bank_replay_and_deployment_latency_before_TCZ1I
+
+  measured_waveform_campaign_capsule:
+    status: accepted_pipeline_qualification_only
+    decision_memo: docs/POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md
+    capsule_specification: docs/TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md
+    source_sha: 1269f40932c4439ea755067a13016471a2e86221
+    artifact_directory: data/post_tcz1h_measured_campaign
+    artifact_manifest_sha256: 212f9c8e7054c42cd567cf6dbd24341d07b4453cb4675184662dab4a5cde986c
+    summary_sha256: 9466ea23c048ffe52486a319fa343411fead9f926ee920334cc248fb9778efe2
+    raw_waveforms_sha256: edeeec754ac7f114f9ae5c206c125382a61c5a3c316b260225bebce6cd01ef99
+    result:
+      protocol_traces: 816
+      clean_raw_validation_errors: 0
+      fault_injections_detected: 7
+      fault_injections_total: 7
+      preholdout_holdout_run_id_occurrences: 0
+      holdout_plateau_lower_violations: 0
+      holdout_tau_upper_violations: 0
+      holdout_deadtime_upper_violations: 0
+      median_plateau_conservatism: 0.012370198919130963
+      median_tau_conservatism: 0.060526052981968614
+      median_deadtime_conservatism_s: 0.0030484741566598706
+      shadow_plateau_lower_violations: 0
+      shadow_tau_upper_violations: 0
+      shadow_deadtime_upper_violations: 0
+      qualification_checks_passed: 18
+      regression_tests_passed: 110
+    consequence:
+      - accept_waveform_pipeline_not_hardware_claim
+      - use_position_as_primary_identification_channel
+      - use_velocity_as_independent_coherence_channel
+      - require_sealed_preholdout_model_before_opening_measured_holdout
+      - acquire_real_HIL_or_actuator_traces_without_changing_frozen_gates
+      - keep_TCZ1H_candidate_bank_and_design_laws_v8_unchanged

@@ -9,6 +9,8 @@
 5. [`docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md`](docs/POST_TCZ1H_ADAPTIVE_DEADLINE_DECISION_MEMO.md) — negative audit sau TCZ-1H.
 6. [`docs/POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md`](docs/POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md) — accepted pre-HIL identification gate.
 7. [`docs/TCZ1H_HIL_MEASUREMENT_PROTOCOL.md`](docs/TCZ1H_HIL_MEASUREMENT_PROTOCOL.md) — frozen measured-plant acquisition protocol.
+8. [`docs/TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md`](docs/TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md) — raw-waveform schema and holdout firewall.
+9. [`docs/POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md`](docs/POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md) — accepted pipeline qualification.
 
 ## Current accepted state
 
@@ -70,3 +72,36 @@ cd fea
 python scripts/run_tcz1h_hil_identification.py \
   --output-root data/post_tcz1h_hil_identification
 ```
+
+## Measured-waveform campaign capsule
+
+The qualified capsule consumes raw command, position, velocity, time, operating
+condition and interlock arrays. Position is the primary fit channel; velocity is
+an independent coherence check. The sealed model is created before holdout is
+opened and is tied to the protocol and raw-bundle SHA-256 values.
+
+Shadow qualification:
+
+```bash
+cd fea
+python scripts/run_tcz1h_measured_campaign_qualification.py \
+  --output-root data/post_tcz1h_measured_campaign
+```
+
+Measured/HIL transaction, using an externally acquired compatible raw bundle:
+
+```bash
+cd fea
+python scripts/run_tcz1h_measured_campaign.py freeze \
+  --campaign-root results_hil/tcz1h_measured
+python scripts/run_tcz1h_measured_campaign.py fit \
+  --campaign-root results_hil/tcz1h_measured \
+  --raw-bundle /path/to/raw_waveforms.npz
+python scripts/run_tcz1h_measured_campaign.py evaluate \
+  --campaign-root results_hil/tcz1h_measured \
+  --raw-bundle /path/to/raw_waveforms.npz
+```
+
+Qualification accepts the pipeline only. TCZ-1I remains unauthorized until the
+same transaction passes on measured traces and the unchanged candidate bank is
+replayed on the measured/HIL plant.

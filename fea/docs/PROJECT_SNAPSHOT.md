@@ -259,3 +259,43 @@ replay the unchanged candidate bank on the measured plant, and measure
 end-to-end deployment latency. See
 [`POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md`](POST_TCZ1H_HIL_IDENTIFICATION_GATE_DECISION_MEMO.md)
 and [`TCZ1H_HIL_MEASUREMENT_PROTOCOL.md`](TCZ1H_HIL_MEASUREMENT_PROTOCOL.md).
+
+## 10. Qualified measured-waveform campaign capsule
+
+The next methodological gap was closed without changing TCZ-1H. A three-phase
+campaign transaction now freezes the protocol, fits only train/calibration raw
+waveforms, seals the model artifact, and opens holdout without refitting:
+
+```text
+freeze -> fit -> seal -> open holdout
+```
+
+Position is the primary identification channel for the integrated first-order
+response
+
+\[
+x(t)=s\left[u-\tau(1-e^{-u/\tau})\right],
+\qquad u=\max(t-d,0),
+\]
+
+while measured velocity is retained as an independent coherence check. Raw keys
+containing truth or oracle labels are rejected.
+
+On the frozen 816-trace shadow qualification:
+
+- clean raw validation errors: **0**;
+- declared fault injections detected: **7/7**;
+- literal holdout IDs in the sealed model: **0**;
+- measured-estimate holdout violations for slew/lag/deadtime: **0/0/0**;
+- shadow-oracle bound violations: **0/0/0**;
+- median conservatism: **1.237%** slew, **6.053%** lag, **3.048 ms** deadtime;
+- deterministic raw bundle and protocol hashes reproduced exactly;
+- forbidden truth-generating imports in the measured analyzer: **0**;
+- numerical regression: **110 passed**.
+
+This accepts the campaign capsule as evidence infrastructure only. It does not
+create TCZ-1I, hardware evidence, or a new design law. The next decisive step is
+to acquire real HIL/actuator traces with the same lock and gates, then replay the
+unchanged candidate bank and measure target-controller latency. See
+[`POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md`](POST_TCZ1H_MEASURED_CAMPAIGN_CAPSULE_DECISION_MEMO.md)
+and [`TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md`](TCZ1H_MEASURED_CAMPAIGN_CAPSULE.md).
