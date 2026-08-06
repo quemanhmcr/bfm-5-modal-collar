@@ -114,3 +114,12 @@ project therefore separates two explicit profiles:
 
 The shared-CI limit is a reproducibility/operability check, not a claim of
 online deployment latency. Correctness gates remain identical in both profiles.
+
+
+## Final independent cross-check
+
+GitHub Actions run `31089597294` passed on the pinned numerical toolchain. All
+five task winners and all reported ratios matched the Linux control-plane
+benchmark exactly. The 11-file result artifact passed SHA-256 verification.
+The shared runner used two workers and reported a maximum parallel replay time
+of 57.264 s under the declared 90 s shared-CI profile.

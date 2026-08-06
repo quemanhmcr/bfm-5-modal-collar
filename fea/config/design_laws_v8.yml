@@ -1,6 +1,6 @@
 name: TCZ-1H-certified-online-Pareto-navigation
 version: 8
-status: provisional_local_pass_pending_remote_crosscheck
+status: accepted_certified_supervisory_navigation
 scope:
   magnitude_scale:
   - 0.95
@@ -119,14 +119,27 @@ local_benchmark:
       oracle_proposal_in_distribution: true
       robust_scenarios_passed: true
 remote_evidence:
-  status: first_run_math_pass_latency_profile_failed
-  run_id: 31088881038
-  head_sha: c693d9f69ac94af1654cff773b663437f5d7e28a
-  math_and_dynamic_certificates_passed: true
-  failure_gate: machine-independent 20 s latency gate on shared runner
-  shared_runner_replay_range_s:
-  - 33.695
-  - 56.818
+  status: accepted
+  github_run_id: 31089597294
+  head_sha: adae6f09a20314a847a860e8d3e934ef7b199109
+  summary_sha256: a9a9da5937b703e55bf00a14079cec208ad45543223875c361419859983d4db1
+  artifact_manifest_sha256: 2364ea2c5914bc90e61c943d50070b95753d00dfb68783c53c67d58cb88357e5
+  manifest_files: 11
+  manifest_verified: true
+  all_winners_match_local: true
+  maximum_relative_metric_drift: 0.0
+  all_bank_certificates: true
+  all_winner_robustness: true
+  latency_profile: shared_ci
+  workers: 2
+  maximum_parallel_replay_wall_s: 57.26400781299998
+  latency_limit_s: 90.0
+  solver_free: true
+  femm_called: false
+  first_run_latency_diagnostic:
+    run_id: 31088881038
+    math_and_dynamic_certificates_passed: true
+    only_failed_gate: 20 s local latency threshold applied to shared runner
 acceptance_rules:
   oracle_never_selects_final_winner_without_exact_replay: true
   all_winners_must_pass_three_dynamic_scenarios: true

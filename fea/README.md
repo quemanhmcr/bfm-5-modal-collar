@@ -98,7 +98,7 @@ online slew-reweighted deadline mode, and straight-path fallback.  See
 
 ## TCZ-1H certified online Pareto navigation
 
-TCZ-1H is a solver-free supervisory navigator. Learned path/value models only
+TCZ-1H is an accepted solver-free supervisory navigator. Learned path/value models only
 propose or prioritize candidates; the nonlinear reduced plant replays every
 candidate and selects the exact winner within the declared finite bank. See
 `docs/TCZ1H_ONLINE_PARETO_NAVIGATOR.md`, `docs/TCZ1H_DECISION_MEMO.md`, and

@@ -1,9 +1,9 @@
 # TCZ-1H decision memo
 
-## Provisional decision
+## Final decision
 
-Accept the TCZ-1H architecture locally, pending an independent GitHub Actions
-cross-check. The accepted architecture is **oracle-proposed, physics-corrected,
+Accept TCZ-1H as a certified supervisory navigation architecture. The independent GitHub Actions
+cross-check has passed. The accepted architecture is **oracle-proposed, physics-corrected,
 exact-bank-certified** navigation.
 
 Do not accept oracle-only winner selection or a claim of global optimum.
@@ -46,14 +46,21 @@ This satisfies the 20 s supervisory latency gate. Warm single-plan replanning
 was separately measured in tens of milliseconds, but the certified full-bank
 selection remains a supervisory operation.
 
-## Required remote gate
+## Remote acceptance evidence
 
-The final acceptance requires the pinned Ubuntu GitHub workflow to reproduce:
+Pinned Ubuntu GitHub Actions run `31089597294` on head
+`adae6f09a20314a847a860e8d3e934ef7b199109` passed. It reproduced all five
+winners, objectives, regret margins, and metric ratios with zero measured
+relative drift from the Linux control-plane result. All five winner robustness
+certificates passed.
 
-1. all mathematics and manifest tests;
-2. all five candidate-bank certificates;
-3. all three-corner winner certificates;
-4. result artifact checksums.
+Evidence checksums:
+
+- `summary.json`: `a9a9da5937b703e55bf00a14079cec208ad45543223875c361419859983d4db1`;
+- `artifact_manifest.json`: `2364ea2c5914bc90e61c943d50070b95753d00dfb68783c53c67d58cb88357e5`.
+
+The artifact manifest verifies 11 files. The run was solver-free and did not
+call FEMM.
 
 ## Shared-runner latency diagnosis
 
