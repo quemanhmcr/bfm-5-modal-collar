@@ -1,0 +1,84 @@
+name: TCZ-1H-adaptive-certified-deadline
+version: 1.0
+status: predeclared_experiment
+source_config: config/tcz1g_dynamic.yml
+identified_data: data/tcz1e_identified
+scope:
+  claim_if_accepted: direction-aware bounded-drift slew calibration prevents false-safe deadline feasibility claims in the declared controller-in-loop ensemble
+  not_claimed:
+    - hardware calibration validity
+    - global continuous path optimum
+    - validity outside the TCZ-1F patch
+    - deployment-class latency
+    - hysteresis model identification
+fairness_contract:
+  same_hidden_plant_trajectory: true
+  same_bounded_measurement_noise: true
+  same_observation_schedule: true
+  same_forward_and_reverse_endpoints: true
+  same_root_patch_and_identified_plant: true
+  same_objective_deadline_and_dynamic_gates: true
+  same_optimizer_budget: true
+  thresholds_frozen_before_results: true
+ensemble:
+  seed: 20260806
+  episodes: 32
+  initial_true_slew_mm_s:
+    negative: [0.438, 0.452, 0.446]
+    positive: [0.462, 0.448, 0.436]
+  true_slew_floor_mm_s: 0.34
+  true_slew_ceiling_mm_s: 0.49
+  random_step_bound_mm_s: 0.0005
+  downward_drift_bound_mm_s_per_step: 0.0030
+  drift_schedule:
+    start_episode: 6
+    stop_episode: 21
+    negative_mm_s_per_step: [-0.0017, -0.0024, -0.0012]
+    positive_mm_s_per_step: [-0.0026, -0.0015, -0.0022]
+  recovery_schedule:
+    start_episode: 24
+    positive_mm_s_per_step: 0.0010
+  measurement_noise_bound_mm_s: 0.0035
+  observation_schedule: alternate_direction_then_query_opposite
+calibrators:
+  frozen:
+    nominal_slew_mm_s: [0.45, 0.45, 0.45]
+    relative_uncertainty: [0.02, 0.02, 0.02]
+    systematic_safety_factor: 0.995
+  ewma:
+    initial_slew_mm_s: [0.45, 0.45, 0.45]
+    initial_uncertainty_fraction: 0.10
+    alpha: 0.20
+    confidence_z: 2.0
+    systematic_floor_fraction: 0.01
+    systematic_safety_factor: 0.995
+  directional_envelope:
+    hard_floor_mm_s: 0.34
+    measurement_noise_bound_mm_s: 0.0035
+    downward_drift_bound_mm_s_per_step: 0.0030
+    history_steps: 16
+    systematic_safety_factor: 0.995
+request:
+  forward_start_state: [0.95, -2.0]
+  forward_end_state: [1.05, 2.0]
+  motion_time_s: 0.46
+  weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+  ramp_each_s: 0.03
+  path_samples: 25
+  optimizer_maxiter: 45
+acceptance_gates:
+  directional_lower_bound_violations_max: 0
+  directional_false_safe_deadlines_max: 0
+  feasible_deadline_recall_min: 0.90
+  median_kinematic_conservatism_max: 0.10
+  local_warm_replan_p95_s_max: 0.25
+  representative_dynamic_replays: 3
+  all_representative_dynamic_certificates_required: true
+  stale_or_ewma_false_safe_deadlines_min: 1
+evidence_contract:
+  checkpoint_jsonl_required: true
+  summary_json_required: true
+  dynamic_replay_json_required: true
+  artifact_manifest_sha256_required: true
+  source_git_sha_required: true
+  full_regression_required: true

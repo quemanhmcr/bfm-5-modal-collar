@@ -468,7 +468,9 @@ def analyze_edges(
     actuator_metric: ArrayLike | None = None,
 ) -> EdgeAnalysis:
     x = np.asarray(states, dtype=float).reshape(-1, 2)
-    slew = np.asarray(robust_slew_mm_s, dtype=float).reshape(3)
+    slew = np.asarray(robust_slew_mm_s, dtype=float)
+    if slew.shape not in {(3,), (2, 3)}:
+        raise ValueError("Robust slew limits must have shape (3,) or directional shape (2,3)")
     if np.any(slew <= 0.0):
         raise ValueError("Robust slew limits must be positive")
     metric = np.eye(3) if actuator_metric is None else np.asarray(actuator_metric, dtype=float).reshape(3, 3)
@@ -496,7 +498,21 @@ def analyze_edges(
     jac_right = jacobian_patch_many(patch, x[1:])
     derivative_left = np.einsum("eij,ej->ei", jac_left, dx)
     derivative_right = np.einsum("eij,ej->ei", jac_right, dx)
-    lower = np.max(np.maximum(np.abs(derivative_left), np.abs(derivative_right)) / slew[None, :], axis=1)
+    if slew.shape == (3,):
+        lower = np.max(
+            np.maximum(np.abs(derivative_left), np.abs(derivative_right)) / slew[None, :],
+            axis=1,
+        )
+    else:
+        # Row 0 is negative qdot and row 1 is positive qdot.  Endpoint
+        # derivatives are checked separately so a sign change inside an edge
+        # cannot borrow the faster bound from the opposite direction.
+        slew_left = np.where(derivative_left >= 0.0, slew[1][None, :], slew[0][None, :])
+        slew_right = np.where(derivative_right >= 0.0, slew[1][None, :], slew[0][None, :])
+        lower = np.max(
+            np.maximum(np.abs(derivative_left) / slew_left, np.abs(derivative_right) / slew_right),
+            axis=1,
+        )
     max_chi = float(max(np.max(left["chi"]), np.max(middle["chi"]), np.max(right["chi"])))
     max_b = float(max(np.max(left["Bmax_T"]), np.max(middle["Bmax_T"]), np.max(right["Bmax_T"])))
     return EdgeAnalysis(coefficients, lower, max_chi, max_b, q)
@@ -524,7 +540,7 @@ class ParetoPlanResult:
     normalized_components: tuple[float, float, float]
     raw_components: tuple[float, float, float]
     reference_scales: tuple[float, float, float]
-    robust_slew_mm_s: tuple[float, float, float]
+    robust_slew_mm_s: tuple[float, ...] | tuple[tuple[float, float, float], tuple[float, float, float]]
     minimum_slew_time_s: float
     allocated_budget_s: float
     ramp_each_s: float
@@ -726,7 +742,11 @@ def optimize_pareto_plan(
         normalized_components=tuple(map(float, best_detail["normalized"])),
         raw_components=tuple(map(float, best_detail["raw"])),
         reference_scales=tuple(map(float, scales)),
-        robust_slew_mm_s=tuple(map(float, robust_slew)),
+        robust_slew_mm_s=(
+            tuple(map(float, robust_slew))
+            if robust_slew.ndim == 1
+            else tuple(tuple(map(float, row)) for row in robust_slew)
+        ),
         minimum_slew_time_s=float(np.sum(analysis.lower_times_s)),
         allocated_budget_s=budget,
         ramp_each_s=ramp_each,
@@ -750,7 +770,11 @@ def optimize_fastest_plan(
 ) -> tuple[PathPlan, dict]:
     start = patch._state(start_state)
     end = patch._state(end_state)
-    slew = np.asarray(robust_slew_mm_s, dtype=float).reshape(3)
+    slew = np.asarray(robust_slew_mm_s, dtype=float)
+    if slew.shape not in {(3,), (2, 3)}:
+        raise ValueError("Robust slew limits must have shape (3,) or directional shape (2,3)")
+    if np.any(slew <= 0.0):
+        raise ValueError("Robust slew limits must be positive")
     starts = [
         encode_control_fractions(((1 / 3, 2 / 3), (1 / 3, 2 / 3))),
         encode_control_fractions(((0.08, 0.28), (0.72, 0.92))),
@@ -921,7 +945,7 @@ def result_to_dict(result: ParetoPlanResult) -> dict:
             "actuator_effort": result.raw_components[2],
         },
         "reference_scales": list(result.reference_scales),
-        "robust_slew_mm_s": list(result.robust_slew_mm_s),
+        "robust_slew_mm_s": np.asarray(result.robust_slew_mm_s, dtype=float).tolist(),
         "minimum_slew_time_s": result.minimum_slew_time_s,
         "allocated_budget_s": result.allocated_budget_s,
         "ramp_each_s": result.ramp_each_s,
