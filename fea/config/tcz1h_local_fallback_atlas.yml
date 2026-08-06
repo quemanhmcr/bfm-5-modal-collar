@@ -1,0 +1,73 @@
+name: post-TCZ-1H-local-exact-fallback-certificate-atlas
+version: 1.0
+status: predeclared_local_windows_qualification
+source_config: config/tcz1g_dynamic.yml
+online_config: config/tcz1h_online.yml
+measured_campaign_model: data/post_tcz1h_measured_campaign/preholdout_model.json
+measured_campaign_lock: data/post_tcz1h_measured_campaign/campaign_lock.json
+scope:
+  claim_if_accepted: >-
+    on the declared local Windows process, exact nonlinear straight-fallback
+    certificates can be prepared offline on a frozen temperature-load grid and
+    armed at request time by conservative ceiling lookup, while uncertified,
+    stale, corrupted or out-of-domain states return HOLD
+  not_claimed:
+    - hardware or HIL validity
+    - continuous operating-domain certification between atlas nodes
+    - operating-system hard real-time guarantee
+    - TCZ-1I acceptance
+    - production readiness
+scientific_contract:
+  slow_state: [temperature, load, reversal_policy]
+  fast_state: motion_request
+  each_certified_node_uses_exact_nonlinear_replay: true
+  runtime_lookup_uses_upper_ceiling_node_after_sensor_reserve: true
+  missing_or_rejected_node_returns_hold: true
+  atlas_and_each_bundle_are_hash_bound: true
+  no_full_bank_optimization_in_fallback_arm_path: true
+operating_envelope:
+  dense_temperature_grid_points: 101
+  dense_load_grid_points: 101
+  reversal_assumed: true
+atlas_grid:
+  temperature_nodes_c: [20.0, 35.0, 45.5, 55.0, 70.0]
+  load_nodes: [0.0, 0.25, 0.51, 0.75, 1.0]
+active_query:
+  measured_temperature_c: 45.0
+  measured_load_fraction: 0.50
+  temperature_reserve_c: 0.25
+  load_reserve_fraction: 0.01
+request:
+  start_state: [0.95, -2.0]
+  end_state: [1.05, 2.0]
+  motion_time_s: 0.46
+  weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+  ramp_each_s: 0.03
+  path_samples: 33
+  optimizer_maxiter: 80
+runtime_qualification:
+  certificate_lease_s: 5.0
+  baseline_trials: 3000
+  loaded_trials: 1500
+  stress_workers: 4
+  stress_matrix_size: 192
+acceptance_gates:
+  atlas_integrity_required: true
+  active_node_certified_required: true
+  certified_node_fraction_min: 0.50
+  offline_atlas_build_s_max: 120.0
+  baseline_lookup_arm_decision_p99_s_max: 0.005
+  loaded_lookup_arm_decision_p99_s_max: 0.020
+  out_of_domain_hold_required: true
+  corrupted_atlas_detected_required: true
+  every_published_node_dynamic_passed_required: true
+  exact_grid_coverage_required: true
+evidence_contract:
+  source_commit_before_qualification_required: true
+  atlas_json_required: true
+  node_results_jsonl_required: true
+  latency_jsonl_required: true
+  fault_report_required: true
+  summary_json_required: true
+  artifact_manifest_sha256_required: true
+  full_regression_required: true

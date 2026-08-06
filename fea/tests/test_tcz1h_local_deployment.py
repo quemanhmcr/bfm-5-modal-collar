@@ -92,3 +92,99 @@ def test_fallback_only_bundle_never_returns_winner() -> None:
     armed = arm_bundle(bundle, "snapshot", lease_s=1.0, now_ns=100)
     decision = deployment_decision(armed, "snapshot", now_ns=200, handoff_deadline_ns=300)
     assert decision["action"] == "FALLBACK"
+
+from bfm5.tcz1h_local_deployment import (
+    arm_fallback_from_atlas,
+    fallback_atlas_key,
+    seal_fallback_atlas,
+    verify_fallback_atlas,
+)
+
+
+def _snapshot(name: str):
+    body = {
+        "schema": "bfm5_tcz1h_deployment_snapshot_v1",
+        "source_git_sha": name,
+        "request": {},
+        "calibration": {},
+        "quality_gates_sha256": "g",
+        "model_artifact_sha256": "m",
+        "oracle_artifact_sha256": "o",
+        "campaign_lock_sha256": "c",
+    }
+    from bfm5.tcz1h_local_deployment import canonical_sha256
+    return {**body, "snapshot_sha256": canonical_sha256(body)}
+
+
+def test_fallback_atlas_ceiling_lookup_and_out_of_domain_hold() -> None:
+    snapshot = _snapshot("source")
+    bundle = seal_fallback_bundle(snapshot["snapshot_sha256"], _row("straight_fallback", 1.0))
+    entry = {
+        "key": fallback_atlas_key(50.0, 0.75),
+        "temperature_c": 50.0,
+        "load_fraction": 0.75,
+        "snapshot": snapshot,
+        "bundle": bundle,
+    }
+    rejected = [
+        {"key": fallback_atlas_key(t, l), "temperature_c": t, "load_fraction": l, "reason": "test"}
+        for t in (20.0, 50.0) for l in (0.0, 0.75)
+        if (t, l) != (50.0, 0.75)
+    ]
+    atlas = seal_fallback_atlas(
+        temperature_nodes_c=[20.0, 50.0],
+        load_nodes=[0.0, 0.75],
+        entries=[entry],
+        rejected_nodes=rejected,
+        metadata={},
+    )
+    assert verify_fallback_atlas(atlas)["passed"]
+    result = arm_fallback_from_atlas(
+        atlas,
+        measured_temperature_c=45.0,
+        measured_load_fraction=0.5,
+        temperature_reserve_c=0.2,
+        load_reserve_fraction=0.1,
+        lease_s=1.0,
+        now_ns=100,
+    )
+    assert result["found"]
+    decision = deployment_decision(
+        result["armed"], result["snapshot_sha256"], now_ns=200
+    )
+    assert decision["action"] == "FALLBACK"
+    outside = arm_fallback_from_atlas(
+        atlas,
+        measured_temperature_c=70.0,
+        measured_load_fraction=0.5,
+        temperature_reserve_c=0.0,
+        load_reserve_fraction=0.0,
+        lease_s=1.0,
+    )
+    assert not outside["found"]
+    assert outside["reason"] == "out_of_domain"
+
+
+def test_fallback_atlas_hash_corruption_is_detected() -> None:
+    snapshot = _snapshot("source")
+    bundle = seal_fallback_bundle(snapshot["snapshot_sha256"], _row("straight_fallback", 1.0))
+    atlas = seal_fallback_atlas(
+        temperature_nodes_c=[20.0, 50.0],
+        load_nodes=[0.0, 1.0],
+        entries=[{
+            "key": fallback_atlas_key(20.0, 0.0),
+            "temperature_c": 20.0,
+            "load_fraction": 0.0,
+            "snapshot": snapshot,
+            "bundle": bundle,
+        }],
+        rejected_nodes=[
+            {"key": fallback_atlas_key(20.0, 1.0), "temperature_c": 20.0, "load_fraction": 1.0},
+            {"key": fallback_atlas_key(50.0, 0.0), "temperature_c": 50.0, "load_fraction": 0.0},
+            {"key": fallback_atlas_key(50.0, 1.0), "temperature_c": 50.0, "load_fraction": 1.0},
+        ],
+        metadata={},
+    )
+    corrupted = copy.deepcopy(atlas)
+    corrupted["metadata"]["tampered"] = True
+    assert not verify_fallback_atlas(corrupted)["passed"]

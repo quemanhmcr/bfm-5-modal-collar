@@ -437,3 +437,181 @@ def deployment_decision(
         "reason": reason,
         "decision_latency_s": elapsed / 1e9,
     }
+
+
+def fallback_atlas_key(temperature_c: float, load_fraction: float) -> str:
+    return f"T{float(temperature_c):09.4f}_L{float(load_fraction):07.4f}"
+
+
+def _snapshot_without_hash(snapshot: Mapping[str, object]) -> dict[str, object]:
+    return {str(k): v for k, v in snapshot.items() if k != "snapshot_sha256"}
+
+
+def seal_fallback_atlas(
+    *,
+    temperature_nodes_c: Sequence[float],
+    load_nodes: Sequence[float],
+    entries: Sequence[Mapping[str, object]],
+    rejected_nodes: Sequence[Mapping[str, object]],
+    metadata: Mapping[str, object],
+) -> dict[str, object]:
+    temperatures = [float(v) for v in temperature_nodes_c]
+    loads = [float(v) for v in load_nodes]
+    if len(temperatures) < 2 or len(loads) < 2:
+        raise ValueError("Fallback atlas needs at least two nodes per axis")
+    if any(b <= a for a, b in zip(temperatures, temperatures[1:])):
+        raise ValueError("Temperature nodes must be strictly increasing")
+    if any(b <= a for a, b in zip(loads, loads[1:])):
+        raise ValueError("Load nodes must be strictly increasing")
+    copied_entries = [dict(entry) for entry in entries]
+    copied_rejected = [dict(entry) for entry in rejected_nodes]
+    body = {
+        "schema": "bfm5_tcz1h_fallback_certificate_atlas_v1",
+        "temperature_nodes_c": temperatures,
+        "load_nodes": loads,
+        "entries": copied_entries,
+        "rejected_nodes": copied_rejected,
+        "metadata": dict(metadata),
+    }
+    return {**body, "atlas_sha256": canonical_sha256(body)}
+
+
+def verify_fallback_atlas(atlas: Mapping[str, object]) -> dict[str, object]:
+    errors: list[str] = []
+    if atlas.get("schema") != "bfm5_tcz1h_fallback_certificate_atlas_v1":
+        errors.append("schema")
+    body = {str(k): v for k, v in atlas.items() if k != "atlas_sha256"}
+    if str(atlas.get("atlas_sha256", "")) != canonical_sha256(body):
+        errors.append("atlas_hash")
+    temperatures = [float(v) for v in atlas.get("temperature_nodes_c", [])]
+    loads = [float(v) for v in atlas.get("load_nodes", [])]
+    if len(temperatures) < 2 or any(b <= a for a, b in zip(temperatures, temperatures[1:])):
+        errors.append("temperature_grid")
+    if len(loads) < 2 or any(b <= a for a, b in zip(loads, loads[1:])):
+        errors.append("load_grid")
+    valid_keys: set[str] = set()
+    for entry in atlas.get("entries", []):
+        if not isinstance(entry, Mapping):
+            errors.append("entry_type")
+            continue
+        key = str(entry.get("key", ""))
+        if key in valid_keys:
+            errors.append("duplicate_key")
+        valid_keys.add(key)
+        temperature = float(entry.get("temperature_c", np.nan))
+        load = float(entry.get("load_fraction", np.nan))
+        if key != fallback_atlas_key(temperature, load):
+            errors.append(f"entry_key:{key}")
+        if temperature not in temperatures or load not in loads:
+            errors.append(f"entry_grid:{key}")
+        snapshot = entry.get("snapshot")
+        bundle = entry.get("bundle")
+        if not isinstance(snapshot, Mapping) or not isinstance(bundle, Mapping):
+            errors.append(f"entry_payload:{key}")
+            continue
+        expected_snapshot = canonical_sha256(_snapshot_without_hash(snapshot))
+        if str(snapshot.get("snapshot_sha256", "")) != expected_snapshot:
+            errors.append(f"snapshot_hash:{key}")
+        verification = verify_bundle(bundle, expected_snapshot)
+        if not verification["passed"]:
+            errors.extend(f"bundle:{key}:{error}" for error in verification["errors"])
+        if str(bundle.get("level", "")) != "fallback_only":
+            errors.append(f"bundle_level:{key}")
+    rejected_keys = {
+        str(row.get("key", ""))
+        for row in atlas.get("rejected_nodes", [])
+        if isinstance(row, Mapping)
+    }
+    if valid_keys & rejected_keys:
+        errors.append("accepted_rejected_overlap")
+    expected_keys = {
+        fallback_atlas_key(temperature, load)
+        for temperature in temperatures
+        for load in loads
+    }
+    if valid_keys | rejected_keys != expected_keys:
+        errors.append("grid_coverage")
+    return {
+        "passed": not errors,
+        "errors": errors,
+        "certified_nodes": len(valid_keys),
+        "rejected_nodes": len(rejected_keys),
+        "total_nodes": len(expected_keys),
+    }
+
+
+def lookup_fallback_atlas(
+    atlas: Mapping[str, object],
+    *,
+    measured_temperature_c: float,
+    measured_load_fraction: float,
+    temperature_reserve_c: float,
+    load_reserve_fraction: float,
+) -> dict[str, object]:
+    temperatures = np.asarray(atlas["temperature_nodes_c"], dtype=float)
+    loads = np.asarray(atlas["load_nodes"], dtype=float)
+    query_temperature = float(measured_temperature_c) + float(temperature_reserve_c)
+    query_load = float(measured_load_fraction) + float(load_reserve_fraction)
+    if query_temperature > temperatures[-1] + 1e-12 or query_load > loads[-1] + 1e-12:
+        return {
+            "found": False,
+            "reason": "out_of_domain",
+            "query_temperature_c": query_temperature,
+            "query_load_fraction": query_load,
+        }
+    i = int(np.searchsorted(temperatures, query_temperature, side="left"))
+    j = int(np.searchsorted(loads, query_load, side="left"))
+    i = max(0, min(i, temperatures.size - 1))
+    j = max(0, min(j, loads.size - 1))
+    key = fallback_atlas_key(float(temperatures[i]), float(loads[j]))
+    entry = next(
+        (entry for entry in atlas.get("entries", []) if str(entry.get("key", "")) == key),
+        None,
+    )
+    if entry is None:
+        return {
+            "found": False,
+            "reason": "node_not_certified",
+            "key": key,
+            "query_temperature_c": query_temperature,
+            "query_load_fraction": query_load,
+            "node_temperature_c": float(temperatures[i]),
+            "node_load_fraction": float(loads[j]),
+        }
+    return {
+        "found": True,
+        "reason": "certified_node",
+        "key": key,
+        "query_temperature_c": query_temperature,
+        "query_load_fraction": query_load,
+        "node_temperature_c": float(temperatures[i]),
+        "node_load_fraction": float(loads[j]),
+        "entry": entry,
+    }
+
+
+def arm_fallback_from_atlas(
+    atlas: Mapping[str, object],
+    *,
+    measured_temperature_c: float,
+    measured_load_fraction: float,
+    temperature_reserve_c: float,
+    load_reserve_fraction: float,
+    lease_s: float,
+    now_ns: int | None = None,
+) -> dict[str, object]:
+    lookup = lookup_fallback_atlas(
+        atlas,
+        measured_temperature_c=measured_temperature_c,
+        measured_load_fraction=measured_load_fraction,
+        temperature_reserve_c=temperature_reserve_c,
+        load_reserve_fraction=load_reserve_fraction,
+    )
+    if not lookup["found"]:
+        return {**lookup, "armed": None}
+    entry = lookup["entry"]
+    snapshot_hash = str(entry["snapshot"]["snapshot_sha256"])
+    armed = arm_bundle(
+        entry["bundle"], snapshot_hash, lease_s=lease_s, now_ns=now_ns
+    )
+    return {**lookup, "armed": armed, "snapshot_sha256": snapshot_hash}
