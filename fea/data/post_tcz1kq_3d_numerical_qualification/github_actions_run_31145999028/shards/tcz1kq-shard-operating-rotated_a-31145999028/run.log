@@ -1,0 +1,12 @@
+CASE qualification_operating_rotated_a_baseline: ne=74641 ndof=90601 newton=9 residual=8.001e-09 Wprime=1.869479e-01
+CASE qualification_operating_rotated_a_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.470e-10 Wprime=1.874487e-01
+CASE qualification_operating_rotated_a_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.029e-10 Wprime=1.864654e-01
+CASE qualification_operating_rotated_a_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.138e-09 Wprime=1.882443e-01
+CASE qualification_operating_rotated_a_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.428e-09 Wprime=1.856987e-01
+CASE qualification_operating_rotated_a_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=7.395e-11 Wprime=1.871360e-01
+CASE qualification_operating_rotated_a_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=6.136e-11 Wprime=1.867667e-01
+CASE qualification_operating_rotated_a_current_1_minus: ne=74641 ndof=90601 newton=2 residual=7.115e-10 Wprime=1.883368e-01
+CASE qualification_operating_rotated_a_current_1_plus: ne=74641 ndof=90601 newton=2 residual=7.797e-10 Wprime=1.855718e-01
+CASE qualification_operating_rotated_a_current_2_minus: ne=74641 ndof=90601 newton=2 residual=5.751e-10 Wprime=1.852406e-01
+CASE qualification_operating_rotated_a_current_2_plus: ne=74641 ndof=90601 newton=2 residual=2.244e-09 Wprime=1.886679e-01
+BFM5_TCZ1KQ_SHARD={"case": "rotated_a", "kind": "operating", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 886.801354828}

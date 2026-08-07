@@ -1,0 +1,12 @@
+CASE qualification_operating_high_skew_baseline: ne=74641 ndof=90601 newton=10 residual=2.240e-09 Wprime=2.340316e-01
+CASE qualification_operating_high_skew_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=3.328e-13 Wprime=2.354011e-01
+CASE qualification_operating_high_skew_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=6 residual=1.535e-08 Wprime=2.327117e-01
+CASE qualification_operating_high_skew_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.295e-12 Wprime=2.340655e-01
+CASE qualification_operating_high_skew_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=7.384e-13 Wprime=2.339990e-01
+CASE qualification_operating_high_skew_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.624e-09 Wprime=2.350207e-01
+CASE qualification_operating_high_skew_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.532e-09 Wprime=2.330787e-01
+CASE qualification_operating_high_skew_current_1_minus: ne=74641 ndof=90601 newton=2 residual=1.931e-09 Wprime=2.317479e-01
+CASE qualification_operating_high_skew_current_1_plus: ne=74641 ndof=90601 newton=2 residual=1.950e-09 Wprime=2.363278e-01
+CASE qualification_operating_high_skew_current_2_minus: ne=74641 ndof=90601 newton=2 residual=2.555e-09 Wprime=2.331419e-01
+CASE qualification_operating_high_skew_current_2_plus: ne=74641 ndof=90601 newton=2 residual=2.373e-09 Wprime=2.349344e-01
+BFM5_TCZ1KQ_SHARD={"case": "high_skew", "kind": "operating", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 1111.528982033}

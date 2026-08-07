@@ -1,0 +1,82 @@
+schema: bfm5_tcz1kq_partitioned_decision_v1
+stage: TCZ-1KQ
+status: actions_evidence_frozen_partitioned_decision
+source:
+  git_sha: 814d0587a658fc328eb44a55667d244bec81340c
+  github_actions_run_id: 31145999028
+  qualification_sha256: eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f
+  parent_campaign_sha256: f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5
+  summary_sha256: 87f8d058bbeb603946c89a953526c477fb0bcfd2023ef9aa909780ea9c421f19
+  artifact_manifest_sha256: 57520d9ee9b6e94a1543d5e25e4e31921585d9e6fb05a5383e435fc1812a8599
+  canonical_artifact_tree_sha256: cae5cad39ff22ecf55f9f5013560800b0fc03ba36ab7b66077a88027fd84ba1e
+partitioned_decision:
+  frozen_affine_depth_law: false
+  numerical_qualification: true
+  qualified_nonlinear_holdout: false
+  qualified_nonlinear_intrinsic_topology: true
+  qualified_operating_strong_dark: true
+  qualified_uncertainty_holdout: true
+  saturation_was_materially_probed: false
+numerical_metrics:
+  case_count: 164
+  derivative_mesh_spread: 0.03170728312255331
+  derivative_step_spread: 0.001089651347655058
+  fine_grid_nonlinear_topology:
+    lorentz_signature:
+    - 1
+    - 2
+    - 0
+    maximum_whitened_tight_frame_defect: 0.014683323060049805
+    pullback_eigenvalues:
+    - -0.2544762823536277
+    - -0.23788859709345572
+    - 0.48988019429980845
+    route_rank_defects:
+    - 2.4455032164522966e-05
+    - 0.00012631139162929238
+    - 0.0034491164463598604
+    sum_sensitivity_eigenvalues:
+    - 0.00023016751492584153
+    - 0.0002573527957374961
+    sym2_condition: 1.4644014154787637
+    sym2_rank: 3
+    sym2_singular_values:
+    - 0.00020077061257086116
+    - 0.00014320582600269233
+    - 0.00013710080477163583
+    whitened_tight_frame_defects:
+    - 0.01368355787431821
+    - 0.014683323060049805
+    - 0.004618382102263191
+    whitening_valid: true
+  max_elements: 96112
+  max_energy_derivative_residual: 4.877814897322633e-06
+  max_gauge_fraction: 1.4450450926383389e-10
+  max_power_pairing_residual: 2.733095697855166e-16
+  max_reciprocity_residual: 2.436191289341031e-06
+  max_solution_ndof: 117240
+  max_stationarity_residual: 3.4876625901050685e-08
+  maximum_differential_inductance_condition: 1.048820026789005
+  maximum_saturation_fraction_above_1p62T: 0.0
+  minimum_differential_inductance_eigenvalue_H: 7.784930903849774e-07
+  minimum_directional_differential_to_secant_ratio: 0.9515020449125661
+  remote_boundary_spread: 0.04226724508225152
+  total_nonlinear_solve_s: 13194.98940724
+topology:
+  lorentz_signature: true
+  route_locality: true
+  route_rank: true
+  sym2_condition: true
+  sym2_rank: true
+  whitened_tight_frame: true
+operating_pass_fraction: 1.0
+uncertainty_pass_fraction: 1.0
+maximum_depth_law_relative_error: 0.10965846486306635
+next_gate:
+  name: TCZ-1L saturation-targeted critical-surface holdout
+  requirements:
+  - freeze_calibration_material_and_numerical_grid
+  - predeclare_current_rays_and_scale_ladder
+  - locate_saturation_dark_and_rank_event_order_without_refit
+  - requalify_mesh_boundary_at_a_saturated_sentinel
+  - preserve_depth_law_rejection_as_separate_hypothesis

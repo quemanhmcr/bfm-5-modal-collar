@@ -1,0 +1,15 @@
+CASE qualification_mesh_fine_baseline: ne=74641 ndof=90601 newton=11 residual=8.910e-14 Wprime=1.024594e-01
+CASE qualification_mesh_fine_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.233e-09 Wprime=1.030589e-01
+CASE qualification_mesh_fine_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.062e-09 Wprime=1.018819e-01
+CASE qualification_mesh_fine_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=4 residual=8.836e-09 Wprime=1.024741e-01
+CASE qualification_mesh_fine_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.911e-08 Wprime=1.024453e-01
+CASE qualification_mesh_fine_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.402e-10 Wprime=1.028884e-01
+CASE qualification_mesh_fine_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.204e-10 Wprime=1.020463e-01
+CASE qualification_mesh_fine_step_replay: ne=74641 ndof=90601 newton=11 residual=8.894e-14 Wprime=1.024594e-01
+CASE qualification_mesh_fine_h2_gap_1_minus_0.070000mm: ne=74641 ndof=90601 newton=4 residual=5.300e-09 Wprime=1.036816e-01
+CASE qualification_mesh_fine_h2_gap_1_plus_0.070000mm: ne=74641 ndof=90601 newton=4 residual=5.969e-09 Wprime=1.013252e-01
+CASE qualification_mesh_fine_h2_gap_2_minus_0.070000mm: ne=74641 ndof=90601 newton=2 residual=1.575e-12 Wprime=1.024894e-01
+CASE qualification_mesh_fine_h2_gap_2_plus_0.070000mm: ne=74641 ndof=90601 newton=2 residual=1.173e-12 Wprime=1.024316e-01
+CASE qualification_mesh_fine_h2_gap_3_minus_0.070000mm: ne=74641 ndof=90601 newton=2 residual=2.467e-09 Wprime=1.033340e-01
+CASE qualification_mesh_fine_h2_gap_3_plus_0.070000mm: ne=74641 ndof=90601 newton=2 residual=1.787e-09 Wprime=1.016480e-01
+BFM5_TCZ1KQ_SHARD={"case": "mesh_fine", "kind": "anchor", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 1466.471592379}

@@ -1,0 +1,5 @@
+CASE qualification_depth_0.75_port_1_plus: ne=66072 ndof=80607 newton=3 residual=1.086e-13 Wprime=1.363201e-04
+CASE qualification_depth_0.75_port_1_minus: ne=66072 ndof=80607 newton=3 residual=1.088e-13 Wprime=1.363201e-04
+CASE qualification_depth_0.75_port_2_plus: ne=66072 ndof=80607 newton=3 residual=1.379e-10 Wprime=1.367674e-04
+CASE qualification_depth_0.75_port_2_minus: ne=66072 ndof=80607 newton=3 residual=1.379e-10 Wprime=1.367674e-04
+BFM5_TCZ1KQ_SHARD={"case": "0.75", "kind": "depth", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 308.87669991}

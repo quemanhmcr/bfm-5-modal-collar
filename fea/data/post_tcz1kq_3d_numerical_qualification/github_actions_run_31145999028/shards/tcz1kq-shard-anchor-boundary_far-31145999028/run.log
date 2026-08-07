@@ -1,0 +1,8 @@
+CASE qualification_boundary_far_baseline: ne=96112 ndof=117240 newton=10 residual=4.668e-09 Wprime=9.920907e-02
+CASE qualification_boundary_far_gap_1_minus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=1.652e-09 Wprime=9.978512e-02
+CASE qualification_boundary_far_gap_1_plus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=1.336e-09 Wprime=9.865413e-02
+CASE qualification_boundary_far_gap_2_minus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=1.258e-13 Wprime=9.922602e-02
+CASE qualification_boundary_far_gap_2_plus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=1.140e-13 Wprime=9.919273e-02
+CASE qualification_boundary_far_gap_3_minus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=1.308e-10 Wprime=9.961950e-02
+CASE qualification_boundary_far_gap_3_plus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=1.159e-10 Wprime=9.881369e-02
+BFM5_TCZ1KQ_SHARD={"case": "boundary_far", "kind": "anchor", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 856.620148754}

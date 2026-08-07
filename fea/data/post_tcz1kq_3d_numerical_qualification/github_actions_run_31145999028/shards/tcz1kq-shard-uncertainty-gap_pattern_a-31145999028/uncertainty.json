@@ -1,0 +1,747 @@
+{
+  "case": "gap_pattern_a",
+  "kind": "uncertainty",
+  "report": {
+    "Kq_Wb_per_m": [
+      [
+        -0.1038266550769059,
+        -0.008729475594976697,
+        -0.04652916721214859
+      ],
+      [
+        4.4319669363040195e-05,
+        0.015974544008036357,
+        -0.08325502968201684
+      ]
+    ],
+    "baseline": {
+      "b_knee_scale": 1.0,
+      "boundary_scale": 1.55,
+      "calibrated_current_A": [
+        700.0,
+        262.5
+      ],
+      "calibrated_flux_linkage_Wb_turn": [
+        0.0005694650355588063,
+        0.00022305694583417193
+      ],
+      "calibrated_source_work_J": 0.45717797317263453,
+      "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+      "core_B_p16_T": 1.206602750800056,
+      "core_saturation_volume_fraction": {
+        "above_1p46T": 0.013659143262091243,
+        "above_1p62T": 0.0,
+        "above_1p87T": 0.0,
+        "above_2p08T": 0.0
+      },
+      "depth_m": 0.022838127702405,
+      "elements": 74641,
+      "gap_delta_mm": [
+        0.02625,
+        -0.0175,
+        0.00875
+      ],
+      "gap_energy_J": [
+        0.0616465381236216,
+        0.0015587490718313296,
+        0.044836574043514495
+      ],
+      "gap_energy_fraction_of_coenergy": 0.4640726357363293,
+      "gauge_energy_J": 2.3103379990182144e-11,
+      "gauge_fraction": 1.0297203366033434e-10,
+      "h_scale": 1.0,
+      "label": "qualification_uncertainty_gap_pattern_a_baseline",
+      "linear_initializer": {
+        "iterations": 8
+      },
+      "magnetic_coenergy_J": 0.23281239383472985,
+      "magnetic_energy_J": 0.22436557933790474,
+      "mesh_build_s": 4.688237745000009,
+      "mesh_scale": 1.1,
+      "newton": {
+        "converged": true,
+        "iterations": 10,
+        "records": [
+          {
+            "alpha": 0.5,
+            "cg_iterations": 5,
+            "energy_after": -0.08951356321945836,
+            "energy_before": 0.2573226514252808,
+            "iteration": 0,
+            "relative_residual": 18.64614929121053
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 4,
+            "energy_after": -0.2219651001266254,
+            "energy_before": -0.08951356321945836,
+            "iteration": 1,
+            "relative_residual": 9.42087920788225
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 4,
+            "energy_after": -0.22881438287255537,
+            "energy_before": -0.2219651001266254,
+            "iteration": 2,
+            "relative_residual": 1.0152562213324625
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 4,
+            "energy_after": -0.23192350266605014,
+            "energy_before": -0.22881438287255537,
+            "iteration": 3,
+            "relative_residual": 0.4138209144384832
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 4,
+            "energy_after": -0.23268864815542642,
+            "energy_before": -0.23192350266605014,
+            "iteration": 4,
+            "relative_residual": 0.1449273295707847
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 5,
+            "energy_after": -0.23279936668116089,
+            "energy_before": -0.23268864815542642,
+            "iteration": 5,
+            "relative_residual": 0.03668297181379369
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 5,
+            "energy_after": -0.2328118660316756,
+            "energy_before": -0.23279936668116089,
+            "iteration": 6,
+            "relative_residual": 0.008335360915170132
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 7,
+            "energy_after": -0.23281238671705778,
+            "energy_before": -0.2328118660316756,
+            "iteration": 7,
+            "relative_residual": 0.0013872476873042624
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 8,
+            "energy_after": -0.23281239380729338,
+            "energy_before": -0.23281238671705778,
+            "iteration": 8,
+            "relative_residual": 0.00011206936366227963
+          },
+          {
+            "alpha": 1.0,
+            "cg_iterations": 10,
+            "energy_after": -0.23281239381163155,
+            "energy_before": -0.23281239380729338,
+            "iteration": 9,
+            "relative_residual": 2.3766060956756524e-06
+          }
+        ],
+        "relative_stationarity_residual": 2.2857928594956462e-09
+      },
+      "power_pairing_residual": 1.214213161802883e-16,
+      "raw_current_A": [
+        686.8589829615952,
+        267.5330947200434
+      ],
+      "raw_flux_linkage_Wb_turn": [
+        0.0005803600492792576,
+        0.0002188606237086815
+      ],
+      "relative_stationarity_residual": 2.2857928594956462e-09,
+      "route_source_gain": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "solution_ndof": 90601,
+      "solve_s": 243.60153163899997,
+      "source_ndof": 181202,
+      "source_work_J": 0.4571779731726346
+    },
+    "coenergy_gradient_N": [
+      -37.38116128103715,
+      -0.9676799383815222,
+      -27.486410421566152
+    ],
+    "current_A": [
+      700.0,
+      262.5
+    ],
+    "dark": {
+      "Kq_singular_values": [
+        0.12181540375008833,
+        0.07327166469469915
+      ],
+      "dark_direction": [
+        -0.16470064872533802,
+        0.968689671805078,
+        0.18577948231067712
+      ],
+      "port_leakage": 1.1839080765194633e-16,
+      "power_ratio": 0.002432911308338646,
+      "route_coefficients": [
+        -0.1038266550769059,
+        0.018199098722320322,
+        0.09536555430352836
+      ],
+      "route_locality_residual": 0.009845947636593244
+    },
+    "gap_cases": [
+      {
+        "b_knee_scale": 1.0,
+        "boundary_scale": 1.55,
+        "calibrated_current_A": [
+          700.0,
+          262.5
+        ],
+        "calibrated_flux_linkage_Wb_turn": [
+          0.0005731624829780672,
+          0.00022305534182053113
+        ],
+        "calibrated_source_work_J": 0.45976576531253643,
+        "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+        "core_B_p16_T": 1.2072328567841673,
+        "core_saturation_volume_fraction": {
+          "above_1p46T": 0.014013740128134573,
+          "above_1p62T": 0.0,
+          "above_1p87T": 0.0,
+          "above_2p08T": 0.0
+        },
+        "depth_m": 0.022838127702405,
+        "elements": 74641,
+        "gap_delta_mm": [
+          -0.008750000000000004,
+          -0.0175,
+          0.00875
+        ],
+        "gap_energy_J": [
+          0.06281185359608969,
+          0.001558744483659643,
+          0.04483657119325962
+        ],
+        "gap_energy_fraction_of_coenergy": 0.4664093518194426,
+        "gauge_energy_J": 2.341994274294413e-11,
+        "gauge_fraction": 1.0380200343402331e-10,
+        "h_scale": 1.0,
+        "label": "qualification_uncertainty_gap_pattern_a_gap_1_minus_0.035000mm",
+        "linear_initializer": {
+          "warm_start": true
+        },
+        "magnetic_coenergy_J": 0.2341444674018575,
+        "magnetic_energy_J": 0.22562129791067895,
+        "mesh_build_s": 4.688237745000009,
+        "mesh_scale": 1.1,
+        "newton": {
+          "converged": true,
+          "iterations": 2,
+          "records": [
+            {
+              "alpha": 1.0,
+              "cg_iterations": 6,
+              "energy_after": -0.23414446715060055,
+              "energy_before": -0.23412008576091264,
+              "iteration": 0,
+              "relative_residual": 0.04403715937352057
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 9,
+              "energy_after": -0.2341444673784456,
+              "energy_before": -0.23414446715060055,
+              "iteration": 1,
+              "relative_residual": 2.508316390976965e-05
+            }
+          ],
+          "relative_stationarity_residual": 3.2284166467101354e-08,
+          "roundoff_line_search_stop": true
+        },
+        "power_pairing_residual": 0.0,
+        "raw_current_A": [
+          686.8589829615952,
+          267.5330947200434
+        ],
+        "raw_flux_linkage_Wb_turn": [
+          0.0005841282560775202,
+          0.0002188589994268622
+        ],
+        "relative_stationarity_residual": 3.2284166467101354e-08,
+        "route_source_gain": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "solution_ndof": 90601,
+        "solve_s": 86.89819789900002,
+        "source_ndof": 181202,
+        "source_work_J": 0.45976576531253643
+      },
+      {
+        "b_knee_scale": 1.0,
+        "boundary_scale": 1.55,
+        "calibrated_current_A": [
+          700.0,
+          262.5
+        ],
+        "calibrated_flux_linkage_Wb_turn": [
+          0.0005658946171226837,
+          0.00022305844419738655
+        ],
+        "calibrated_source_work_J": 0.45467907358769255,
+        "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+        "core_B_p16_T": 1.2060115672913798,
+        "core_saturation_volume_fraction": {
+          "above_1p46T": 0.013371399144855889,
+          "above_1p62T": 0.0,
+          "above_1p87T": 0.0,
+          "above_2p08T": 0.0
+        },
+        "depth_m": 0.022838127702405,
+        "elements": 74641,
+        "gap_delta_mm": [
+          0.06125,
+          -0.0175,
+          0.00875
+        ],
+        "gap_energy_J": [
+          0.060522407558486695,
+          0.001558753377227139,
+          0.044836576717003265
+        ],
+        "gap_energy_fraction_of_coenergy": 0.46179225158275816,
+        "gauge_energy_J": 2.280194465280445e-11,
+        "gauge_fraction": 1.0218155094882509e-10,
+        "h_scale": 1.0,
+        "label": "qualification_uncertainty_gap_pattern_a_gap_1_plus_0.035000mm",
+        "linear_initializer": {
+          "warm_start": true
+        },
+        "magnetic_coenergy_J": 0.23152778611218489,
+        "magnetic_energy_J": 0.22315128747550778,
+        "mesh_build_s": 4.688237745000009,
+        "mesh_scale": 1.1,
+        "newton": {
+          "converged": true,
+          "iterations": 3,
+          "records": [
+            {
+              "alpha": 1.0,
+              "cg_iterations": 6,
+              "energy_after": -0.2315277859047394,
+              "energy_before": -0.23150429594592523,
+              "iteration": 0,
+              "relative_residual": 0.043403633351812125
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 9,
+              "energy_after": -0.23152778608938285,
+              "energy_before": -0.2315277859047394,
+              "iteration": 1,
+              "relative_residual": 2.3270827237813917e-05
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 13,
+              "energy_after": -0.2315277860893874,
+              "energy_before": -0.23152778608938285,
+              "iteration": 2,
+              "relative_residual": 2.7447532840027983e-08
+            }
+          ],
+          "relative_stationarity_residual": 1.295116940179808e-13
+        },
+        "power_pairing_residual": 2.441772866001564e-16,
+        "raw_current_A": [
+          686.8589829615952,
+          267.5330947200434
+        ],
+        "raw_flux_linkage_Wb_turn": [
+          0.0005767213024640879,
+          0.00021886214259284298
+        ],
+        "relative_stationarity_residual": 1.295116940179808e-13,
+        "route_source_gain": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "solution_ndof": 90601,
+        "solve_s": 76.85117492299997,
+        "source_ndof": 181202,
+        "source_work_J": 0.45467907358769266
+      },
+      {
+        "b_knee_scale": 1.0,
+        "boundary_scale": 1.55,
+        "calibrated_current_A": [
+          700.0,
+          262.5
+        ],
+        "calibrated_flux_linkage_Wb_turn": [
+          0.0005697763165403856,
+          0.00022248730784197606
+        ],
+        "calibrated_source_work_J": 0.45724633988678864,
+        "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+        "core_B_p16_T": 1.2066047444820056,
+        "core_saturation_volume_fraction": {
+          "above_1p46T": 0.013658309046676783,
+          "above_1p62T": 0.0,
+          "above_1p87T": 0.0,
+          "above_2p08T": 0.0
+        },
+        "depth_m": 0.022838127702405,
+        "elements": 74641,
+        "gap_delta_mm": [
+          0.02625,
+          -0.052500000000000005,
+          0.00875
+        ],
+        "gap_energy_J": [
+          0.061646533417176984,
+          0.0015895790842070175,
+          0.04483657698826549
+        ],
+        "gap_energy_fraction_of_coenergy": 0.46413626071280073,
+        "gauge_energy_J": 2.311176188164415e-11,
+        "gauge_fraction": 1.0299384834494943e-10,
+        "h_scale": 1.0,
+        "label": "qualification_uncertainty_gap_pattern_a_gap_2_minus_0.035000mm",
+        "linear_initializer": {
+          "warm_start": true
+        },
+        "magnetic_coenergy_J": 0.23284690001094951,
+        "magnetic_energy_J": 0.22439943987583919,
+        "mesh_build_s": 4.688237745000009,
+        "mesh_scale": 1.1,
+        "newton": {
+          "converged": true,
+          "iterations": 2,
+          "records": [
+            {
+              "alpha": 1.0,
+              "cg_iterations": 7,
+              "energy_after": -0.23284689998782374,
+              "energy_before": -0.23284624458890188,
+              "iteration": 0,
+              "relative_residual": 0.007098172319730318
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 12,
+              "energy_after": -0.232846899987844,
+              "energy_before": -0.23284689998782374,
+              "iteration": 1,
+              "relative_residual": 9.538081690122369e-08
+            }
+          ],
+          "relative_stationarity_residual": 2.7933842691042944e-12
+        },
+        "power_pairing_residual": 1.2140316146653473e-16,
+        "raw_current_A": [
+          686.8589829615952,
+          267.5330947200434
+        ],
+        "raw_flux_linkage_Wb_turn": [
+          0.0005806772951178735,
+          0.000218301678132012
+        ],
+        "relative_stationarity_residual": 2.7933842691042944e-12,
+        "route_source_gain": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "solution_ndof": 90601,
+        "solve_s": 52.99329583999997,
+        "source_ndof": 181202,
+        "source_work_J": 0.4572463398867887
+      },
+      {
+        "b_knee_scale": 1.0,
+        "boundary_scale": 1.55,
+        "calibrated_current_A": [
+          700.0,
+          262.5
+        ],
+        "calibrated_flux_linkage_Wb_turn": [
+          0.0005691652532487373,
+          0.0002236055259225386
+        ],
+        "calibrated_source_work_J": 0.45711212782878247,
+        "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+        "core_B_p16_T": 1.2066010500584268,
+        "core_saturation_volume_fraction": {
+          "above_1p46T": 0.01365997757941552,
+          "above_1p62T": 0.0,
+          "above_1p87T": 0.0,
+          "above_2p08T": 0.0
+        },
+        "depth_m": 0.022838127702405,
+        "elements": 74641,
+        "gap_delta_mm": [
+          0.02625,
+          0.0175,
+          0.00875
+        ],
+        "gap_energy_J": [
+          0.06164654266402171,
+          0.0015290991023680098,
+          0.044836571204700235
+        ],
+        "gap_energy_fraction_of_coenergy": 0.46401151997618767,
+        "gauge_energy_J": 2.309540603590798e-11,
+        "gauge_fraction": 1.0295145874329179e-10,
+        "h_scale": 1.0,
+        "label": "qualification_uncertainty_gap_pattern_a_gap_2_plus_0.035000mm",
+        "linear_initializer": {
+          "warm_start": true
+        },
+        "magnetic_coenergy_J": 0.2327791624152628,
+        "magnetic_energy_J": 0.22433296541351966,
+        "mesh_build_s": 4.688237745000009,
+        "mesh_scale": 1.1,
+        "newton": {
+          "converged": true,
+          "iterations": 2,
+          "records": [
+            {
+              "alpha": 1.0,
+              "cg_iterations": 7,
+              "energy_after": -0.23277916239215551,
+              "energy_before": -0.23277853210374103,
+              "iteration": 0,
+              "relative_residual": 0.006993174628949588
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 12,
+              "energy_after": -0.2327791623921721,
+              "energy_before": -0.23277916239215551,
+              "iteration": 1,
+              "relative_residual": 8.615320767238293e-08
+            }
+          ],
+          "relative_stationarity_residual": 9.007395148258989e-13
+        },
+        "power_pairing_residual": 0.0,
+        "raw_current_A": [
+          686.8589829615952,
+          267.5330947200434
+        ],
+        "raw_flux_linkage_Wb_turn": [
+          0.000580054522453264,
+          0.00021939890664996768
+        ],
+        "relative_stationarity_residual": 9.007395148258989e-13,
+        "route_source_gain": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "solution_ndof": 90601,
+        "solve_s": 52.857463634000055,
+        "source_ndof": 181202,
+        "source_work_J": 0.45711212782878247
+      },
+      {
+        "b_knee_scale": 1.0,
+        "boundary_scale": 1.55,
+        "calibrated_current_A": [
+          700.0,
+          262.5
+        ],
+        "calibrated_flux_linkage_Wb_turn": [
+          0.000571123415416444,
+          0.0002260243609808603
+        ],
+        "calibrated_source_work_J": 0.45911778554898663,
+        "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+        "core_B_p16_T": 1.2068000658742162,
+        "core_saturation_volume_fraction": {
+          "above_1p46T": 0.013658311123630798,
+          "above_1p62T": 0.0,
+          "above_1p87T": 0.0,
+          "above_2p08T": 0.0
+        },
+        "depth_m": 0.022838127702405,
+        "elements": 74641,
+        "gap_delta_mm": [
+          0.02625,
+          -0.0175,
+          -0.026250000000000002
+        ],
+        "gap_energy_J": [
+          0.061646535208106756,
+          0.0015587520390822277,
+          0.04571275506230581
+        ],
+        "gap_energy_fraction_of_coenergy": 0.46587533063745235,
+        "gauge_energy_J": 2.3332963066245586e-11,
+        "gauge_fraction": 1.0355223666536103e-10,
+        "h_scale": 1.0,
+        "label": "qualification_uncertainty_gap_pattern_a_gap_3_minus_0.035000mm",
+        "linear_initializer": {
+          "warm_start": true
+        },
+        "magnetic_coenergy_J": 0.23379225115968982,
+        "magnetic_energy_J": 0.22532553438929676,
+        "mesh_build_s": 4.688237745000009,
+        "mesh_scale": 1.1,
+        "newton": {
+          "converged": true,
+          "iterations": 2,
+          "records": [
+            {
+              "alpha": 1.0,
+              "cg_iterations": 6,
+              "energy_after": -0.23379225109877885,
+              "energy_before": -0.2337739231856891,
+              "iteration": 0,
+              "relative_residual": 0.038393394609237734
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 9,
+              "energy_after": -0.23379225113635965,
+              "energy_before": -0.23379225109877885,
+              "iteration": 1,
+              "relative_residual": 3.5263190743637307e-06
+            }
+          ],
+          "relative_stationarity_residual": 1.5660475819598607e-09
+        },
+        "power_pairing_residual": 1.2090830061153216e-16,
+        "raw_current_A": [
+          686.8589829615952,
+          267.5330947200434
+        ],
+        "raw_flux_linkage_Wb_turn": [
+          0.0005820501256983958,
+          0.00022177229415749268
+        ],
+        "relative_stationarity_residual": 1.5660475819598607e-09,
+        "route_source_gain": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "solution_ndof": 90601,
+        "solve_s": 52.27790565399994,
+        "source_ndof": 181202,
+        "source_work_J": 0.4591177855489866
+      },
+      {
+        "b_knee_scale": 1.0,
+        "boundary_scale": 1.55,
+        "calibrated_current_A": [
+          700.0,
+          262.5
+        ],
+        "calibrated_flux_linkage_Wb_turn": [
+          0.0005678663737115936,
+          0.0002201965089031191
+        ],
+        "calibrated_source_work_J": 0.45530804518518425,
+        "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+        "core_B_p16_T": 1.2064159872302307,
+        "core_saturation_volume_fraction": {
+          "above_1p46T": 0.013659975501954604,
+          "above_1p62T": 0.0,
+          "above_1p87T": 0.0,
+          "above_2p08T": 0.0
+        },
+        "depth_m": 0.022838127702405,
+        "elements": 74641,
+        "gap_delta_mm": [
+          0.02625,
+          -0.0175,
+          0.043750000000000004
+        ],
+        "gap_energy_J": [
+          0.06164654089912588,
+          0.001558746241961061,
+          0.04399323197157569
+        ],
+        "gap_energy_fraction_of_coenergy": 0.4623252260945184,
+        "gauge_energy_J": 2.2885315896922838e-11,
+        "gauge_fraction": 1.0242271750822889e-10,
+        "h_scale": 1.0,
+        "label": "qualification_uncertainty_gap_pattern_a_gap_3_plus_0.035000mm",
+        "linear_initializer": {
+          "warm_start": true
+        },
+        "magnetic_coenergy_J": 0.2318682024301802,
+        "magnetic_energy_J": 0.22343984275500406,
+        "mesh_build_s": 4.688237745000009,
+        "mesh_scale": 1.1,
+        "newton": {
+          "converged": true,
+          "iterations": 2,
+          "records": [
+            {
+              "alpha": 1.0,
+              "cg_iterations": 7,
+              "energy_after": -0.2318682023749603,
+              "energy_before": -0.23185056477079943,
+              "iteration": 0,
+              "relative_residual": 0.03782375879368769
+            },
+            {
+              "alpha": 1.0,
+              "cg_iterations": 9,
+              "energy_after": -0.23186820240730008,
+              "energy_before": -0.2318682023749603,
+              "iteration": 1,
+              "relative_residual": 3.2636999310341905e-06
+            }
+          ],
+          "relative_stationarity_residual": 1.4720166397086235e-09
+        },
+        "power_pairing_residual": 0.0,
+        "raw_current_A": [
+          686.8589829615952,
+          267.5330947200434
+        ],
+        "raw_flux_linkage_Wb_turn": [
+          0.0005787308322573159,
+          0.00021605392182560618
+        ],
+        "relative_stationarity_residual": 1.4720166397086235e-09,
+        "route_source_gain": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "solution_ndof": 90601,
+        "solve_s": 51.926094170000056,
+        "source_ndof": 181202,
+        "source_work_J": 0.45530804518518425
+      }
+    ],
+    "gap_step_mm": 0.035,
+    "point_id": "high_skew",
+    "scenario": {
+      "b_knee_scale": 1.0,
+      "gap_delta_mm": [
+        0.02625,
+        -0.0175,
+        0.00875
+      ],
+      "h_scale": 1.0,
+      "route_source_gain": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    "scenario_id": "gap_pattern_a"
+  }
+}

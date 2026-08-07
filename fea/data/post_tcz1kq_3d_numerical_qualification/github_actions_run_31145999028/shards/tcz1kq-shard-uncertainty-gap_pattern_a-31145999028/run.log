@@ -1,0 +1,8 @@
+CASE qualification_uncertainty_gap_pattern_a_baseline: ne=74641 ndof=90601 newton=10 residual=2.286e-09 Wprime=2.328124e-01
+CASE qualification_uncertainty_gap_pattern_a_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.228e-08 Wprime=2.341445e-01
+CASE qualification_uncertainty_gap_pattern_a_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=1.295e-13 Wprime=2.315278e-01
+CASE qualification_uncertainty_gap_pattern_a_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.793e-12 Wprime=2.328469e-01
+CASE qualification_uncertainty_gap_pattern_a_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=9.007e-13 Wprime=2.327792e-01
+CASE qualification_uncertainty_gap_pattern_a_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.566e-09 Wprime=2.337923e-01
+CASE qualification_uncertainty_gap_pattern_a_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.472e-09 Wprime=2.318682e-01
+BFM5_TCZ1KQ_SHARD={"case": "gap_pattern_a", "kind": "uncertainty", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 696.116013659}

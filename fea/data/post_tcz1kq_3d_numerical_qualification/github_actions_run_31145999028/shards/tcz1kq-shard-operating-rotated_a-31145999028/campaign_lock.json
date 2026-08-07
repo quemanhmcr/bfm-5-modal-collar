@@ -1,0 +1,131 @@
+{
+  "case": "rotated_a",
+  "kind": "operating",
+  "parent_campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+  "parent_config_sha256": "2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082",
+  "parent_runner_sha256": "74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7",
+  "qualification_config": {
+    "acceptance_gates": {
+      "frozen_depth_law": {
+        "maximum_mean_inductance_relative_error": 0.1
+      },
+      "nonlinear_topology": {
+        "maximum_route_locality_residual": 0.1,
+        "maximum_route_rank_defect": 0.05,
+        "maximum_sym2_condition": 30.0,
+        "maximum_whitened_tight_frame_defect": 0.1,
+        "required_lorentz_signature": [
+          1,
+          2,
+          0
+        ],
+        "required_sym2_rank": 3
+      },
+      "numerical": {
+        "maximum_derivative_mesh_spread": 0.05,
+        "maximum_derivative_step_spread": 0.05,
+        "maximum_differential_inductance_condition": 30.0,
+        "maximum_energy_derivative_residual": 0.001,
+        "maximum_gauge_fraction": 1e-06,
+        "maximum_power_pairing_residual": 1e-12,
+        "maximum_reciprocity_residual": 0.001,
+        "maximum_remote_boundary_spread": 0.05,
+        "maximum_stationarity_residual": 1e-07,
+        "positive_differential_inductance_required": true
+      },
+      "saturation_probe": {
+        "maximum_directional_differential_to_secant_ratio": 0.97,
+        "minimum_any_core_volume_fraction_above_1p62T": 0.0001
+      },
+      "strong_dark": {
+        "maximum_port_leakage": 0.001,
+        "maximum_power_ratio": 0.1,
+        "required_operating_pass_fraction": 1.0,
+        "required_uncertainty_pass_fraction": 0.95
+      }
+    },
+    "claim_scope": {
+      "allowed": [
+        "finer_grid_qualification_of_the_frozen_TCZ1K_model",
+        "complete_fine_grid_replay_of_the_frozen_finite_holdout",
+        "independent_fine_grid_nonlinear_Sym2_topology"
+      ],
+      "forbidden": [
+        "changing_the_TCZ1K_calibration_BH_operating_uncertainty_or_gates",
+        "refitting_the_affine_depth_law",
+        "hysteresis_eddy_current_hardware_or_HIL_validity"
+      ]
+    },
+    "decision_rules": {
+      "frozen_depth_law_decision": "separate_hypothesis",
+      "numerical_qualification_accepted": "all_numerical_gates",
+      "qualified_nonlinear_holdout_accepted": [
+        "numerical_qualification_accepted",
+        "fine_grid_nonlinear_topology_accepted",
+        "fine_grid_operating_strong_dark_accepted",
+        "fine_grid_uncertainty_accepted",
+        "saturation_materially_probed"
+      ]
+    },
+    "frozen_parent": {
+      "negative_evidence_freeze_git_sha": "83443d0616094b5c3e4990fdb43b2d34730d632b",
+      "original_actions_run_id": 31143771001,
+      "original_campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+      "original_config_sha256": "2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082",
+      "original_runner_sha256": "74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7",
+      "preregistration_git_sha": "c236d0c061a8608cc577241ddc6672b57e754ef2",
+      "refit_forbidden": true
+    },
+    "qualification_grid": {
+      "boundary_far": {
+        "boundary_scale": 1.85,
+        "mesh_scale": 1.1,
+        "preflight_elements": 96277
+      },
+      "gap_step_primary_mm": 0.035,
+      "gap_step_validation_mm": 0.07,
+      "mesh_fine": {
+        "boundary_scale": 1.55,
+        "mesh_scale": 1.1,
+        "preflight_elements": 74680
+      },
+      "mesh_mid": {
+        "boundary_scale": 1.55,
+        "mesh_scale": 1.3,
+        "preflight_elements": 62372
+      },
+      "physical_depth_mm": 22.838127702404996,
+      "replay_grid": "mesh_fine"
+    },
+    "replay_scope": {
+      "current_derivative_step_A": 4.0,
+      "depth_multipliers": [
+        0.75,
+        1.5
+      ],
+      "low_field_depth_probe_A": 20.0,
+      "nonlinear_topology_point": "anchor",
+      "operating_ids": [
+        "low_skew",
+        "anchor",
+        "high_skew",
+        "rotated_a",
+        "rotated_b"
+      ],
+      "uncertainty_ids": [
+        "gap_pattern_a",
+        "gap_pattern_b",
+        "source_pattern",
+        "soft_material",
+        "hard_material",
+        "combined_corner"
+      ]
+    },
+    "schema": "bfm5_tcz1kq_nonlinear_3d_numerical_qualification_v1",
+    "stage": "TCZ-1KQ",
+    "status": "preregistered_before_fine_grid_replay"
+  },
+  "qualification_config_sha256": "802da9493c5220721e3fdb1b859537f4ee832afea17db71465aece82c035b551",
+  "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f",
+  "schema": "bfm5_tcz1kq_nonlinear_3d_numerical_qualification_v1"
+}

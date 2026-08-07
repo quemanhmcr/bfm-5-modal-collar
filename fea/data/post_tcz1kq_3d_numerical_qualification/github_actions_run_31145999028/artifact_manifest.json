@@ -1,0 +1,417 @@
+{
+  "evidence_files": [
+    {
+      "bytes": 4559,
+      "path": "campaign_lock.json",
+      "sha256": "09112a6581e276e25dcbcb90e5fe453d89811216488563dd91a7159ddebf0b94"
+    },
+    {
+      "bytes": 22423,
+      "path": "shards/tcz1kq-shard-anchor-boundary_far-31145999028/anchor.json",
+      "sha256": "89aad053da3cf97e4b16e26203e106595295ab2f3f4ecb2f84836dc47e7b13ed"
+    },
+    {
+      "bytes": 4699,
+      "path": "shards/tcz1kq-shard-anchor-boundary_far-31145999028/campaign_lock.json",
+      "sha256": "1a336204d0002636acab5336f3c9ddfe98cf9d143911f536c71e8e5b5e10340d"
+    },
+    {
+      "bytes": 1037,
+      "path": "shards/tcz1kq-shard-anchor-boundary_far-31145999028/run.log",
+      "sha256": "d33717b41a2f928a9deb64479cd1dd04c344cad9a920ddab0dae1c2dbc0e0b04"
+    },
+    {
+      "bytes": 22707,
+      "path": "shards/tcz1kq-shard-anchor-boundary_far-31145999028/shard_summary.json",
+      "sha256": "fe122af77d3072aa9c33bacd866083a7669a1227278bdde61754a47f362226fe"
+    },
+    {
+      "bytes": 46779,
+      "path": "shards/tcz1kq-shard-anchor-mesh_fine-31145999028/anchor.json",
+      "sha256": "c90caaf2bd7f5328e5be2cac1919865322e86a5065a58b5b3e1f72a3a4b9487d"
+    },
+    {
+      "bytes": 4696,
+      "path": "shards/tcz1kq-shard-anchor-mesh_fine-31145999028/campaign_lock.json",
+      "sha256": "84093df3e5b37cf447300edf76b2b3e0316c35b516976464781c658bbfb02655"
+    },
+    {
+      "bytes": 1859,
+      "path": "shards/tcz1kq-shard-anchor-mesh_fine-31145999028/run.log",
+      "sha256": "3ec9e5b8d8412583ed3d4d354719665e529e34e29c3f970e6d5ac417d48d1091"
+    },
+    {
+      "bytes": 47064,
+      "path": "shards/tcz1kq-shard-anchor-mesh_fine-31145999028/shard_summary.json",
+      "sha256": "767f632f32640d633c22fab4c7df38b79c0221d3e7087a824fb641f16c6ed5ba"
+    },
+    {
+      "bytes": 21937,
+      "path": "shards/tcz1kq-shard-anchor-mesh_mid-31145999028/anchor.json",
+      "sha256": "f296c87e0a8c22b8923015b925a788fb2308240ce062191da2441f034cac27b2"
+    },
+    {
+      "bytes": 4695,
+      "path": "shards/tcz1kq-shard-anchor-mesh_mid-31145999028/campaign_lock.json",
+      "sha256": "80ca74dfbadc11f9161801ca0372eedc5a54b4d408146fc7988f13266a282906"
+    },
+    {
+      "bytes": 1001,
+      "path": "shards/tcz1kq-shard-anchor-mesh_mid-31145999028/run.log",
+      "sha256": "3550dbe0e725ac80e5467817f8488497036be1d9d240ac021063d402ae83bb01"
+    },
+    {
+      "bytes": 22225,
+      "path": "shards/tcz1kq-shard-anchor-mesh_mid-31145999028/shard_summary.json",
+      "sha256": "041bf473841501f1dadb3a8a8448da92c31abe0d70511e5b30fe1baab71e757f"
+    },
+    {
+      "bytes": 4690,
+      "path": "shards/tcz1kq-shard-depth-0.75-31145999028/campaign_lock.json",
+      "sha256": "0022598a0e09a39d5d2354653f78eb5992653d5cb14e39a9a7da1e876820cfb2"
+    },
+    {
+      "bytes": 11825,
+      "path": "shards/tcz1kq-shard-depth-0.75-31145999028/depth.json",
+      "sha256": "1c8139f5f39e0f25b47b34ac2cd4fa5d0db8ff680a184909df2fa1f0fe314fb3"
+    },
+    {
+      "bytes": 614,
+      "path": "shards/tcz1kq-shard-depth-0.75-31145999028/run.log",
+      "sha256": "cc5f0a9fdbe876d67110f938051c4278d2910cc5347ab91978f210efa6bd7417"
+    },
+    {
+      "bytes": 12108,
+      "path": "shards/tcz1kq-shard-depth-0.75-31145999028/shard_summary.json",
+      "sha256": "8442a0d360840c5a83e543881f4080dd897efda81b958a79285f988d4239aa1e"
+    },
+    {
+      "bytes": 4689,
+      "path": "shards/tcz1kq-shard-depth-1.5-31145999028/campaign_lock.json",
+      "sha256": "0fd1a8e4527d9a3238568b5400c80177121e26a39ec7c77ad73db8bb9573e5a5"
+    },
+    {
+      "bytes": 11860,
+      "path": "shards/tcz1kq-shard-depth-1.5-31145999028/depth.json",
+      "sha256": "21552aa0fbf92df6e812249daecaf93d6da5e75543a2f7e1c84b846d717fd1fa"
+    },
+    {
+      "bytes": 614,
+      "path": "shards/tcz1kq-shard-depth-1.5-31145999028/run.log",
+      "sha256": "48e14deb962399c2b2d1185a947527d3bbfb83ea4a8d3c42658b6ea21ad3a8d2"
+    },
+    {
+      "bytes": 12144,
+      "path": "shards/tcz1kq-shard-depth-1.5-31145999028/shard_summary.json",
+      "sha256": "d2ac5d9ec138f75756843ae275da7e478d7a4efcd42985675e6a0a0b6026f7be"
+    },
+    {
+      "bytes": 4696,
+      "path": "shards/tcz1kq-shard-operating-anchor-31145999028/campaign_lock.json",
+      "sha256": "51a0542dbf791e194e0c22b191b38019e59050de070db6e5476897e0710f9254"
+    },
+    {
+      "bytes": 35917,
+      "path": "shards/tcz1kq-shard-operating-anchor-31145999028/operating.json",
+      "sha256": "5e881dabab8a514f139cd8a4c3a5e928c32f95f16d04a1044b9be3aafd2699ed"
+    },
+    {
+      "bytes": 1542,
+      "path": "shards/tcz1kq-shard-operating-anchor-31145999028/run.log",
+      "sha256": "4cb9a0d8c92e5f694399b897772b67038606253bc780ef52efd96bad320ec147"
+    },
+    {
+      "bytes": 36206,
+      "path": "shards/tcz1kq-shard-operating-anchor-31145999028/shard_summary.json",
+      "sha256": "d7ac4e292515e54b4b0a9265bf41e33d908fc43154379c2768fd2293c513d287"
+    },
+    {
+      "bytes": 4699,
+      "path": "shards/tcz1kq-shard-operating-high_skew-31145999028/campaign_lock.json",
+      "sha256": "037d5e53d8e6d1332cc8637ebda2325d171b1c905495916bdd1dc731e5af4d9b"
+    },
+    {
+      "bytes": 35730,
+      "path": "shards/tcz1kq-shard-operating-high_skew-31145999028/operating.json",
+      "sha256": "02048fe92c8dd63731757ee6e5c1771b9d9227b2f47605e0e55bfa290c272795"
+    },
+    {
+      "bytes": 1574,
+      "path": "shards/tcz1kq-shard-operating-high_skew-31145999028/run.log",
+      "sha256": "9ac64902c3f6b81d310dffab5a220b53240a3ac8e116bc46a2ff8062dc6c0f32"
+    },
+    {
+      "bytes": 36015,
+      "path": "shards/tcz1kq-shard-operating-high_skew-31145999028/shard_summary.json",
+      "sha256": "f3bbed033613fe0476d3ff8a8c97bf7a44e6834f45813206b232bf9715137fbc"
+    },
+    {
+      "bytes": 4698,
+      "path": "shards/tcz1kq-shard-operating-low_skew-31145999028/campaign_lock.json",
+      "sha256": "a8f035374e574cab1f2b41c0c6d57883daa800648d29b197eab9cad8fe1d5c28"
+    },
+    {
+      "bytes": 34363,
+      "path": "shards/tcz1kq-shard-operating-low_skew-31145999028/operating.json",
+      "sha256": "a26198a0c221bd32106d321db0f1632213c698ca1c454323c05237ad50297901"
+    },
+    {
+      "bytes": 1560,
+      "path": "shards/tcz1kq-shard-operating-low_skew-31145999028/run.log",
+      "sha256": "2cde31503f0e61e88f4fd0ff92b180fa53b8a52c34eda024d1453adf6698dd43"
+    },
+    {
+      "bytes": 34647,
+      "path": "shards/tcz1kq-shard-operating-low_skew-31145999028/shard_summary.json",
+      "sha256": "c7d98a890a96353a3d8fe70ec3021c4fd7642b56fe0d798b041dde1f37023860"
+    },
+    {
+      "bytes": 4699,
+      "path": "shards/tcz1kq-shard-operating-rotated_a-31145999028/campaign_lock.json",
+      "sha256": "8f1624e009e442e9816937f87540fba597951ee0f72dcc9d01955878fcb3f58a"
+    },
+    {
+      "bytes": 33963,
+      "path": "shards/tcz1kq-shard-operating-rotated_a-31145999028/operating.json",
+      "sha256": "a76aa7bbb0b4088eac64167d8201d41fcfca32f68418dd787a8fa19a6e664589"
+    },
+    {
+      "bytes": 1572,
+      "path": "shards/tcz1kq-shard-operating-rotated_a-31145999028/run.log",
+      "sha256": "de29b040355b7054cdfd3fd3368f359f64adf41e98bab74a73bd9344df823a4f"
+    },
+    {
+      "bytes": 34247,
+      "path": "shards/tcz1kq-shard-operating-rotated_a-31145999028/shard_summary.json",
+      "sha256": "b03855af788df2580fbb19fd0c097092128b3a9cb56843e7a7fac7e3a23bb7c7"
+    },
+    {
+      "bytes": 4699,
+      "path": "shards/tcz1kq-shard-operating-rotated_b-31145999028/campaign_lock.json",
+      "sha256": "f1a06301efb61078fef41372c45f21bebe9e57ab03371d5e2705934c382b4d56"
+    },
+    {
+      "bytes": 33919,
+      "path": "shards/tcz1kq-shard-operating-rotated_b-31145999028/operating.json",
+      "sha256": "0357a33e948068eca956b9c6fdd579de883f5aee5d4f50952202e68bfe32c3b8"
+    },
+    {
+      "bytes": 1576,
+      "path": "shards/tcz1kq-shard-operating-rotated_b-31145999028/run.log",
+      "sha256": "91a7dd4b57698c00f3bf4d94f7dc1882fee8ee48fa4add6001fa43680dc3da09"
+    },
+    {
+      "bytes": 34207,
+      "path": "shards/tcz1kq-shard-operating-rotated_b-31145999028/shard_summary.json",
+      "sha256": "d5ef5004463cff37e9627b97b429160dd2ec404811e8095753033823350880f0"
+    },
+    {
+      "bytes": 4698,
+      "path": "shards/tcz1kq-shard-topology-fine_grid-31145999028/campaign_lock.json",
+      "sha256": "13aa9a4ec9e4a2fcd3342cef783b92cdc14095e8cbda1d03a1da93970ba1d2bb"
+    },
+    {
+      "bytes": 3972,
+      "path": "shards/tcz1kq-shard-topology-fine_grid-31145999028/run.log",
+      "sha256": "09a577ea9533ea66b8a9c84e9fd6f16f26eee085ac87ace80cb64772e30c75f7"
+    },
+    {
+      "bytes": 85795,
+      "path": "shards/tcz1kq-shard-topology-fine_grid-31145999028/shard_summary.json",
+      "sha256": "5864f39cf57e2e797608fc53433b08f321442659474d3e105b6d744143ef774a"
+    },
+    {
+      "bytes": 85510,
+      "path": "shards/tcz1kq-shard-topology-fine_grid-31145999028/topology.json",
+      "sha256": "de627ac3c2d529ebb498d2d0cd2dece1e79d3c8c9595dfe300a569e2396df5bd"
+    },
+    {
+      "bytes": 4707,
+      "path": "shards/tcz1kq-shard-uncertainty-combined_corner-31145999028/campaign_lock.json",
+      "sha256": "46f2f5a200bd091e1f1eaa8985791b2c3cc54fa76d11020b1b1a1099720d9602"
+    },
+    {
+      "bytes": 1147,
+      "path": "shards/tcz1kq-shard-uncertainty-combined_corner-31145999028/run.log",
+      "sha256": "ee77b22bcd472699b2825bc93089d88fae6bab0c7e8975227ecac503b626b7df"
+    },
+    {
+      "bytes": 23974,
+      "path": "shards/tcz1kq-shard-uncertainty-combined_corner-31145999028/shard_summary.json",
+      "sha256": "ca792c1506d19646a513d0badb327cdb1f92ed933fa361d6e0215cbc5b26f43d"
+    },
+    {
+      "bytes": 23686,
+      "path": "shards/tcz1kq-shard-uncertainty-combined_corner-31145999028/uncertainty.json",
+      "sha256": "cb5c0f644bc2c64ad904675edd234f546be194217d5ef6a4a0e7ff52826857c6"
+    },
+    {
+      "bytes": 4705,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_a-31145999028/campaign_lock.json",
+      "sha256": "57cc5f0e4071a42b3e0726b538e6761aa019f2e534c6b801409ce995bd7008d2"
+    },
+    {
+      "bytes": 1127,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_a-31145999028/run.log",
+      "sha256": "f3a10925478216493cd0fd7964e1502221e010b5ff49bbd78ac86f4c973687ff"
+    },
+    {
+      "bytes": 23375,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_a-31145999028/shard_summary.json",
+      "sha256": "cc178c8bcc167370791af12f1a6cc78a542168a426f3d04afb689416d1c807cc"
+    },
+    {
+      "bytes": 23091,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_a-31145999028/uncertainty.json",
+      "sha256": "8102ee9ef73d2da1cd5dc47fef4e1643f6d66b8ef74ecee5891d9f3ecb049eb6"
+    },
+    {
+      "bytes": 4705,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_b-31145999028/campaign_lock.json",
+      "sha256": "c147c35c6aa68954ddbfa061d31492c37d6fbf3b66ca57a5c743f0dc52c29334"
+    },
+    {
+      "bytes": 1127,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_b-31145999028/run.log",
+      "sha256": "b69559cef9a89412e9248e12c3eaa2fa4bb14372519e75c578cac02094c846ad"
+    },
+    {
+      "bytes": 23661,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_b-31145999028/shard_summary.json",
+      "sha256": "c642cd9840e57a025990b30308292756f2506982761a9237ceb726b0eacfc57f"
+    },
+    {
+      "bytes": 23377,
+      "path": "shards/tcz1kq-shard-uncertainty-gap_pattern_b-31145999028/uncertainty.json",
+      "sha256": "34e0b99aa662711ff4e21d38fc4094fa2dd7070cde038aa7c31bf10af1e62a2b"
+    },
+    {
+      "bytes": 4705,
+      "path": "shards/tcz1kq-shard-uncertainty-hard_material-31145999028/campaign_lock.json",
+      "sha256": "cf551bbccd5c8486c5c96ec8d541238ec3fd94eeb2f8f02ece0f8a960813f873"
+    },
+    {
+      "bytes": 1127,
+      "path": "shards/tcz1kq-shard-uncertainty-hard_material-31145999028/run.log",
+      "sha256": "be6a886a4d7f5aa109ee9ec09e2e2e37a99b6b9593f6603bc5f470643efb4e40"
+    },
+    {
+      "bytes": 24700,
+      "path": "shards/tcz1kq-shard-uncertainty-hard_material-31145999028/shard_summary.json",
+      "sha256": "c207f97e4c25453891e4234fa76e74e8c1adcdc00c5cc138a1581b3df7ee3f73"
+    },
+    {
+      "bytes": 24416,
+      "path": "shards/tcz1kq-shard-uncertainty-hard_material-31145999028/uncertainty.json",
+      "sha256": "fb1ff2a46e64697644f5314abe6fecf068a29096bd2f8908758e112b4e5bfa8e"
+    },
+    {
+      "bytes": 4705,
+      "path": "shards/tcz1kq-shard-uncertainty-soft_material-31145999028/campaign_lock.json",
+      "sha256": "3804d0ddf7a51adc5fd219bb42b077dbc9f7cff0c0904acfb0c72270ff68349a"
+    },
+    {
+      "bytes": 1127,
+      "path": "shards/tcz1kq-shard-uncertainty-soft_material-31145999028/run.log",
+      "sha256": "7cc37a66eeae5b73aeebde32bbc8544d8e32f795cd028235b92d0c45f2480366"
+    },
+    {
+      "bytes": 24495,
+      "path": "shards/tcz1kq-shard-uncertainty-soft_material-31145999028/shard_summary.json",
+      "sha256": "9951b303660e4711292bea8ced22d753717158e53a230d9c3d335faf41e14af3"
+    },
+    {
+      "bytes": 24211,
+      "path": "shards/tcz1kq-shard-uncertainty-soft_material-31145999028/uncertainty.json",
+      "sha256": "7a78e8c45cb9e5e1ec97f090e56e80dbbf2a14be6c32fe9c4123cfcf164003f4"
+    },
+    {
+      "bytes": 4706,
+      "path": "shards/tcz1kq-shard-uncertainty-source_pattern-31145999028/campaign_lock.json",
+      "sha256": "0e8c3c78451af44b15e561ed783640e01db27b245c8c4f0714fa1796fc788df5"
+    },
+    {
+      "bytes": 1135,
+      "path": "shards/tcz1kq-shard-uncertainty-source_pattern-31145999028/run.log",
+      "sha256": "ddc050f2670fa81bf2a1361bbc2d6b343d1f6c6b513828129d2e81afe8876d53"
+    },
+    {
+      "bytes": 24092,
+      "path": "shards/tcz1kq-shard-uncertainty-source_pattern-31145999028/shard_summary.json",
+      "sha256": "b8b52bfabbb9492f6ff9e85c4a0ffc62c3645f1bec24d9422980a68f23226f4b"
+    },
+    {
+      "bytes": 23808,
+      "path": "shards/tcz1kq-shard-uncertainty-source_pattern-31145999028/uncertainty.json",
+      "sha256": "5091d010393e233c4b4f168d7994f2451c2f2de8bda33530954a12209ad2fdaa"
+    },
+    {
+      "bytes": 35667,
+      "path": "summary.json",
+      "sha256": "87f8d058bbeb603946c89a953526c477fb0bcfd2023ef9aa909780ea9c421f19"
+    }
+  ],
+  "git_sha": "814d0587a658fc328eb44a55667d244bec81340c",
+  "github_run_id": "31145999028",
+  "numerical_qualification_accepted": true,
+  "parent_campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+  "partitioned_decision": {
+    "frozen_affine_depth_law": false,
+    "numerical_qualification": true,
+    "qualified_nonlinear_holdout": false,
+    "qualified_nonlinear_intrinsic_topology": true,
+    "qualified_operating_strong_dark": true,
+    "qualified_uncertainty_holdout": true,
+    "saturation_was_materially_probed": false
+  },
+  "platform": "Linux-6.17.0-1021-azure-x86_64-with-glibc2.39",
+  "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f",
+  "schema": "bfm5_tcz1kq_3d_evidence_manifest_v1",
+  "source_files": [
+    {
+      "bytes": 8199,
+      "path": "fea/bfm5/tcz1k_3d.py",
+      "sha256": "24cdc7f7db3859a2a75031c8761642f1d01ab25a72cab92686a2a947e9f7e61a"
+    },
+    {
+      "bytes": 4778,
+      "path": "fea/config/tcz1k_3d_nonlinear_holdout.yml",
+      "sha256": "2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082"
+    },
+    {
+      "bytes": 33057,
+      "path": "fea/scripts/run_tcz1k_3d_nonlinear_holdout.py",
+      "sha256": "74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7"
+    },
+    {
+      "bytes": 3181,
+      "path": "fea/config/tcz1kq_3d_numerical_qualification.yml",
+      "sha256": "802da9493c5220721e3fdb1b859537f4ee832afea17db71465aece82c035b551"
+    },
+    {
+      "bytes": 10190,
+      "path": "fea/scripts/run_tcz1kq_3d_qualification.py",
+      "sha256": "c824f61b9dcdf8cbc03e5a5ba2ec3780a8dfc5073781e5a41406160b5862a195"
+    },
+    {
+      "bytes": 14442,
+      "path": "fea/scripts/analyze_tcz1kq_3d_qualification.py",
+      "sha256": "02296c098cb21409147b4e1de7c812c0417be0dae0e08ca7e93dfd2f86266719"
+    },
+    {
+      "bytes": 2727,
+      "path": "fea/scripts/seal_tcz1kq_3d_evidence.py",
+      "sha256": "e0852150258c626cc6ad4d69149ffa4ed72a696c922f524bcdd58b4338eea9da"
+    },
+    {
+      "bytes": 2080,
+      "path": "fea/tests/test_tcz1kq_3d.py",
+      "sha256": "c47e645823a758b01d016e30b905055dd20e131100bdf234c9a06dd52a4b6d37"
+    },
+    {
+      "bytes": 6474,
+      "path": ".github/workflows/tcz1kq-3d-qualification.yml",
+      "sha256": "cfc2b21f56af77cd2a1b46974b823b880bd6b303a567829fc226932f8d23b6f9"
+    }
+  ]
+}

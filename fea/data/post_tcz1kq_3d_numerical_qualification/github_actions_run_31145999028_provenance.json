@@ -1,0 +1,25 @@
+{
+  "artifact_file_count": 71,
+  "artifact_manifest_sha256": "57520d9ee9b6e94a1543d5e25e4e31921585d9e6fb05a5383e435fc1812a8599",
+  "canonical_artifact_tree_sha256": "cae5cad39ff22ecf55f9f5013560800b0fc03ba36ab7b66077a88027fd84ba1e",
+  "github_repository": "quemanhmcr/bfm-5-modal-collar",
+  "manifest_evidence_file_count": 70,
+  "manifest_source_file_count": 9,
+  "parent_campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+  "partitioned_decision": {
+    "frozen_affine_depth_law": false,
+    "numerical_qualification": true,
+    "qualified_nonlinear_holdout": false,
+    "qualified_nonlinear_intrinsic_topology": true,
+    "qualified_operating_strong_dark": true,
+    "qualified_uncertainty_holdout": true,
+    "saturation_was_materially_probed": false
+  },
+  "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f",
+  "run_conclusion": "success",
+  "run_id": 31145999028,
+  "schema": "bfm5_tcz1kq_github_actions_repository_freeze_v1",
+  "source_git_sha": "814d0587a658fc328eb44a55667d244bec81340c",
+  "summary_sha256": "87f8d058bbeb603946c89a953526c477fb0bcfd2023ef9aa909780ea9c421f19",
+  "workflow": "TCZ-1KQ Nonlinear 3D Numerical Qualification"
+}

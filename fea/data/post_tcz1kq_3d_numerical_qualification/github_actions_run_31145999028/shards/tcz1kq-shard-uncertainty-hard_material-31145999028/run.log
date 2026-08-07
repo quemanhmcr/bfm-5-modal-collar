@@ -1,0 +1,8 @@
+CASE qualification_uncertainty_hard_material_baseline: ne=74641 ndof=90601 newton=11 residual=6.202e-09 Wprime=2.325411e-01
+CASE qualification_uncertainty_hard_material_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=5 residual=2.043e-08 Wprime=2.338976e-01
+CASE qualification_uncertainty_hard_material_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=4 residual=2.668e-08 Wprime=2.312333e-01
+CASE qualification_uncertainty_hard_material_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=6.685e-13 Wprime=2.325746e-01
+CASE qualification_uncertainty_hard_material_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=5.830e-13 Wprime=2.325088e-01
+CASE qualification_uncertainty_hard_material_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.962e-09 Wprime=2.335235e-01
+CASE qualification_uncertainty_hard_material_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.547e-09 Wprime=2.315946e-01
+BFM5_TCZ1KQ_SHARD={"case": "hard_material", "kind": "uncertainty", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 882.634478588}

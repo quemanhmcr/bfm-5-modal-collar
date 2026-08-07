@@ -1,0 +1,8 @@
+CASE qualification_mesh_mid_baseline: ne=62396 ndof=75414 newton=8 residual=7.380e-14 Wprime=1.024031e-01
+CASE qualification_mesh_mid_gap_1_minus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.517e-09 Wprime=1.030180e-01
+CASE qualification_mesh_mid_gap_1_plus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.198e-09 Wprime=1.018108e-01
+CASE qualification_mesh_mid_gap_2_minus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.163e-13 Wprime=1.024173e-01
+CASE qualification_mesh_mid_gap_2_plus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.067e-13 Wprime=1.023895e-01
+CASE qualification_mesh_mid_gap_3_minus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=2.114e-10 Wprime=1.028147e-01
+CASE qualification_mesh_mid_gap_3_plus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.825e-10 Wprime=1.020067e-01
+BFM5_TCZ1KQ_SHARD={"case": "mesh_mid", "kind": "anchor", "qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f", "wall_s": 514.3356278910001}
