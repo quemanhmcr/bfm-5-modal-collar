@@ -15,6 +15,7 @@ SOURCE_FILES = (
     ROOT / "config" / "tcz1j_3d_coenergy_closure.yml",
     ROOT / "scripts" / "run_tcz1j_3d_linear_screen.py",
     ROOT / "scripts" / "run_tcz1j_3d_same_mesh_closure.py",
+    ROOT / "scripts" / "analyze_tcz1j_3d_calibration.py",
     ROOT / "scripts" / "seal_tcz1j_3d_evidence.py",
     ROOT / "tests" / "test_tcz1j_3d.py",
 )

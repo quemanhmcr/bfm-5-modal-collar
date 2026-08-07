@@ -59,3 +59,11 @@ A second nominal solve uses a 35% larger remote air boundary.  The campaign is
 numerically admissible only when this boundary perturbation, mesh refinement,
 and same-connectivity finite-difference refinements all satisfy their frozen
 limits.
+
+## Intrinsic-frame diagnostic
+
+The raw-frame decision is never overwritten.  A separate exploratory diagnostic
+applies the power-preserving congruence `i_raw = C i_cal`,
+`psi_cal = C^T psi_raw`, then evaluates the pre-existing T1/T2 charter gates.
+This determines whether a failed inherited 2D calibration reflects destroyed
+magnetic topology or merely a correctable electrical coordinate anisotropy.

@@ -17,6 +17,7 @@ on:
       - 'fea/config/tcz1j_3d_coenergy_closure.yml'
       - 'fea/scripts/run_tcz1j_3d_linear_screen.py'
       - 'fea/scripts/run_tcz1j_3d_same_mesh_closure.py'
+      - 'fea/scripts/analyze_tcz1j_3d_calibration.py'
       - 'fea/scripts/seal_tcz1j_3d_evidence.py'
       - 'fea/tests/test_tcz1j_3d.py'
 
@@ -63,6 +64,11 @@ jobs:
           mkdir -p results_ci
           python scripts/run_tcz1j_3d_same_mesh_closure.py | tee results_ci/tcz1j_3d_run.log
 
+      - name: Diagnose intrinsic topology under power-preserving calibration
+        env:
+          BFM5_TCZ1J_OUT: ${{ github.workspace }}/fea/results_ci/tcz1j_3d_coenergy_closure
+        run: python scripts/analyze_tcz1j_3d_calibration.py
+
       - name: Seal and enforce numerical admissibility
         env:
           BFM5_TCZ1J_OUT: ${{ github.workspace }}/fea/results_ci/tcz1j_3d_coenergy_closure
@@ -80,6 +86,7 @@ jobs:
           from pathlib import Path
           s=json.loads(Path('results_ci/tcz1j_3d_coenergy_closure/summary.json').read_text())
           m=s['metrics']
+          c=json.loads(Path('results_ci/tcz1j_3d_coenergy_closure/calibration_diagnostic.json').read_text())
           print('# TCZ-1J 3D closure')
           print(f"- Evidence admissible: **{s['evidence_admissible']}**")
           print(f"- Topology closure accepted: **{s['topology_closure_accepted']}**")
@@ -89,6 +96,8 @@ jobs:
           print(f"- Max derivative mesh spread: **{m['max_derivative_mesh_spread']:.3%}**")
           print(f"- Remote boundary spread: **{m['remote_boundary_spread']:.3%}**")
           print(f"- Equivalent end extension: **{m['depth_fit']['equivalent_end_extension_mm']:.6g} mm**")
+          print(f"- Intrinsic topology after charter whitening: **{c['intrinsic_topology']['accepted_under_preexisting_charter_gates']}**")
+          print(f"- Max whitened tight-frame defect: **{c['intrinsic_topology']['max_whitened_tight_frame_defect']:.3%}**")
           PY
           fi
 
