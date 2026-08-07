@@ -1,0 +1,130 @@
+schema: bfm5_tcz1k_nonlinear_3d_calibrated_holdout_v1
+stage: TCZ-1K
+status: preregistered_before_github_actions_holdout
+source_decision:
+  git_sha: 517b76d14c850902807a4ea59f7bd8e6c64d39b6
+  campaign_sha256: e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756
+  calibration_matrix_C:
+    - [0.9812220080652189, 1.362787025501901e-05]
+    - [1.3627870255019022e-05, 1.0191373531842471]
+  affine_depth_law:
+    slope_H_per_m: 2.457533808845131e-05
+    intercept_H: 2.074282140353522e-07
+    equivalent_end_extension_mm: 8.440502966379492
+  refit_forbidden: true
+geometry:
+  physical_depth_mm: 22.838127702404996
+  nominal_gap_mm: 1.75
+  primary_mesh_scale: 1.55
+  validation_mesh_scale: 1.25
+  nominal_boundary_scale: 1.0
+  validation_boundary_scale: 1.35
+  primary_gap_step_mm: 0.035
+  validation_gap_step_mm: 0.070
+  low_field_depth_holdout_multipliers: [0.75, 1.50]
+material:
+  name: inherited_femm_13_point_monotone_BH
+  interpolation: monotone_PCHIP_H_of_B_with_exact_piecewise_antiderivative
+  tail: linear_differential_reluctivity_1_over_mu0
+  B_T: [0.0, 0.3, 0.8, 1.12, 1.32, 1.46, 1.54, 1.62, 1.74, 1.87, 1.99, 2.046, 2.08]
+  H_A_per_m: [0.0, 40.0, 80.0, 160.0, 318.0, 796.0, 1590.0, 3380.0, 7960.0, 15900.0, 31800.0, 55100.0, 79600.0]
+  uncertainty_parameterization: H_variant(B) = h_scale * H_nominal(B / b_knee_scale)
+operating_set_calibrated_A:
+  - {id: low_skew, current: [260.0, 97.5]}
+  - {id: anchor, current: [460.0, 172.5]}
+  - {id: high_skew, current: [700.0, 262.5]}
+  - {id: rotated_a, current: [-420.0, 520.0]}
+  - {id: rotated_b, current: [560.0, -390.0]}
+current_derivative:
+  central_step_A: 4.0
+  low_field_depth_probe_A: 20.0
+uncertainty_holdout:
+  stress_operating_point: high_skew
+  scenarios:
+    - id: gap_pattern_a
+      gap_delta_mm: [0.02625, -0.01750, 0.00875]
+      route_source_gain: [1.0, 1.0, 1.0]
+      h_scale: 1.0
+      b_knee_scale: 1.0
+    - id: gap_pattern_b
+      gap_delta_mm: [-0.01750, 0.02625, -0.00875]
+      route_source_gain: [1.0, 1.0, 1.0]
+      h_scale: 1.0
+      b_knee_scale: 1.0
+    - id: source_pattern
+      gap_delta_mm: [0.0, 0.0, 0.0]
+      route_source_gain: [1.015, 0.985, 1.010]
+      h_scale: 1.0
+      b_knee_scale: 1.0
+    - id: soft_material
+      gap_delta_mm: [0.0, 0.0, 0.0]
+      route_source_gain: [1.0, 1.0, 1.0]
+      h_scale: 0.90
+      b_knee_scale: 1.05
+    - id: hard_material
+      gap_delta_mm: [0.0, 0.0, 0.0]
+      route_source_gain: [1.0, 1.0, 1.0]
+      h_scale: 1.10
+      b_knee_scale: 0.95
+    - id: combined_corner
+      gap_delta_mm: [0.02625, -0.01750, 0.00875]
+      route_source_gain: [1.015, 0.985, 1.010]
+      h_scale: 1.10
+      b_knee_scale: 0.95
+solver:
+  space: HCurl_order_1_nograds
+  source: route_resolved_J_h_equals_curl_T_h
+  nonlinear_method: energy_Newton_BDDC_CG_with_backtracking
+  linear_initializer_mu_r: 2000.0
+  relative_stationarity_tolerance: 1.0e-8
+  maximum_newton_iterations: 18
+  maximum_cg_iterations: 1200
+  continuation_factors_on_initializer_failure: [0.25, 0.50, 0.75, 1.0]
+  gauge_factor: 1.0e-8
+acceptance_gates:
+  numerical_admissibility:
+    maximum_stationarity_residual: 1.0e-7
+    maximum_gauge_fraction: 1.0e-6
+    maximum_power_pairing_residual: 1.0e-12
+    maximum_energy_derivative_residual: 1.0e-3
+    maximum_reciprocity_residual: 1.0e-3
+    positive_differential_inductance_required: true
+    maximum_differential_inductance_condition: 30.0
+    maximum_derivative_step_spread: 0.05
+    maximum_derivative_mesh_spread: 0.05
+    maximum_remote_boundary_spread: 0.05
+  nonlinear_topology:
+    required_sym2_rank: 3
+    maximum_sym2_condition: 30.0
+    required_lorentz_signature: [1, 2, 0]
+    maximum_route_rank_defect: 0.05
+    maximum_whitened_tight_frame_defect: 0.10
+    maximum_route_locality_residual: 0.10
+  strong_dark:
+    maximum_port_leakage: 1.0e-3
+    maximum_power_ratio: 0.10
+    required_operating_pass_fraction: 1.0
+    required_uncertainty_pass_fraction: 0.95
+  saturation_probe:
+    minimum_any_core_volume_fraction_above_1p62T: 1.0e-4
+    maximum_directional_differential_to_secant_ratio: 0.97
+  frozen_depth_law:
+    maximum_mean_inductance_relative_error: 0.10
+decision_partition:
+  - numerical_evidence_admissible
+  - frozen_calibration_holdout
+  - frozen_depth_law_holdout
+  - nonlinear_intrinsic_topology
+  - nonlinear_strong_dark_operating_set
+  - uncertainty_holdout
+claim_scope:
+  allowed:
+    - nonlinear_anhysteretic_3d_holdout_for_the_declared_BH_curve
+    - fixed_power_preserving_calibration_without_refit
+    - fixed_affine_depth_law_without_refit
+    - finite_operating_and_uncertainty_set_decision
+  forbidden:
+    - hysteresis_or_eddy_current_validity
+    - manufactured_winding_or_end_lead_equivalence
+    - hardware_or_HIL_validity
+    - continuous_certification_outside_declared_holdout

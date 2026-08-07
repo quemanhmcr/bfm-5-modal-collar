@@ -1,0 +1,148 @@
+name: TCZ-1K Nonlinear 3D Calibrated Holdout
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_generation:
+        description: FEA3D cache namespace
+        required: true
+        default: v1
+  push:
+    branches:
+      - research/tcz1k-nonlinear-3d-calibrated-holdout
+    paths:
+      - '.github/actions/setup-fea3d/action.yml'
+      - '.github/workflows/tcz1k-3d-nonlinear.yml'
+      - 'fea/bfm5/tcz1k_3d.py'
+      - 'fea/config/tcz1k_3d_nonlinear_holdout.yml'
+      - 'fea/scripts/run_tcz1k_3d_nonlinear_holdout.py'
+      - 'fea/scripts/analyze_tcz1k_3d_holdout.py'
+      - 'fea/scripts/seal_tcz1k_3d_evidence.py'
+      - 'fea/tests/test_tcz1k_3d.py'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  PYTHONPATH: '.'
+  OMP_NUM_THREADS: '4'
+  OPENBLAS_NUM_THREADS: '4'
+  MKL_NUM_THREADS: '4'
+  NUMBA_NUM_THREADS: '4'
+
+concurrency:
+  group: tcz1k-3d-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    name: shard-${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        shard: [operating, convergence, uncertainty_depth]
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore pinned reusable FEA3D layer
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Validate frozen constitutive and decision mathematics
+        run: python -m pytest -q tests/test_tcz1k_3d.py
+
+      - name: Run nonlinear holdout shard
+        run: |
+          set -o pipefail
+          mkdir -p "results_ci/tcz1k_shards/${{ matrix.shard }}"
+          python scripts/run_tcz1k_3d_nonlinear_holdout.py \
+            --shard "${{ matrix.shard }}" \
+            --output "results_ci/tcz1k_shards/${{ matrix.shard }}" \
+            | tee "results_ci/tcz1k_shards/${{ matrix.shard }}/run.log"
+
+      - name: Upload shard evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1k-shard-${{ matrix.shard }}-${{ github.run_id }}
+          path: fea/results_ci/tcz1k_shards/${{ matrix.shard }}/
+          if-no-files-found: error
+          retention-days: 14
+
+  aggregate:
+    name: aggregate-and-seal
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore pinned reusable FEA3D layer
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Download all nonlinear shards
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: tcz1k-shard-*-${{ github.run_id }}
+          path: fea/results_ci/tcz1k_downloads
+          merge-multiple: false
+
+      - name: Analyze partitioned holdout decision
+        run: |
+          mkdir -p results_ci/tcz1k_final
+          python scripts/analyze_tcz1k_3d_holdout.py \
+            --input results_ci/tcz1k_downloads \
+            --output results_ci/tcz1k_final
+          cp -a results_ci/tcz1k_downloads results_ci/tcz1k_final/shards
+
+      - name: Seal and enforce numerical admissibility
+        run: python scripts/seal_tcz1k_3d_evidence.py --evidence results_ci/tcz1k_final
+
+      - name: Publish concise decision
+        if: always()
+        shell: bash
+        run: |
+          if [ -f results_ci/tcz1k_final/summary.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          s=json.loads(Path('results_ci/tcz1k_final/summary.json').read_text())
+          m=s['metrics']
+          print('# TCZ-1K nonlinear 3D calibrated holdout')
+          print(f"- Evidence admissible: **{s['evidence_admissible']}**")
+          print(f"- Nonlinear intrinsic topology: **{s['nonlinear_topology_accepted']}**")
+          print(f"- Strong-dark operating set: **{s['strong_dark_operating_set_accepted']}**")
+          print(f"- Uncertainty holdout: **{s['uncertainty_holdout_accepted']}**")
+          print(f"- Frozen affine depth law: **{s['frozen_depth_law_accepted']}**")
+          print(f"- Saturation materially probed: **{s['saturation_probe_accepted']}**")
+          print(f"- Sym(2) rank / condition: **{m['nonlinear_topology']['sym2_rank']} / {m['nonlinear_topology']['sym2_condition']:.6g}**")
+          print(f"- Operating pass fraction: **{s['operating_pass_fraction']:.1%}**")
+          print(f"- Uncertainty pass fraction: **{s['uncertainty_pass_fraction']:.1%}**")
+          print(f"- Max depth-law error: **{s['maximum_depth_law_relative_error']:.3%}**")
+          print(f"- Max derivative mesh spread: **{m['derivative_mesh_spread']:.3%}**")
+          PY
+          fi
+
+      - name: Upload immutable final evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1k-3d-nonlinear-${{ github.run_id }}
+          path: fea/results_ci/tcz1k_final/
+          if-no-files-found: error
+          retention-days: 14
