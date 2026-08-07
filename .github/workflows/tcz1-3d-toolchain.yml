@@ -1,0 +1,96 @@
+name: TCZ-1 3D FEA Toolchain Cache
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_generation:
+        description: Cache generation namespace
+        required: true
+        default: v1
+  push:
+    branches:
+      - research/tcz1-3d-actions-toolchain
+    paths:
+      - '.github/actions/setup-fea3d/action.yml'
+      - '.github/workflows/tcz1-3d-toolchain.yml'
+      - 'fea/ci/install_getdp_linux.sh'
+      - 'fea/requirements-tcz1-3d.txt'
+      - 'fea/scripts/fea3d_toolchain_smoke.py'
+  workflow_call:
+    inputs:
+      cache_generation:
+        type: string
+        required: false
+        default: v1
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+concurrency:
+  group: tcz1-3d-toolchain-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  prewarm-and-validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore reusable FEA3D layer
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Run functional solver and data-stack smoke
+        run: python fea/scripts/fea3d_toolchain_smoke.py
+
+      - name: Record wheelhouse evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp .cache/fea3d/wheelhouse/wheelhouse-manifest.json \
+            fea/results_ci/fea3d_toolchain/wheelhouse-manifest.json
+          python -m pip freeze --all > fea/results_ci/fea3d_toolchain/pip-freeze.txt
+          sha256sum "$GETDP" > fea/results_ci/fea3d_toolchain/getdp.sha256
+
+      - name: Upload immutable toolchain evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1-3d-toolchain-${{ github.run_id }}
+          path: fea/results_ci/fea3d_toolchain/
+          if-no-files-found: error
+          retention-days: 14
+
+
+  cache-reuse-proof:
+    needs: prewarm-and-validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore the same reusable FEA3D layer
+        id: fea3d
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Require both cache hits
+        shell: bash
+        env:
+          WHEELHOUSE_HIT: ${{ steps.fea3d.outputs.wheelhouse-cache-hit }}
+          GETDP_HIT: ${{ steps.fea3d.outputs.getdp-cache-hit }}
+        run: |
+          set -euo pipefail
+          echo "wheelhouse-cache-hit=$WHEELHOUSE_HIT"
+          echo "getdp-cache-hit=$GETDP_HIT"
+          test "$WHEELHOUSE_HIT" = 'true'
+          test "$GETDP_HIT" = 'true'
+          python fea/scripts/fea3d_toolchain_smoke.py

@@ -3,3 +3,7 @@
 *.log
 .DS_Store
 Thumbs.db
+
+# Local mirror of the GitHub Actions 3D FEA cache
+.cache/fea3d/
+.venv-fea3d/
