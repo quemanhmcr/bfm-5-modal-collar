@@ -104,7 +104,7 @@ runs:
       shell: bash
       run: |
         set -euo pipefail
-        ./fea/ci/install_getdp_linux.sh "$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64"
+        bash ./fea/ci/install_getdp_linux.sh "$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64"
         echo "$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64/bin" >> "$GITHUB_PATH"
         echo "GETDP=$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64/bin/getdp" >> "$GITHUB_ENV"
         echo "GETDP_ROOT=$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64" >> "$GITHUB_ENV"
