@@ -22,7 +22,6 @@ on:
       - 'fea/scripts/analyze_tcz1l_3d_critical_surface.py'
       - 'fea/scripts/seal_tcz1l_3d_evidence.py'
       - 'fea/tests/test_tcz1l_3d.py'
-      - 'fea/requirements-tcz1l-core.txt'
 
 permissions:
   contents: read
@@ -67,6 +66,8 @@ jobs:
           - {label: numerical-mesh_mid, kind: numerical, ray: '', scale: '', case: mesh_mid}
           - {label: numerical-mesh_fine, kind: numerical, ray: '', scale: '', case: mesh_fine}
           - {label: numerical-boundary_far, kind: numerical, ray: '', scale: '', case: boundary_far}
+          - {label: topology-high_skew, kind: topology, ray: high_skew, scale: '', case: ''}
+          - {label: topology-rotated_a, kind: topology, ray: rotated_a, scale: '', case: ''}
           - {label: uncertainty-soft_material, kind: uncertainty, ray: '', scale: '', case: soft_material}
           - {label: uncertainty-combined_corner, kind: uncertainty, ray: '', scale: '', case: combined_corner}
     defaults:
@@ -79,8 +80,6 @@ jobs:
         with:
           python-version: '3.12'
           cache-generation: ${{ inputs.cache_generation || 'v1' }}
-          requirements-file: fea/requirements-tcz1l-core.txt
-          install-getdp: 'false'
       - name: Validate frozen critical-surface mathematics
         run: python -m pytest -q tests/test_tcz1l_3d.py
       - name: Run saturation critical-surface shard
@@ -123,8 +122,6 @@ jobs:
         with:
           python-version: '3.12'
           cache-generation: ${{ inputs.cache_generation || 'v1' }}
-          requirements-file: fea/requirements-tcz1l-core.txt
-          install-getdp: 'false'
       - name: Download all critical-surface shards
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
