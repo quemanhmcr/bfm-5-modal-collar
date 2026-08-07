@@ -1,0 +1,110 @@
+name: Setup BFM-5 3D FEA
+description: Restore the pinned 3D FEA wheelhouse and GetDP solver on Ubuntu runners.
+inputs:
+  python-version:
+    description: CPython version
+    required: false
+    default: '3.12'
+  cache-generation:
+    description: Manual cache namespace generation
+    required: false
+    default: 'v1'
+outputs:
+  wheelhouse-cache-hit:
+    description: Whether the complete wheelhouse was restored from GitHub cache.
+    value: ${{ steps.wheelhouse-cache.outputs.cache-hit }}
+  getdp-cache-hit:
+    description: Whether GetDP was restored from GitHub cache.
+    value: ${{ steps.getdp-cache.outputs.cache-hit }}
+runs:
+  using: composite
+  steps:
+    - name: Install Linux runtime libraries
+      shell: bash
+      run: |
+        set -euo pipefail
+        sudo apt-get update -qq
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+          ca-certificates curl libglu1-mesa libgl1 libxrender1 libxext6 \
+          libx11-6 libgomp1 libgfortran5
+
+    - name: Select pinned Python
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Restore binary wheelhouse
+      id: wheelhouse-cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: .cache/fea3d/wheelhouse
+        key: fea3d-${{ runner.os }}-${{ runner.arch }}-py${{ inputs.python-version }}-${{ inputs.cache-generation }}-${{ hashFiles('fea/requirements-tcz1-3d.txt') }}
+
+    - name: Materialize complete wheel closure
+      if: steps.wheelhouse-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        set -euo pipefail
+        rm -rf .cache/fea3d/wheelhouse
+        mkdir -p .cache/fea3d/wheelhouse
+        python -m pip download \
+          --disable-pip-version-check \
+          --only-binary=:all: \
+          --dest .cache/fea3d/wheelhouse \
+          --requirement fea/requirements-tcz1-3d.txt
+        python - <<'PY'
+        from pathlib import Path
+        import hashlib, json
+        root = Path('.cache/fea3d/wheelhouse')
+        files = []
+        for path in sorted(root.glob('*.whl')):
+            payload = path.read_bytes()
+            files.append({
+                'name': path.name,
+                'bytes': len(payload),
+                'sha256': hashlib.sha256(payload).hexdigest(),
+            })
+        manifest = {
+            'schema': 'bfm5_fea3d_wheelhouse_v1',
+            'wheel_count': len(files),
+            'wheel_bytes': sum(item['bytes'] for item in files),
+            'files': files,
+        }
+        (root / 'wheelhouse-manifest.json').write_text(
+            json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8'
+        )
+        print(json.dumps({k: manifest[k] for k in ('wheel_count', 'wheel_bytes')}))
+        PY
+
+    - name: Build isolated runtime from wheelhouse
+      shell: bash
+      run: |
+        set -euo pipefail
+        rm -rf .venv-fea3d
+        python -m venv .venv-fea3d
+        .venv-fea3d/bin/python -m pip install \
+          --no-index --find-links .cache/fea3d/wheelhouse \
+          pip==26.2.1 setuptools==83.0.0 wheel==0.47.0
+        .venv-fea3d/bin/python -m pip install \
+          --no-index --find-links .cache/fea3d/wheelhouse \
+          --requirement fea/requirements-tcz1-3d.txt
+        .venv-fea3d/bin/python -m pip check
+        echo "$GITHUB_WORKSPACE/.venv-fea3d/bin" >> "$GITHUB_PATH"
+        echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv-fea3d" >> "$GITHUB_ENV"
+        echo "BFM5_FEA3D_WHEELHOUSE=$GITHUB_WORKSPACE/.cache/fea3d/wheelhouse" >> "$GITHUB_ENV"
+
+    - name: Restore GetDP 3.5.0
+      id: getdp-cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: .cache/fea3d/getdp-3.5.0-Linux64
+        key: getdp-${{ runner.os }}-${{ runner.arch }}-3.5.0-d3c28fa18f20d614
+
+    - name: Install checksum-pinned GetDP
+      shell: bash
+      run: |
+        set -euo pipefail
+        ./fea/ci/install_getdp_linux.sh "$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64"
+        echo "$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64/bin" >> "$GITHUB_PATH"
+        echo "GETDP=$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64/bin/getdp" >> "$GITHUB_ENV"
+        echo "GETDP_ROOT=$GITHUB_WORKSPACE/.cache/fea3d/getdp-3.5.0-Linux64" >> "$GITHUB_ENV"
