@@ -1,0 +1,138 @@
+schema: bfm5_tcz1l_saturation_critical_surface_v1
+stage: TCZ-1L
+status: preregistered_before_saturation_targeted_actions_holdout
+frozen_parent:
+  tcz1kq_freeze_git_sha: 9d344195a5d459f850ce6d850620cbd565fa0395
+  tcz1kq_actions_run_id: 31145999028
+  tcz1kq_qualification_sha256: eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f
+  tcz1k_parent_campaign_sha256: f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5
+  tcz1k_config_sha256: 2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082
+  tcz1k_runner_sha256: 74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7
+  tcz1kq_config_sha256: 802da9493c5220721e3fdb1b859537f4ee832afea17db71465aece82c035b551
+  tcz1kq_runner_sha256: c824f61b9dcdf8cbc03e5a5ba2ec3780a8dfc5073781e5a41406160b5862a195
+  refit_forbidden: true
+  frozen_affine_depth_law_remains_rejected: true
+fixed_model:
+  physical_depth_mm: 22.838127702404996
+  calibration_matrix_C:
+  - - 0.9812220080652189
+    - 1.362787025501901e-05
+  - - 1.3627870255019022e-05
+    - 1.0191373531842471
+  material: inherited_femm_13_point_monotone_BH
+  material_uncertainty_parameterization: H_variant(B)=h_scale*H_nominal(B/b_knee_scale)
+  mesh_fine:
+    mesh_scale: 1.1
+    boundary_scale: 1.55
+  mesh_mid:
+    mesh_scale: 1.3
+    boundary_scale: 1.55
+  boundary_far:
+    mesh_scale: 1.1
+    boundary_scale: 1.85
+  gap_step_primary_mm: 0.035
+  gap_step_validation_mm: 0.07
+  finite_current_validation_step_A: 8.0
+  baseline_continuation_factors:
+  - 0.25
+  - 0.5
+  - 0.75
+  - 1.0
+critical_surface_ladder:
+  rays:
+  - id: high_skew
+    base_current_A:
+    - 700.0
+    - 262.5
+  - id: rotated_a
+    base_current_A:
+    - -420.0
+    - 520.0
+  - id: rotated_b
+    base_current_A:
+    - 560.0
+    - -390.0
+  scale_factors:
+  - 1.0
+  - 1.35
+  - 1.8
+  - 2.4
+  - 3.2
+  sentinel_scale: 3.2
+  interpretation: ordered_samples_of_continuous_current_rays_not_posthoc_threshold_search
+saturation_targeted_uncertainty:
+  ray: high_skew
+  scale: 3.2
+  scenario_ids:
+  - soft_material
+  - combined_corner
+topology_sentinels:
+- ray: high_skew
+  scale: 3.2
+- ray: rotated_a
+  scale: 3.2
+numerical_sentinel:
+  ray: high_skew
+  scale: 3.2
+acceptance_gates:
+  numerical:
+    maximum_stationarity_residual: 1.0e-07
+    maximum_gauge_fraction: 1.0e-06
+    maximum_power_pairing_residual: 1.0e-12
+    maximum_reciprocity_residual: 0.001
+    positive_differential_inductance_required: true
+    maximum_differential_inductance_condition: 30.0
+    maximum_gap_derivative_step_spread: 0.05
+    maximum_gap_derivative_mesh_spread: 0.05
+    maximum_remote_boundary_spread: 0.05
+    maximum_Ld_mesh_spread: 0.05
+    maximum_Ld_remote_boundary_spread: 0.05
+    maximum_exact_tangent_vs_finite_difference_spread: 0.01
+    maximum_exact_tangent_linearized_residual: 1.0e-08
+  nonlinear_topology:
+    required_sym2_rank: 3
+    maximum_sym2_condition: 30.0
+    required_lorentz_signature:
+    - 1
+    - 2
+    - 0
+    maximum_route_rank_defect: 0.05
+    maximum_whitened_tight_frame_defect: 0.1
+  strong_dark:
+    maximum_port_leakage: 0.001
+    maximum_power_ratio: 0.1
+    maximum_route_locality_residual: 0.1
+  saturation:
+    minimum_any_core_volume_fraction_above_1p62T: 0.0001
+    maximum_directional_differential_to_secant_ratio: 0.97
+  strict_overlap_guard:
+    minimum_core_volume_fraction_above_1p62T: 0.0005
+    maximum_directional_differential_to_secant_ratio: 0.95
+    maximum_port_leakage: 0.0005
+    maximum_power_ratio: 0.05
+    maximum_route_locality_residual: 0.05
+decision_rules:
+  ray_overlap_certificate: each_ray_requires_at_least_one_sample_passing_strict_overlap_guard
+  sampled_event_order: first_saturated_sample_must_precede_any_sampled_strong_dark_failure_on_each_ray
+  topology_survival: both_sentinel_rays_must_be_saturated_strong_dark_and_pass_nonlinear_topology
+  uncertainty_survival: both_frozen_saturated_uncertainty_cases_must_be_saturated_and_strong_dark
+  overall_acceptance:
+  - numerical_sentinel_qualified
+  - all_state_numerical_admissible
+  - all_ray_overlap_certificates
+  - all_sampled_event_orders
+  - topology_survival
+  - saturated_uncertainty_survival
+mathematical_claim_boundary:
+  allowed:
+  - existence_of_a_nonempty_local_saturated_strong_dark_interval_by_strict_margin_and_continuity
+  - sampled_ordering_of_saturation_and_dark_failure_events_on_three_frozen_current_rays
+  - nonlinear_Sym2_topology_survival_at_two_frozen_saturated_sentinels
+  - exact_discrete_current_tangent_from_the_Newton_Hessian
+  forbidden:
+  - hysteresis_or_rate_dependent_material_closure
+  - eddy_current_closure
+  - manufactured_winding_end_lead_equivalence
+  - hardware_or_HIL_validity
+  - refitting_calibration_material_gates_or_current_rays_after_results
+  - reviving_the_rejected_affine_depth_law
