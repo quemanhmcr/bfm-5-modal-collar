@@ -17,6 +17,10 @@ inputs:
     description: Whether to restore and expose the checksum-pinned GetDP binary
     required: false
     default: 'true'
+  install-linux-runtime-libraries:
+    description: Whether to apt-install native libraries needed by NGSolve/Gmsh/GetDP runtime jobs
+    required: false
+    default: 'true'
 outputs:
   wheelhouse-cache-hit:
     description: Whether the complete wheelhouse was restored from GitHub cache.
@@ -28,6 +32,7 @@ runs:
   using: composite
   steps:
     - name: Install Linux runtime libraries
+      if: inputs.install-linux-runtime-libraries == 'true'
       shell: bash
       run: |
         set -euo pipefail

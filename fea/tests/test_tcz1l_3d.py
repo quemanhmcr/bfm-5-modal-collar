@@ -56,9 +56,20 @@ def test_actions_matrix_fits_runner_concurrency_and_uses_core_runtime():
     assert 'max-parallel: 20' in workflow
     assert 'topology-high_skew' not in workflow and 'topology-rotated_a' not in workflow
     assert 'requirements-file: fea/requirements-tcz1l-core.txt' in workflow
+    assert 'requirements-file: fea/requirements-tcz1l-validation.txt' in workflow
+    assert 'requirements-file: fea/requirements-tcz1l-analysis.txt' in workflow
+    assert workflow.count('python -m pytest -q tests/test_tcz1l_3d.py')==1
+    assert 'needs: validate' in workflow
     assert "install-getdp: 'false'" in workflow
 
 
 def test_minimal_runtime_lock_is_exact():
     req=(ROOT/'requirements-tcz1l-core.txt').read_text().splitlines()
     assert req==['numpy==2.5.1','scipy==1.18.0','PyYAML==6.0.3','ngsolve==6.2.2606']
+
+
+def test_lightweight_validation_and_analysis_locks():
+    validation=(ROOT/'requirements-tcz1l-validation.txt').read_text().splitlines()
+    analysis=(ROOT/'requirements-tcz1l-analysis.txt').read_text().splitlines()
+    assert validation==['numpy==2.5.1','PyYAML==6.0.3','pytest==9.1.1']
+    assert analysis==['numpy==2.5.1','PyYAML==6.0.3']
