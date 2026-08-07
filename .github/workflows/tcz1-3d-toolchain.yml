@@ -59,7 +59,7 @@ jobs:
           sha256sum "$GETDP" > fea/results_ci/fea3d_toolchain/getdp.sha256
 
       - name: Upload immutable toolchain evidence
-        if: always()
+        if: always() && hashFiles('fea/results_ci/fea3d_toolchain/**') != ''
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: tcz1-3d-toolchain-${{ github.run_id }}
