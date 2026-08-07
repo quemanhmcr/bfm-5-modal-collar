@@ -90,12 +90,12 @@ jobs:
         run: |
           set -euo pipefail
           out="results_ci/tcz1l_${{ matrix.label }}"
+          mkdir -p "$out"
           args=(--kind "$TCZ1L_KIND" --output "$out")
           if [ -n "$TCZ1L_RAY" ]; then args+=(--ray "$TCZ1L_RAY"); fi
           if [ -n "$TCZ1L_SCALE" ]; then args+=(--scale "$TCZ1L_SCALE"); fi
           if [ -n "$TCZ1L_CASE" ]; then args+=(--case "$TCZ1L_CASE"); fi
-          python scripts/run_tcz1l_3d_critical_surface.py "${args[@]}" | tee "$out.run.log"
-          cp "$out.run.log" "$out/run.log"
+          python scripts/run_tcz1l_3d_critical_surface.py "${args[@]}" | tee "$out/run.log"
       - name: Upload shard evidence
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
