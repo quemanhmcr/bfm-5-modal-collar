@@ -1,0 +1,57 @@
+{
+  "base_script_sha256": "2916085ebe75d72df8c8f1e0b9c62391f9d2cbdaedaed498fc68b41d237403d3",
+  "campaign_sha256": "e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756",
+  "claim_scope": {
+    "claimed_if_topology_passes": "linear finite-depth 3D coenergy and tangent topology closure for the declared discrete source/geometry model",
+    "not_claimed": [
+      "nonlinear strong-dark or saturation closure",
+      "manufactured end-lead equivalence",
+      "hardware/HIL validity",
+      "continuous certification outside the declared local deformation neighborhood"
+    ]
+  },
+  "decision_partition": {
+    "planar_depth_gauge": "separate finite-depth linear-scaling hypothesis",
+    "topology_closure": "solver, energy, boundary, mesh, derivative, rank, Lorentz and route-locality gates"
+  },
+  "deformation": "continuous same-connectivity displacement of each gap wall with fixed remote boundaries",
+  "depth_multipliers": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "gates": {
+    "lorentz_signature_required": [
+      1,
+      2,
+      0
+    ],
+    "max_depth_gauge_deviation": 0.1,
+    "max_derivative_mesh_spread": 0.02,
+    "max_derivative_step_spread": 0.02,
+    "max_energy_identity_residual": 1e-06,
+    "max_free_residual": 1e-08,
+    "max_gauge_fraction": 1e-06,
+    "max_linear_dark_identity_residual": 1e-08,
+    "max_nominal_isotropy_defect": 0.02,
+    "max_nominal_mesh_spread": 0.02,
+    "max_reciprocity_residual": 1e-06,
+    "max_remote_boundary_spread": 0.02,
+    "max_route_locality_residual": 0.1,
+    "max_route_rank_defect": 0.1,
+    "max_sym2_condition": 30.0,
+    "positive_inductance_required": true,
+    "sym2_rank_required": 3
+  },
+  "primary_gap_step_mm": 0.035,
+  "primary_mesh_scale": 1.0,
+  "remote_boundary_scales": [
+    1.0,
+    1.35
+  ],
+  "schema": "bfm5_tcz1j_3d_same_mesh_coenergy_closure_v1",
+  "solution_space": "HCurl(order=1,nograds=True), BDDC-preconditioned CG",
+  "source_projection": "J_h=curl(T_h), T_h projected in HCurl(order=1)",
+  "validation_gap_step_mm": 0.07,
+  "validation_mesh_scale": 0.8
+}

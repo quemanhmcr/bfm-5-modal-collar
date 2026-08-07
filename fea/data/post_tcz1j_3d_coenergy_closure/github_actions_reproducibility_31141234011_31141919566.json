@@ -1,0 +1,142 @@
+{
+  "campaign_sha256_run_1": "e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756",
+  "campaign_sha256_run_2": "e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756",
+  "max_relative_drift_physical_arrays": 6.675802611438745e-08,
+  "metrics": {
+    "Kq_Wb_per_m": {
+      "frobenius_relative_drift": 1.8208288709127582e-12,
+      "max_absolute_drift": 1.0019068907851647e-13
+    },
+    "dark_direction": {
+      "frobenius_relative_drift": 1.4227525476832467e-12,
+      "max_absolute_drift": 1.1835254998260325e-12
+    },
+    "effective_planar_depth_mm": {
+      "absolute_drift": 4.263256414560601e-13,
+      "relative_drift": 1.3851662395662623e-14,
+      "run_31141234011": 30.777940530051875,
+      "run_31141919566": 30.7779405300523
+    },
+    "generalized_force_N": {
+      "frobenius_relative_drift": 1.4294842366149142e-12,
+      "max_absolute_drift": 1.9958590335988902e-11
+    },
+    "linear_dark_identity_residual": {
+      "absolute_drift": 1.1551976782010333e-17,
+      "relative_drift": 0.3785135717886981,
+      "run_31141234011": 3.0519319894978886e-17,
+      "run_31141919566": 1.8967343112968553e-17
+    },
+    "max_depth_gauge_deviation": {
+      "absolute_drift": 3.352873534367973e-14,
+      "relative_drift": 7.21792984644221e-14,
+      "run_31141234011": 0.4645201055841015,
+      "run_31141919566": 0.464520105584068
+    },
+    "max_derivative_mesh_spread": {
+      "absolute_drift": 1.8206477991888903e-12,
+      "relative_drift": 1.3581499548654825e-10,
+      "run_31141234011": 0.013405351836640276,
+      "run_31141919566": 0.013405351834819628
+    },
+    "max_derivative_step_spread": {
+      "absolute_drift": 2.3639065965114225e-12,
+      "relative_drift": 2.3359928894699284e-09,
+      "run_31141234011": 0.001011949397263717,
+      "run_31141919566": 0.0010119493948998104
+    },
+    "max_energy_identity_residual": {
+      "absolute_drift": 8.109812744806519e-15,
+      "relative_drift": 0.5969823213662755,
+      "run_31141234011": 1.3584678230079084e-14,
+      "run_31141919566": 2.1694490974885603e-14
+    },
+    "max_free_residual": {
+      "absolute_drift": 1.984319196351512e-15,
+      "relative_drift": 0.005416846060292977,
+      "run_31141234011": 3.6632371942358424e-13,
+      "run_31141919566": 3.6830803861993576e-13
+    },
+    "max_gauge_fraction": {
+      "absolute_drift": 8.990004860028952e-17,
+      "relative_drift": 6.945114363373984e-07,
+      "run_31141234011": 1.2944358277869375e-10,
+      "run_31141919566": 1.2944349287864515e-10
+    },
+    "max_reciprocity_residual": {
+      "absolute_drift": 1.5562050927110682e-15,
+      "relative_drift": 0.2805372390375443,
+      "run_31141234011": 5.547231797283074e-15,
+      "run_31141919566": 7.1034368899941426e-15
+    },
+    "minimum_inductance_eigenvalue_H": {
+      "absolute_drift": 1.7999450129153882e-21,
+      "relative_drift": 3.8244966134019906e-15,
+      "run_31141234011": 4.7063579729889986e-07,
+      "run_31141919566": 4.7063579729890166e-07
+    },
+    "nominal_isotropy_defect": {
+      "absolute_drift": 6.682154829462661e-15,
+      "relative_drift": 1.7646031078353507e-13,
+      "run_31141234011": 0.03786774940943916,
+      "run_31141919566": 0.03786774940943248
+    },
+    "nominal_mesh_spread": {
+      "absolute_drift": 5.377642775528102e-15,
+      "relative_drift": 6.164103260134835e-13,
+      "run_31141234011": 0.008724128309639105,
+      "run_31141919566": 0.008724128309644483
+    },
+    "primary_nominal_L_H": {
+      "frobenius_relative_drift": 1.5204833012877402e-14,
+      "max_absolute_drift": 1.5352472168984194e-20
+    },
+    "pullback_eigenvalues": {
+      "frobenius_relative_drift": 6.506049990606661e-13,
+      "max_absolute_drift": 3.9457326295178063e-13
+    },
+    "reference_2d_matrix_drift": {
+      "absolute_drift": 1.715294573045867e-14,
+      "relative_drift": 4.881497586311758e-14,
+      "run_31141234011": 0.3513869550720944,
+      "run_31141919566": 0.35138695507211154
+    },
+    "remote_boundary_spread": {
+      "absolute_drift": 1.0335482469869817e-14,
+      "relative_drift": 8.00722740316555e-13,
+      "run_31141234011": 0.012907691950629279,
+      "run_31141919566": 0.012907691950618944
+    },
+    "route_locality_residual": {
+      "absolute_drift": 5.637543383507637e-13,
+      "relative_drift": 3.6755488115837873e-10,
+      "run_31141234011": 0.0015337963587207621,
+      "run_31141919566": 0.0015337963581570078
+    },
+    "route_rank_defects": {
+      "frobenius_relative_drift": 6.675802611438745e-08,
+      "max_absolute_drift": 1.5184538366540701e-12
+    },
+    "sym2_condition": {
+      "absolute_drift": 1.4566126083082054e-13,
+      "relative_drift": 1.0189046982159534e-13,
+      "run_31141234011": 1.429586703112327,
+      "run_31141919566": 1.4295867031124727
+    },
+    "validation_nominal_L_H": {
+      "frobenius_relative_drift": 1.643685457131869e-14,
+      "max_absolute_drift": 1.1540823906339842e-20
+    }
+  },
+  "runs": [
+    31141234011,
+    31141919566
+  ],
+  "same_campaign_sha256": true,
+  "same_partitioned_decisions": {
+    "evidence_admissible": true,
+    "planar_depth_gauge": true,
+    "raw_topology": true
+  },
+  "schema": "bfm5_tcz1j_actions_reproducibility_v1"
+}

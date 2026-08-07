@@ -1,0 +1,28 @@
+{
+  "artifact_file_count": 36,
+  "artifact_manifest_sha256": "23f780c14a61d8715dc0c494e03af6cc5c04bc8b49ce748f433d98c6df94a8ef",
+  "artifact_name": "tcz1j-3d-coenergy-31141919566",
+  "calibration_diagnostic_sha256": "466a6a49fe2acea5a2c97d79c50e54249e19e671d026c876de91ac70c1d5c164",
+  "campaign_lock_sha256": "92ea1541f16cd4cec66d9a8d06a0ed2700c2311fce2284c1eb2b41cad5ace1dc",
+  "campaign_sha256": "e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756",
+  "canonical_artifact_tree_sha256": "9049f6d13e8b8f55197ed339cbcccac38ec74d8f8c6ffcb7354c16faf67c3a00",
+  "decision_scope": {
+    "evidence_admissible": true,
+    "intrinsic_linear_3d_topology_under_preexisting_T1_T2_gates": true,
+    "planar_depth_gauge_accepted": false,
+    "raw_inherited_2d_frame_accepted": false
+  },
+  "github_repository": "quemanhmcr/bfm-5-modal-collar",
+  "manifest_evidence_file_count": 35,
+  "reproducibility_file": "github_actions_reproducibility_31141234011_31141919566.json",
+  "reproducibility_sha256": "2c5315d59fd052f8ec294dd2203bbb50fc40c01c6116aaa31a7fd57f49d3a9cf",
+  "run_conclusion": "success",
+  "run_id": 31141919566,
+  "run_log_sha256": "e5249e3b2de03f850400e21cf87ab6597ad070ca64648a3b40c42c4635b66f41",
+  "schema": "bfm5_tcz1j_github_actions_repository_freeze_v1",
+  "source_file_count": 7,
+  "source_git_sha": "f6afe6bc2e4d7a46b67688dba71b67612b662701",
+  "source_hash_crosscheck_against_run_commit": "pass",
+  "summary_sha256": "e5794e4e7397cd372dac0486a8c73613b8be13331f7cc6941fcd533cfe874d6a",
+  "workflow": "TCZ-1J 3D Coenergy-Jet Closure"
+}

@@ -1,0 +1,48 @@
+{
+  "delta_gap_mm": -0.07,
+  "elements": 125537,
+  "inductance_H": [
+    [
+      7.956706716012441e-07,
+      -7.692762489620872e-09
+    ],
+    [
+      -7.692762489620872e-09,
+      7.545326928765259e-07
+    ]
+  ],
+  "label": "route_2_minus_h2_validation",
+  "mesh_build_s": 5.994662462999997,
+  "mesh_scale": 0.8,
+  "operating_energy_identity_residual": 5.614572902218146e-15,
+  "reciprocity_residual": 2.1548587007773976e-16,
+  "route": 1,
+  "solution_ndof": 149593,
+  "solver_reports": [
+    {
+      "energy_identity_residual": 2.616243434971938e-15,
+      "gauge_fraction": 9.402050966984281e-11,
+      "iterations": 14,
+      "relative_free_residual": 3.3781574816337625e-13,
+      "solve_s": 0.9056638709999731
+    },
+    {
+      "energy_identity_residual": 3.2186979955537425e-15,
+      "gauge_fraction": 9.309713578642218e-11,
+      "iterations": 15,
+      "relative_free_residual": 3.3957707977580575e-13,
+      "solve_s": 0.9623101560000009
+    }
+  ],
+  "source_ndof": 299186,
+  "source_work_H": [
+    [
+      7.956706716760463e-07,
+      -7.692762491292465e-09
+    ],
+    [
+      -7.692762491292632e-09,
+      7.545326929467682e-07
+    ]
+  ]
+}

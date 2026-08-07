@@ -1,0 +1,83 @@
+{
+  "boundary_scale": 1.0,
+  "campaign_sha256": "90426b93167f2fae85dacda28937815262af430725591b9b5e206ac804356c58",
+  "case_signature_sha256": "f96dfab6a57164c26deb9e233f4bb6b0747260cf77b655528af2c0d2213d2113",
+  "depth_m": 0.011419063851202498,
+  "elements": 64118,
+  "gaps_m": [
+    0.00175,
+    0.00175,
+    0.00175
+  ],
+  "inductance_H": [
+    [
+      5.022486732602234e-07,
+      -3.0233482310784687e-09
+    ],
+    [
+      -3.0233482310784687e-09,
+      4.7092494006900424e-07
+    ]
+  ],
+  "inductance_eigenvalues_H": [
+    4.7063579729890166e-07,
+    5.02537816030326e-07
+  ],
+  "label": "depth_0p5_mesh1p0",
+  "mesh_build_s": 2.889213694000034,
+  "mesh_scale": 1.0,
+  "operating_point": {
+    "coenergy_from_L_J": 0.04529639854272946,
+    "coenergy_from_field_J": 0.045296398542729654,
+    "current": [
+      400.0,
+      150.0
+    ],
+    "energy_closure_residual": 4.289282052437871e-15,
+    "flux_linkage_Wb_turn": [
+      0.0002004459670694276,
+      6.942940171791925e-05
+    ],
+    "gap_coenergy_J": [
+      0.009278305661911427,
+      0.00027635606204455727,
+      0.006391917386609836
+    ],
+    "gap_coenergy_fraction": 0.3520496026968427
+  },
+  "reciprocity_residual": 3.3624248440720497e-15,
+  "solution_ndof": 76645,
+  "solver_reports": [
+    {
+      "algebraic_energy_identity_residual": 3.108522155239065e-15,
+      "field_energy_J": 0.01004497346520447,
+      "gauge_energy_J": 7.096375573545324e-13,
+      "gauge_fraction": 7.064603602613424e-11,
+      "iterations": 11,
+      "port_basis": 0,
+      "relative_free_residual": 1.911547172324698e-13,
+      "solve_s": 0.30635977899999034
+    },
+    {
+      "algebraic_energy_identity_residual": 6.6305731356794075e-15,
+      "field_energy_J": 0.009418498801380085,
+      "gauge_energy_J": 6.494709345028992e-13,
+      "gauge_fraction": 6.895694825198165e-11,
+      "iterations": 12,
+      "port_basis": 1,
+      "relative_free_residual": 1.8994261409558757e-13,
+      "solve_s": 0.33026351800003795
+    }
+  ],
+  "source_ndof": 153290,
+  "source_work_H": [
+    [
+      5.022486732957051e-07,
+      -3.023348231321208e-09
+    ],
+    [
+      -3.023348231319571e-09,
+      4.7092494010147175e-07
+    ]
+  ]
+}

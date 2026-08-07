@@ -1,0 +1,365 @@
+{
+  "case_specific_calibration_drift_exploratory": {
+    "boundary_1p0": {
+      "axis_percent": [
+        -1.8777996833037713,
+        1.9137358082503608
+      ],
+      "matrix": [
+        [
+          0.9812220080652119,
+          1.3627870256287065e-05
+        ],
+        [
+          1.3627870256287106e-05,
+          1.019137353184254
+        ]
+      ],
+      "relative_drift_from_nominal": 7.051495681232368e-15
+    },
+    "boundary_1p35": {
+      "axis_percent": [
+        -1.6411114500640922,
+        1.6684932843978206
+      ],
+      "matrix": [
+        [
+          0.9835928769968785,
+          0.0003634375583642322
+        ],
+        [
+          0.00036343755836423417,
+          1.0166809413464588
+        ]
+      ],
+      "relative_drift_from_nominal": 0.002438356519058054
+    },
+    "depth_0p5": {
+      "axis_percent": [
+        -1.6262895678424982,
+        1.6531749800817286
+      ],
+      "matrix": [
+        [
+          0.984034337381283,
+          0.003107942297734496
+        ],
+        [
+          0.003107942297734506,
+          1.0162345167411093
+        ]
+      ],
+      "relative_drift_from_nominal": 0.004210684692160414
+    },
+    "depth_1p0": {
+      "axis_percent": [
+        -1.8777996833040933,
+        1.9137358082506495
+      ],
+      "matrix": [
+        [
+          0.9812220080652087,
+          1.3627870256774447e-05
+        ],
+        [
+          1.3627870256774457e-05,
+          1.019137353184257
+        ]
+      ],
+      "relative_drift_from_nominal": 1.0143821097991134e-14
+    },
+    "depth_2p0": {
+      "axis_percent": [
+        -1.4291544910172482,
+        1.4498754511414136
+      ],
+      "matrix": [
+        [
+          0.98575297543109,
+          0.0011312700360700644
+        ],
+        [
+          0.0011312700360700584,
+          1.0144542341701517
+        ]
+      ],
+      "relative_drift_from_nominal": 0.0047395793001491215
+    },
+    "validation_mesh": {
+      "axis_percent": [
+        -1.5162824564884603,
+        1.5396275590616737
+      ],
+      "matrix": [
+        [
+          0.9849625905370828,
+          0.0019536744135695973
+        ],
+        [
+          0.0019536744135695817,
+          1.0152708604886493
+        ]
+      ],
+      "relative_drift_from_nominal": 0.004268670129735508
+    }
+  },
+  "fixed_nominal_calibration_robustness_exploratory": {
+    "boundary_1p0": {
+      "calibrated_inductance_H": [
+        [
+          7.703323619399399e-07,
+          -1.9540254685288955e-21
+        ],
+        [
+          -1.9540218561970268e-21,
+          7.703323619399187e-07
+        ]
+      ],
+      "isotropy_defect": 1.3976709864875683e-14
+    },
+    "boundary_1p35": {
+      "calibrated_inductance_H": [
+        [
+          7.761743833280529e-07,
+          -5.457292592477407e-10
+        ],
+        [
+          -5.457292592477406e-10,
+          7.837031134381859e-07
+        ]
+      ],
+      "isotropy_defect": 0.00487688551711753
+    },
+    "depth_0p5": {
+      "calibrated_inductance_H": [
+        [
+          4.835632488219254e-07,
+          -3.0100916580590747e-09
+        ],
+        [
+          -3.0100916580590747e-09,
+          4.891218407277503e-07
+        ]
+      ],
+      "isotropy_defect": 0.00842373669115178
+    },
+    "depth_1p0": {
+      "calibrated_inductance_H": [
+        [
+          7.703323619399382e-07,
+          -2.7050075808680298e-21
+        ],
+        [
+          -2.7050079610543478e-21,
+          7.703323619399075e-07
+        ]
+      ],
+      "isotropy_defect": 2.02366591234023e-14
+    },
+    "depth_2p0": {
+      "calibrated_inductance_H": [
+        [
+          1.3164714230282314e-06,
+          -2.9702259877581847e-09
+        ],
+        [
+          -2.9702259877581847e-09,
+          1.340953198610422e-06
+        ]
+      ],
+      "isotropy_defect": 0.009479499534909707
+    },
+    "validation_mesh": {
+      "calibrated_inductance_H": [
+        [
+          7.634853895514101e-07,
+          -2.9853395556327122e-09
+        ],
+        [
+          -2.985339555632712e-09,
+          7.751885279953183e-07
+        ]
+      ],
+      "isotropy_defect": 0.008538343954818894
+    }
+  },
+  "interpretation_guard": {
+    "allowed": "exploratory diagnosis that the intrinsic linear 3D route topology survives coordinate whitening",
+    "not_allowed": [
+      "overturning the frozen raw-frame rejection",
+      "nonlinear strong-dark or saturation closure",
+      "manufactured winding/end-lead equivalence",
+      "hardware or HIL validity"
+    ]
+  },
+  "intrinsic_topology": {
+    "accepted_under_preexisting_charter_gates": true,
+    "charter_gates": {
+      "lorentz_signature_required": [
+        1,
+        2,
+        0
+      ],
+      "route_rank_defect_nominal_max": 0.05,
+      "sym2_condition_nominal_max": 10.0,
+      "sym2_rank_required": 3,
+      "whitened_tight_frame_defect_max": 0.1
+    },
+    "checks": {
+      "lorentz_signature": true,
+      "route_rank": true,
+      "sym2_condition": true,
+      "sym2_rank": true,
+      "whitened_tight_frame": true
+    },
+    "lorentz_signature": [
+      1,
+      2,
+      0
+    ],
+    "max_coherence_deviation_from_half": 0.007984834256317686,
+    "max_whitened_tight_frame_defect": 0.01061851590479105,
+    "pairwise_absolute_coherences": [
+      0.4961825222340259,
+      0.49580048360157364,
+      0.5079848342563177
+    ],
+    "pullback_eigenvalues": [
+      -0.25345832324524975,
+      -0.2429227409025794,
+      0.4963541086067236
+    ],
+    "route_rank_defects": [
+      8.345571473387548e-07,
+      2.169941397397073e-05,
+      1.8650601593490734e-05
+    ],
+    "sym2_condition": 1.4347088310235956,
+    "sym2_rank": 3,
+    "sym2_singular_values": [
+      0.00018383049572447396,
+      0.00013040958082544425,
+      0.00012813087349111788
+    ],
+    "validation_mesh_spreads": [
+      0.013228029103452048,
+      0.011418465911789143,
+      0.006986941077409651
+    ],
+    "whitened_route_reports": [
+      {
+        "eigenvalues": [
+          5.211258302653956e-07,
+          0.6737456772506794
+        ],
+        "matrix": [
+          [
+            0.6737404087136023,
+            -0.001884044473478621
+          ],
+          [
+            -0.0018840444734786195,
+            5.789662907317852e-06
+          ]
+        ],
+        "principal_vector": [
+          0.999996090103707,
+          -0.002796386471648041
+        ],
+        "rank_defect": 7.734755826440742e-07,
+        "tight_frame_defect": 0.01061851590479105,
+        "trace": 0.6737461983765096
+      },
+      {
+        "eigenvalues": [
+          -1.488496267251782e-05,
+          0.6629677761124115
+        ],
+        "matrix": [
+          [
+            0.16161480967097097,
+            -0.2846638840274638
+          ],
+          [
+            -0.28466388402746384,
+            0.501338081478768
+          ]
+        ],
+        "principal_vector": [
+          -0.49375270848334973,
+          0.8696023590500178
+        ],
+        "rank_defect": 2.245201532991847e-05,
+        "tight_frame_defect": 0.005548380755910624,
+        "trace": 0.662952891149739
+      },
+      {
+        "eigenvalues": [
+          -1.2943934535505908e-05,
+          0.6633138544082877
+        ],
+        "matrix": [
+          [
+            0.1646447816154273,
+            0.28654792850094246
+          ],
+          [
+            0.2865479285009424,
+            0.4986561288583249
+          ]
+        ],
+        "principal_vector": [
+          0.49822702903392957,
+          0.8670466120918896
+        ],
+        "rank_defect": 1.95140421830215e-05,
+        "tight_frame_defect": 0.005029255866139324,
+        "trace": 0.6633009104737522
+      }
+    ],
+    "whitened_trace_spread": 0.01618996084015594
+  },
+  "nominal_calibration": {
+    "axis_percent": [
+      -1.877799683303072,
+      1.9137358082496725
+    ],
+    "calibrated_inductance_H": [
+      [
+        7.70332361939922e-07,
+        4.998141770915187e-26
+      ],
+      [
+        5.0760511906228885e-26,
+        7.703323619399224e-07
+      ]
+    ],
+    "calibrated_isotropy_defect": 2.7489205084353295e-16,
+    "matrix_C": [
+      [
+        0.9812220080652189,
+        1.362787025501901e-05
+      ],
+      [
+        1.3627870255019022e-05,
+        1.0191373531842471
+      ]
+    ],
+    "raw_inductance_condition": 1.078775032654183,
+    "target_geometric_mean_inductance_H": 7.70332361939922e-07
+  },
+  "power_preserving_coordinate_rule": {
+    "current": "i_raw = C @ i_calibrated",
+    "flux": "psi_calibrated = C.T @ psi_raw",
+    "power_pairing": "i_raw.T @ psi_raw = i_calibrated.T @ psi_calibrated"
+  },
+  "raw_frame_decision_preserved": {
+    "failed_checks": [
+      "nominal_isotropy"
+    ],
+    "planar_depth_gauge_accepted": false,
+    "topology_closure_accepted": false
+  },
+  "schema": "bfm5_tcz1j_3d_calibration_diagnostic_v1",
+  "source_campaign_sha256": "e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756"
+}

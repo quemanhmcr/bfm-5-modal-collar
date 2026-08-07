@@ -1,0 +1,76 @@
+schema: bfm5_tcz1j_3d_partitioned_decision_v1
+stage: TCZ-1J
+status: actions_evidence_frozen_partitioned_decision
+source_campaign:
+  git_sha: f6afe6bc2e4d7a46b67688dba71b67612b662701
+  github_actions_run_id: 31141919566
+  campaign_sha256: e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756
+  evidence_directory: fea/data/post_tcz1j_3d_coenergy_closure/github_actions_run_31141919566
+  summary_sha256: e5794e4e7397cd372dac0486a8c73613b8be13331f7cc6941fcd533cfe874d6a
+  calibration_diagnostic_sha256: 466a6a49fe2acea5a2c97d79c50e54249e19e671d026c876de91ac70c1d5c164
+  artifact_manifest_sha256: 23f780c14a61d8715dc0c494e03af6cc5c04bc8b49ce748f433d98c6df94a8ef
+partitioned_decision:
+  numerical_evidence_admissible: true
+  raw_inherited_2d_canonical_frame:
+    accepted: false
+    failed_gate: nominal_isotropy
+    measured_defect: 0.03786774940943248
+    maximum_allowed: 0.02
+  planar_depth_multiplicative_gauge:
+    accepted: false
+    maximum_normalized_deviation: 0.464520105584068
+    maximum_allowed: 0.10
+  intrinsic_linear_3d_route_topology:
+    accepted_under_preexisting_T1_T2_charter_gates: true
+    interpretation: exploratory_power_preserving_congruence_and_frame_whitening
+    raw_rejection_overturned: false
+replacement_calibration:
+  current_rule: i_raw = C @ i_calibrated
+  flux_rule: psi_calibrated = C.T @ psi_raw
+  power_pairing_preserved: true
+  matrix_C:
+    - [0.9812220080652189, 1.362787025501901e-05]
+    - [1.3627870255019022e-05, 1.0191373531842471]
+  principal_axis_current_adjustment_percent: [-1.877799683303072, 1.9137358082496725]
+  calibrated_nominal_inductance_H: 7.70332361939922e-07
+  calibrated_nominal_isotropy_defect: 2.7489205084353295e-16
+  maximum_fixed_calibration_isotropy_defect_over_tested_mesh_depth_boundary_set: 0.009479499534909707
+intrinsic_topology_metrics:
+  sym2_rank: 3
+  sym2_condition: 1.4347088310235956
+  lorentz_signature: [1, 2, 0]
+  maximum_route_rank_defect: 2.169941397397073e-05
+  maximum_whitened_tight_frame_defect: 0.01061851590479105
+  maximum_pairwise_coherence_deviation_from_half: 0.007984834256317686
+  whitened_trace_spread: 0.01618996084015594
+finite_depth_replacement_law:
+  form: mean_L_H = slope_H_per_m * depth_m + intercept_H
+  slope_H_per_m: 2.457533808845131e-05
+  intercept_H: 2.074282140353522e-07
+  equivalent_end_extension_mm: 8.440502966379492
+  r_squared: 0.9999794555135053
+reproducibility:
+  independent_actions_runs: [31141234011, 31141919566]
+  same_campaign_sha256: true
+  same_partitioned_decisions: true
+  maximum_relative_drift_physical_arrays: 6.675802611438745e-08
+claim_scope:
+  allowed:
+    - admissible_linear_finite_depth_3d_coenergy_evidence
+    - rejection_of_raw_inherited_2d_frame
+    - rejection_of_exact_planar_depth_multiplicative_gauge
+    - exploratory_intrinsic_topology_survival_under_power_preserving_calibration
+    - affine_finite_depth_end_effect_law_over_the_declared_depth_set
+  forbidden:
+    - nonlinear_strong_dark_or_saturation_closure
+    - manufactured_winding_or_end_lead_equivalence
+    - hardware_or_HIL_validity
+    - certification_outside_the_declared_linear_local_model
+next_gate:
+  name: TCZ-1K nonlinear 3D calibrated holdout
+  requirements:
+    - predeclare_matrix_C_and_affine_depth_law_without_refitting
+    - nonlinear_BH_curve_and_saturation_operating_set
+    - geometry_material_and_source_uncertainty_holdout
+    - derivative_and_remote_boundary_convergence
+    - preserve_raw_and_calibrated_decisions_separately

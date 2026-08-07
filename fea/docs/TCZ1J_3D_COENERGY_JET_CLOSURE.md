@@ -67,3 +67,12 @@ applies the power-preserving congruence `i_raw = C i_cal`,
 `psi_cal = C^T psi_raw`, then evaluates the pre-existing T1/T2 charter gates.
 This determines whether a failed inherited 2D calibration reflects destroyed
 magnetic topology or merely a correctable electrical coordinate anisotropy.
+
+## Frozen Actions decision
+
+The final partitioned decision and immutable evidence are recorded in
+[`TCZ1J_3D_DECISION_MEMO.md`](TCZ1J_3D_DECISION_MEMO.md) and
+`../data/post_tcz1j_3d_coenergy_closure/github_actions_run_31141919566/`.
+The raw inherited 2D frame and exact planar depth gauge are rejected; the
+intrinsic linear 3D route topology survives the pre-existing T1/T2 gates after
+power-preserving calibration.
