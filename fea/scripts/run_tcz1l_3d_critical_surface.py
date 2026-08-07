@@ -116,19 +116,61 @@ def numerical_summary(cases:list[dict[str,Any]],tangent_report:dict[str,Any])->d
     }
 
 
-def continuation_baseline(model,current:np.ndarray,scenario:dict[str,Any],label:str):
-    vector=None; reports=[]
-    for factor in GRID['baseline_continuation_factors']:
-        result,vector=model.solve(current*float(factor),initial_vector=vector,label=f'{label}_continuation_{factor:g}',**scenario)
-        reports.append(result)
-    return reports[-1],vector,reports
+def adaptive_baseline(model,current:np.ndarray,scenario:dict[str,Any],label:str):
+    """Use the parent's linear predictor directly; pay homotopy cost only on failure."""
+    efficiency=CONFIG['execution_efficiency']
+    try:
+        result,vector=model.solve(current,initial_vector=None,label=f'{label}_direct',**scenario)
+        return result,vector,[result],{'mode':'direct_linear_initializer','fallback_used':False}
+    except RuntimeError as direct_error:
+        vector=None; reports=[]
+        for factor in efficiency['fallback_continuation_factors']:
+            result,vector=model.solve(current*float(factor),initial_vector=vector,label=f'{label}_fallback_{factor:g}',**scenario)
+            reports.append(result)
+        return reports[-1],vector,reports,{
+            'mode':'fallback_homotopy',
+            'fallback_used':True,
+            'direct_failure_type':type(direct_error).__name__,
+            'direct_failure_message':str(direct_error),
+        }
 
-def state_report(model,current:np.ndarray,*,label:str,scenario:dict[str,Any]|None=None,step_mm:float|None=None)->dict[str,Any]:
+
+def _restore_saved_state(model,current:np.ndarray,vector,gap_delta_mm:np.ndarray,scenario:dict[str,Any])->None:
+    base_gaps=np.asarray(scenario.get('gap_delta_mm',np.zeros(3)),dtype=float)
+    gains=np.asarray(scenario.get('route_source_gain',np.ones(3)),dtype=float)
+    h_scale=float(scenario.get('h_scale',1.0)); b_knee_scale=float(scenario.get('b_knee_scale',1.0))
+    model._set_deformation(base_gaps+np.asarray(gap_delta_mm,dtype=float))
+    model._set_parameters(current,gains,h_scale,b_knee_scale)
+    model.gf.vec.data=vector
+
+
+def topology_from_gap_states(model,current:np.ndarray,baseline_ld:np.ndarray,gap_vectors:dict[int,tuple[Any,Any]],scenario:dict[str,Any],step_mm:float)->dict[str,Any]:
+    """Differentiate exact current tangents at already-solved +/- gap states; no duplicate nonlinear solves."""
+    sensitivities=[]; tangent_reports=[]
+    for route in range(3):
+        pair=[]
+        for sign,name,vector in ((-1.0,'minus',gap_vectors[route][0]),(1.0,'plus',gap_vectors[route][1])):
+            delta=np.zeros(3); delta[route]=sign*step_mm
+            _restore_saved_state(model,current,vector,delta,scenario)
+            ld,tr=exact_discrete_current_tangent(model)
+            pair.append(0.5*(ld+ld.T))
+            tangent_reports.append({'route':route+1,'side':name,**tr})
+        sensitivities.append(-(pair[1]-pair[0])/(2.0*step_mm*1e-3))
+    return {
+        'reuse_policy':'exact_Newton_Hessian_on_primary_gap_states_no_additional_nonlinear_solve',
+        'baseline_Ld_H':baseline_ld.tolist(),
+        'sensitivities_H_per_m':[x.tolist() for x in sensitivities],
+        'topology':topology_metrics(sensitivities),
+        'tangent_reports':tangent_reports,
+    }
+
+
+def state_report(model,current:np.ndarray,*,label:str,scenario:dict[str,Any]|None=None,step_mm:float|None=None,include_topology:bool=False,return_internal:bool=False):
     scenario={} if scenario is None else dict(scenario)
     step=float(GRID['gap_step_primary_mm'] if step_mm is None else step_mm)
-    baseline,baseline_vector,continuation_cases=continuation_baseline(model,current,scenario,label)
+    baseline,baseline_vector,continuation_cases,baseline_strategy=adaptive_baseline(model,current,scenario,label)
     ld,tangent_report=exact_discrete_current_tangent(model)
-    kq,grad_w,gap_cases,_=parent.gap_tangent(model,current,baseline_vector,scenario,step,label)
+    kq,grad_w,gap_cases,gap_vectors=parent.gap_tangent(model,current,baseline_vector,scenario,step,label)
     dark=dark_metrics(kq,grad_w,parent.FRAME)
     flux=np.asarray(baseline['calibrated_flux_linkage_Wb_turn'],dtype=float)
     sym=0.5*(ld+ld.T)
@@ -145,8 +187,8 @@ def state_report(model,current:np.ndarray,*,label:str,scenario:dict[str,Any]|Non
     }
     strict=strict_overlap_flags(volume_above_1p62=volume,differential_ratio=diff_ratio,port=float(dark['port_leakage']),power=float(dark['power_ratio']),locality=float(dark['route_locality_residual']),gates=GATES['strict_overlap_guard'])
     cases=[*continuation_cases,*gap_cases]
-    return {
-        'current_A':current.tolist(),'baseline':baseline,'continuation_cases':continuation_cases,'gap_step_mm':step,'gap_cases':gap_cases,
+    report={
+        'current_A':current.tolist(),'baseline':baseline,'continuation_cases':continuation_cases,'baseline_strategy':baseline_strategy,'gap_step_mm':step,'gap_cases':gap_cases,
         'Kq_Wb_per_m':kq.tolist(),'coenergy_gradient_N':grad_w.tolist(),'dark':dark,
         'exact_tangent':tangent_report,'directional_differential_to_secant_ratio':float(diff_ratio),
         'saturation_volume_fraction_above_1p62T':volume,
@@ -156,12 +198,18 @@ def state_report(model,current:np.ndarray,*,label:str,scenario:dict[str,Any]|Non
         'numerical':numerical_summary(cases,tangent_report),
         'case_count':len(cases),
     }
+    if include_topology:
+        report['topology_reuse']=topology_from_gap_states(model,current,ld,gap_vectors,scenario,step)
+    if return_internal:
+        return report,baseline_vector
+    return report
 
 
 def state_shard(ray:str,scale:float,output:Path)->dict[str,Any]:
     model=model_for('mesh_fine')
     current=ray_current(ray,scale)
-    state=state_report(model,current,label=f'tcz1l_{ray}_{scale:g}')
+    sentinel={(x['ray'],float(x['scale'])) for x in CONFIG['topology_sentinels']}
+    state=state_report(model,current,label=f'tcz1l_{ray}_{scale:g}',include_topology=(ray,float(scale)) in sentinel)
     result={'kind':'state','ray':ray,'scale':float(scale),'campaign_sha256':CAMPAIGN_SHA,'state':state}
     dump(output/'state.json',result); return result
 
@@ -170,44 +218,31 @@ def numerical_shard(level:str,output:Path)->dict[str,Any]:
     if level not in ('mesh_mid','mesh_fine','boundary_far'): raise ValueError(level)
     ray=CONFIG['numerical_sentinel']['ray']; scale=float(CONFIG['numerical_sentinel']['scale'])
     model=model_for(level); current=ray_current(ray,scale)
-    state=state_report(model,current,label=f'tcz1l_num_{level}')
+    state,baseline_vector=state_report(model,current,label=f'tcz1l_num_{level}',return_internal=True)
     result={'kind':'numerical','level':level,'campaign_sha256':CAMPAIGN_SHA,'state':state}
     if level=='mesh_fine':
-        baseline,baseline_vector,validation_continuation=continuation_baseline(model,current,{},'tcz1l_num_fine_validation')
-        ld_exact,tan_report=exact_discrete_current_tangent(model)
+        ld_exact=np.asarray(state['exact_tangent']['calibrated_differential_inductance_H'],dtype=float)
         kq2,grad2,cases2,_=parent.gap_tangent(model,current,baseline_vector,{},float(GRID['gap_step_validation_mm']),'tcz1l_num_fine_h2')
         fd,curr_cases=finite_current_tangent(model,current,baseline_vector,{},float(GRID['finite_current_validation_step_A']),'tcz1l_num_fine_fd')
         result['validation']={
-            'baseline':baseline,'continuation_cases':validation_continuation,
+            'baseline':state['baseline'],'continuation_cases':[state['baseline']],
+            'baseline_reuse':'primary_mesh_fine_baseline_vector',
             'gap_step_validation_mm':float(GRID['gap_step_validation_mm']),
             'Kq_Wb_per_m':kq2.tolist(),'coenergy_gradient_N':grad2.tolist(),'gap_cases':cases2,
             'finite_current_validation_step_A':float(GRID['finite_current_validation_step_A']),
             'finite_difference_differential_inductance_H':fd.tolist(),'current_cases':curr_cases,
             'exact_differential_inductance_H':ld_exact.tolist(),
             'exact_vs_finite_difference_spread':relative(ld_exact,fd),
-            'exact_tangent':tan_report,
+            'exact_tangent':state['exact_tangent'],
         }
     dump(output/'numerical.json',result); return result
 
 
 def topology_shard(ray:str,output:Path)->dict[str,Any]:
+    """Manual/debug entry point; production R2 obtains topology from sentinel state shards."""
     scale=float(LADDER['sentinel_scale']); current=ray_current(ray,scale); model=model_for('mesh_fine')
-    baseline,baseline_vector,continuation_cases=continuation_baseline(model,current,{},f'tcz1l_topology_{ray}')
-    ld0,t0=exact_discrete_current_tangent(model)
-    step=float(GRID['gap_step_primary_mm']); sensitivities=[]; states=[]; tangents=[]
-    for route in range(3):
-        pair=[]
-        for sign,name in ((-1.0,'minus'),(1.0,'plus')):
-            gaps=np.zeros(3); gaps[route]=sign*step
-            state,vec=model.solve(current,gap_delta_mm=gaps,initial_vector=baseline_vector,label=f'tcz1l_topology_{ray}_route_{route+1}_{name}')
-            ld,tr=exact_discrete_current_tangent(model); pair.append(0.5*(ld+ld.T)); states.append(state); tangents.append(tr)
-        sensitivities.append(-(pair[1]-pair[0])/(2*step*1e-3))
-    result={
-        'kind':'topology','ray':ray,'scale':scale,'campaign_sha256':CAMPAIGN_SHA,
-        'baseline':baseline,'continuation_cases':continuation_cases,'baseline_exact_tangent':t0,'baseline_Ld_H':ld0.tolist(),
-        'sensitivities_H_per_m':[x.tolist() for x in sensitivities],
-        'topology':topology_metrics(sensitivities),'state_reports':states,'tangent_reports':tangents,
-    }
+    state=state_report(model,current,label=f'tcz1l_topology_debug_{ray}',include_topology=True)
+    result={'kind':'topology','ray':ray,'scale':scale,'campaign_sha256':CAMPAIGN_SHA,'state':state,'topology_reuse':state['topology_reuse']}
     dump(output/'topology.json',result); return result
 
 
@@ -221,7 +256,6 @@ def uncertainty_shard(identifier:str,output:Path)->dict[str,Any]:
     state=state_report(model,current,label=f'tcz1l_uncertainty_{identifier}',scenario=scenario)
     result={'kind':'uncertainty','scenario_id':identifier,'ray':ray,'scale':scale,'campaign_sha256':CAMPAIGN_SHA,'state':state}
     dump(output/'uncertainty.json',result); return result
-
 
 def smoke_shard(output:Path)->dict[str,Any]:
     model=parent.NonlinearModel(float(GRID['physical_depth_mm'])*1e-3,1.55,1.0)

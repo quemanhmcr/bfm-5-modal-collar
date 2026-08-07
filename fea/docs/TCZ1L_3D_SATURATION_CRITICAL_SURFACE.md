@@ -32,3 +32,7 @@ At every sample the campaign computes the exact discrete `Ld`, same-mesh gap der
 ## Claim firewall
 
 The campaign cannot change the TCZ-1K calibration, B-H law, current rays, scale ladder, gates, or uncertainty definitions after results appear.  It does not claim hysteresis, eddy-current, winding-end, hardware or HIL validity. The previously rejected affine depth law remains rejected and is not refit here.
+
+## R2 execution-only acceleration
+
+The scientific contract is frozen by SHA-256 `5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8`. R2 changes execution only: direct Newton from the frozen linear initializer is attempted first; the original four-stage homotopy is paid only after direct failure. Sentinel topology reuses the already-converged primary +/- gap states and differentiates their exact discrete Newton Hessians, eliminating duplicate nonlinear solves. The Actions matrix is capped at 20 jobs, matching observed repository concurrency, and installs only the seven-package transitive nonlinear runtime closure from the existing complete wheel cache; GetDP is skipped because TCZ-1L never invokes it.

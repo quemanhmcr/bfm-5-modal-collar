@@ -77,19 +77,16 @@ def main():
     if not shards: raise SystemExit('no shard summaries')
     hashes={d.get('campaign_sha256') for _,d in shards};
     if hashes!={SHA}: raise SystemExit(f'campaign hash mismatch: {hashes} expected {SHA}')
-    states={}; numerical={}; topologies={}; uncertainties={}
+    states={}; numerical={}; uncertainties={}
     for p,d in shards:
         k=d['kind']
         if k=='state': states[(d['ray'],float(d['scale']))]=d
         elif k=='numerical': numerical[d['level']]=d
-        elif k=='topology': topologies[d['ray']]=d
         elif k=='uncertainty': uncertainties[d['scenario_id']]=d
         else: raise SystemExit(f'unexpected shard kind {k}: {p}')
     expected_states={(r,s) for r in RAYS for s in SCALES}
     if set(states)!=expected_states: raise SystemExit(f'state set mismatch missing={expected_states-set(states)} extra={set(states)-expected_states}')
     if set(numerical)!={'mesh_mid','mesh_fine','boundary_far'}: raise SystemExit('numerical sentinel set mismatch')
-    expected_top={x['ray'] for x in CFG['topology_sentinels']}
-    if set(topologies)!=expected_top: raise SystemExit('topology sentinel set mismatch')
     expected_unc=set(CFG['saturation_targeted_uncertainty']['scenario_ids'])
     if set(uncertainties)!=expected_unc: raise SystemExit('uncertainty set mismatch')
 
@@ -137,15 +134,20 @@ def main():
     event_order=all(x['saturation_precedes_sampled_dark_failure'] for x in ray_reports.values())
 
     # Topology survival at two angularly distinct deep-saturation states.
+    # R2 reuses the already-solved +/- primary gap states and differentiates the
+    # exact discrete current tangent there; no second nonlinear topology campaign.
     topology_rows=[]; topology_survival=True
     sentinel_scale=float(CFG['critical_surface_ladder']['sentinel_scale'])
-    for ray,d in topologies.items():
-        metrics=d['topology']; passed,checks=topology_pass(metrics)
-        assoc=state_physical(states[(ray,sentinel_scale)]['state'])
-        case_num=all(raw_case_ok(x) for x in [*d['continuation_cases'],*d['state_reports']]) and tangent_report_ok(d['baseline_exact_tangent']) and all(tangent_report_ok(x) for x in d['tangent_reports'])
+    for spec in CFG['topology_sentinels']:
+        ray=spec['ray']; state=states[(ray,sentinel_scale)]['state']
+        reuse=state.get('topology_reuse')
+        if not reuse: raise SystemExit(f'missing topology reuse payload for {ray}')
+        metrics=reuse['topology']; passed,checks=topology_pass(metrics)
+        assoc=state_physical(state)
+        case_num=assoc['numerical'] and tangent_report_ok(state['exact_tangent']) and all(tangent_report_ok(x) for x in reuse['tangent_reports'])
         accepted=passed and assoc['numerical'] and assoc['saturated'] and assoc['strong_dark'] and case_num
         topology_survival &= accepted
-        topology_rows.append({'ray':ray,'scale':sentinel_scale,'accepted':accepted,'topology_checks':checks,'state_saturated':assoc['saturated'],'state_strong_dark':assoc['strong_dark'],'state_numerical':assoc['numerical'],'internal_cases_numerical':case_num,'metrics':metrics})
+        topology_rows.append({'ray':ray,'scale':sentinel_scale,'accepted':accepted,'topology_checks':checks,'state_saturated':assoc['saturated'],'state_strong_dark':assoc['strong_dark'],'state_numerical':assoc['numerical'],'internal_cases_numerical':case_num,'reuse_policy':reuse['reuse_policy'],'metrics':metrics})
 
     uncertainty_rows=[]; uncertainty_survival=True
     for ident,d in uncertainties.items():

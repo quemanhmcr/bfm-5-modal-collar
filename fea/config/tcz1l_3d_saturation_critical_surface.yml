@@ -1,6 +1,6 @@
 schema: bfm5_tcz1l_saturation_critical_surface_v1
 stage: TCZ-1L
-status: preregistered_before_saturation_targeted_actions_holdout
+status: preregistered_execution_efficiency_r2_before_fresh_actions_holdout
 frozen_parent:
   tcz1kq_freeze_git_sha: 9d344195a5d459f850ce6d850620cbd565fa0395
   tcz1kq_actions_run_id: 31145999028
@@ -12,6 +12,19 @@ frozen_parent:
   tcz1kq_runner_sha256: c824f61b9dcdf8cbc03e5a5ba2ec3780a8dfc5073781e5a41406160b5862a195
   refit_forbidden: true
   frozen_affine_depth_law_remains_rejected: true
+execution_efficiency:
+  revision: r2_algorithm_only
+  original_preregistration_campaign_sha256: 421c937c064aa4c16389121ae64d25d4e1257b48bb99f82d665ce75b91f51a7b
+  scientific_contract_sha256: 5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8
+  physical_model_rays_material_uncertainty_and_acceptance_gates_unchanged: true
+  reason: eliminate_redundant_continuation_and_duplicate_topology_solves_before_fresh_holdout
+  baseline_strategy: direct_Newton_from_linear_initializer_then_fallback_homotopy_only_on_failure
+  fallback_continuation_factors: [0.25, 0.50, 0.75, 1.0]
+  topology_reuses_primary_gap_states_via_exact_Newton_Hessian: true
+  numerical_fine_reuses_primary_baseline_for_validation: true
+  actions_matrix_job_cap: 20
+  runtime_requirements_file: fea/requirements-tcz1l-core.txt
+  install_getdp: false
 fixed_model:
   physical_depth_mm: 22.838127702404996
   calibration_matrix_C:

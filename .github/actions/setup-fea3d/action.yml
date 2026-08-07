@@ -1,5 +1,5 @@
 name: Setup BFM-5 3D FEA
-description: Restore the pinned 3D FEA wheelhouse and GetDP solver on Ubuntu runners.
+description: Restore the pinned 3D FEA wheelhouse, build a selected runtime closure, and optionally expose GetDP on Ubuntu runners.
 inputs:
   python-version:
     description: CPython version
@@ -9,6 +9,14 @@ inputs:
     description: Manual cache namespace generation
     required: false
     default: 'v1'
+  requirements-file:
+    description: Pinned requirements subset to install from the already-cached complete wheelhouse
+    required: false
+    default: 'fea/requirements-tcz1-3d.txt'
+  install-getdp:
+    description: Whether to restore and expose the checksum-pinned GetDP binary
+    required: false
+    default: 'true'
 outputs:
   wheelhouse-cache-hit:
     description: Whether the complete wheelhouse was restored from GitHub cache.
@@ -85,15 +93,18 @@ runs:
         .venv-fea3d/bin/python -m pip install \
           --no-index --find-links .cache/fea3d/wheelhouse \
           pip==26.2.1 setuptools==83.0.0 wheel==0.47.0
+        REQ_FILE="${{ inputs.requirements-file }}"
+        test -f "$REQ_FILE"
         .venv-fea3d/bin/python -m pip install \
           --no-index --find-links .cache/fea3d/wheelhouse \
-          --requirement fea/requirements-tcz1-3d.txt
+          --requirement "$REQ_FILE"
         .venv-fea3d/bin/python -m pip check
         echo "$GITHUB_WORKSPACE/.venv-fea3d/bin" >> "$GITHUB_PATH"
         echo "VIRTUAL_ENV=$GITHUB_WORKSPACE/.venv-fea3d" >> "$GITHUB_ENV"
         echo "BFM5_FEA3D_WHEELHOUSE=$GITHUB_WORKSPACE/.cache/fea3d/wheelhouse" >> "$GITHUB_ENV"
 
     - name: Restore GetDP 3.5.0
+      if: inputs.install-getdp == 'true'
       id: getdp-cache
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
@@ -101,6 +112,7 @@ runs:
         key: getdp-${{ runner.os }}-${{ runner.arch }}-3.5.0-d3c28fa18f20d614
 
     - name: Install checksum-pinned GetDP
+      if: inputs.install-getdp == 'true'
       shell: bash
       run: |
         set -euo pipefail

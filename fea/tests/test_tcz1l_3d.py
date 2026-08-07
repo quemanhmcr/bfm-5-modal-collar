@@ -1,4 +1,6 @@
 from pathlib import Path
+import hashlib
+import json
 import yaml
 import numpy as np
 from bfm5.tcz1l_3d import first_true_scale, sampled_event_order, strict_overlap_flags, relative
@@ -35,3 +37,28 @@ def test_strict_guard():
 
 def test_relative():
     assert relative(np.eye(2),np.eye(2))==0.0
+
+
+def test_execution_r2_cannot_refit_scientific_contract():
+    e=CFG['execution_efficiency']
+    keys=['frozen_parent','fixed_model','critical_surface_ladder','saturation_targeted_uncertainty','topology_sentinels','numerical_sentinel','acceptance_gates','decision_rules','mathematical_claim_boundary']
+    payload={k:CFG[k] for k in keys}
+    actual=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    assert actual==e['scientific_contract_sha256']=='5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8'
+    assert e['physical_model_rays_material_uncertainty_and_acceptance_gates_unchanged'] is True
+    assert e['baseline_strategy']=='direct_Newton_from_linear_initializer_then_fallback_homotopy_only_on_failure'
+    assert e['topology_reuses_primary_gap_states_via_exact_Newton_Hessian'] is True
+
+
+def test_actions_matrix_fits_runner_concurrency_and_uses_core_runtime():
+    workflow=(ROOT.parent/'.github/workflows/tcz1l-3d-saturation.yml').read_text()
+    assert workflow.count('- {label:')==20
+    assert 'max-parallel: 20' in workflow
+    assert 'topology-high_skew' not in workflow and 'topology-rotated_a' not in workflow
+    assert 'requirements-file: fea/requirements-tcz1l-core.txt' in workflow
+    assert "install-getdp: 'false'" in workflow
+
+
+def test_minimal_runtime_lock_is_exact():
+    req=(ROOT/'requirements-tcz1l-core.txt').read_text().splitlines()
+    assert req==['numpy==2.5.1','scipy==1.18.0','PyYAML==6.0.3','ngsolve==6.2.2606']
