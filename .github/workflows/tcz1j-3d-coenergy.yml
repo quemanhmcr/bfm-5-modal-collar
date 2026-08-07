@@ -1,0 +1,102 @@
+name: TCZ-1J 3D Coenergy-Jet Closure
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_generation:
+        description: FEA3D cache namespace
+        required: true
+        default: v1
+  push:
+    branches:
+      - research/tcz1j-3d-coenergy-jet-closure
+    paths:
+      - '.github/actions/setup-fea3d/action.yml'
+      - '.github/workflows/tcz1j-3d-coenergy.yml'
+      - 'fea/bfm5/tcz1j_3d.py'
+      - 'fea/config/tcz1j_3d_coenergy_closure.yml'
+      - 'fea/scripts/run_tcz1j_3d_linear_screen.py'
+      - 'fea/scripts/run_tcz1j_3d_same_mesh_closure.py'
+      - 'fea/scripts/seal_tcz1j_3d_evidence.py'
+      - 'fea/tests/test_tcz1j_3d.py'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  PYTHONPATH: '.'
+  OMP_NUM_THREADS: '4'
+  OPENBLAS_NUM_THREADS: '4'
+  MKL_NUM_THREADS: '4'
+  NUMBA_NUM_THREADS: '4'
+
+concurrency:
+  group: tcz1j-3d-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  closure:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore pinned reusable FEA3D layer
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Validate deterministic decision mathematics
+        run: python -m pytest -q tests/test_tcz1j_3d.py
+
+      - name: Run finite-depth same-mesh coenergy closure
+        env:
+          BFM5_TCZ1J_BASE_SCRIPT: ${{ github.workspace }}/fea/scripts/run_tcz1j_3d_linear_screen.py
+          BFM5_TCZ1J_OUT: ${{ github.workspace }}/fea/results_ci/tcz1j_3d_coenergy_closure
+        run: |
+          set -o pipefail
+          mkdir -p results_ci
+          python scripts/run_tcz1j_3d_same_mesh_closure.py | tee results_ci/tcz1j_3d_run.log
+
+      - name: Seal and enforce numerical admissibility
+        env:
+          BFM5_TCZ1J_OUT: ${{ github.workspace }}/fea/results_ci/tcz1j_3d_coenergy_closure
+        run: |
+          cp results_ci/tcz1j_3d_run.log results_ci/tcz1j_3d_coenergy_closure/run.log
+          python scripts/seal_tcz1j_3d_evidence.py
+
+      - name: Publish concise decision
+        if: always()
+        shell: bash
+        run: |
+          if [ -f results_ci/tcz1j_3d_coenergy_closure/summary.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          s=json.loads(Path('results_ci/tcz1j_3d_coenergy_closure/summary.json').read_text())
+          m=s['metrics']
+          print('# TCZ-1J 3D closure')
+          print(f"- Evidence admissible: **{s['evidence_admissible']}**")
+          print(f"- Topology closure accepted: **{s['topology_closure_accepted']}**")
+          print(f"- Planar depth gauge accepted: **{s['planar_depth_gauge_accepted']}**")
+          print(f"- Sym(2) rank / condition: **{m['sym2_rank']} / {m['sym2_condition']:.6g}**")
+          print(f"- Lorentz signature: **{m['lorentz_signature']}**")
+          print(f"- Max derivative mesh spread: **{m['max_derivative_mesh_spread']:.3%}**")
+          print(f"- Remote boundary spread: **{m['remote_boundary_spread']:.3%}**")
+          print(f"- Equivalent end extension: **{m['depth_fit']['equivalent_end_extension_mm']:.6g} mm**")
+          PY
+          fi
+
+      - name: Upload immutable closure evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1j-3d-coenergy-${{ github.run_id }}
+          path: fea/results_ci/tcz1j_3d_coenergy_closure/
+          if-no-files-found: error
+          retention-days: 14

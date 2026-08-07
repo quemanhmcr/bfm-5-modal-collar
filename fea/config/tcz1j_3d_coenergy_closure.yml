@@ -1,6 +1,6 @@
 schema: bfm5_tcz1j_3d_same_mesh_coenergy_closure_v1
 stage: TCZ-1J
-status: source_frozen_pending_independent_replay
+status: github_actions_campaign_pending
 model:
   physics: linear_magnetostatic_vector_potential
   core_relative_permeability: 2000.0
@@ -33,6 +33,8 @@ acceptance_gates:
   maximum_reciprocity_residual: 1.0e-6
   maximum_energy_identity_residual: 1.0e-6
   maximum_nominal_mesh_spread: 0.02
+  maximum_remote_boundary_spread: 0.02
+  maximum_nominal_isotropy_defect: 0.02
   maximum_derivative_step_spread: 0.02
   maximum_derivative_mesh_spread: 0.02
   required_sym2_rank: 3
@@ -40,7 +42,7 @@ acceptance_gates:
   required_lorentz_signature: [1, 2, 0]
   maximum_route_rank_defect: 0.10
   maximum_route_locality_residual: 0.10
-  maximum_strong_dark_discriminant: 0.05
+  maximum_linear_dark_identity_residual: 1.0e-8
   positive_inductance_required: true
 decision_partition:
   topology_closure:
@@ -50,7 +52,7 @@ decision_partition:
     - sym2_rank_and_condition
     - lorentz_signature
     - route_rank_and_locality
-    - strong_dark_compatibility
+    - linear_dark_energy_identity
   planar_depth_gauge:
     - finite_depth_scaling_hypothesis
 claim_scope:
@@ -59,12 +61,14 @@ claim_scope:
     - local_same_mesh_tangent_closure
     - finite_depth_end_effect_quantification
   forbidden:
-    - nonlinear_saturation_closure
+    - nonlinear_strong_dark_or_saturation_closure
     - manufactured_end_lead_equivalence
     - hardware_or_HIL_validity
     - continuous_certification_outside_declared_local_neighborhood
-source_hashes:
-  linear_screen_sha256: 5f678b12df080bc0914cba83269a698b1ef159f4c7447a687243409e90e4f73d
-  same_mesh_closure_sha256: 4b8442853c7ab10cdc5a56ea1d9409a0561d787fdafcd42faf120252a5ca3dc4
-  colab_wrapper_sha256: 7553bfac9f22214975849051b734eb5e2c01f4b84320f9fd1fc3c8fd0765c9d7
-  campaign_sha256: 0e9edb22da83f71634e6febc35bcc7711ad41375ef354944c014229d2efabc8c
+source_files:
+  - fea/bfm5/tcz1j_3d.py
+  - fea/config/tcz1j_3d_coenergy_closure.yml
+  - fea/scripts/run_tcz1j_3d_linear_screen.py
+  - fea/scripts/run_tcz1j_3d_same_mesh_closure.py
+  - fea/scripts/seal_tcz1j_3d_evidence.py
+  - fea/tests/test_tcz1j_3d.py

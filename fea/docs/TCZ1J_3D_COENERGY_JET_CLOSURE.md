@@ -46,3 +46,16 @@ Two hypotheses are deliberately separated:
 
 A failure of the second hypothesis does not erase a valid 3D tangent topology;
 it requires a finite-depth calibration law instead.
+
+## Interpretation guard
+
+For a linear reciprocal constitutive law, `Kq d = 0` implies
+`i^T Kq d / 2 = 0`.  The reported linear dark residual is therefore an
+energy-consistency diagnostic, not independent evidence of nonlinear
+strong-dark compatibility.  Nonlinear saturation closure remains a separate
+future gate.
+
+A second nominal solve uses a 35% larger remote air boundary.  The campaign is
+numerically admissible only when this boundary perturbation, mesh refinement,
+and same-connectivity finite-difference refinements all satisfy their frozen
+limits.

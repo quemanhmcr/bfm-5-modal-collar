@@ -55,6 +55,8 @@ CAMPAIGN = {
     "solution_order": 1,
     "core_mu_r": 2000.0,
     "gauge_factor": 1e-8,
+    "nominal_boundary_scale": 1.0,
+    "validation_boundary_scale": 1.35,
     "basis_current": I0,
     "operating_current": OPERATING_CURRENT.tolist(),
     "reference_2d_low_current_L_H": REFERENCE_2D_L_H.tolist(),
@@ -65,6 +67,8 @@ CAMPAIGN = {
         "max_reciprocity_residual": 1e-6,
         "max_energy_closure_residual": 1e-6,
         "max_nominal_mesh_spread": 0.05,
+        "max_remote_boundary_spread": 0.02,
+        "max_nominal_isotropy_defect": 0.02,
         "max_derivative_step_spread": 0.10,
         "max_derivative_mesh_spread": 0.10,
         "sym2_rank_required": 3,
@@ -72,14 +76,14 @@ CAMPAIGN = {
         "lorentz_signature_required": [1, 2, 0],
         "max_route_rank_defect": 0.10,
         "max_route_locality_residual": 0.10,
-        "max_strong_dark_discriminant": 0.05,
+        "max_linear_dark_identity_residual": 1e-8,
         "max_depth_gauge_deviation": 0.10,
         "positive_inductance_required": True,
     },
     "claim_scope": {
         "model": "linear mu_r=2000 finite-depth 3D branch-cell device with divergence-free discrete coil stream sources",
         "not_claimed": [
-            "nonlinear saturation equivalence",
+            "nonlinear strong-dark or saturation closure",
             "full manufactured winding/end-lead equivalence",
             "hardware or HIL validity",
             "continuous certification outside the frozen finite-difference neighborhood",
@@ -102,7 +106,12 @@ def json_dump(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def build_mesh(depth_m: float, gaps_m: tuple[float, float, float], mesh_scale: float):
+def build_mesh(
+    depth_m: float,
+    gaps_m: tuple[float, float, float],
+    mesh_scale: float,
+    boundary_scale: float = 1.0,
+):
     iw, ih, thickness = 0.026, 0.036, 0.017
     ow, oh = iw + 2.0 * thickness, ih + 2.0 * thickness
     cores = []
@@ -120,7 +129,15 @@ def build_mesh(depth_m: float, gaps_m: tuple[float, float, float], mesh_scale: f
         gap_domain.solids.maxh = 0.0011 * mesh_scale
         gaps.append(gap_domain)
 
-    airbox = Box((-0.165, -0.080, -depth_m / 2 - 0.050), (0.160, 0.080, depth_m / 2 + 0.050))
+    if boundary_scale < 1.0:
+        raise ValueError("boundary_scale must be at least 1")
+    x_half = 0.165 * boundary_scale
+    y_half = 0.080 * boundary_scale
+    z_margin = 0.050 * boundary_scale
+    airbox = Box(
+        (-x_half, -y_half, -depth_m / 2 - z_margin),
+        (x_half, y_half, depth_m / 2 + z_margin),
+    )
     airbox.faces.name = "outer"
     air = airbox
     for solid in cores + gaps:
@@ -163,7 +180,14 @@ def matrix_energy(vector, matrix) -> float:
     return 0.5 * float(InnerProduct(vector, matrix * vector))
 
 
-def run_case(output_root: Path, label: str, depth_m: float, gaps_m: tuple[float, float, float], mesh_scale: float) -> dict:
+def run_case(
+    output_root: Path,
+    label: str,
+    depth_m: float,
+    gaps_m: tuple[float, float, float],
+    mesh_scale: float,
+    boundary_scale: float = 1.0,
+) -> dict:
     case_path = output_root / "cases" / f"{label}.json"
     signature_payload = {
         "campaign_sha256": CAMPAIGN_SHA,
@@ -171,6 +195,7 @@ def run_case(output_root: Path, label: str, depth_m: float, gaps_m: tuple[float,
         "depth_m": depth_m,
         "gaps_m": list(gaps_m),
         "mesh_scale": mesh_scale,
+        "boundary_scale": boundary_scale,
     }
     signature = hashlib.sha256(json.dumps(signature_payload, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     if case_path.exists():
@@ -179,7 +204,7 @@ def run_case(output_root: Path, label: str, depth_m: float, gaps_m: tuple[float,
             print(f"CASE {label}: cached", flush=True)
             return cached
 
-    mesh, mesh_build_s = build_mesh(depth_m, gaps_m, mesh_scale)
+    mesh, mesh_build_s = build_mesh(depth_m, gaps_m, mesh_scale, boundary_scale)
     material_map = {f"core_{route}": CAMPAIGN["core_mu_r"] for route in (1, 2, 3)}
     mur = mesh.MaterialCF(material_map, default=1.0)
     nu = 1.0 / (MU0 * mur)
@@ -417,7 +442,7 @@ def analyze(cases: dict[str, dict]) -> dict:
         "pullback_eigenvalues_normalized": q_eig.tolist(),
         "route_rank_defects": rank_defects,
         "route_locality_residual": route_locality,
-        "strong_dark_discriminant": chi,
+        "linear_dark_identity_residual": chi,
         "port_dark_leakage": port_leakage,
         "dark_direction": dark.tolist(),
         "route_coupling_coefficients_Wb_per_m": route_coefficients,
@@ -451,7 +476,7 @@ def analyze(cases: dict[str, dict]) -> dict:
         "lorentz_signature": lorentz_signature == gates["lorentz_signature_required"],
         "route_rank": max(rank_defects) <= gates["max_route_rank_defect"],
         "route_locality": route_locality <= gates["max_route_locality_residual"],
-        "strong_dark": chi <= gates["max_strong_dark_discriminant"],
+        "linear_dark_identity": chi <= gates["max_linear_dark_identity_residual"],
         "depth_gauge": max(depth_gauge_deviations) <= gates["max_depth_gauge_deviation"],
         "positive_inductance": min_inductance > 0.0,
     }
@@ -459,7 +484,12 @@ def analyze(cases: dict[str, dict]) -> dict:
 
 
 def main() -> None:
-    output_root = Path(os.environ.get("BFM5_TCZ1J_OUT", "/content/bfm5/tcz1j-campaign"))
+    output_root = Path(
+        os.environ.get(
+            "BFM5_TCZ1J_OUT",
+            str(Path(__file__).resolve().parents[1] / "results_ci" / "tcz1j_3d_linear_screen"),
+        )
+    )
     output_root.mkdir(parents=True, exist_ok=True)
     json_dump(output_root / "campaign_lock.json", {**CAMPAIGN, "campaign_sha256": CAMPAIGN_SHA})
     cases: dict[str, dict] = {}

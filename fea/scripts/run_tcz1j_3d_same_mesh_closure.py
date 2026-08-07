@@ -29,14 +29,24 @@ from ngsolve import (
     z,
 )
 
-BASE_SCRIPT = Path(os.environ.get("BFM5_TCZ1J_BASE_SCRIPT", "/content/bfm5/run_tcz1j_full_campaign.py"))
-if not BASE_SCRIPT.exists():
-    BASE_SCRIPT = Path("/root/bfm5-colab-3d-closure/work/run_tcz1j_full_campaign.py")
+BASE_SCRIPT = Path(
+    os.environ.get(
+        "BFM5_TCZ1J_BASE_SCRIPT",
+        str(Path(__file__).with_name("run_tcz1j_3d_linear_screen.py")),
+    )
+).resolve()
+if not BASE_SCRIPT.is_file():
+    raise FileNotFoundError(f"TCZ-1J base script not found: {BASE_SCRIPT}")
 spec = importlib.util.spec_from_file_location("tcz1j_base", BASE_SCRIPT)
 base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)
 
-OUT = Path(os.environ.get("BFM5_TCZ1J_OUT", "/content/bfm5/tcz1j-same-mesh-closure"))
+OUT = Path(
+    os.environ.get(
+        "BFM5_TCZ1J_OUT",
+        str(Path(__file__).resolve().parents[1] / "results_ci" / "tcz1j_3d_coenergy_closure"),
+    )
+)
 PRIMARY_MESH = 1.0
 VALIDATION_MESH = 0.8
 H_PRIMARY_MM = 0.035
@@ -47,6 +57,8 @@ GATES = {
     "max_reciprocity_residual": 1e-6,
     "max_energy_identity_residual": 1e-6,
     "max_nominal_mesh_spread": 0.02,
+    "max_remote_boundary_spread": 0.02,
+    "max_nominal_isotropy_defect": 0.02,
     "max_derivative_step_spread": 0.02,
     "max_derivative_mesh_spread": 0.02,
     "sym2_rank_required": 3,
@@ -54,7 +66,7 @@ GATES = {
     "lorentz_signature_required": [1, 2, 0],
     "max_route_rank_defect": 0.10,
     "max_route_locality_residual": 0.10,
-    "max_strong_dark_discriminant": 0.05,
+    "max_linear_dark_identity_residual": 1e-8,
     "positive_inductance_required": True,
     "max_depth_gauge_deviation": 0.10,
 }
@@ -69,15 +81,16 @@ LOCK = {
     "validation_gap_step_mm": H_VALIDATION_MM,
     "deformation": "continuous same-connectivity displacement of each gap wall with fixed remote boundaries",
     "depth_multipliers": [0.5, 1.0, 2.0],
+    "remote_boundary_scales": [1.0, 1.35],
     "gates": GATES,
     "decision_partition": {
-        "topology_closure": "solver, energy, mesh, derivative, rank, Lorentz, route locality and strong-dark gates",
+        "topology_closure": "solver, energy, boundary, mesh, derivative, rank, Lorentz and route-locality gates",
         "planar_depth_gauge": "separate finite-depth linear-scaling hypothesis",
     },
     "claim_scope": {
         "claimed_if_topology_passes": "linear finite-depth 3D coenergy and tangent topology closure for the declared discrete source/geometry model",
         "not_claimed": [
-            "nonlinear saturation closure",
+            "nonlinear strong-dark or saturation closure",
             "manufactured end-lead equivalence",
             "hardware/HIL validity",
             "continuous certification outside the declared local deformation neighborhood",
@@ -192,6 +205,7 @@ class SameMeshModel:
         return {
             "label": label,
             "mesh_scale": self.mesh_scale,
+            "mesh_build_s": self.mesh_build_s,
             "route": route,
             "delta_gap_mm": delta_gap_m * 1e3,
             "elements": int(self.mesh.ne),
@@ -263,7 +277,8 @@ def topology_metrics(sensitivities: list[np.ndarray]) -> dict:
         "Kq_Wb_per_m": Kq.tolist(),
         "generalized_force_N": force.tolist(),
         "dark_direction": dark.tolist(),
-        "strong_dark_discriminant": chi,
+        "linear_dark_identity_residual": chi,
+        "linear_dark_identity_note": "In a linear reciprocal model this is a thermodynamic consistency identity, not an independent nonlinear strong-dark result.",
         "port_dark_leakage": float(np.linalg.norm(Kq @ dark) / (np.linalg.norm(Kq) + 1e-300)),
         "route_locality_residual": float(np.linalg.norm(Kq - locality_fit) / (np.linalg.norm(Kq) + 1e-300)),
         "route_coupling_coefficients": coefficients,
@@ -307,20 +322,53 @@ def run_depth() -> dict:
     return cases
 
 
+def run_remote_boundary() -> dict:
+    boundary_root = OUT / "remote_boundary"
+    cases = {}
+    nominal = (base.NOMINAL_GAP_M,) * 3
+    for scale, tag in ((1.0, "1p0"), (1.35, "1p35")):
+        label = f"boundary_{tag}_mesh1p0"
+        cases[label] = base.run_case(
+            boundary_root,
+            label,
+            base.MATCHED_DEPTH_M,
+            nominal,
+            PRIMARY_MESH,
+            boundary_scale=scale,
+        )
+    return cases
+
+
+def isotropy_defect(matrix: np.ndarray) -> float:
+    mean = 0.5 * float(np.trace(matrix))
+    target = np.eye(2) * mean
+    return float(np.linalg.norm(matrix - target) / (np.linalg.norm(matrix) + 1e-300))
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     dump(OUT / "campaign_lock.json", {**LOCK, "campaign_sha256": LOCK_SHA})
     same_cases, derivatives, primary_sensitivities, validation_sensitivities = run_same_mesh()
     depth_cases = run_depth()
+    boundary_cases = run_remote_boundary()
     primary_nom = np.asarray(same_cases["nominal_primary"]["inductance_H"])
     validation_nom = np.asarray(same_cases["nominal_validation"]["inductance_H"])
     step_spreads = [relative(derivatives["primary"][r]["h1"], derivatives["primary"][r]["h2"]) for r in range(3)]
     mesh_spreads = [relative(validation_sensitivities[r], primary_sensitivities[r]) for r in range(3)]
     topology = topology_metrics(primary_sensitivities)
-    all_reports = [report for case in same_cases.values() for report in case["solver_reports"]]
-    all_reciprocity = [case["reciprocity_residual"] for case in same_cases.values()]
-    all_energy = [case["operating_energy_identity_residual"] for case in same_cases.values()]
-    min_eig = min(float(np.min(np.linalg.eigvalsh(np.asarray(case["inductance_H"])))) for case in same_cases.values())
+    all_cases = {**same_cases, **depth_cases, **boundary_cases}
+    all_reports = [report for case in all_cases.values() for report in case["solver_reports"]]
+    all_reciprocity = [case["reciprocity_residual"] for case in all_cases.values()]
+    all_energy = [
+        case["operating_point"]["energy_closure_residual"]
+        if "operating_point" in case
+        else case["operating_energy_identity_residual"]
+        for case in all_cases.values()
+    ]
+    min_eig = min(
+        float(np.min(np.linalg.eigvalsh(np.asarray(case["inductance_H"]))))
+        for case in all_cases.values()
+    )
 
     depth_rows = []
     depths = []
@@ -339,17 +387,36 @@ def main() -> None:
     fit = X @ np.array([slope, intercept])
     r2 = 1.0 - float(np.sum((np.asarray(mean_L) - fit) ** 2)) / (float(np.sum((np.asarray(mean_L) - np.mean(mean_L)) ** 2)) + 1e-300)
     depth_metric = max(row["deviation_from_deep_normalized"] for row in depth_rows)
+    boundary_nominal = np.asarray(boundary_cases["boundary_1p0_mesh1p0"]["inductance_H"])
+    boundary_expanded = np.asarray(boundary_cases["boundary_1p35_mesh1p0"]["inductance_H"])
+    remote_boundary_spread = relative(boundary_expanded, boundary_nominal)
+    nominal_isotropy = isotropy_defect(primary_nom)
 
     metrics = {
         "max_free_residual": max(report["relative_free_residual"] for report in all_reports),
         "max_gauge_fraction": max(report["gauge_fraction"] for report in all_reports),
-        "max_energy_identity_residual": max(max(report["energy_identity_residual"] for report in all_reports), max(all_energy)),
+        "max_energy_identity_residual": max(
+            max(
+                report["energy_identity_residual"]
+                if "energy_identity_residual" in report
+                else report["algebraic_energy_identity_residual"]
+                for report in all_reports
+            ),
+            max(all_energy),
+        ),
         "max_reciprocity_residual": max(all_reciprocity),
         "nominal_mesh_spread": relative(validation_nom, primary_nom),
+        "remote_boundary_spread": remote_boundary_spread,
+        "nominal_isotropy_defect": nominal_isotropy,
         "derivative_step_spreads": step_spreads,
         "max_derivative_step_spread": max(step_spreads),
         "derivative_mesh_spreads": mesh_spreads,
         "max_derivative_mesh_spread": max(mesh_spreads),
+        "case_count": len(all_cases),
+        "max_elements": max(int(case["elements"]) for case in all_cases.values()),
+        "max_solution_ndof": max(int(case["solution_ndof"]) for case in all_cases.values()),
+        "max_source_ndof": max(int(case["source_ndof"]) for case in all_cases.values()),
+        "total_basis_solve_s": float(sum(report["solve_s"] for report in all_reports)),
         "minimum_inductance_eigenvalue_H": min_eig,
         "primary_nominal_L_H": primary_nom.tolist(),
         "validation_nominal_L_H": validation_nom.tolist(),
@@ -367,6 +434,8 @@ def main() -> None:
         "reciprocity": metrics["max_reciprocity_residual"] <= GATES["max_reciprocity_residual"],
         "energy_identity": metrics["max_energy_identity_residual"] <= GATES["max_energy_identity_residual"],
         "nominal_mesh": metrics["nominal_mesh_spread"] <= GATES["max_nominal_mesh_spread"],
+        "remote_boundary": metrics["remote_boundary_spread"] <= GATES["max_remote_boundary_spread"],
+        "nominal_isotropy": metrics["nominal_isotropy_defect"] <= GATES["max_nominal_isotropy_defect"],
         "derivative_step": metrics["max_derivative_step_spread"] <= GATES["max_derivative_step_spread"],
         "derivative_mesh": metrics["max_derivative_mesh_spread"] <= GATES["max_derivative_mesh_spread"],
         "sym2_rank": metrics["sym2_rank"] == GATES["sym2_rank_required"],
@@ -374,13 +443,27 @@ def main() -> None:
         "lorentz_signature": metrics["lorentz_signature"] == GATES["lorentz_signature_required"],
         "route_rank": max(metrics["route_rank_defects"]) <= GATES["max_route_rank_defect"],
         "route_locality": metrics["route_locality_residual"] <= GATES["max_route_locality_residual"],
-        "strong_dark": metrics["strong_dark_discriminant"] <= GATES["max_strong_dark_discriminant"],
+        "linear_dark_identity": metrics["linear_dark_identity_residual"] <= GATES["max_linear_dark_identity_residual"],
         "positive_inductance": metrics["minimum_inductance_eigenvalue_H"] > 0.0,
     }
+    admissibility_keys = (
+        "free_residual",
+        "gauge_fraction",
+        "reciprocity",
+        "energy_identity",
+        "nominal_mesh",
+        "remote_boundary",
+        "derivative_step",
+        "derivative_mesh",
+        "positive_inductance",
+    )
+    evidence_admissible = all(checks[key] for key in admissibility_keys)
     depth_check = depth_metric <= GATES["max_depth_gauge_deviation"]
     summary = {
         "schema": LOCK["schema"],
         "campaign_sha256": LOCK_SHA,
+        "evidence_admissibility_checks": {key: checks[key] for key in admissibility_keys},
+        "evidence_admissible": bool(evidence_admissible),
         "topology_closure_checks": checks,
         "topology_closure_accepted": bool(all(checks.values())),
         "planar_depth_gauge_check": depth_check,
@@ -390,6 +473,8 @@ def main() -> None:
     }
     dump(OUT / "summary.json", summary)
     print("BFM5_TCZ1J_SAME_MESH_SUMMARY=" + json.dumps(summary, sort_keys=True), flush=True)
+    if not evidence_admissible:
+        raise SystemExit("TCZ-1J evidence is numerically inadmissible")
 
 
 if __name__ == "__main__":
