@@ -1,0 +1,8 @@
+CASE tcz1l_uncertainty_combined_corner_direct: ne=74641 ndof=90601 newton=13 residual=1.089e-09 Wprime=1.967128e+00
+CASE tcz1l_uncertainty_combined_corner_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=1.101e-13 Wprime=1.971941e+00
+CASE tcz1l_uncertainty_combined_corner_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.779e-09 Wprime=1.962395e+00
+CASE tcz1l_uncertainty_combined_corner_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.474e-10 Wprime=1.967452e+00
+CASE tcz1l_uncertainty_combined_corner_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.228e-10 Wprime=1.966815e+00
+CASE tcz1l_uncertainty_combined_corner_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=8.736e-09 Wprime=1.971770e+00
+CASE tcz1l_uncertainty_combined_corner_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=6.358e-09 Wprime=1.962568e+00
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "combined_corner", "kind": "uncertainty", "ray": "", "scale": 0.0}

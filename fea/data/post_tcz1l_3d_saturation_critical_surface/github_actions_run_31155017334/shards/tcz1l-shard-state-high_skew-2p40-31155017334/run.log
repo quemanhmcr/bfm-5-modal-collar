@@ -1,0 +1,8 @@
+CASE tcz1l_high_skew_2.4_direct: ne=74641 ndof=90601 newton=12 residual=5.067e-10 Wprime=1.238794e+00
+CASE tcz1l_high_skew_2.4_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=1.733e-13 Wprime=1.243466e+00
+CASE tcz1l_high_skew_2.4_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=4 residual=1.144e-08 Wprime=1.234214e+00
+CASE tcz1l_high_skew_2.4_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.336e-10 Wprime=1.238984e+00
+CASE tcz1l_high_skew_2.4_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=1.975e-10 Wprime=1.238611e+00
+CASE tcz1l_high_skew_2.4_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=5.936e-13 Wprime=1.243074e+00
+CASE tcz1l_high_skew_2.4_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=4.264e-13 Wprime=1.234609e+00
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "", "kind": "state", "ray": "high_skew", "scale": 2.4}

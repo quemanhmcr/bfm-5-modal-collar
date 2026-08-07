@@ -1,0 +1,491 @@
+{
+  "campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d",
+  "errors": [],
+  "evidence_files": [
+    {
+      "bytes": 7360,
+      "path": "shards/tcz1l-shard-numerical-boundary_far-31155017334/campaign_lock.json",
+      "sha256": "1dec9a742ecf7be883b09086ed11427ba942ed419e654e672a2c8edc73ea440c"
+    },
+    {
+      "bytes": 31217,
+      "path": "shards/tcz1l-shard-numerical-boundary_far-31155017334/numerical.json",
+      "sha256": "2939708abdbd14664b277012b0a0eda38f83da1e7490674dea202c0817511c6f"
+    },
+    {
+      "bytes": 1004,
+      "path": "shards/tcz1l-shard-numerical-boundary_far-31155017334/run.log",
+      "sha256": "5d18b727e80f7b8f1b489b54f31b7bad24a0385619862812407a9e2fc1aaf272"
+    },
+    {
+      "bytes": 31217,
+      "path": "shards/tcz1l-shard-numerical-boundary_far-31155017334/shard_summary.json",
+      "sha256": "2939708abdbd14664b277012b0a0eda38f83da1e7490674dea202c0817511c6f"
+    },
+    {
+      "bytes": 7357,
+      "path": "shards/tcz1l-shard-numerical-mesh_fine-31155017334/campaign_lock.json",
+      "sha256": "4fc10bad9385fe295796d3a0f6500a47366ec783d4e9a6d42a74978d00deb7f2"
+    },
+    {
+      "bytes": 74213,
+      "path": "shards/tcz1l-shard-numerical-mesh_fine-31155017334/numerical.json",
+      "sha256": "095dd837cd552cf0bba31cbc6f23974de51b8094ce3406ae306836750401fccc"
+    },
+    {
+      "bytes": 2078,
+      "path": "shards/tcz1l-shard-numerical-mesh_fine-31155017334/run.log",
+      "sha256": "ea6f962149c3aa0444524b1ca3445d4c8a95097592ccdbf217e0a02f2a704d30"
+    },
+    {
+      "bytes": 74213,
+      "path": "shards/tcz1l-shard-numerical-mesh_fine-31155017334/shard_summary.json",
+      "sha256": "095dd837cd552cf0bba31cbc6f23974de51b8094ce3406ae306836750401fccc"
+    },
+    {
+      "bytes": 7356,
+      "path": "shards/tcz1l-shard-numerical-mesh_mid-31155017334/campaign_lock.json",
+      "sha256": "d464bf645222c3ca4cd714772dbd0f633e6a075c626a4fb18d55390e367938fd"
+    },
+    {
+      "bytes": 30975,
+      "path": "shards/tcz1l-shard-numerical-mesh_mid-31155017334/numerical.json",
+      "sha256": "f06546b65fd4d9a1a6b253d1f91cbbeaa5acc67749d7b990f11e3999513113b8"
+    },
+    {
+      "bytes": 965,
+      "path": "shards/tcz1l-shard-numerical-mesh_mid-31155017334/run.log",
+      "sha256": "58691af3b37e542580fe127e8fd20331b7ad0050bea700440c850109bc967900"
+    },
+    {
+      "bytes": 30975,
+      "path": "shards/tcz1l-shard-numerical-mesh_mid-31155017334/shard_summary.json",
+      "sha256": "f06546b65fd4d9a1a6b253d1f91cbbeaa5acc67749d7b990f11e3999513113b8"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-high_skew-1p00-31155017334/campaign_lock.json",
+      "sha256": "565a756d75fbf0d99fcf00a1f6b580aa21244a96449068488605383916204e50"
+    },
+    {
+      "bytes": 955,
+      "path": "shards/tcz1l-shard-state-high_skew-1p00-31155017334/run.log",
+      "sha256": "f5a81fda9d12350d7872cf28422c89aa52398b08a3ab2e51c44762e1451199d9"
+    },
+    {
+      "bytes": 30781,
+      "path": "shards/tcz1l-shard-state-high_skew-1p00-31155017334/shard_summary.json",
+      "sha256": "5a492f2bde169ffda1c6fd897f4ab249ca885d7eea247dc39db2ee26606cf9bb"
+    },
+    {
+      "bytes": 30781,
+      "path": "shards/tcz1l-shard-state-high_skew-1p00-31155017334/state.json",
+      "sha256": "5a492f2bde169ffda1c6fd897f4ab249ca885d7eea247dc39db2ee26606cf9bb"
+    },
+    {
+      "bytes": 7354,
+      "path": "shards/tcz1l-shard-state-high_skew-1p35-31155017334/campaign_lock.json",
+      "sha256": "12c00bccd8bb33221502516ff53c4198d9b5b6044bf63b62f3d851977435936c"
+    },
+    {
+      "bytes": 977,
+      "path": "shards/tcz1l-shard-state-high_skew-1p35-31155017334/run.log",
+      "sha256": "b7f346a9930204e36658ba2f995bdd8c0ea2782f29e60fb5f3a9620b4aabb961"
+    },
+    {
+      "bytes": 32715,
+      "path": "shards/tcz1l-shard-state-high_skew-1p35-31155017334/shard_summary.json",
+      "sha256": "5d535d0cc6960b382c274e3eaaabc83aea9736c9a5f049546f7c444079cf912a"
+    },
+    {
+      "bytes": 32715,
+      "path": "shards/tcz1l-shard-state-high_skew-1p35-31155017334/state.json",
+      "sha256": "5d535d0cc6960b382c274e3eaaabc83aea9736c9a5f049546f7c444079cf912a"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-high_skew-1p80-31155017334/campaign_lock.json",
+      "sha256": "9e017248eb0c7ea77b7b820a82dc748f1ecef9fe8dd72c8f093536d6e520df2b"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-high_skew-1p80-31155017334/run.log",
+      "sha256": "d426a526e1f2fd7487bffd44925106009f072d0ae40124a518da1c21756bbd2e"
+    },
+    {
+      "bytes": 32492,
+      "path": "shards/tcz1l-shard-state-high_skew-1p80-31155017334/shard_summary.json",
+      "sha256": "934cfba00772667a006dfa07d28a65de8661ab9ec3d586240634bda99dc225a0"
+    },
+    {
+      "bytes": 32492,
+      "path": "shards/tcz1l-shard-state-high_skew-1p80-31155017334/state.json",
+      "sha256": "934cfba00772667a006dfa07d28a65de8661ab9ec3d586240634bda99dc225a0"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-high_skew-2p40-31155017334/campaign_lock.json",
+      "sha256": "5d7b2a8fb6f3396c886bccccabbe9991c993b97dcc24ff76ac3925a38ddec1dd"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-high_skew-2p40-31155017334/run.log",
+      "sha256": "0ca9c716e26b6e6c9419689168810899b1f662e09668b97451c4e9c3f92cac01"
+    },
+    {
+      "bytes": 32328,
+      "path": "shards/tcz1l-shard-state-high_skew-2p40-31155017334/shard_summary.json",
+      "sha256": "eb9865ef89be397262adb2e364381d4565a7cd229ff9fad13717499742fea615"
+    },
+    {
+      "bytes": 32328,
+      "path": "shards/tcz1l-shard-state-high_skew-2p40-31155017334/state.json",
+      "sha256": "eb9865ef89be397262adb2e364381d4565a7cd229ff9fad13717499742fea615"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-high_skew-3p20-31155017334/campaign_lock.json",
+      "sha256": "2d836b629c1511bb20f714381d507571fd9a09fa34e77e96f1aeb8e115c9a56c"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-high_skew-3p20-31155017334/run.log",
+      "sha256": "3748a45fc12be3a02d4d653aad29bdebb549da8c8486379d9deb57ee017a1934"
+    },
+    {
+      "bytes": 42500,
+      "path": "shards/tcz1l-shard-state-high_skew-3p20-31155017334/shard_summary.json",
+      "sha256": "3689504d5c277a4833d46b1228d015cdcec0e6b65bdd4fdba39df02088c79cef"
+    },
+    {
+      "bytes": 42500,
+      "path": "shards/tcz1l-shard-state-high_skew-3p20-31155017334/state.json",
+      "sha256": "3689504d5c277a4833d46b1228d015cdcec0e6b65bdd4fdba39df02088c79cef"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p00-31155017334/campaign_lock.json",
+      "sha256": "e01c239559b81d63bc8138513809085b345d06129caac995f66aabd1da7100dd"
+    },
+    {
+      "bytes": 954,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p00-31155017334/run.log",
+      "sha256": "ad66d6db6f9def984ce2452a664cf81d0118029c05f3896b0209d3bd9a1a9169"
+    },
+    {
+      "bytes": 29054,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p00-31155017334/shard_summary.json",
+      "sha256": "fd6b2b23deb20c9b6ddb4b6320ea80cf618127fa9cf8a4afa5319707bc54f07b"
+    },
+    {
+      "bytes": 29054,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p00-31155017334/state.json",
+      "sha256": "fd6b2b23deb20c9b6ddb4b6320ea80cf618127fa9cf8a4afa5319707bc54f07b"
+    },
+    {
+      "bytes": 7354,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p35-31155017334/campaign_lock.json",
+      "sha256": "ffe75eaa82a5b9940a05aa8572bc1d6672f810e2f03199d574205fde33109acc"
+    },
+    {
+      "bytes": 977,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p35-31155017334/run.log",
+      "sha256": "3d05621722b0f686b139f8bcb19c2e25d520cb6d87993542e24debc3b536d496"
+    },
+    {
+      "bytes": 31800,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p35-31155017334/shard_summary.json",
+      "sha256": "b94f9e2177d1e1c77e29318c20f2c5c55f97669fed25418b0a0a47311af3e06e"
+    },
+    {
+      "bytes": 31800,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p35-31155017334/state.json",
+      "sha256": "b94f9e2177d1e1c77e29318c20f2c5c55f97669fed25418b0a0a47311af3e06e"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p80-31155017334/campaign_lock.json",
+      "sha256": "2e2f88b68cc8fa6076aa2b510582c9163a04c0196f8d86a27f210fec062adb4a"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p80-31155017334/run.log",
+      "sha256": "7fc484ab7b20e744328f24aa04501e2addcf5c08ad04447b2214c71995b62a1c"
+    },
+    {
+      "bytes": 31335,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p80-31155017334/shard_summary.json",
+      "sha256": "f5412970df3d8a35d555e21bf5c1dbba8451bf6ef3c382820bbf1cc24a535d35"
+    },
+    {
+      "bytes": 31335,
+      "path": "shards/tcz1l-shard-state-rotated_a-1p80-31155017334/state.json",
+      "sha256": "f5412970df3d8a35d555e21bf5c1dbba8451bf6ef3c382820bbf1cc24a535d35"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_a-2p40-31155017334/campaign_lock.json",
+      "sha256": "0c89f179f00d009da90650b6278b016f49da45244a762df05a0d0e11d586ee8c"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-rotated_a-2p40-31155017334/run.log",
+      "sha256": "5b037896b9a9c7e0d37a9328f21fb2e506419718bdf5a2c714ea9664dd54639e"
+    },
+    {
+      "bytes": 32876,
+      "path": "shards/tcz1l-shard-state-rotated_a-2p40-31155017334/shard_summary.json",
+      "sha256": "5fb39849f56427b474e2800ed88163ffb722a17cd19d3775c19b4f843f6529f8"
+    },
+    {
+      "bytes": 32876,
+      "path": "shards/tcz1l-shard-state-rotated_a-2p40-31155017334/state.json",
+      "sha256": "5fb39849f56427b474e2800ed88163ffb722a17cd19d3775c19b4f843f6529f8"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_a-3p20-31155017334/campaign_lock.json",
+      "sha256": "3c12dad0132a359a3b2ad5241671567c960b02b5d5c5a41c2be018ef64b7a2ad"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-rotated_a-3p20-31155017334/run.log",
+      "sha256": "23ea718ccb51c43547144e58d81022cb4debcda33230cfcfbd4236988248d406"
+    },
+    {
+      "bytes": 43753,
+      "path": "shards/tcz1l-shard-state-rotated_a-3p20-31155017334/shard_summary.json",
+      "sha256": "f03f8e352660887c87bc09b705737a142f43ad4ce5ac2674a22ec9f96ffcf257"
+    },
+    {
+      "bytes": 43753,
+      "path": "shards/tcz1l-shard-state-rotated_a-3p20-31155017334/state.json",
+      "sha256": "f03f8e352660887c87bc09b705737a142f43ad4ce5ac2674a22ec9f96ffcf257"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p00-31155017334/campaign_lock.json",
+      "sha256": "e500bed69bb6d7397facaed24f67fdd9e24ec4fb466adfd5e83d9b6385829508"
+    },
+    {
+      "bytes": 954,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p00-31155017334/run.log",
+      "sha256": "9601b0a8cb7481b11a6c7ca0809ad1c87837d598f507a1dbef9dc2dcb9663854"
+    },
+    {
+      "bytes": 29087,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p00-31155017334/shard_summary.json",
+      "sha256": "015e4fb4a4d2d9e7989cf90e7aa272ad2d4123ef6ef82b6e256eaf5fec44726b"
+    },
+    {
+      "bytes": 29087,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p00-31155017334/state.json",
+      "sha256": "015e4fb4a4d2d9e7989cf90e7aa272ad2d4123ef6ef82b6e256eaf5fec44726b"
+    },
+    {
+      "bytes": 7354,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p35-31155017334/campaign_lock.json",
+      "sha256": "62150993a2ac66d5cbef756d2b26219d8853796dd4218694fd9a9ab340c96b1f"
+    },
+    {
+      "bytes": 977,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p35-31155017334/run.log",
+      "sha256": "d328ce9862c86572e7e7fce061c71904eed7f138740fe53a5bcfe41c15057548"
+    },
+    {
+      "bytes": 31891,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p35-31155017334/shard_summary.json",
+      "sha256": "24a33f8cc71849d5551f1a2319a3421b721c7f5383827a92584568d9225fd843"
+    },
+    {
+      "bytes": 31891,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p35-31155017334/state.json",
+      "sha256": "24a33f8cc71849d5551f1a2319a3421b721c7f5383827a92584568d9225fd843"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p80-31155017334/campaign_lock.json",
+      "sha256": "60b8875dcf4df4f095959747d08815f7144b19ce5ab079ae817eeffd8b7838db"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p80-31155017334/run.log",
+      "sha256": "7842effcdb2e8c19509d133209a1c929b36a5796a1bc6a28063fbc7d105860f2"
+    },
+    {
+      "bytes": 31879,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p80-31155017334/shard_summary.json",
+      "sha256": "602b675e166c3983fc2cac86e65d4cc5d8ff412c2ff2d1cc15b4414285cce1ae"
+    },
+    {
+      "bytes": 31879,
+      "path": "shards/tcz1l-shard-state-rotated_b-1p80-31155017334/state.json",
+      "sha256": "602b675e166c3983fc2cac86e65d4cc5d8ff412c2ff2d1cc15b4414285cce1ae"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_b-2p40-31155017334/campaign_lock.json",
+      "sha256": "3283ec8d3c6d423bf589dc7059ce6ae1cd3f24de487069ace8070deb33a6cd2f"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-rotated_b-2p40-31155017334/run.log",
+      "sha256": "cfeb012e11327139334bbd6aea7588a1751a3f650a3c033e36033819a1c12a0b"
+    },
+    {
+      "bytes": 33686,
+      "path": "shards/tcz1l-shard-state-rotated_b-2p40-31155017334/shard_summary.json",
+      "sha256": "198d2785dcd981dbb6d40617bb222185e250eb1b58002a32b6384641303ac911"
+    },
+    {
+      "bytes": 33686,
+      "path": "shards/tcz1l-shard-state-rotated_b-2p40-31155017334/state.json",
+      "sha256": "198d2785dcd981dbb6d40617bb222185e250eb1b58002a32b6384641303ac911"
+    },
+    {
+      "bytes": 7353,
+      "path": "shards/tcz1l-shard-state-rotated_b-3p20-31155017334/campaign_lock.json",
+      "sha256": "afd279eb00df9deee6cdeae9abf840b39e89ebd2f80285ffbbec1e2a8fd9be7c"
+    },
+    {
+      "bytes": 969,
+      "path": "shards/tcz1l-shard-state-rotated_b-3p20-31155017334/run.log",
+      "sha256": "564eb6d7225f43dffe8f8eb9cf0087c3ce931d47cc4e1dcd8c7edf1f597aceb8"
+    },
+    {
+      "bytes": 33202,
+      "path": "shards/tcz1l-shard-state-rotated_b-3p20-31155017334/shard_summary.json",
+      "sha256": "83fa24536272aa01de3a769708e4096bf5a13c38f21578bb8131fb6501e61e2c"
+    },
+    {
+      "bytes": 33202,
+      "path": "shards/tcz1l-shard-state-rotated_b-3p20-31155017334/state.json",
+      "sha256": "83fa24536272aa01de3a769708e4096bf5a13c38f21578bb8131fb6501e61e2c"
+    },
+    {
+      "bytes": 7365,
+      "path": "shards/tcz1l-shard-uncertainty-combined_corner-31155017334/campaign_lock.json",
+      "sha256": "333c86e3d3cfa364d3448c517d9b17e592c93a7349a228335376b866f61f9e43"
+    },
+    {
+      "bytes": 1079,
+      "path": "shards/tcz1l-shard-uncertainty-combined_corner-31155017334/run.log",
+      "sha256": "891fa48162fc5c445d90f383be4b9d218ad1b1ad3e5859befdc70b581f4a60e1"
+    },
+    {
+      "bytes": 32100,
+      "path": "shards/tcz1l-shard-uncertainty-combined_corner-31155017334/shard_summary.json",
+      "sha256": "e2edafa5a92ad681311fdec06e3cc96e3677f600f76c6517a89eea02c39d9806"
+    },
+    {
+      "bytes": 32100,
+      "path": "shards/tcz1l-shard-uncertainty-combined_corner-31155017334/uncertainty.json",
+      "sha256": "e2edafa5a92ad681311fdec06e3cc96e3677f600f76c6517a89eea02c39d9806"
+    },
+    {
+      "bytes": 7363,
+      "path": "shards/tcz1l-shard-uncertainty-soft_material-31155017334/campaign_lock.json",
+      "sha256": "f9b9bc2274b711edffc44984a65c6221e678b1631174cac6426aea7f4b4fc8e0"
+    },
+    {
+      "bytes": 1063,
+      "path": "shards/tcz1l-shard-uncertainty-soft_material-31155017334/run.log",
+      "sha256": "50e8c51fe14f24e9d14e0999dade39d836ab1908262102ff4f6701ac2e29b527"
+    },
+    {
+      "bytes": 32540,
+      "path": "shards/tcz1l-shard-uncertainty-soft_material-31155017334/shard_summary.json",
+      "sha256": "d61df68a1c7ef4ef7d3b453c578adaaf9f45ebcfc340ead06f2f857671646cc9"
+    },
+    {
+      "bytes": 32540,
+      "path": "shards/tcz1l-shard-uncertainty-soft_material-31155017334/uncertainty.json",
+      "sha256": "d61df68a1c7ef4ef7d3b453c578adaaf9f45ebcfc340ead06f2f857671646cc9"
+    },
+    {
+      "bytes": 16858,
+      "path": "summary.json",
+      "sha256": "147b09e15c7e1e7f41c5478c52ad054df7502e142d53dee719a12c74dcb1b645"
+    }
+  ],
+  "git_sha": "4ebc93f5a3ae22d4be0725d45fbdc65f82d825b4",
+  "github_run_id": "31155017334",
+  "overall_saturation_critical_surface_accepted": false,
+  "partitioned_decision": {
+    "all_ray_overlap_certificates": false,
+    "all_sampled_event_orders": false,
+    "all_state_numerical_admissible": true,
+    "numerical_sentinel_qualified": false,
+    "saturated_uncertainty_survival": false,
+    "topology_survival": false
+  },
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+  "schema": "bfm5_tcz1l_evidence_manifest_v1",
+  "source_files": [
+    {
+      "bytes": 5583,
+      "path": "fea/config/tcz1l_3d_saturation_critical_surface.yml",
+      "sha256": "a764bfae71362bf23a8534b62401a87afeac1837603d89bd3f41e9fb9181ec4b"
+    },
+    {
+      "bytes": 2270,
+      "path": "fea/bfm5/tcz1l_3d.py",
+      "sha256": "2cc0c0accea3b74800a71bbdaa306db9a67c8119a5aa55d88322515dacbd35b1"
+    },
+    {
+      "bytes": 16402,
+      "path": "fea/scripts/run_tcz1l_3d_critical_surface.py",
+      "sha256": "d0055e66d743c62fc5ef4410c5c33728a469810831626c2302699c64d57f0651"
+    },
+    {
+      "bytes": 13721,
+      "path": "fea/scripts/analyze_tcz1l_3d_critical_surface.py",
+      "sha256": "e08a58eb6300d479847100f91f19452608d3554a9644654862a10ba59135fdf6"
+    },
+    {
+      "bytes": 2552,
+      "path": "fea/scripts/seal_tcz1l_3d_evidence.py",
+      "sha256": "e72f2d213163590abb9c607e04ce498f4fa0b15eefe569a9ff9eeeb256e99c5b"
+    },
+    {
+      "bytes": 3833,
+      "path": "fea/tests/test_tcz1l_3d.py",
+      "sha256": "04def7103af0c4d69ee909d9e8e353337d6ee6ee421996b2003fa82da4d6bb48"
+    },
+    {
+      "bytes": 59,
+      "path": "fea/requirements-tcz1l-core.txt",
+      "sha256": "df098d8eb5fd7b1de57edb4ff16fbc6a5392a92aae36da0e34746495df4e3c94"
+    },
+    {
+      "bytes": 41,
+      "path": "fea/requirements-tcz1l-validation.txt",
+      "sha256": "7ff517a33336d478dfdf52b628ed1090cedd2d70f4c49cae22112229ce9a8865"
+    },
+    {
+      "bytes": 27,
+      "path": "fea/requirements-tcz1l-analysis.txt",
+      "sha256": "ffe7fb82311faa4673d11281f0428976d75d21f41651eac7266f31fa9af221ae"
+    },
+    {
+      "bytes": 8138,
+      "path": ".github/workflows/tcz1l-3d-saturation.yml",
+      "sha256": "818875e5c017a5dfe080fe83a2dbcf753003395b2d974df1ec9a63011a9f6619"
+    },
+    {
+      "bytes": 5110,
+      "path": ".github/actions/setup-fea3d/action.yml",
+      "sha256": "7a71273a66c659b0db466c1a3c22151f099adee9539626217d20bcf400e2b6c8"
+    },
+    {
+      "bytes": 4778,
+      "path": "fea/config/tcz1k_3d_nonlinear_holdout.yml",
+      "sha256": "2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082"
+    },
+    {
+      "bytes": 33057,
+      "path": "fea/scripts/run_tcz1k_3d_nonlinear_holdout.py",
+      "sha256": "74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7"
+    }
+  ]
+}

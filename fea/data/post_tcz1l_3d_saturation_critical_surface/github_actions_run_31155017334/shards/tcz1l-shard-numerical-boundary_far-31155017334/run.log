@@ -1,0 +1,8 @@
+CASE tcz1l_num_boundary_far_direct: ne=96112 ndof=117240 newton=12 residual=1.943e-11 Wprime=1.948328e+00
+CASE tcz1l_num_boundary_far_gap_1_minus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=4.203e-09 Wprime=1.953672e+00
+CASE tcz1l_num_boundary_far_gap_1_plus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=3.571e-09 Wprime=1.943078e+00
+CASE tcz1l_num_boundary_far_gap_2_minus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=8.531e-10 Wprime=1.948714e+00
+CASE tcz1l_num_boundary_far_gap_2_plus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=6.164e-10 Wprime=1.947957e+00
+CASE tcz1l_num_boundary_far_gap_3_minus_0.035000mm: ne=96112 ndof=117240 newton=2 residual=9.178e-09 Wprime=1.953397e+00
+CASE tcz1l_num_boundary_far_gap_3_plus_0.035000mm: ne=96112 ndof=117240 newton=3 residual=7.020e-09 Wprime=1.943354e+00
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "boundary_far", "kind": "numerical", "ray": "", "scale": 0.0}

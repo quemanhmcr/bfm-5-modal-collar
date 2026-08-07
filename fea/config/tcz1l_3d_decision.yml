@@ -1,0 +1,231 @@
+schema: bfm5_tcz1l_partitioned_decision_v1
+stage: TCZ-1L
+status: actions_evidence_frozen_preregistered_rejection_with_local_positive_subregions
+source_campaign:
+  git_sha: 4ebc93f5a3ae22d4be0725d45fbdc65f82d825b4
+  github_actions_run_id: 31155017334
+  campaign_sha256: 2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d
+  scientific_contract_sha256: 5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8
+  evidence_directory: fea/data/post_tcz1l_3d_saturation_critical_surface/github_actions_run_31155017334
+  summary_sha256: 147b09e15c7e1e7f41c5478c52ad054df7502e142d53dee719a12c74dcb1b645
+  artifact_manifest_sha256: 9cf0dee6da3e7d89efe5141e46d7fd91d483b78d10d6c41da59f9441d1fa6f24
+  canonical_artifact_tree_sha256: c619d02c8ee2f780cb57b4e6ba52a182c95697e89500278b855d6003b5fd56aa
+execution_efficiency:
+  actions_wall_s: 1753.0
+  aggregate_wall_s: 26.0
+  critical_solver_step_s: 1470.0
+  direct_linear_initializer_baselines: 20
+  fallback_homotopy_baselines: 0
+  maximum_newton_iterations_per_nonlinear_case: 13
+  maximum_solver_setup_s: 51.0
+  mean_newton_iterations_per_nonlinear_case: 3.8133333333333335
+  mean_solver_setup_s: 34.0
+  median_solver_step_s: 773.0
+  nonlinear_case_solves: 150
+  nonlinear_solve_count_reduction_fraction: 0.358974358974359
+  original_execution_design_estimated_nonlinear_case_solves: 234
+  solver_shards: 20
+  sum_solver_step_s: 15605.0
+  validation_wall_s: 25.0
+partitioned_decision:
+  all_ray_overlap_certificates: false
+  all_sampled_event_orders: false
+  all_state_numerical_admissible: true
+  numerical_sentinel_qualified: false
+  saturated_uncertainty_survival: false
+  topology_survival: false
+ray_event_reports:
+  high_skew:
+    first_saturated_scale: 1.35
+    first_strict_overlap_scale: 1.35
+    first_strong_dark_failure_scale: 2.4
+    saturation_bracket:
+    - 1.0
+    - 1.35
+    saturation_precedes_sampled_dark_failure: true
+    strict_local_overlap_certified: true
+  rotated_a:
+    first_saturated_scale: 1.8
+    first_strict_overlap_scale: null
+    first_strong_dark_failure_scale: 1.8
+    saturation_bracket:
+    - 1.35
+    - 1.8
+    saturation_precedes_sampled_dark_failure: false
+    strict_local_overlap_certified: false
+  rotated_b:
+    first_saturated_scale: 1.8
+    first_strict_overlap_scale: 1.8
+    first_strong_dark_failure_scale: 3.2
+    saturation_bracket:
+    - 1.35
+    - 1.8
+    saturation_precedes_sampled_dark_failure: true
+    strict_local_overlap_certified: true
+numerical_qualification:
+  accepted: false
+  checks:
+    Ld_boundary: true
+    Ld_mesh: true
+    all_sentinel_states: true
+    current_validation_cases: true
+    exact_tangent_validation: true
+    gap_derivative_boundary: false
+    gap_derivative_mesh: true
+    gap_derivative_step: true
+    gap_step_validation_cases: true
+  metrics:
+    Ld_boundary_spread: 0.016698444296584052
+    Ld_mesh_spread: 0.019240995254571586
+    exact_tangent_vs_finite_difference_spread: 6.027937094279519e-06
+    gap_derivative_boundary_spread: 0.060909626904458475
+    gap_derivative_mesh_spread: 0.013899502388201455
+    gap_derivative_step_spread: 0.0007468213206126543
+  sentinel_state_checks:
+    boundary_far: true
+    mesh_fine: true
+    mesh_mid: true
+topology_sentinels:
+- accepted: false
+  internal_cases_numerical: true
+  metrics:
+    lorentz_signature:
+    - 1
+    - 2
+    - 0
+    maximum_whitened_tight_frame_defect: 1.0e+300
+    pullback_eigenvalues:
+    - -0.08754082064655079
+    - -0.008830108795580573
+    - 0.09712805038924752
+    route_rank_defects:
+    - 0.011228426454163628
+    - 0.00016528117554165484
+    - 0.017609390390469572
+    sum_sensitivity_eigenvalues:
+    - -4.284626005615932e-05
+    - 0.00015161500666817292
+    sym2_condition: 8.133441732520339
+    sym2_rank: 3
+    sym2_singular_values:
+    - 0.00016567162961650262
+    - 3.302388529859173e-05
+    - 2.0369191181894085e-05
+    whitened_tight_frame_defects:
+    - 1.0e+300
+    - 1.0e+300
+    - 1.0e+300
+    whitening_valid: false
+  ray: high_skew
+  reuse_policy: exact_Newton_Hessian_on_primary_gap_states_no_additional_nonlinear_solve
+  scale: 3.2
+  state_numerical: true
+  state_saturated: true
+  state_strong_dark: false
+  topology_checks:
+    lorentz_signature: true
+    route_rank: true
+    sym2_condition: true
+    sym2_rank: true
+    whitened_tight_frame: false
+- accepted: false
+  internal_cases_numerical: true
+  metrics:
+    lorentz_signature:
+    - 1
+    - 2
+    - 0
+    maximum_whitened_tight_frame_defect: 1.0e+300
+    pullback_eigenvalues:
+    - -0.29064140865544397
+    - -0.017242333431426435
+    - 0.3099993477654982
+    route_rank_defects:
+    - 0.00042762107386484755
+    - 0.09816850172065188
+    - 0.000194626540777427
+    sum_sensitivity_eigenvalues:
+    - -0.00015732845781429234
+    - 0.00010544629102393285
+    sym2_condition: 6.707749333853961
+    sym2_rank: 3
+    sym2_singular_values:
+    - 0.00017020593911184717
+    - 0.00012727809982822428
+    - 2.5374522904846645e-05
+    whitened_tight_frame_defects:
+    - 1.0e+300
+    - 1.0e+300
+    - 1.0e+300
+    whitening_valid: false
+  ray: rotated_a
+  reuse_policy: exact_Newton_Hessian_on_primary_gap_states_no_additional_nonlinear_solve
+  scale: 3.2
+  state_numerical: true
+  state_saturated: true
+  state_strong_dark: false
+  topology_checks:
+    lorentz_signature: true
+    route_rank: false
+    sym2_condition: true
+    sym2_rank: true
+    whitened_tight_frame: false
+saturation_targeted_uncertainty:
+- accepted: false
+  differential_to_secant_ratio: 0.29705984608847946
+  numerical: true
+  port_leakage: 7.813485466094292e-17
+  power_ratio: 0.16527794900189458
+  route_locality_residual: 0.09922869451284955
+  saturated: true
+  scenario_id: combined_corner
+  strict_overlap: false
+  strong_dark: false
+  volume_above_1p62T: 0.13274473001295412
+- accepted: false
+  differential_to_secant_ratio: 0.3217376472778648
+  numerical: true
+  port_leakage: 4.067038437423576e-17
+  power_ratio: 0.16636595552984276
+  route_locality_residual: 0.09232880095832531
+  saturated: true
+  scenario_id: soft_material
+  strict_overlap: false
+  strong_dark: false
+  volume_above_1p62T: 0.2858303888168451
+diagnostic:
+  boundary_failure_localization:
+    global_gap_derivative_boundary_spread: 0.060909626904458475
+    route_1_Kq_column_spread: 0.022652203023146255
+    route_2_Kq_column_spread: 0.08300201711923794
+    route_3_Kq_column_spread: 0.027183237379105128
+    route_2_coenergy_gradient_relative_change: 0.16170834231628473
+    interpretation: route_2 end-field cancellation is the dominant remote-boundary
+      sensitivity at the deep high-skew sentinel
+  nonlinear_failure_mode: port-dark remains near machine-null while power-dark/coenergy
+    compatibility and deep tight-frame geometry fail under saturation
+claim_scope:
+  allowed:
+  - existence_of_a_nonempty_local_saturated_strong_dark_interval_by_strict_margin_and_continuity
+  - sampled_ordering_of_saturation_and_dark_failure_events_on_three_frozen_current_rays
+  - nonlinear_Sym2_topology_survival_at_two_frozen_saturated_sentinels
+  - exact_discrete_current_tangent_from_the_Newton_Hessian
+  forbidden:
+  - hysteresis_or_rate_dependent_material_closure
+  - eddy_current_closure
+  - manufactured_winding_end_lead_equivalence
+  - hardware_or_HIL_validity
+  - refitting_calibration_material_gates_or_current_rays_after_results
+  - reviving_the_rejected_affine_depth_law
+next_gate:
+  name: TCZ-1M directional event-root and end-field precompensation gate
+  requirements:
+  - freeze the same calibration and material law before root searches
+  - localize saturation-onset and strong-dark-failure roots on rotated_a without changing
+    thresholds
+  - use event margin Delta_s = s_dark - s_sat as a design objective
+  - penalize loss of positive-definite sum-sensitivity and route-rank margin
+  - qualify route_2 exterior-domain sensitivity with a larger airbox or analytic exterior
+    treatment
+  - validate implicit Hessian shape sensitivities against frozen central differences
+    before using them for acceleration

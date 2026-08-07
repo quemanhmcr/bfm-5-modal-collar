@@ -1,0 +1,8 @@
+CASE tcz1l_uncertainty_soft_material_direct: ne=74641 ndof=90601 newton=13 residual=2.112e-13 Wprime=2.048364e+00
+CASE tcz1l_uncertainty_soft_material_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=2.299e-08 Wprime=2.054318e+00
+CASE tcz1l_uncertainty_soft_material_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=4.906e-14 Wprime=2.042515e+00
+CASE tcz1l_uncertainty_soft_material_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.421e-10 Wprime=2.048698e+00
+CASE tcz1l_uncertainty_soft_material_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.239e-10 Wprime=2.048041e+00
+CASE tcz1l_uncertainty_soft_material_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=8.134e-14 Wprime=2.053994e+00
+CASE tcz1l_uncertainty_soft_material_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=6.883e-09 Wprime=2.042841e+00
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "soft_material", "kind": "uncertainty", "ray": "", "scale": 0.0}

@@ -1,0 +1,18 @@
+CASE tcz1l_num_mesh_fine_direct: ne=74641 ndof=90601 newton=13 residual=5.695e-10 Wprime=1.994440e+00
+CASE tcz1l_num_mesh_fine_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=8.645e-09 Wprime=1.999826e+00
+CASE tcz1l_num_mesh_fine_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.815e-09 Wprime=1.989148e+00
+CASE tcz1l_num_mesh_fine_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.747e-10 Wprime=1.994772e+00
+CASE tcz1l_num_mesh_fine_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=2.475e-10 Wprime=1.994121e+00
+CASE tcz1l_num_mesh_fine_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=8.768e-14 Wprime=1.999565e+00
+CASE tcz1l_num_mesh_fine_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=5.472e-09 Wprime=1.989410e+00
+CASE tcz1l_num_fine_h2_gap_1_minus_0.070000mm: ne=74641 ndof=90601 newton=3 residual=7.448e-12 Wprime=2.005307e+00
+CASE tcz1l_num_fine_h2_gap_1_plus_0.070000mm: ne=74641 ndof=90601 newton=3 residual=4.434e-13 Wprime=1.983948e+00
+CASE tcz1l_num_fine_h2_gap_2_minus_0.070000mm: ne=74641 ndof=90601 newton=2 residual=4.690e-09 Wprime=1.995116e+00
+CASE tcz1l_num_fine_h2_gap_2_plus_0.070000mm: ne=74641 ndof=90601 newton=2 residual=3.745e-09 Wprime=1.993813e+00
+CASE tcz1l_num_fine_h2_gap_3_minus_0.070000mm: ne=74641 ndof=90601 newton=3 residual=8.743e-12 Wprime=2.004786e+00
+CASE tcz1l_num_fine_h2_gap_3_plus_0.070000mm: ne=74641 ndof=90601 newton=3 residual=5.752e-13 Wprime=1.984472e+00
+CASE tcz1l_num_fine_fd_port_1_minus: ne=74641 ndof=90601 newton=2 residual=5.859e-10 Wprime=1.984565e+00
+CASE tcz1l_num_fine_fd_port_1_plus: ne=74641 ndof=90601 newton=2 residual=3.242e-09 Wprime=2.004332e+00
+CASE tcz1l_num_fine_fd_port_2_minus: ne=74641 ndof=90601 newton=2 residual=3.458e-09 Wprime=1.990706e+00
+CASE tcz1l_num_fine_fd_port_2_plus: ne=74641 ndof=90601 newton=2 residual=4.162e-09 Wprime=1.998208e+00
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "mesh_fine", "kind": "numerical", "ray": "", "scale": 0.0}

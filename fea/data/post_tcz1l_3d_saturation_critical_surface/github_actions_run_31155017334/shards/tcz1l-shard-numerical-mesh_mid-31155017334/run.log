@@ -1,0 +1,8 @@
+CASE tcz1l_num_mesh_mid_direct: ne=62396 ndof=75414 newton=11 residual=1.038e-09 Wprime=1.988784e+00
+CASE tcz1l_num_mesh_mid_gap_1_minus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=3.503e-09 Wprime=1.994182e+00
+CASE tcz1l_num_mesh_mid_gap_1_plus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=3.346e-09 Wprime=1.983481e+00
+CASE tcz1l_num_mesh_mid_gap_2_minus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.316e-10 Wprime=1.989103e+00
+CASE tcz1l_num_mesh_mid_gap_2_plus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.097e-10 Wprime=1.988477e+00
+CASE tcz1l_num_mesh_mid_gap_3_minus_0.035000mm: ne=62396 ndof=75414 newton=4 residual=9.934e-09 Wprime=1.993844e+00
+CASE tcz1l_num_mesh_mid_gap_3_plus_0.035000mm: ne=62396 ndof=75414 newton=2 residual=1.172e-08 Wprime=1.983819e+00
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "mesh_mid", "kind": "numerical", "ray": "", "scale": 0.0}

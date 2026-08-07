@@ -1,0 +1,544 @@
+{
+  "campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d",
+  "claim_scope": {
+    "allowed": [
+      "existence_of_a_nonempty_local_saturated_strong_dark_interval_by_strict_margin_and_continuity",
+      "sampled_ordering_of_saturation_and_dark_failure_events_on_three_frozen_current_rays",
+      "nonlinear_Sym2_topology_survival_at_two_frozen_saturated_sentinels",
+      "exact_discrete_current_tangent_from_the_Newton_Hessian"
+    ],
+    "forbidden": [
+      "hysteresis_or_rate_dependent_material_closure",
+      "eddy_current_closure",
+      "manufactured_winding_end_lead_equivalence",
+      "hardware_or_HIL_validity",
+      "refitting_calibration_material_gates_or_current_rays_after_results",
+      "reviving_the_rejected_affine_depth_law"
+    ]
+  },
+  "continuity_argument": "The discrete energy is monotone/regularized and the exact Newton Hessian is nonsingular at accepted states. A strict saturated strong-dark sample therefore implies, by continuity/implicit-function regularity, a nonempty local interval retaining both strict inequalities.",
+  "numerical_qualification": {
+    "accepted": false,
+    "checks": {
+      "Ld_boundary": true,
+      "Ld_mesh": true,
+      "all_sentinel_states": true,
+      "current_validation_cases": true,
+      "exact_tangent_validation": true,
+      "gap_derivative_boundary": false,
+      "gap_derivative_mesh": true,
+      "gap_derivative_step": true,
+      "gap_step_validation_cases": true
+    },
+    "metrics": {
+      "Ld_boundary_spread": 0.016698444296584052,
+      "Ld_mesh_spread": 0.019240995254571586,
+      "exact_tangent_vs_finite_difference_spread": 6.027937094279519e-06,
+      "gap_derivative_boundary_spread": 0.060909626904458475,
+      "gap_derivative_mesh_spread": 0.013899502388201455,
+      "gap_derivative_step_spread": 0.0007468213206126543
+    },
+    "sentinel_state_checks": {
+      "boundary_far": true,
+      "mesh_fine": true,
+      "mesh_mid": true
+    }
+  },
+  "overall_saturation_critical_surface_accepted": false,
+  "parent_qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f",
+  "partitioned_decision": {
+    "all_ray_overlap_certificates": false,
+    "all_sampled_event_orders": false,
+    "all_state_numerical_admissible": true,
+    "numerical_sentinel_qualified": false,
+    "saturated_uncertainty_survival": false,
+    "topology_survival": false
+  },
+  "ray_event_reports": {
+    "high_skew": {
+      "first_saturated_scale": 1.35,
+      "first_strict_overlap_scale": 1.35,
+      "first_strong_dark_failure_scale": 2.4,
+      "saturation_bracket": [
+        1.0,
+        1.35
+      ],
+      "saturation_precedes_sampled_dark_failure": true,
+      "strict_local_overlap_certified": true
+    },
+    "rotated_a": {
+      "first_saturated_scale": 1.8,
+      "first_strict_overlap_scale": null,
+      "first_strong_dark_failure_scale": 1.8,
+      "saturation_bracket": [
+        1.35,
+        1.8
+      ],
+      "saturation_precedes_sampled_dark_failure": false,
+      "strict_local_overlap_certified": false
+    },
+    "rotated_b": {
+      "first_saturated_scale": 1.8,
+      "first_strict_overlap_scale": 1.8,
+      "first_strong_dark_failure_scale": 3.2,
+      "saturation_bracket": [
+        1.35,
+        1.8
+      ],
+      "saturation_precedes_sampled_dark_failure": true,
+      "strict_local_overlap_certified": true
+    }
+  },
+  "schema": "bfm5_tcz1l_saturation_critical_surface_summary_v1",
+  "state_rows": [
+    {
+      "Ld_condition": 1.0442799271128194,
+      "Ld_min_H": 7.784946147261694e-07,
+      "core_B_p16_T": 1.2071186169371122,
+      "current_A": [
+        700.0,
+        262.5
+      ],
+      "current_norm_A": 747.6003277152839,
+      "differential_to_secant_ratio": 0.9515036759391197,
+      "numerical": true,
+      "port_leakage": 2.0752183879078524e-17,
+      "power_ratio": 0.0024649594008810923,
+      "ray": "high_skew",
+      "route_locality_residual": 0.009738133172016107,
+      "saturated": false,
+      "scale": 1.0,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.0
+    },
+    {
+      "Ld_condition": 1.0955473542267775,
+      "Ld_min_H": 7.285745942967743e-07,
+      "core_B_p16_T": 1.2732259364675416,
+      "current_A": [
+        945.0000000000001,
+        354.375
+      ],
+      "current_norm_A": 1009.2604424156335,
+      "differential_to_secant_ratio": 0.909728151204861,
+      "numerical": true,
+      "port_leakage": 1.1045629856165092e-16,
+      "power_ratio": 0.009698864854332143,
+      "ray": "high_skew",
+      "route_locality_residual": 0.011155721530204082,
+      "saturated": true,
+      "scale": 1.35,
+      "strict_overlap": true,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.0015667556291339795
+    },
+    {
+      "Ld_condition": 1.4591115202925398,
+      "Ld_min_H": 5.158123952492544e-07,
+      "core_B_p16_T": 1.382210753937237,
+      "current_A": [
+        1260.0,
+        472.5
+      ],
+      "current_norm_A": 1345.6805898875111,
+      "differential_to_secant_ratio": 0.6855525293533391,
+      "numerical": true,
+      "port_leakage": 4.149566846859817e-17,
+      "power_ratio": 0.09042546137660673,
+      "ray": "high_skew",
+      "route_locality_residual": 0.01830716410354491,
+      "saturated": true,
+      "scale": 1.8,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.018041418620097262
+    },
+    {
+      "Ld_condition": 2.4553658441700548,
+      "Ld_min_H": 2.575236113270488e-07,
+      "core_B_p16_T": 1.5313861253378078,
+      "current_A": [
+        1680.0,
+        630.0
+      ],
+      "current_norm_A": 1794.2407865166815,
+      "differential_to_secant_ratio": 0.38865661976539345,
+      "numerical": true,
+      "port_leakage": 6.41456234898006e-17,
+      "power_ratio": 0.1332043631720849,
+      "ray": "high_skew",
+      "route_locality_residual": 0.06851128637544388,
+      "saturated": true,
+      "scale": 2.4,
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.10487123370070167
+    },
+    {
+      "Ld_condition": 3.5795339042564476,
+      "Ld_min_H": 1.6663013891705213e-07,
+      "core_B_p16_T": 1.6480318444491968,
+      "current_A": [
+        2240.0,
+        840.0
+      ],
+      "current_norm_A": 2392.321048688909,
+      "differential_to_secant_ratio": 0.3095524975148614,
+      "numerical": true,
+      "port_leakage": 4.5683935958324465e-17,
+      "power_ratio": 0.165627604582675,
+      "ray": "high_skew",
+      "route_locality_residual": 0.09611099978493293,
+      "saturated": true,
+      "scale": 3.2,
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.21732140549685539
+    },
+    {
+      "Ld_condition": 1.023935057351777,
+      "Ld_min_H": 7.90638695408352e-07,
+      "core_B_p16_T": 1.1798923459115211,
+      "current_A": [
+        -420.0,
+        520.0
+      ],
+      "current_norm_A": 668.4309986827361,
+      "differential_to_secant_ratio": 0.9601102150830111,
+      "numerical": true,
+      "port_leakage": 6.643896984566118e-17,
+      "power_ratio": 0.0022790531090609964,
+      "ray": "rotated_a",
+      "route_locality_residual": 0.016464747246216455,
+      "saturated": false,
+      "scale": 1.0,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.0
+    },
+    {
+      "Ld_condition": 1.0476765114900837,
+      "Ld_min_H": 7.630760087777557e-07,
+      "core_B_p16_T": 1.2387912389613223,
+      "current_A": [
+        -567.0,
+        702.0
+      ],
+      "current_norm_A": 902.3818482216938,
+      "differential_to_secant_ratio": 0.939904337172666,
+      "numerical": true,
+      "port_leakage": 3.6259850317974755e-17,
+      "power_ratio": 0.011235555175726525,
+      "ray": "rotated_a",
+      "route_locality_residual": 0.016951622856784233,
+      "saturated": false,
+      "scale": 1.35,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.0
+    },
+    {
+      "Ld_condition": 1.2967319434952944,
+      "Ld_min_H": 6.03247111541185e-07,
+      "core_B_p16_T": 1.3332368858973465,
+      "current_A": [
+        -756.0,
+        936.0
+      ],
+      "current_norm_A": 1203.175797628925,
+      "differential_to_secant_ratio": 0.7688738758006046,
+      "numerical": true,
+      "port_leakage": 1.4161958965559857e-17,
+      "power_ratio": 0.1314013032285301,
+      "ray": "rotated_a",
+      "route_locality_residual": 0.02392210861678501,
+      "saturated": true,
+      "scale": 1.8,
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.0003878254387828915
+    },
+    {
+      "Ld_condition": 1.8111031701730556,
+      "Ld_min_H": 4.0950413384542307e-07,
+      "core_B_p16_T": 1.472470911847818,
+      "current_A": [
+        -1008.0,
+        1248.0
+      ],
+      "current_norm_A": 1604.2343968385667,
+      "differential_to_secant_ratio": 0.5784235896475162,
+      "numerical": true,
+      "port_leakage": 1.2157698060922653e-16,
+      "power_ratio": 0.4246570359975628,
+      "ray": "rotated_a",
+      "route_locality_residual": 0.03242072562888861,
+      "saturated": true,
+      "scale": 2.4,
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.07070648417903531
+    },
+    {
+      "Ld_condition": 2.487544821421035,
+      "Ld_min_H": 2.4548829086618976e-07,
+      "core_B_p16_T": 1.5954826200747378,
+      "current_A": [
+        -1344.0,
+        1664.0
+      ],
+      "current_norm_A": 2138.9791957847556,
+      "differential_to_secant_ratio": 0.42916838285087316,
+      "numerical": true,
+      "port_leakage": 7.967805061385337e-18,
+      "power_ratio": 0.3778557393610927,
+      "ray": "rotated_a",
+      "route_locality_residual": 0.04683684407964268,
+      "saturated": true,
+      "scale": 3.2,
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.13418908777811742
+    },
+    {
+      "Ld_condition": 1.0325160039758485,
+      "Ld_min_H": 7.878762390695568e-07,
+      "core_B_p16_T": 1.1837261692840642,
+      "current_A": [
+        560.0,
+        -390.0
+      ],
+      "current_norm_A": 682.4221567329126,
+      "differential_to_secant_ratio": 0.959744957307502,
+      "numerical": true,
+      "port_leakage": 2.99879968670221e-17,
+      "power_ratio": 8.308575090407999e-05,
+      "ray": "rotated_b",
+      "route_locality_residual": 0.01589871947721917,
+      "saturated": false,
+      "scale": 1.0,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.0
+    },
+    {
+      "Ld_condition": 1.0514228495418645,
+      "Ld_min_H": 7.602237912734225e-07,
+      "core_B_p16_T": 1.2428556203868246,
+      "current_A": [
+        756.0,
+        -526.5
+      ],
+      "current_norm_A": 921.2699115894321,
+      "differential_to_secant_ratio": 0.939506099474471,
+      "numerical": true,
+      "port_leakage": 1.435599979358981e-17,
+      "power_ratio": 0.00029862970576450626,
+      "ray": "rotated_b",
+      "route_locality_residual": 0.016332548404769213,
+      "saturated": false,
+      "scale": 1.35,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.0
+    },
+    {
+      "Ld_condition": 1.1708436929629082,
+      "Ld_min_H": 6.505584428030855e-07,
+      "core_B_p16_T": 1.3271155882942673,
+      "current_A": [
+        1008.0,
+        -702.0
+      ],
+      "current_norm_A": 1228.3598821192427,
+      "differential_to_secant_ratio": 0.8267502106119416,
+      "numerical": true,
+      "port_leakage": 2.688173755676459e-17,
+      "power_ratio": 0.012096745120686717,
+      "ray": "rotated_b",
+      "route_locality_residual": 0.0213380480115792,
+      "saturated": true,
+      "scale": 1.8,
+      "strict_overlap": true,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.002376943072629717
+    },
+    {
+      "Ld_condition": 2.102686982495661,
+      "Ld_min_H": 3.062057132301418e-07,
+      "core_B_p16_T": 1.4783472866129206,
+      "current_A": [
+        1344.0,
+        -936.0
+      ],
+      "current_norm_A": 1637.8131761589905,
+      "differential_to_secant_ratio": 0.4351935298097128,
+      "numerical": true,
+      "port_leakage": 3.1620834553802696e-17,
+      "power_ratio": 0.06171711276715974,
+      "ray": "rotated_b",
+      "route_locality_residual": 0.06360325192681773,
+      "saturated": true,
+      "scale": 2.4,
+      "strict_overlap": false,
+      "strong_dark": true,
+      "volume_above_1p62T": 0.08735621437933809
+    },
+    {
+      "Ld_condition": 3.1716736812753634,
+      "Ld_min_H": 1.8908181986650023e-07,
+      "core_B_p16_T": 1.6120388308085138,
+      "current_A": [
+        1792.0,
+        -1248.0
+      ],
+      "current_norm_A": 2183.7509015453206,
+      "differential_to_secant_ratio": 0.32658891085133734,
+      "numerical": true,
+      "port_leakage": 4.1289985626443194e-17,
+      "power_ratio": 0.04787362531336906,
+      "ray": "rotated_b",
+      "route_locality_residual": 0.1137677858638469,
+      "saturated": true,
+      "scale": 3.2,
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.17235404406084157
+    }
+  ],
+  "topology_rows": [
+    {
+      "accepted": false,
+      "internal_cases_numerical": true,
+      "metrics": {
+        "lorentz_signature": [
+          1,
+          2,
+          0
+        ],
+        "maximum_whitened_tight_frame_defect": 1e+300,
+        "pullback_eigenvalues": [
+          -0.08754082064655079,
+          -0.008830108795580573,
+          0.09712805038924752
+        ],
+        "route_rank_defects": [
+          0.011228426454163628,
+          0.00016528117554165484,
+          0.017609390390469572
+        ],
+        "sum_sensitivity_eigenvalues": [
+          -4.284626005615932e-05,
+          0.00015161500666817292
+        ],
+        "sym2_condition": 8.133441732520339,
+        "sym2_rank": 3,
+        "sym2_singular_values": [
+          0.00016567162961650262,
+          3.302388529859173e-05,
+          2.0369191181894085e-05
+        ],
+        "whitened_tight_frame_defects": [
+          1e+300,
+          1e+300,
+          1e+300
+        ],
+        "whitening_valid": false
+      },
+      "ray": "high_skew",
+      "reuse_policy": "exact_Newton_Hessian_on_primary_gap_states_no_additional_nonlinear_solve",
+      "scale": 3.2,
+      "state_numerical": true,
+      "state_saturated": true,
+      "state_strong_dark": false,
+      "topology_checks": {
+        "lorentz_signature": true,
+        "route_rank": true,
+        "sym2_condition": true,
+        "sym2_rank": true,
+        "whitened_tight_frame": false
+      }
+    },
+    {
+      "accepted": false,
+      "internal_cases_numerical": true,
+      "metrics": {
+        "lorentz_signature": [
+          1,
+          2,
+          0
+        ],
+        "maximum_whitened_tight_frame_defect": 1e+300,
+        "pullback_eigenvalues": [
+          -0.29064140865544397,
+          -0.017242333431426435,
+          0.3099993477654982
+        ],
+        "route_rank_defects": [
+          0.00042762107386484755,
+          0.09816850172065188,
+          0.000194626540777427
+        ],
+        "sum_sensitivity_eigenvalues": [
+          -0.00015732845781429234,
+          0.00010544629102393285
+        ],
+        "sym2_condition": 6.707749333853961,
+        "sym2_rank": 3,
+        "sym2_singular_values": [
+          0.00017020593911184717,
+          0.00012727809982822428,
+          2.5374522904846645e-05
+        ],
+        "whitened_tight_frame_defects": [
+          1e+300,
+          1e+300,
+          1e+300
+        ],
+        "whitening_valid": false
+      },
+      "ray": "rotated_a",
+      "reuse_policy": "exact_Newton_Hessian_on_primary_gap_states_no_additional_nonlinear_solve",
+      "scale": 3.2,
+      "state_numerical": true,
+      "state_saturated": true,
+      "state_strong_dark": false,
+      "topology_checks": {
+        "lorentz_signature": true,
+        "route_rank": false,
+        "sym2_condition": true,
+        "sym2_rank": true,
+        "whitened_tight_frame": false
+      }
+    }
+  ],
+  "uncertainty_rows": [
+    {
+      "accepted": false,
+      "differential_to_secant_ratio": 0.29705984608847946,
+      "numerical": true,
+      "port_leakage": 7.813485466094292e-17,
+      "power_ratio": 0.16527794900189458,
+      "route_locality_residual": 0.09922869451284955,
+      "saturated": true,
+      "scenario_id": "combined_corner",
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.13274473001295412
+    },
+    {
+      "accepted": false,
+      "differential_to_secant_ratio": 0.3217376472778648,
+      "numerical": true,
+      "port_leakage": 4.067038437423576e-17,
+      "power_ratio": 0.16636595552984276,
+      "route_locality_residual": 0.09232880095832531,
+      "saturated": true,
+      "scenario_id": "soft_material",
+      "strict_overlap": false,
+      "strong_dark": false,
+      "volume_above_1p62T": 0.2858303888168451
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d",
+  "case": "",
+  "config": {
+    "acceptance_gates": {
+      "nonlinear_topology": {
+        "maximum_route_rank_defect": 0.05,
+        "maximum_sym2_condition": 30.0,
+        "maximum_whitened_tight_frame_defect": 0.1,
+        "required_lorentz_signature": [
+          1,
+          2,
+          0
+        ],
+        "required_sym2_rank": 3
+      },
+      "numerical": {
+        "maximum_Ld_mesh_spread": 0.05,
+        "maximum_Ld_remote_boundary_spread": 0.05,
+        "maximum_differential_inductance_condition": 30.0,
+        "maximum_exact_tangent_linearized_residual": 1e-08,
+        "maximum_exact_tangent_vs_finite_difference_spread": 0.01,
+        "maximum_gap_derivative_mesh_spread": 0.05,
+        "maximum_gap_derivative_step_spread": 0.05,
+        "maximum_gauge_fraction": 1e-06,
+        "maximum_power_pairing_residual": 1e-12,
+        "maximum_reciprocity_residual": 0.001,
+        "maximum_remote_boundary_spread": 0.05,
+        "maximum_stationarity_residual": 1e-07,
+        "positive_differential_inductance_required": true
+      },
+      "saturation": {
+        "maximum_directional_differential_to_secant_ratio": 0.97,
+        "minimum_any_core_volume_fraction_above_1p62T": 0.0001
+      },
+      "strict_overlap_guard": {
+        "maximum_directional_differential_to_secant_ratio": 0.95,
+        "maximum_port_leakage": 0.0005,
+        "maximum_power_ratio": 0.05,
+        "maximum_route_locality_residual": 0.05,
+        "minimum_core_volume_fraction_above_1p62T": 0.0005
+      },
+      "strong_dark": {
+        "maximum_port_leakage": 0.001,
+        "maximum_power_ratio": 0.1,
+        "maximum_route_locality_residual": 0.1
+      }
+    },
+    "critical_surface_ladder": {
+      "interpretation": "ordered_samples_of_continuous_current_rays_not_posthoc_threshold_search",
+      "rays": [
+        {
+          "base_current_A": [
+            700.0,
+            262.5
+          ],
+          "id": "high_skew"
+        },
+        {
+          "base_current_A": [
+            -420.0,
+            520.0
+          ],
+          "id": "rotated_a"
+        },
+        {
+          "base_current_A": [
+            560.0,
+            -390.0
+          ],
+          "id": "rotated_b"
+        }
+      ],
+      "scale_factors": [
+        1.0,
+        1.35,
+        1.8,
+        2.4,
+        3.2
+      ],
+      "sentinel_scale": 3.2
+    },
+    "decision_rules": {
+      "overall_acceptance": [
+        "numerical_sentinel_qualified",
+        "all_state_numerical_admissible",
+        "all_ray_overlap_certificates",
+        "all_sampled_event_orders",
+        "topology_survival",
+        "saturated_uncertainty_survival"
+      ],
+      "ray_overlap_certificate": "each_ray_requires_at_least_one_sample_passing_strict_overlap_guard",
+      "sampled_event_order": "first_saturated_sample_must_precede_any_sampled_strong_dark_failure_on_each_ray",
+      "topology_survival": "both_sentinel_rays_must_be_saturated_strong_dark_and_pass_nonlinear_topology",
+      "uncertainty_survival": "both_frozen_saturated_uncertainty_cases_must_be_saturated_and_strong_dark"
+    },
+    "execution_efficiency": {
+      "actions_matrix_job_cap": 20,
+      "baseline_strategy": "direct_Newton_from_linear_initializer_then_fallback_homotopy_only_on_failure",
+      "fallback_continuation_factors": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "install_getdp": false,
+      "numerical_fine_reuses_primary_baseline_for_validation": true,
+      "original_preregistration_campaign_sha256": "421c937c064aa4c16389121ae64d25d4e1257b48bb99f82d665ce75b91f51a7b",
+      "physical_model_rays_material_uncertainty_and_acceptance_gates_unchanged": true,
+      "reason": "eliminate_redundant_continuation_and_duplicate_topology_solves_before_fresh_holdout",
+      "revision": "r2_algorithm_only",
+      "runtime_requirements_file": "fea/requirements-tcz1l-core.txt",
+      "scientific_contract_sha256": "5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8",
+      "topology_reuses_primary_gap_states_via_exact_Newton_Hessian": true
+    },
+    "fixed_model": {
+      "baseline_continuation_factors": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "boundary_far": {
+        "boundary_scale": 1.85,
+        "mesh_scale": 1.1
+      },
+      "calibration_matrix_C": [
+        [
+          0.9812220080652189,
+          1.362787025501901e-05
+        ],
+        [
+          1.3627870255019022e-05,
+          1.0191373531842471
+        ]
+      ],
+      "finite_current_validation_step_A": 8.0,
+      "gap_step_primary_mm": 0.035,
+      "gap_step_validation_mm": 0.07,
+      "material": "inherited_femm_13_point_monotone_BH",
+      "material_uncertainty_parameterization": "H_variant(B)=h_scale*H_nominal(B/b_knee_scale)",
+      "mesh_fine": {
+        "boundary_scale": 1.55,
+        "mesh_scale": 1.1
+      },
+      "mesh_mid": {
+        "boundary_scale": 1.55,
+        "mesh_scale": 1.3
+      },
+      "physical_depth_mm": 22.838127702404996
+    },
+    "frozen_parent": {
+      "frozen_affine_depth_law_remains_rejected": true,
+      "refit_forbidden": true,
+      "tcz1k_config_sha256": "2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082",
+      "tcz1k_parent_campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+      "tcz1k_runner_sha256": "74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7",
+      "tcz1kq_actions_run_id": 31145999028,
+      "tcz1kq_config_sha256": "802da9493c5220721e3fdb1b859537f4ee832afea17db71465aece82c035b551",
+      "tcz1kq_freeze_git_sha": "9d344195a5d459f850ce6d850620cbd565fa0395",
+      "tcz1kq_qualification_sha256": "eb0e50b825f6700d4ff886d91655cf48cef9e818d6d832a6f0e995d84312439f",
+      "tcz1kq_runner_sha256": "c824f61b9dcdf8cbc03e5a5ba2ec3780a8dfc5073781e5a41406160b5862a195"
+    },
+    "mathematical_claim_boundary": {
+      "allowed": [
+        "existence_of_a_nonempty_local_saturated_strong_dark_interval_by_strict_margin_and_continuity",
+        "sampled_ordering_of_saturation_and_dark_failure_events_on_three_frozen_current_rays",
+        "nonlinear_Sym2_topology_survival_at_two_frozen_saturated_sentinels",
+        "exact_discrete_current_tangent_from_the_Newton_Hessian"
+      ],
+      "forbidden": [
+        "hysteresis_or_rate_dependent_material_closure",
+        "eddy_current_closure",
+        "manufactured_winding_end_lead_equivalence",
+        "hardware_or_HIL_validity",
+        "refitting_calibration_material_gates_or_current_rays_after_results",
+        "reviving_the_rejected_affine_depth_law"
+      ]
+    },
+    "numerical_sentinel": {
+      "ray": "high_skew",
+      "scale": 3.2
+    },
+    "saturation_targeted_uncertainty": {
+      "ray": "high_skew",
+      "scale": 3.2,
+      "scenario_ids": [
+        "soft_material",
+        "combined_corner"
+      ]
+    },
+    "schema": "bfm5_tcz1l_saturation_critical_surface_v1",
+    "stage": "TCZ-1L",
+    "status": "preregistered_execution_efficiency_r2_before_fresh_actions_holdout",
+    "topology_sentinels": [
+      {
+        "ray": "high_skew",
+        "scale": 3.2
+      },
+      {
+        "ray": "rotated_a",
+        "scale": 3.2
+      }
+    ]
+  },
+  "kind": "state",
+  "ray": "high_skew",
+  "scale": 1.8,
+  "schema": "bfm5_tcz1l_saturation_critical_surface_v1"
+}

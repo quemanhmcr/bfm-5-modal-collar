@@ -1,0 +1,8 @@
+CASE tcz1l_rotated_b_1.8_direct: ne=74641 ndof=90601 newton=12 residual=1.983e-12 Wprime=6.144572e-01
+CASE tcz1l_rotated_b_1.8_gap_1_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=1.986e-10 Wprime=6.171696e-01
+CASE tcz1l_rotated_b_1.8_gap_1_plus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=5.773e-11 Wprime=6.118372e-01
+CASE tcz1l_rotated_b_1.8_gap_2_minus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=7.960e-12 Wprime=6.178657e-01
+CASE tcz1l_rotated_b_1.8_gap_2_plus_0.035000mm: ne=74641 ndof=90601 newton=3 residual=4.511e-12 Wprime=6.111573e-01
+CASE tcz1l_rotated_b_1.8_gap_3_minus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.798e-12 Wprime=6.145020e-01
+CASE tcz1l_rotated_b_1.8_gap_3_plus_0.035000mm: ne=74641 ndof=90601 newton=2 residual=3.312e-12 Wprime=6.144141e-01
+BFM5_TCZ1L_SHARD={"campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d", "case": "", "kind": "state", "ray": "rotated_b", "scale": 1.8}

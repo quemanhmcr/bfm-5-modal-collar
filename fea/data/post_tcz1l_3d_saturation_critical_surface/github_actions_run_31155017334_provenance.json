@@ -1,0 +1,49 @@
+{
+  "artifact_directory": "fea/data/post_tcz1l_3d_saturation_critical_surface/github_actions_run_31155017334",
+  "artifact_file_count": 82,
+  "artifact_manifest_sha256": "9cf0dee6da3e7d89efe5141e46d7fd91d483b78d10d6c41da59f9441d1fa6f24",
+  "campaign_sha256": "2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d",
+  "canonical_artifact_tree_sha256": "c619d02c8ee2f780cb57b4e6ba52a182c95697e89500278b855d6003b5fd56aa",
+  "github_repository": "quemanhmcr/bfm-5-modal-collar",
+  "hash_verification": {
+    "evidence_records": "81_of_81_pass",
+    "git_blob_source_records": "13_of_13_pass"
+  },
+  "manifest_evidence_file_count": 81,
+  "manifest_source_file_count": 13,
+  "original_preregistration_campaign_sha256": "421c937c064aa4c16389121ae64d25d4e1257b48bb99f82d665ce75b91f51a7b",
+  "overall_saturation_critical_surface_accepted": false,
+  "partitioned_decision": {
+    "all_ray_overlap_certificates": false,
+    "all_sampled_event_orders": false,
+    "all_state_numerical_admissible": true,
+    "numerical_sentinel_qualified": false,
+    "saturated_uncertainty_survival": false,
+    "topology_survival": false
+  },
+  "performance": {
+    "actions_wall_s": 1753.0,
+    "aggregate_wall_s": 26.0,
+    "critical_solver_step_s": 1470.0,
+    "direct_linear_initializer_baselines": 20,
+    "fallback_homotopy_baselines": 0,
+    "maximum_newton_iterations_per_nonlinear_case": 13,
+    "maximum_solver_setup_s": 51.0,
+    "mean_newton_iterations_per_nonlinear_case": 3.8133333333333335,
+    "mean_solver_setup_s": 34.0,
+    "median_solver_step_s": 773.0,
+    "nonlinear_case_solves": 150,
+    "nonlinear_solve_count_reduction_fraction": 0.358974358974359,
+    "original_execution_design_estimated_nonlinear_case_solves": 234,
+    "solver_shards": 20,
+    "sum_solver_step_s": 15605.0,
+    "validation_wall_s": 25.0
+  },
+  "run_conclusion": "failure_due_to_preregistered_scientific_and_numerical_gates",
+  "run_id": 31155017334,
+  "schema": "bfm5_tcz1l_github_actions_repository_freeze_v1",
+  "scientific_contract_sha256": "5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8",
+  "source_git_sha": "4ebc93f5a3ae22d4be0725d45fbdc65f82d825b4",
+  "summary_sha256": "147b09e15c7e1e7f41c5478c52ad054df7502e142d53dee719a12c74dcb1b645",
+  "workflow": "TCZ-1L Saturation Critical-Surface Holdout"
+}
