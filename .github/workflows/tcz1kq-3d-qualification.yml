@@ -1,0 +1,168 @@
+name: TCZ-1KQ Nonlinear 3D Numerical Qualification
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_generation:
+        description: FEA3D cache namespace
+        required: true
+        default: v1
+  push:
+    branches:
+      - research/tcz1k-nonlinear-3d-calibrated-holdout
+    paths:
+      - '.github/actions/setup-fea3d/action.yml'
+      - '.github/workflows/tcz1kq-3d-qualification.yml'
+      - 'fea/bfm5/tcz1k_3d.py'
+      - 'fea/config/tcz1k_3d_nonlinear_holdout.yml'
+      - 'fea/scripts/run_tcz1k_3d_nonlinear_holdout.py'
+      - 'fea/config/tcz1kq_3d_numerical_qualification.yml'
+      - 'fea/scripts/run_tcz1kq_3d_qualification.py'
+      - 'fea/scripts/analyze_tcz1kq_3d_qualification.py'
+      - 'fea/scripts/seal_tcz1kq_3d_evidence.py'
+      - 'fea/tests/test_tcz1kq_3d.py'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  PYTHONPATH: '.'
+  OMP_NUM_THREADS: '4'
+  OPENBLAS_NUM_THREADS: '4'
+  MKL_NUM_THREADS: '4'
+  NUMBA_NUM_THREADS: '4'
+
+concurrency:
+  group: tcz1kq-3d-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  shard:
+    name: ${{ matrix.kind }}-${{ matrix.case }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 17
+      matrix:
+        include:
+          - {kind: anchor, case: mesh_mid}
+          - {kind: anchor, case: mesh_fine}
+          - {kind: anchor, case: boundary_far}
+          - {kind: operating, case: low_skew}
+          - {kind: operating, case: anchor}
+          - {kind: operating, case: high_skew}
+          - {kind: operating, case: rotated_a}
+          - {kind: operating, case: rotated_b}
+          - {kind: uncertainty, case: gap_pattern_a}
+          - {kind: uncertainty, case: gap_pattern_b}
+          - {kind: uncertainty, case: source_pattern}
+          - {kind: uncertainty, case: soft_material}
+          - {kind: uncertainty, case: hard_material}
+          - {kind: uncertainty, case: combined_corner}
+          - {kind: depth, case: '0.75'}
+          - {kind: depth, case: '1.5'}
+          - {kind: topology, case: fine_grid}
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore pinned reusable FEA3D layer
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Enforce anti-refit qualification contract
+        run: python -m pytest -q tests/test_tcz1kq_3d.py tests/test_tcz1k_3d.py
+
+      - name: Run fine-grid qualification shard
+        run: |
+          set -o pipefail
+          out="results_ci/tcz1kq/${{ matrix.kind }}-${{ matrix.case }}"
+          mkdir -p "$out"
+          python scripts/run_tcz1kq_3d_qualification.py \
+            --kind "${{ matrix.kind }}" \
+            --case "${{ matrix.case }}" \
+            --output "$out" \
+            | tee "$out/run.log"
+
+      - name: Upload qualification shard
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1kq-shard-${{ matrix.kind }}-${{ matrix.case }}-${{ github.run_id }}
+          path: fea/results_ci/tcz1kq/${{ matrix.kind }}-${{ matrix.case }}/
+          if-no-files-found: error
+          retention-days: 14
+
+  aggregate:
+    name: aggregate-and-seal
+    needs: shard
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Restore pinned reusable FEA3D layer
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+
+      - name: Download all qualification shards
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: tcz1kq-shard-*-${{ github.run_id }}
+          path: fea/results_ci/tcz1kq_downloads
+          merge-multiple: false
+
+      - name: Analyze fine-grid qualification
+        run: |
+          mkdir -p results_ci/tcz1kq_final
+          python scripts/analyze_tcz1kq_3d_qualification.py \
+            --input results_ci/tcz1kq_downloads \
+            --output results_ci/tcz1kq_final
+          cp -a results_ci/tcz1kq_downloads results_ci/tcz1kq_final/shards
+
+      - name: Seal and enforce numerical qualification
+        run: python scripts/seal_tcz1kq_3d_evidence.py --evidence results_ci/tcz1kq_final
+
+      - name: Publish partitioned decision
+        if: always()
+        shell: bash
+        run: |
+          if [ -f results_ci/tcz1kq_final/summary.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          s=json.loads(Path('results_ci/tcz1kq_final/summary.json').read_text())
+          m=s['metrics']
+          print('# TCZ-1KQ nonlinear 3D numerical qualification')
+          print(f"- Numerical qualification: **{s['numerical_qualification_accepted']}**")
+          print(f"- Qualified nonlinear holdout: **{s['qualified_nonlinear_holdout_accepted']}**")
+          print(f"- Fine-grid intrinsic topology: **{s['fine_grid_nonlinear_topology_accepted']}**")
+          print(f"- Fine-grid operating strong-dark: **{s['fine_grid_operating_strong_dark_accepted']}**")
+          print(f"- Fine-grid uncertainty: **{s['fine_grid_uncertainty_accepted']}**")
+          print(f"- Frozen affine depth law: **{s['frozen_depth_law_accepted']}**")
+          print(f"- Mesh / boundary spread: **{m['derivative_mesh_spread']:.3%} / {m['remote_boundary_spread']:.3%}**")
+          print(f"- Sym(2) rank / condition: **{m['fine_grid_nonlinear_topology']['sym2_rank']} / {m['fine_grid_nonlinear_topology']['sym2_condition']:.6g}**")
+          print(f"- Operating / uncertainty pass: **{s['operating_pass_fraction']:.1%} / {s['uncertainty_pass_fraction']:.1%}**")
+          print(f"- Maximum depth-law error: **{s['maximum_depth_law_relative_error']:.3%}**")
+          PY
+          fi
+
+      - name: Upload immutable qualification evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1kq-3d-qualification-${{ github.run_id }}
+          path: fea/results_ci/tcz1kq_final/
+          if-no-files-found: error
+          retention-days: 14

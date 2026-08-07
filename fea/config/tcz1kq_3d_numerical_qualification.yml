@@ -1,0 +1,82 @@
+schema: bfm5_tcz1kq_nonlinear_3d_numerical_qualification_v1
+stage: TCZ-1KQ
+status: preregistered_before_fine_grid_replay
+frozen_parent:
+  preregistration_git_sha: c236d0c061a8608cc577241ddc6672b57e754ef2
+  negative_evidence_freeze_git_sha: 83443d0616094b5c3e4990fdb43b2d34730d632b
+  original_actions_run_id: 31143771001
+  original_campaign_sha256: f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5
+  original_config_sha256: 2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082
+  original_runner_sha256: 74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7
+  refit_forbidden: true
+qualification_grid:
+  physical_depth_mm: 22.838127702404996
+  gap_step_primary_mm: 0.035
+  gap_step_validation_mm: 0.070
+  mesh_mid:
+    mesh_scale: 1.30
+    boundary_scale: 1.55
+    preflight_elements: 62372
+  mesh_fine:
+    mesh_scale: 1.10
+    boundary_scale: 1.55
+    preflight_elements: 74680
+  boundary_far:
+    mesh_scale: 1.10
+    boundary_scale: 1.85
+    preflight_elements: 96277
+  replay_grid: mesh_fine
+replay_scope:
+  operating_ids: [low_skew, anchor, high_skew, rotated_a, rotated_b]
+  uncertainty_ids: [gap_pattern_a, gap_pattern_b, source_pattern, soft_material, hard_material, combined_corner]
+  depth_multipliers: [0.75, 1.50]
+  nonlinear_topology_point: anchor
+  current_derivative_step_A: 4.0
+  low_field_depth_probe_A: 20.0
+acceptance_gates:
+  numerical:
+    maximum_stationarity_residual: 1.0e-7
+    maximum_gauge_fraction: 1.0e-6
+    maximum_power_pairing_residual: 1.0e-12
+    maximum_energy_derivative_residual: 1.0e-3
+    maximum_reciprocity_residual: 1.0e-3
+    positive_differential_inductance_required: true
+    maximum_differential_inductance_condition: 30.0
+    maximum_derivative_step_spread: 0.05
+    maximum_derivative_mesh_spread: 0.05
+    maximum_remote_boundary_spread: 0.05
+  nonlinear_topology:
+    required_sym2_rank: 3
+    maximum_sym2_condition: 30.0
+    required_lorentz_signature: [1, 2, 0]
+    maximum_route_rank_defect: 0.05
+    maximum_whitened_tight_frame_defect: 0.10
+    maximum_route_locality_residual: 0.10
+  strong_dark:
+    maximum_port_leakage: 1.0e-3
+    maximum_power_ratio: 0.10
+    required_operating_pass_fraction: 1.0
+    required_uncertainty_pass_fraction: 0.95
+  saturation_probe:
+    minimum_any_core_volume_fraction_above_1p62T: 1.0e-4
+    maximum_directional_differential_to_secant_ratio: 0.97
+  frozen_depth_law:
+    maximum_mean_inductance_relative_error: 0.10
+decision_rules:
+  numerical_qualification_accepted: all_numerical_gates
+  qualified_nonlinear_holdout_accepted:
+    - numerical_qualification_accepted
+    - fine_grid_nonlinear_topology_accepted
+    - fine_grid_operating_strong_dark_accepted
+    - fine_grid_uncertainty_accepted
+    - saturation_materially_probed
+  frozen_depth_law_decision: separate_hypothesis
+claim_scope:
+  allowed:
+    - finer_grid_qualification_of_the_frozen_TCZ1K_model
+    - complete_fine_grid_replay_of_the_frozen_finite_holdout
+    - independent_fine_grid_nonlinear_Sym2_topology
+  forbidden:
+    - changing_the_TCZ1K_calibration_BH_operating_uncertainty_or_gates
+    - refitting_the_affine_depth_law
+    - hysteresis_eddy_current_hardware_or_HIL_validity
