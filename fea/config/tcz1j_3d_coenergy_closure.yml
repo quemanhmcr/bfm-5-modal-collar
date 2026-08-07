@@ -1,0 +1,70 @@
+schema: bfm5_tcz1j_3d_same_mesh_coenergy_closure_v1
+stage: TCZ-1J
+status: source_frozen_pending_independent_replay
+model:
+  physics: linear_magnetostatic_vector_potential
+  core_relative_permeability: 2000.0
+  solution_space: HCurl_order_1_nograds
+  source_space: HCurl_order_1
+  source_definition: J_h_equals_curl_of_projected_stream_potential_T_h
+  solver: BDDC_preconditioned_CG
+  gauge_factor: 1.0e-8
+  geometry:
+    controlled_gap_mm: 1.75
+    matched_planar_depth_mm: 22.838127702404996
+    route_centers_mm: [-80.0, 0.0, 80.0]
+    core_thickness_mm: 17.0
+    inner_window_mm: [26.0, 36.0]
+  canonical_operating_current_A: [400.0, 150.0]
+  basis_current_A: 200.0
+same_mesh_tangent:
+  primary_mesh_scale: 1.0
+  validation_mesh_scale: 0.8
+  primary_gap_step_mm: 0.035
+  validation_gap_step_mm: 0.070
+  deformation: continuous_same_connectivity_gap_wall_motion
+  remote_boundaries_fixed: true
+depth_hypothesis:
+  multipliers: [0.5, 1.0, 2.0]
+  maximum_normalized_deviation: 0.10
+acceptance_gates:
+  maximum_free_residual: 1.0e-8
+  maximum_gauge_fraction: 1.0e-6
+  maximum_reciprocity_residual: 1.0e-6
+  maximum_energy_identity_residual: 1.0e-6
+  maximum_nominal_mesh_spread: 0.02
+  maximum_derivative_step_spread: 0.02
+  maximum_derivative_mesh_spread: 0.02
+  required_sym2_rank: 3
+  maximum_sym2_condition: 30.0
+  required_lorentz_signature: [1, 2, 0]
+  maximum_route_rank_defect: 0.10
+  maximum_route_locality_residual: 0.10
+  maximum_strong_dark_discriminant: 0.05
+  positive_inductance_required: true
+decision_partition:
+  topology_closure:
+    - solver_and_gauge
+    - coenergy_identity_and_reciprocity
+    - nominal_and_tangent_convergence
+    - sym2_rank_and_condition
+    - lorentz_signature
+    - route_rank_and_locality
+    - strong_dark_compatibility
+  planar_depth_gauge:
+    - finite_depth_scaling_hypothesis
+claim_scope:
+  allowed:
+    - linear_finite_depth_3d_coenergy_closure_for_declared_model
+    - local_same_mesh_tangent_closure
+    - finite_depth_end_effect_quantification
+  forbidden:
+    - nonlinear_saturation_closure
+    - manufactured_end_lead_equivalence
+    - hardware_or_HIL_validity
+    - continuous_certification_outside_declared_local_neighborhood
+source_hashes:
+  linear_screen_sha256: 5f678b12df080bc0914cba83269a698b1ef159f4c7447a687243409e90e4f73d
+  same_mesh_closure_sha256: 4b8442853c7ab10cdc5a56ea1d9409a0561d787fdafcd42faf120252a5ca3dc4
+  colab_wrapper_sha256: 7553bfac9f22214975849051b734eb5e2c01f4b84320f9fd1fc3c8fd0765c9d7
+  campaign_sha256: 0e9edb22da83f71634e6febc35bcc7711ad41375ef354944c014229d2efabc8c
