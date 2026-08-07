@@ -1,0 +1,73 @@
+schema: bfm5_tcz1k_nonlinear_3d_decision_v1
+stage: TCZ-1K
+status: frozen_numerically_inadmissible_with_positive_diagnostics
+source:
+  preregistration_git_sha: c236d0c061a8608cc577241ddc6672b57e754ef2
+  github_actions_run_id: 31143771001
+  campaign_sha256: f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5
+  evidence_directory: fea/data/post_tcz1k_3d_nonlinear_holdout/github_actions_run_31143771001
+numerical_admissibility:
+  accepted: false
+  passed:
+    stationarity_max: 1.5711055163585983e-08
+    gauge_fraction_max: 2.4179817626939816e-10
+    power_pairing_residual_max: 2.774519311124986e-16
+    energy_derivative_residual_max: 8.448374429024293e-06
+    reciprocity_residual_max: 1.2703473090101265e-05
+    derivative_step_spread: 0.0010990480414602005
+    differential_inductance_min_eigenvalue_H: 7.240160248644645e-07
+    differential_inductance_condition_max: 1.1362563175731153
+  failed:
+    derivative_mesh_spread:
+      measured: 0.05722616270713426
+      gate: 0.05
+    remote_boundary_spread:
+      measured: 0.06884600551626535
+      gate: 0.05
+partitioned_diagnostics_not_promoted_to_accepted_claims:
+  nonlinear_intrinsic_topology:
+    diagnostic_pass: true
+    sym2_rank: 3
+    sym2_condition: 1.4734002221511229
+    lorentz_signature: [1, 2, 0]
+    maximum_route_rank_defect: 0.003113673022521735
+    maximum_whitened_tight_frame_defect: 0.013351323171823656
+  nonlinear_strong_dark_operating_set:
+    diagnostic_pass: true
+    pass_fraction: 1.0
+    maximum_power_ratio: 0.0033575155578190992
+    maximum_route_locality_residual: 0.019261283045495032
+  uncertainty_holdout:
+    diagnostic_pass: true
+    pass_fraction: 1.0
+    maximum_power_ratio: 0.0008165842058991142
+  saturation_probe:
+    diagnostic_pass: true
+    maximum_core_volume_fraction_above_1p62T: 0.00042796382487846616
+    minimum_directional_differential_to_secant_ratio: 0.9357084077874264
+  frozen_affine_depth_law:
+    accepted: false
+    maximum_relative_error: 0.23117959367880436
+scientific_decision:
+  nonlinear_3d_holdout_accepted: false
+  reason: >-
+    The nonlinear solves and thermodynamic identities are strong, but the
+    predeclared mesh and remote-boundary convergence gates were missed. The
+    positive topology and strong-dark results remain diagnostics until an
+    independent finer-grid qualification closes both numerical gaps.
+next_stage:
+  name: TCZ-1KQ nonlinear 3D numerical qualification
+  constraints:
+    - preserve_the_frozen_calibration_matrix_without_refit
+    - preserve_the_frozen_BH_law_and_operating_uncertainty_sets
+    - preserve_all_original_acceptance_thresholds
+    - add_finer_mesh_and_larger_boundary_levels
+    - replay_all_operating_and_uncertainty_cases_on_the_qualified_grid
+    - recompute_nonlinear_Sym2_topology_on_the_qualified_grid
+    - keep_the_affine_depth_law_rejection_separate
+claim_boundary:
+  forbidden:
+    - accepted_nonlinear_3d_closure_from_run_31143771001
+    - hysteresis_or_eddy_current_validity
+    - manufactured_winding_or_end_lead_equivalence
+    - hardware_or_HIL_validity

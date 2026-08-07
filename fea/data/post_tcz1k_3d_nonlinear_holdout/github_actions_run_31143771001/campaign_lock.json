@@ -1,0 +1,293 @@
+{
+  "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+  "config": {
+    "acceptance_gates": {
+      "frozen_depth_law": {
+        "maximum_mean_inductance_relative_error": 0.1
+      },
+      "nonlinear_topology": {
+        "maximum_route_locality_residual": 0.1,
+        "maximum_route_rank_defect": 0.05,
+        "maximum_sym2_condition": 30.0,
+        "maximum_whitened_tight_frame_defect": 0.1,
+        "required_lorentz_signature": [
+          1,
+          2,
+          0
+        ],
+        "required_sym2_rank": 3
+      },
+      "numerical_admissibility": {
+        "maximum_derivative_mesh_spread": 0.05,
+        "maximum_derivative_step_spread": 0.05,
+        "maximum_differential_inductance_condition": 30.0,
+        "maximum_energy_derivative_residual": 0.001,
+        "maximum_gauge_fraction": 1e-06,
+        "maximum_power_pairing_residual": 1e-12,
+        "maximum_reciprocity_residual": 0.001,
+        "maximum_remote_boundary_spread": 0.05,
+        "maximum_stationarity_residual": 1e-07,
+        "positive_differential_inductance_required": true
+      },
+      "saturation_probe": {
+        "maximum_directional_differential_to_secant_ratio": 0.97,
+        "minimum_any_core_volume_fraction_above_1p62T": 0.0001
+      },
+      "strong_dark": {
+        "maximum_port_leakage": 0.001,
+        "maximum_power_ratio": 0.1,
+        "required_operating_pass_fraction": 1.0,
+        "required_uncertainty_pass_fraction": 0.95
+      }
+    },
+    "claim_scope": {
+      "allowed": [
+        "nonlinear_anhysteretic_3d_holdout_for_the_declared_BH_curve",
+        "fixed_power_preserving_calibration_without_refit",
+        "fixed_affine_depth_law_without_refit",
+        "finite_operating_and_uncertainty_set_decision"
+      ],
+      "forbidden": [
+        "hysteresis_or_eddy_current_validity",
+        "manufactured_winding_or_end_lead_equivalence",
+        "hardware_or_HIL_validity",
+        "continuous_certification_outside_declared_holdout"
+      ]
+    },
+    "current_derivative": {
+      "central_step_A": 4.0,
+      "low_field_depth_probe_A": 20.0
+    },
+    "decision_partition": [
+      "numerical_evidence_admissible",
+      "frozen_calibration_holdout",
+      "frozen_depth_law_holdout",
+      "nonlinear_intrinsic_topology",
+      "nonlinear_strong_dark_operating_set",
+      "uncertainty_holdout"
+    ],
+    "geometry": {
+      "low_field_depth_holdout_multipliers": [
+        0.75,
+        1.5
+      ],
+      "nominal_boundary_scale": 1.0,
+      "nominal_gap_mm": 1.75,
+      "physical_depth_mm": 22.838127702404996,
+      "primary_gap_step_mm": 0.035,
+      "primary_mesh_scale": 1.55,
+      "validation_boundary_scale": 1.35,
+      "validation_gap_step_mm": 0.07,
+      "validation_mesh_scale": 1.25
+    },
+    "material": {
+      "B_T": [
+        0.0,
+        0.3,
+        0.8,
+        1.12,
+        1.32,
+        1.46,
+        1.54,
+        1.62,
+        1.74,
+        1.87,
+        1.99,
+        2.046,
+        2.08
+      ],
+      "H_A_per_m": [
+        0.0,
+        40.0,
+        80.0,
+        160.0,
+        318.0,
+        796.0,
+        1590.0,
+        3380.0,
+        7960.0,
+        15900.0,
+        31800.0,
+        55100.0,
+        79600.0
+      ],
+      "interpolation": "monotone_PCHIP_H_of_B_with_exact_piecewise_antiderivative",
+      "name": "inherited_femm_13_point_monotone_BH",
+      "tail": "linear_differential_reluctivity_1_over_mu0",
+      "uncertainty_parameterization": "H_variant(B) = h_scale * H_nominal(B / b_knee_scale)"
+    },
+    "operating_set_calibrated_A": [
+      {
+        "current": [
+          260.0,
+          97.5
+        ],
+        "id": "low_skew"
+      },
+      {
+        "current": [
+          460.0,
+          172.5
+        ],
+        "id": "anchor"
+      },
+      {
+        "current": [
+          700.0,
+          262.5
+        ],
+        "id": "high_skew"
+      },
+      {
+        "current": [
+          -420.0,
+          520.0
+        ],
+        "id": "rotated_a"
+      },
+      {
+        "current": [
+          560.0,
+          -390.0
+        ],
+        "id": "rotated_b"
+      }
+    ],
+    "schema": "bfm5_tcz1k_nonlinear_3d_calibrated_holdout_v1",
+    "solver": {
+      "continuation_factors_on_initializer_failure": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "gauge_factor": 1e-08,
+      "linear_initializer_mu_r": 2000.0,
+      "maximum_cg_iterations": 1200,
+      "maximum_newton_iterations": 18,
+      "nonlinear_method": "energy_Newton_BDDC_CG_with_backtracking",
+      "relative_stationarity_tolerance": 1e-08,
+      "source": "route_resolved_J_h_equals_curl_T_h",
+      "space": "HCurl_order_1_nograds"
+    },
+    "source_decision": {
+      "affine_depth_law": {
+        "equivalent_end_extension_mm": 8.440502966379492,
+        "intercept_H": 2.074282140353522e-07,
+        "slope_H_per_m": 2.457533808845131e-05
+      },
+      "calibration_matrix_C": [
+        [
+          0.9812220080652189,
+          1.362787025501901e-05
+        ],
+        [
+          1.3627870255019022e-05,
+          1.0191373531842471
+        ]
+      ],
+      "campaign_sha256": "e64f38b3aa1f83bbddb44b4556514b0b917b28a20866fa0b7e2d9c898c17c756",
+      "git_sha": "517b76d14c850902807a4ea59f7bd8e6c64d39b6",
+      "refit_forbidden": true
+    },
+    "stage": "TCZ-1K",
+    "status": "preregistered_before_github_actions_holdout",
+    "uncertainty_holdout": {
+      "scenarios": [
+        {
+          "b_knee_scale": 1.0,
+          "gap_delta_mm": [
+            0.02625,
+            -0.0175,
+            0.00875
+          ],
+          "h_scale": 1.0,
+          "id": "gap_pattern_a",
+          "route_source_gain": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "b_knee_scale": 1.0,
+          "gap_delta_mm": [
+            -0.0175,
+            0.02625,
+            -0.00875
+          ],
+          "h_scale": 1.0,
+          "id": "gap_pattern_b",
+          "route_source_gain": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "b_knee_scale": 1.0,
+          "gap_delta_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "h_scale": 1.0,
+          "id": "source_pattern",
+          "route_source_gain": [
+            1.015,
+            0.985,
+            1.01
+          ]
+        },
+        {
+          "b_knee_scale": 1.05,
+          "gap_delta_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "h_scale": 0.9,
+          "id": "soft_material",
+          "route_source_gain": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "b_knee_scale": 0.95,
+          "gap_delta_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "h_scale": 1.1,
+          "id": "hard_material",
+          "route_source_gain": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "b_knee_scale": 0.95,
+          "gap_delta_mm": [
+            0.02625,
+            -0.0175,
+            0.00875
+          ],
+          "h_scale": 1.1,
+          "id": "combined_corner",
+          "route_source_gain": [
+            1.015,
+            0.985,
+            1.01
+          ]
+        }
+      ],
+      "stress_operating_point": "high_skew"
+    }
+  },
+  "config_sha256": "2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082",
+  "schema": "bfm5_tcz1k_nonlinear_3d_calibrated_holdout_v1"
+}

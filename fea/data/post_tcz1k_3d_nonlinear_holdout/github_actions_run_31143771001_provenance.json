@@ -1,0 +1,26 @@
+{
+  "artifact_file_count": 26,
+  "artifact_manifest_sha256": "80245d6e394bb8f6ea0589ec6e4a1d577ba6d9922b0095d2b2418390b0ec9942",
+  "campaign_sha256": "f3bf078e1d89a6683027c7adeabcd94026fa8239231aa2e535fd24470d9a28d5",
+  "canonical_artifact_tree_sha256": "5c1faceeceb3b3bc58221ef2da66d493490227ee45d1c02f13664787017b1bb6",
+  "failed_numerical_checks": [
+    "derivative_mesh",
+    "remote_boundary"
+  ],
+  "github_repository": "quemanhmcr/bfm-5-modal-collar",
+  "partitioned_decision": {
+    "fixed_calibration_used_without_refit": true,
+    "frozen_depth_law_holdout": false,
+    "nonlinear_intrinsic_topology": true,
+    "nonlinear_strong_dark_operating_set": true,
+    "numerical_evidence_admissible": false,
+    "saturation_was_materially_probed": true,
+    "uncertainty_holdout": true
+  },
+  "run_conclusion": "failure_due_to_predeclared_numerical_admissibility_gate",
+  "run_id": 31143771001,
+  "schema": "bfm5_tcz1k_github_actions_repository_freeze_v1",
+  "source_git_sha": "c236d0c061a8608cc577241ddc6672b57e754ef2",
+  "summary_sha256": "8c5770be77b68acee21466f8b91a7170e463e4fa967de90a085e67d7e80478ef",
+  "workflow": "TCZ-1K Nonlinear 3D Calibrated Holdout"
+}
