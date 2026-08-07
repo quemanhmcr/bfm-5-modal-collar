@@ -1,4 +1,4 @@
-name: TCZ-1L Saturation Critical-Surface Holdout
+name: TCZ-1L Saturation Critical-Surface EXEC 421c937c
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         default: v1
   push:
     branches:
-      - research/tcz1l-saturation-critical-surface
+      - research/tcz1l-exec-421c937c
     paths:
       - '.github/actions/setup-fea3d/action.yml'
       - '.github/workflows/tcz1l-3d-saturation.yml'
@@ -34,10 +34,6 @@ env:
   MKL_NUM_THREADS: '4'
   NUMBA_NUM_THREADS: '4'
 
-concurrency:
-  group: tcz1l-3d-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   shard:
     name: shard-${{ matrix.label }}
@@ -45,7 +41,7 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
-      max-parallel: 6
+      max-parallel: 4
       matrix:
         include:
           - {label: state-high_skew-1p00, kind: state, ray: high_skew, scale: '1.0', case: ''}
