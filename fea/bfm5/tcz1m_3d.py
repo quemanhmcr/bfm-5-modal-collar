@@ -60,10 +60,14 @@ def update_transition_bracket(bracket: BooleanBracket, scale: float, flag: bool,
     x=float(scale)
     if not bracket.lo < x < bracket.hi:
         raise ValueError('new sample must lie strictly inside bracket')
-    if rising:
-        out=BooleanBracket(x,bracket.hi,bool(flag),bracket.hi_flag) if not flag else BooleanBracket(bracket.lo,x,bracket.lo_flag,bool(flag))
+    # Preserve the two Boolean endpoint classes for both rising and falling roots.
+    # A sample replaces the endpoint that has the same Boolean class.
+    if bool(flag)==bool(bracket.lo_flag):
+        out=BooleanBracket(x,bracket.hi,bool(flag),bracket.hi_flag)
+    elif bool(flag)==bool(bracket.hi_flag):
+        out=BooleanBracket(bracket.lo,x,bracket.lo_flag,bool(flag))
     else:
-        out=BooleanBracket(bracket.lo,x,bracket.lo_flag,bool(flag)) if flag else BooleanBracket(x,bracket.hi,bool(flag),bracket.hi_flag)
+        raise ValueError('sample flag does not match either bracket endpoint class')
     validate_transition_bracket(out,rising=rising)
     return out
 
