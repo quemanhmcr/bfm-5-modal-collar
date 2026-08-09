@@ -1,0 +1,218 @@
+name: TCZ-1M Directional Event-Root Holdout
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_generation:
+        description: FEA3D cache namespace
+        required: true
+        default: v1
+  push:
+    branches:
+      - research/tcz1m-directional-event-root
+    paths:
+      - '.github/actions/setup-fea3d/action.yml'
+      - '.github/workflows/tcz1m-3d-event-root.yml'
+      - 'fea/bfm5/tcz1m_3d.py'
+      - 'fea/config/tcz1m_directional_event_root.yml'
+      - 'fea/scripts/run_tcz1m_directional_event_root.py'
+      - 'fea/scripts/analyze_tcz1m_directional_event_root.py'
+      - 'fea/scripts/seal_tcz1m_evidence.py'
+      - 'fea/tests/test_tcz1m_3d.py'
+      - 'fea/config/tcz1l_3d_saturation_critical_surface.yml'
+      - 'fea/scripts/run_tcz1l_3d_critical_surface.py'
+      - 'fea/bfm5/tcz1l_3d.py'
+      - 'fea/config/tcz1k_3d_nonlinear_holdout.yml'
+      - 'fea/scripts/run_tcz1k_3d_nonlinear_holdout.py'
+      - 'fea/requirements-tcz1l-core.txt'
+      - 'fea/requirements-tcz1l-validation.txt'
+      - 'fea/requirements-tcz1l-analysis.txt'
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: '1'
+  PYTHONPATH: '.'
+  OMP_NUM_THREADS: '4'
+  OPENBLAS_NUM_THREADS: '4'
+  MKL_NUM_THREADS: '4'
+  NUMBA_NUM_THREADS: '4'
+
+concurrency:
+  group: tcz1m-3d-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-math:
+    name: validate-frozen-mathematics
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Restore lightweight validation runtime
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+          requirements-file: fea/requirements-tcz1l-validation.txt
+          install-getdp: 'false'
+          install-linux-runtime-libraries: 'false'
+      - name: Validate frozen root mathematics and anti-refit locks
+        run: python -m pytest -q tests/test_tcz1m_3d.py
+
+  estimator-validation:
+    name: validate-implicit-shape-estimator
+    needs: validate-math
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Restore minimal nonlinear FEA runtime
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+          requirements-file: fea/requirements-tcz1l-core.txt
+          install-getdp: 'false'
+      - name: Cross-validate implicit Hessian shape sensitivity
+        run: |
+          set -euo pipefail
+          out="results_ci/tcz1m_estimator"
+          mkdir -p "$out"
+          python scripts/run_tcz1m_directional_event_root.py \
+            --kind estimator_validation \
+            --output "$out" | tee "$out/run.log"
+      - name: Upload estimator firewall evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1m-estimator-${{ github.run_id }}
+          path: fea/results_ci/tcz1m_estimator/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Enforce estimator firewall
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('results_ci/tcz1m_estimator/estimator_validation.json')
+          d=json.loads(p.read_text())
+          print(json.dumps({
+              'accepted': d['accepted'],
+              'rows': [
+                  {'scale': r['scale'], 'accepted': r['accepted'], 'errors': r['errors'], 'checks': r['checks']}
+                  for r in d['rows']
+              ],
+          }, indent=2))
+          if not d['accepted']:
+              raise SystemExit('implicit shape estimator rejected against frozen TCZ-1L central differences')
+          PY
+
+  root:
+    name: root-boundary-${{ matrix.boundary }}
+    needs: estimator-validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - {kind: root_boundary, boundary: '1.55', label: b1p55}
+          - {kind: root_boundary, boundary: '1.85', label: b1p85}
+          - {kind: root_boundary, boundary: '2.15', label: b2p15}
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Restore minimal nonlinear FEA runtime
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+          requirements-file: fea/requirements-tcz1l-core.txt
+          install-getdp: 'false'
+      - name: Localize saturation and dark-breakdown roots
+        env:
+          TCZ1M_BOUNDARY: ${{ matrix.boundary }}
+        run: |
+          set -euo pipefail
+          out="results_ci/tcz1m_root_${{ matrix.label }}"
+          mkdir -p "$out"
+          python scripts/run_tcz1m_directional_event_root.py \
+            --kind root_boundary \
+            --boundary "$TCZ1M_BOUNDARY" \
+            --output "$out" | tee "$out/run.log"
+      - name: Upload boundary-root evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1m-root-${{ matrix.label }}-${{ github.run_id }}
+          path: fea/results_ci/tcz1m_root_${{ matrix.label }}/
+          if-no-files-found: error
+          retention-days: 14
+
+  aggregate-and-seal:
+    name: aggregate-and-seal
+    if: always()
+    needs:
+      - estimator-validation
+      - root
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: fea
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Restore lightweight analysis runtime
+        uses: ./.github/actions/setup-fea3d
+        with:
+          python-version: '3.12'
+          cache-generation: ${{ inputs.cache_generation || 'v1' }}
+          requirements-file: fea/requirements-tcz1l-analysis.txt
+          install-getdp: 'false'
+          install-linux-runtime-libraries: 'false'
+      - name: Download TCZ-1M evidence shards
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: tcz1m-*-${{ github.run_id }}
+          path: fea/results_ci/tcz1m_final/shards
+      - name: Analyze event roots and exterior stability
+        run: python scripts/analyze_tcz1m_directional_event_root.py --evidence results_ci/tcz1m_final
+      - name: Seal and enforce preregistered TCZ-1M decision
+        run: python scripts/seal_tcz1m_evidence.py --evidence results_ci/tcz1m_final
+      - name: Publish concise decision
+        if: always()
+        run: |
+          if [ -f results_ci/tcz1m_final/summary.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          s=json.loads(Path('results_ci/tcz1m_final/summary.json').read_text())
+          print('# TCZ-1M directional event roots')
+          print(f"- Overall accepted: **{s['overall_directional_event_root_accepted']}**")
+          for k,v in s['partitioned_decision'].items(): print(f'- {k}: **{v}**')
+          print(f"- Production event-margin bounds: **{s['production_event_margin_bounds_scale']}**")
+          e=s['exterior']
+          print(f"- Saturation-root exterior shift: **{e['saturation_root_midpoint_shift_scale']:.6f}**")
+          print(f"- Dark-root exterior shift: **{e['strong_dark_root_midpoint_shift_scale']:.6f}**")
+          print(f"- Route-2 Kq exterior spread: **{e['route_2_Kq_column_relative_spread_at_common_midpoint']:.3%}**")
+          PY
+          fi
+      - name: Upload immutable TCZ-1M evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tcz1m-3d-event-root-${{ github.run_id }}
+          path: fea/results_ci/tcz1m_final/
+          if-no-files-found: warn
+          retention-days: 14

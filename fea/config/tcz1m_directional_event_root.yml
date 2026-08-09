@@ -1,0 +1,119 @@
+schema: bfm5_tcz1m_directional_event_root_v1
+stage: TCZ-1M
+status: preregistered_before_directional_event_root_actions_holdout
+frozen_parent:
+  tcz1l_freeze_git_sha: 91e968378704a8c4204192f4eecab3d5c32b1e2b
+  tcz1l_run_git_sha: 4ebc93f5a3ae22d4be0725d45fbdc65f82d825b4
+  tcz1l_actions_run_id: 31155017334
+  tcz1l_campaign_sha256: 2302a9c7e483bba71c5af849f9653b3adccfeda26da908abf8f956ae5a9b6d0d
+  tcz1l_scientific_contract_sha256: 5d5a24a45941344f7a2fdbf9288ee43ebdb50488479613ca4c677fa817b062b8
+  tcz1l_summary_sha256: 147b09e15c7e1e7f41c5478c52ad054df7502e142d53dee719a12c74dcb1b645
+  tcz1l_config_sha256: a764bfae71362bf23a8534b62401a87afeac1837603d89bd3f41e9fb9181ec4b
+  tcz1l_runner_sha256: d0055e66d743c62fc5ef4410c5c33728a469810831626c2302699c64d57f0651
+  tcz1l_math_sha256: 2cc0c0accea3b74800a71bbdaa306db9a67c8119a5aa55d88322515dacbd35b1
+  tcz1k_config_sha256: 2cb121de602b3d0e48b79c967c18463f9f38fb593672edda085bb3a143c24082
+  tcz1k_runner_sha256: 74f3178ca8b2e290e262d6e80384b7e7b2f169b0e08ac47b1b5d30cf2e1817d7
+  refit_forbidden: true
+fixed_physics:
+  physical_depth_mm: 22.838127702404996
+  calibration_matrix_C:
+  - - 0.9812220080652189
+    - 1.362787025501901e-05
+  - - 1.3627870255019022e-05
+    - 1.0191373531842471
+  material: inherited_femm_13_point_monotone_BH
+  mesh_scale: 1.1
+  gap_step_mm: 0.035
+  target_ray:
+    id: rotated_a
+    base_current_A:
+    - -420.0
+    - 520.0
+  root_bracket_scale:
+  - 1.35
+  - 1.8
+  root_tolerance_scale: 0.01
+  exterior_boundary_scales:
+  - 1.55
+  - 1.85
+  - 2.15
+  production_boundary_scale: 1.85
+  exterior_convergence_pair:
+  - 1.85
+  - 2.15
+implicit_shape_estimator:
+  method: central_geometry_residual_plus_implicit_state_Hessian
+  identity: A_q_equals_minus_F_A_inverse_F_q
+  geometry_residual_step_mm: 0.035
+  current_tangent: exact_discrete_Newton_Hessian
+  validation_boundary_scale: 1.55
+  validation_scales:
+  - 1.35
+  - 1.8
+  frozen_reference_paths:
+    '1.35': fea/data/post_tcz1l_3d_saturation_critical_surface/github_actions_run_31155017334/shards/tcz1l-shard-state-rotated_a-1p35-31155017334/state.json
+    '1.80': fea/data/post_tcz1l_3d_saturation_critical_surface/github_actions_run_31155017334/shards/tcz1l-shard-state-rotated_a-1p80-31155017334/state.json
+  acceptance:
+    maximum_Kq_relative_error: 0.02
+    maximum_coenergy_gradient_relative_error: 0.02
+    maximum_power_ratio_absolute_error: 0.01
+    maximum_locality_absolute_error: 0.01
+    maximum_linearized_state_residual: 1.0e-08
+    endpoint_event_classification_must_match: true
+acceptance_gates:
+  numerical:
+    maximum_stationarity_residual: 1.0e-07
+    maximum_gauge_fraction: 1.0e-06
+    maximum_power_pairing_residual: 1.0e-12
+    maximum_tangent_reciprocity_residual: 0.001
+    positive_differential_inductance_required: true
+    maximum_differential_inductance_condition: 30.0
+    maximum_linearized_solve_residual: 1.0e-08
+  strong_dark:
+    maximum_port_leakage: 0.001
+    maximum_power_ratio: 0.1
+    maximum_route_locality_residual: 0.1
+  saturation:
+    minimum_any_core_volume_fraction_above_1p62T: 0.0001
+    maximum_directional_differential_to_secant_ratio: 0.97
+  event_root:
+    maximum_final_bracket_width_scale: 0.01
+    require_positive_certified_event_margin: true
+  exterior:
+    maximum_root_midpoint_shift_scale: 0.025
+    route_2_Kq_column_relative_spread_at_common_midpoint: 0.05
+root_algorithm:
+  type: simultaneous_cached_boolean_bisection
+  monotonicity_contract:
+    saturation: false_to_true_inside_frozen_bracket
+    strong_dark: true_to_false_inside_frozen_bracket
+  warm_start: nearest_previously_solved_scale_then_direct_linear_then_homotopy_fallback
+  common_diagnostic_scale: 1.575
+  maximum_unique_state_evaluations_per_boundary: 16
+decision_rules:
+- implicit_shape_estimator_must_validate_before_root_jobs
+- each_boundary_must_localize_both_events_with_frozen_thresholds
+- production_boundary_requires_positive_certified_event_margin
+- roots_must_be_exterior_stable_between_1p85_and_2p15
+- route_2_Kq_must_be_exterior_stable_at_scale_1p575
+claim_scope:
+  allowed:
+  - localized_rotated_a_saturation_and_strong_dark_transition_brackets
+  - certified_interval_bounds_on_event_margin_Delta_s
+  - implicit_discrete_shape_sensitivity_validated_against_frozen_central_differences
+  - exterior_domain_stability_of_event_roots_and_route_2_Kq_near_transition
+  forbidden:
+  - refitting_calibration_material_rays_thresholds_or_root_bracket_after_results
+  - hysteresis_or_eddy_current_closure
+  - manufactured_winding_or_hardware_validity
+  - claiming_global_angular_optimum_from_one_direction
+integrity:
+  scientific_contract_sha256: c799e977a7773892dfbbb29c9078483a6a1c7a325b92be097ac127c818b1fc12
+  scientific_contract_keys:
+  - frozen_parent
+  - fixed_physics
+  - implicit_shape_estimator
+  - acceptance_gates
+  - root_algorithm
+  - decision_rules
+  - claim_scope
